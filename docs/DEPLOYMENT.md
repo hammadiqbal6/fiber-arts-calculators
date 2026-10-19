@@ -81,6 +81,8 @@ Edit `.env` with your real values. Astro exposes only variables prefixed with `P
 | `PUBLIC_SITE_NAME` | Recommended | Nav, footer, schema (`FiberCalc` default) |
 | `PUBLIC_CONTACT_EMAIL` | **Yes** (AdSense) | Contact page, footer, Privacy |
 | `PUBLIC_LEGAL_NAME` | Recommended | Privacy/Terms/Organization schema |
+| `PUBLIC_AUTHOR_NAME` | Recommended | Bylines + `/authors/` (default: `<siteName> Team`) |
+| `PUBLIC_AUTHOR_BIO` | Recommended | `/authors/` bio (honest default; no fake credentials) |
 | `PUBLIC_ADSENSE_PUBLISHER_ID` | When monetizing | `pub-XXXXXXXXXXXXXXXX` |
 | `PUBLIC_ADSENSE_ENABLED` | When monetizing | Set `true` only after publisher ID + ads.txt |
 | `PUBLIC_GA4_MEASUREMENT_ID` | Optional | `G-XXXXXXXXXX` |
