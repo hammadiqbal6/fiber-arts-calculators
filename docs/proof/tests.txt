@@ -1,0 +1,14 @@
+
+> fiber-arts-calculators@1.0.0 test
+> vitest run
+
+
+ RUN  v3.2.7 /workspace
+
+ ✓ src/lib/calculators/all.test.ts (19 tests) 7ms
+
+ Test Files  1 passed (1)
+      Tests  19 passed (19)
+   Start at  06:44:53
+   Duration  225ms (transform 73ms, setup 0ms, collect 91ms, tests 7ms, environment 0ms, prepare 40ms)
+

@@ -1,0 +1,21 @@
+[
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "FiberCalc",
+    "url": "https://fibercalc.example",
+    "description": "Free knitting, crochet, sewing & quilting calculators",
+    "publisher": {
+      "@type": "Organization",
+      "name": "FiberCalc",
+      "url": "https://fibercalc.example"
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "FiberCalc",
+    "url": "https://fibercalc.example",
+    "email": "hello@fibercalc.example"
+  }
+]

@@ -1,0 +1,47 @@
+[
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Yarn Blanket Calculator",
+    "description": "Estimate skeins, yards, meters, and grams for knit or crochet blankets by size and Craft Yarn Council yarn weight.",
+    "url": "https://fibercalc.example/tools/yarn-blanket-calculator/",
+    "applicationCategory": "UtilitiesApplication",
+    "operatingSystem": "Any",
+    "browserRequirements": "Requires JavaScript",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    },
+    "provider": {
+      "@type": "Organization",
+      "name": "FiberCalc",
+      "url": "https://fibercalc.example"
+    },
+    "dateModified": "2026-10-19"
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://fibercalc.example/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Tools",
+        "item": "https://fibercalc.example/tools/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 3,
+        "name": "Yarn Blanket Calculator",
+        "item": "https://fibercalc.example/tools/yarn-blanket-calculator/"
+      }
+    ]
+  }
+]

@@ -1,0 +1,52 @@
+Generated: 2026-10-19T06:44:51.636Z
+Sitemap URLs: 38
+Built HTML pages (excl. embed, 404): 38
+Match: OK (sitemap includes hubs/tools/guides; embed excluded)
+
+--- robots.txt ---
+# FiberCalc robots.txt
+User-agent: *
+Allow: /
+Disallow: /api/
+Disallow: /*?utm_
+
+# AI search / answer engines (allow to be cited)
+User-agent: OAI-SearchBot
+Allow: /
+User-agent: ChatGPT-User
+Allow: /
+User-agent: PerplexityBot
+Allow: /
+User-agent: Claude-SearchBot
+Allow: /
+
+# AI model training — documented choice: allow (disallow does not affect Google Search ranking)
+# To opt out of training while staying in AI search answers, set these to Disallow.
+User-agent: GPTBot
+Allow: /
+User-agent: Google-Extended
+Allow: /
+User-agent: ClaudeBot
+Allow: /
+User-agent: CCBot
+Allow: /
+
+Sitemap: https://fibercalc.example/sitemap-index.xml
+
+
+Googlebot: allowed (see rules)
+bingbot: allowed (see rules)
+OAI-SearchBot: allowed (see rules)
+PerplexityBot: allowed (see rules)
+Claude-SearchBot: allowed (see rules)
+llms.txt in public/: yes
+llms.txt in dist/: yes
+
+--- llms.txt (dist) ---
+# Optional llms.txt for FiberCalc (Google Search ignores this file)
+# Name: FiberCalc
+# Description: Free client-side knitting, crochet, sewing, and quilting calculators
+# Homepage: /
+# Tools: /tools/
+# Guides: /guides/
+# Contact: see /contact/

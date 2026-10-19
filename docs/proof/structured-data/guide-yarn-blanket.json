@@ -1,0 +1,44 @@
+[
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "How Much Yarn for a Blanket? (Knit & Crochet)",
+    "description": "Practical yardage ranges for baby, throw, and bed blankets by yarn weight, plus how to calculate your own.",
+    "datePublished": "2026-10-19",
+    "dateModified": "2026-10-19",
+    "author": {
+      "@type": "Organization",
+      "name": "FiberCalc Editorial"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "FiberCalc",
+      "url": "https://fibercalc.example"
+    },
+    "mainEntityOfPage": "https://fibercalc.example/guides/how-much-yarn-for-a-blanket/"
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://fibercalc.example/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Guides",
+        "item": "https://fibercalc.example/guides/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 3,
+        "name": "How Much Yarn for a Blanket? (Knit & Crochet)",
+        "item": "https://fibercalc.example/guides/how-much-yarn-for-a-blanket/"
+      }
+    ]
+  }
+]

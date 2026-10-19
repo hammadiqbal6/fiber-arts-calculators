@@ -1,0 +1,22 @@
+Structured data validation — 2026-10-19T06:44:51.636Z
+
+home: 2 block(s), errors: 1
+  - $.publisher: missing @context
+tool-yarn-blanket: 2 block(s), errors: 5
+  - $.offers: missing @context
+  - $.provider: missing @context
+  - $.itemListElement[0]: missing @context
+  - $.itemListElement[1]: missing @context
+  - $.itemListElement[2]: missing @context
+guide-yarn-blanket: 2 block(s), errors: 5
+  - $.author: missing @context
+  - $.publisher: missing @context
+  - $.itemListElement[0]: missing @context
+  - $.itemListElement[1]: missing @context
+  - $.itemListElement[2]: missing @context
+hub-knitting: 0 block(s), errors: 0
+reference-yarn-weights: 0 block(s), errors: 0
+
+After deploy, re-run Google Rich Results Test on live URLs, e.g.:
+https://search.google.com/test/rich-results
+Example URL: {PUBLIC_SITE_URL}/tools/yarn-blanket-calculator/

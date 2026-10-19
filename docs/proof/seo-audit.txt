@@ -1,0 +1,27 @@
+
+=== scripts/audit/seo-audit.mjs ===
+SEO audit: 57 pages, 18 tools
+SEO audit passed
+
+=== scripts/audit/adsense-audit.mjs ===
+AdSense readiness audit passed
+
+=== scripts/audit/js-budget.mjs ===
+0.93 KB gz	AdSlot.D3pkJOFS.js
+2.02 KB gz	BaseLayout.B1SqYgyi.js
+0.47 KB gz	Breadcrumbs.DSmsV7u_.js
+0.54 KB gz	RelatedTools.DJkqvZle.js
+0.13 KB gz	_slug_.astro_astro_type_script_index_0_lang.C8M4wRHN.js
+0.13 KB gz	_slug_.astro_astro_type_script_index_0_lang.bQhncME-.js
+18.09 KB gz	astro/server.J6wcivZe.js
+0.08 KB gz	astro.D8s5rfE3.js
+3.32 KB gz	guides.BdpT_6sS.js
+0.80 KB gz	site.DQ5pFvRf.js
+6.67 KB gz	tool-client.DaGTIoVZ.js
+16.21 KB gz	tool-pages.DonCN1rn.js
+1.70 KB gz	tools.BavHn1mo.js
+Total JS gzip across chunks: 51.09 KB
+JS budget audit passed
+
+=== scripts/audit/link-check.mjs ===
+Link check passed
