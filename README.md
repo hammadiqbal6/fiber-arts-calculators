@@ -93,6 +93,9 @@ npm run preview  # serve dist locally
 | `npm run audit:budget` | Per-chunk gzip JS budget (50 KB) |
 | `npm run check-links` | Internal link checker |
 | `npm run lhci` | Lighthouse CI (mobile budgets in `lighthouserc.cjs`) |
+| `npm run indexnow` | Ping IndexNow from `dist/` sitemaps (post-deploy; never fails build) |
+| `npm run deploy` | `npx wrangler deploy` (static Worker from `dist/`) |
+| `npm run deploy:indexnow` | Deploy then IndexNow ping |
 
 ## Configuration
 
@@ -145,7 +148,7 @@ Quick start: [docs/DEPLOYMENT.md](docs/DEPLOYMENT.md) (Cloudflare Pages primary)
 
 ## Post-launch SEO
 
-Submit sitemap in Google Search Console and Bing; use `node scripts/indexnow.mjs` after setting `PUBLIC_INDEXNOW_KEY`.
+Submit sitemap in Google Search Console and Bing. After deploy, run `npm run indexnow` (or `npx wrangler deploy && node scripts/indexnow.mjs` on Workers Builds). See [docs/DEPLOYMENT.md](docs/DEPLOYMENT.md) §7.3.
 
 ## Docs index
 

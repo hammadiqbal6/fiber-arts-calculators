@@ -9,7 +9,7 @@ Governing playbook: [SEO-PLAYBOOK.md](./SEO-PLAYBOOK.md). Keyword map: [KEYWORD-
 3. Submit `https://YOUR_DOMAIN/sitemap-index.xml`.
 4. URL Inspection on homepage + top 5 tools → Request indexing.
 5. Confirm Coverage / Page indexing has no unexpected exclusions.
-6. Bing Webmaster Tools → Import from GSC → enable IndexNow (optional key in `PUBLIC_INDEXNOW_KEY`, file at `/KEY.txt`).
+6. Bing Webmaster Tools → Import from GSC → IndexNow key is at `/9638154d8d3e54b9c2ce62eb17469c43.txt`; after deploy run `npm run indexnow` (or Workers Builds: `npx wrangler deploy && node scripts/indexnow.mjs`).
 7. GA4: create property → set `PUBLIC_GA4_MEASUREMENT_ID` → redeploy.
 8. Verify robots.txt allows Googlebot + AI search bots (OAI-SearchBot, ChatGPT-User, PerplexityBot, Claude-SearchBot).
 9. Spot-check canonicals, titles, one H1, JSON-LD in View Source.
