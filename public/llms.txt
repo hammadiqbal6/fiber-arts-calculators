@@ -1,7 +1,0 @@
-# Optional llms.txt for FiberCalc (Google Search ignores this file)
-# Name: FiberCalc
-# Description: Free client-side knitting, crochet, sewing, and quilting calculators
-# Homepage: /
-# Tools: /tools/
-# Guides: /guides/
-# Contact: see /contact/

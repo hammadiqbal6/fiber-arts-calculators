@@ -3,7 +3,9 @@
  * IndexNow ping (Bing/Yandex). Not used by Google.
  * Usage: PUBLIC_SITE_URL=https://example.com PUBLIC_INDEXNOW_KEY=yourkey node scripts/indexnow.mjs
  */
-const siteUrl = process.env.PUBLIC_SITE_URL || 'https://fibercalc.example';
+const siteUrl =
+  process.env.PUBLIC_SITE_URL ||
+  'https://fiber-arts-calculators.hammadiqbal117.workers.dev';
 const key = process.env.PUBLIC_INDEXNOW_KEY;
 if (!key) {
   console.error('Set PUBLIC_INDEXNOW_KEY');
