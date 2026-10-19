@@ -17,6 +17,7 @@
     "audit:budget": "node scripts/audit/js-budget.mjs",
     "audit:links": "node scripts/audit/link-check.mjs",
     "lhci": "lhci autorun",
+    "screenshots": "npm run build && node scripts/capture-screenshots.mjs",
     "check-links": "node scripts/audit/link-check.mjs"
   },
   "dependencies": {
