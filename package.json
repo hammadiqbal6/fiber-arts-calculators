@@ -19,6 +19,7 @@
     "lhci": "lhci autorun",
     "screenshots": "npm run build && node scripts/capture-screenshots.mjs",
     "proof": "node scripts/proof/generate-proof.mjs",
+    "proof:verify": "node scripts/proof/verify-proof.mjs",
     "check-links": "node scripts/audit/link-check.mjs"
   },
   "dependencies": {

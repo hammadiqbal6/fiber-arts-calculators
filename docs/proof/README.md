@@ -8,6 +8,8 @@ npm run proof
 
 This runs `npm run build`, serves `dist/` on port 4173, executes Lighthouse, Playwright checks, audits, and writes this folder.
 
+**CI** runs `npm run proof:verify` only (checks committed artifacts + `npm test` / `npm run audit`; no Lighthouse or Playwright on GitHub runners).
+
 | Check | Tool + version | Date (UTC) | Budget | Reproduce |
 |---|---|---|---|---|
 | Unit tests | Vitest 3.2.7 | 2026-10-19T06:44:51.636Z | PASS if tests.txt shows all passed | `npm test` |
