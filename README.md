@@ -107,6 +107,8 @@ All owner placeholders live in **`src/config/site.ts`** (overridable via `PUBLIC
 | `PUBLIC_SITE_NAME` | Brand name in nav/schema |
 | `PUBLIC_CONTACT_EMAIL` | Contact + footer + JSON-LD (default: `hammadiqbal117@gmail.com`) |
 | `PUBLIC_LEGAL_NAME` | Privacy/Terms entity |
+| `PUBLIC_AUTHOR_NAME` | Bylines + `/authors/` display name (default: `FiberCalc Team`) |
+| `PUBLIC_AUTHOR_BIO` | `/authors/` bio (honest default; no fake credentials) |
 | `PUBLIC_ADSENSE_PUBLISHER_ID` | AdSense `pub-…` |
 | `PUBLIC_ADSENSE_ENABLED` | `true` to render ad slots |
 | `PUBLIC_GA4_MEASUREMENT_ID` | Google Analytics 4 |
