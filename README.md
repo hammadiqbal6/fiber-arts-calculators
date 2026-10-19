@@ -93,6 +93,9 @@ npm run preview  # serve dist locally
 | `npm run audit:budget` | Per-chunk gzip JS budget (50 KB) |
 | `npm run check-links` | Internal link checker |
 | `npm run lhci` | Lighthouse CI (mobile budgets in `lighthouserc.cjs`) |
+| `npm run indexnow` | Ping IndexNow from `dist/` sitemaps (post-deploy; never fails build) |
+| `npm run deploy` | `npx wrangler deploy` (static Worker from `dist/`) |
+| `npm run deploy:indexnow` | Deploy then IndexNow ping |
 
 ## Configuration
 
@@ -104,6 +107,8 @@ All owner placeholders live in **`src/config/site.ts`** (overridable via `PUBLIC
 | `PUBLIC_SITE_NAME` | Brand name in nav/schema |
 | `PUBLIC_CONTACT_EMAIL` | Contact + footer + JSON-LD (default: `hammadiqbal117@gmail.com`) |
 | `PUBLIC_LEGAL_NAME` | Privacy/Terms entity |
+| `PUBLIC_AUTHOR_NAME` | Bylines + `/authors/` display name (default: `FiberCalc Team`) |
+| `PUBLIC_AUTHOR_BIO` | `/authors/` bio (honest default; no fake credentials) |
 | `PUBLIC_ADSENSE_PUBLISHER_ID` | AdSense `pub-…` |
 | `PUBLIC_ADSENSE_ENABLED` | `true` to render ad slots |
 | `PUBLIC_GA4_MEASUREMENT_ID` | Google Analytics 4 |
@@ -145,7 +150,7 @@ Quick start: [docs/DEPLOYMENT.md](docs/DEPLOYMENT.md) (Cloudflare Pages primary)
 
 ## Post-launch SEO
 
-Submit sitemap in Google Search Console and Bing; use `node scripts/indexnow.mjs` after setting `PUBLIC_INDEXNOW_KEY`.
+Submit sitemap in Google Search Console and Bing. After deploy, run `npm run indexnow` (or `npx wrangler deploy && node scripts/indexnow.mjs` on Workers Builds). See [docs/DEPLOYMENT.md](docs/DEPLOYMENT.md) §7.3.
 
 ## Docs index
 

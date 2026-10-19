@@ -20,7 +20,10 @@
     "screenshots": "npm run build && node scripts/capture-screenshots.mjs",
     "proof": "node scripts/proof/generate-proof.mjs",
     "proof:verify": "node scripts/proof/verify-proof.mjs",
-    "check-links": "node scripts/audit/link-check.mjs"
+    "check-links": "node scripts/audit/link-check.mjs",
+    "deploy": "npx wrangler deploy",
+    "indexnow": "node scripts/indexnow.mjs",
+    "deploy:indexnow": "npm run deploy && node scripts/indexnow.mjs"
   },
   "dependencies": {
     "astro": "^5.7.10"

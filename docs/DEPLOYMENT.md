@@ -46,6 +46,8 @@ npm ci
 | `npm run audit` | Build + SEO, AdSense, JS budget, link checks |
 | `npm run proof` | Regenerates committed evidence in `docs/proof/` |
 | `npm run lhci` | Lighthouse CI using `lighthouserc.cjs` (optional) |
+| `npm run indexnow` | Post-deploy IndexNow ping from `dist/` sitemaps |
+| `npm run deploy:indexnow` | `npx wrangler deploy` then IndexNow ping |
 
 **Recommended pre-flight:**
 
@@ -79,13 +81,15 @@ Edit `.env` with your real values. Astro exposes only variables prefixed with `P
 | `PUBLIC_SITE_NAME` | Recommended | Nav, footer, schema (`FiberCalc` default) |
 | `PUBLIC_CONTACT_EMAIL` | **Yes** (AdSense) | Contact page, footer, Privacy |
 | `PUBLIC_LEGAL_NAME` | Recommended | Privacy/Terms/Organization schema |
+| `PUBLIC_AUTHOR_NAME` | Recommended | Bylines + `/authors/` (default: `<siteName> Team`) |
+| `PUBLIC_AUTHOR_BIO` | Recommended | `/authors/` bio (honest default; no fake credentials) |
 | `PUBLIC_ADSENSE_PUBLISHER_ID` | When monetizing | `pub-XXXXXXXXXXXXXXXX` |
 | `PUBLIC_ADSENSE_ENABLED` | When monetizing | Set `true` only after publisher ID + ads.txt |
 | `PUBLIC_GA4_MEASUREMENT_ID` | Optional | `G-XXXXXXXXXX` |
 | `PUBLIC_GSC_VERIFICATION` | Optional | Search Console HTML tag **content** value (`google-site-verification`) |
 | `PUBLIC_GOOGLE_SITE_VERIFICATION` | Optional | Legacy alias for `PUBLIC_GSC_VERIFICATION` |
 | `PUBLIC_BING_SITE_VERIFICATION` | Optional | Bing meta verification content |
-| `PUBLIC_INDEXNOW_KEY` | Optional | IndexNow key string (see §5) |
+| `INDEXNOW_KEY` | Optional | IndexNow key override for `npm run indexnow` (see §7.3; default is committed) |
 | `PUBLIC_TWITTER_HANDLE` | Optional | `@handle` for Twitter cards |
 
 **Important:** `PUBLIC_SITE_URL` is baked into the build (sitemap, canonicals, JSON-LD, `robots.txt` Sitemap line). After you know your live domain, set it in **production env vars** on your host and **redeploy**.
@@ -295,14 +299,29 @@ Do these **after** `PUBLIC_SITE_URL` matches the live HTTPS URL and you have red
 
 ### 7.3 IndexNow (optional, not used by Google)
 
-1. Generate a random key (e.g. 32 hex chars).
-2. Set `PUBLIC_INDEXNOW_KEY` in production env.
-3. Add static file `public/<YOUR_KEY>.txt` containing only the key text (commit or host rule).
-4. After deploy, run locally:
+This repo ships a committed key at `public/9638154d8d3e54b9c2ce62eb17469c43.txt` (copied into `dist/` on build). After the key file is **live**, ping IndexNow from the built sitemap(s):
 
 ```bash
-PUBLIC_SITE_URL=https://yourdomain.com PUBLIC_INDEXNOW_KEY=yourkey node scripts/indexnow.mjs
+npm run build
+npm run indexnow                 # or: node scripts/indexnow.mjs
+node scripts/indexnow.mjs --dry-run   # print URL count + payload, no POST
 ```
+
+**Cloudflare Workers Builds deploy command** (key must be live before the ping):
+
+```bash
+npx wrangler deploy && node scripts/indexnow.mjs
+```
+
+Or locally / in CI: `npm run deploy:indexnow` (runs `npx wrangler deploy` then the ping).
+
+| Env | Purpose |
+|---|---|
+| `PUBLIC_SITE_URL` | Host / keyLocation origin (same as site config) |
+| `INDEXNOW_KEY` | Override key (default: committed key above) |
+| `INDEXNOW_DISABLE=1` | Skip the ping (always exits 0) |
+
+Do **not** run IndexNow inside `npm run build`—deploy first so `/{key}.txt` is reachable.
 
 ### 7.4 Rich Results Test (live)
 
@@ -433,7 +452,7 @@ git push
 | CLS spike after ads | Ads enabled without reserved height | Keep `AdSlot` min-height; avoid above-fold ads |
 | Canonical mismatch www/apex | Two hosts without redirect | 301 non-canonical → canonical; one `PUBLIC_SITE_URL` |
 | Preview deploy wrong canonicals | Preview uses production URL | Expected; verify production deploy only |
-| IndexNow 4xx | Key file missing at `/{key}.txt` | Add file under `public/` matching `PUBLIC_INDEXNOW_KEY` |
+| IndexNow 4xx | Key file missing at `/{key}.txt` | Confirm `public/<key>.txt` is deployed; ping only after deploy |
 
 ### Get help from logs
 
@@ -499,7 +518,7 @@ PUBLIC_LEGAL_NAME=Your Name or LLC
 PUBLIC_GA4_MEASUREMENT_ID=
 PUBLIC_GSC_VERIFICATION=
 PUBLIC_BING_SITE_VERIFICATION=
-PUBLIC_INDEXNOW_KEY=
+# INDEXNOW_KEY=   # optional override; default is committed public key
 PUBLIC_ADSENSE_PUBLISHER_ID=
 PUBLIC_ADSENSE_ENABLED=false
 PUBLIC_TWITTER_HANDLE=
