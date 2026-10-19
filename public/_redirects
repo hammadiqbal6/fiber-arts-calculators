@@ -1,5 +1,4 @@
-# Cloudflare Pages / Netlify style redirects
-# Force HTTPS and apex domain in the host dashboard; examples:
-
-# http://fibercalc.example/* https://fibercalc.example/:splat 301
-# https://www.fibercalc.example/* https://fibercalc.example/:splat 301
+# Workers static assets redirects (source destination [status]).
+# Apex/www HTTPS host redirects are configured in the Cloudflare dashboard for this Worker.
+# Add path rules here when needed, e.g.:
+# /old-path/ /new-path/ 301
