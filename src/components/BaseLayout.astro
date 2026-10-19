@@ -73,8 +73,13 @@ const nav = [
     ))}
     {siteConfig.ga4MeasurementId && (
       <>
-        <script async src={`https://www.googletagmanager.com/gtag/js?id=${siteConfig.ga4MeasurementId}`}></script>
-        <script define:vars={{ gaId: siteConfig.ga4MeasurementId }}>
+        {/* is:inline keeps gtag external + config in the HTML (not bundled/hoisted). */}
+        <script
+          is:inline
+          async
+          src={`https://www.googletagmanager.com/gtag/js?id=${siteConfig.ga4MeasurementId}`}
+        ></script>
+        <script is:inline define:vars={{ gaId: siteConfig.ga4MeasurementId }}>
           window.dataLayer = window.dataLayer || [];
           function gtag(){dataLayer.push(arguments);}
           gtag('js', new Date());
