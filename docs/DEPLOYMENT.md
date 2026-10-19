@@ -185,7 +185,7 @@ https://www.yourdomain.com/* https://yourdomain.com/:splat 301
 NODE_VERSION=20
 PUBLIC_SITE_URL=https://yourdomain.com
 PUBLIC_SITE_NAME=FiberCalc
-PUBLIC_CONTACT_EMAIL=you@yourdomain.com
+PUBLIC_CONTACT_EMAIL=hammadiqbal117@gmail.com
 PUBLIC_LEGAL_NAME=Your Legal Name
 ```
 
@@ -494,7 +494,7 @@ Copy this into your issue tracker and check off on go-live day.
 NODE_VERSION=20
 PUBLIC_SITE_URL=https://yourdomain.com
 PUBLIC_SITE_NAME=FiberCalc
-PUBLIC_CONTACT_EMAIL=hello@yourdomain.com
+PUBLIC_CONTACT_EMAIL=hammadiqbal117@gmail.com
 PUBLIC_LEGAL_NAME=Your Name or LLC
 PUBLIC_GA4_MEASUREMENT_ID=
 PUBLIC_GSC_VERIFICATION=

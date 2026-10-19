@@ -102,7 +102,7 @@ All owner placeholders live in **`src/config/site.ts`** (overridable via `PUBLIC
 |---|---|
 | `PUBLIC_SITE_URL` | Canonical origin (no trailing slash) |
 | `PUBLIC_SITE_NAME` | Brand name in nav/schema |
-| `PUBLIC_CONTACT_EMAIL` | Contact + footer |
+| `PUBLIC_CONTACT_EMAIL` | Contact + footer + JSON-LD (default: `hammadiqbal117@gmail.com`) |
 | `PUBLIC_LEGAL_NAME` | Privacy/Terms entity |
 | `PUBLIC_ADSENSE_PUBLISHER_ID` | AdSense `pub-…` |
 | `PUBLIC_ADSENSE_ENABLED` | `true` to render ad slots |
