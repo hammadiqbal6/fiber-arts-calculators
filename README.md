@@ -166,7 +166,7 @@ Committed, reproducible evidence lives in **[`docs/proof/`](docs/proof/README.md
 npm run proof
 ```
 
-This builds the site, serves `dist/`, runs Lighthouse (mobile + desktop), Playwright mobile checks, unit tests, audit scripts, structured-data validation, and sitemap/robots checks. CI uploads `docs/proof/` as an artifact on pull requests.
+This builds the site, serves `dist/`, runs Lighthouse (mobile + desktop), Playwright mobile checks, unit tests, audit scripts, structured-data validation, and sitemap/robots checks. **CI** runs `npm run proof:verify` (artifact checks + tests/audits; no Lighthouse/Playwright on runners).
 
 ## Troubleshooting
 
