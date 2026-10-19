@@ -151,12 +151,22 @@ Submit sitemap in Google Search Console and Bing; use `node scripts/indexnow.mjs
 | Doc | Description |
 |---|---|
 | [AGENTS.md](AGENTS.md) | Agent/developer handbook |
-| [docs/DEPLOYMENT.md](docs/DEPLOYMENT.md) | Host deploy steps |
+| [docs/DEPLOYMENT.md](docs/DEPLOYMENT.md) | Full step-by-step deploy, SEO, AdSense, launch checklist |
 | [docs/SEO-GUIDE.md](docs/SEO-GUIDE.md) | Launch & 90-day plan |
 | [docs/KEYWORD-MAP.md](docs/KEYWORD-MAP.md) | One keyword per URL |
 | [docs/ADSENSE.md](docs/ADSENSE.md) | Monetization readiness |
 | [docs/ideas/](docs/ideas/) | Research index + backlog |
 | `.cursor/skills/` | Cursor skills for this repo |
+
+## Proof (SEO, performance, AdSense readiness)
+
+Committed, reproducible evidence lives in **[`docs/proof/`](docs/proof/README.md)**. Regenerate after any change that affects build output, audits, or budgets:
+
+```bash
+npm run proof
+```
+
+This builds the site, serves `dist/`, runs Lighthouse (mobile + desktop), Playwright mobile checks, unit tests, audit scripts, structured-data validation, and sitemap/robots checks. CI uploads `docs/proof/` as an artifact on pull requests.
 
 ## Troubleshooting
 

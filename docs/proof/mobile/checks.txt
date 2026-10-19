@@ -1,0 +1,12 @@
+Mobile checks — 2026-10-19T06:31:09.679Z
+
+360px /: screenshot=home-360.png | no horizontal scroll=true | viewport=width=device-width, initial-scale=1 | tap targets <48px=14/35 | REVIEW
+360px /knitting-crochet/: screenshot=hub-knitting-360.png | no horizontal scroll=true | viewport=width=device-width, initial-scale=1 | tap targets <48px=17/34 | REVIEW
+360px /tools/yarn-blanket-calculator/: screenshot=tool-yarn-blanket-360.png | no horizontal scroll=true | viewport=width=device-width, initial-scale=1 | tap targets <48px=19/42 | REVIEW
+360px /tools/quilt-backing-calculator/: screenshot=tool-quilt-backing-360.png | no horizontal scroll=true | viewport=width=device-width, initial-scale=1 | tap targets <48px=18/38 | REVIEW
+360px /tools/knitting-gauge-calculator/: screenshot=tool-knitting-gauge-360.png | no horizontal scroll=true | viewport=width=device-width, initial-scale=1 | tap targets <48px=18/45 | REVIEW
+768px /: screenshot=home-768.png | no horizontal scroll=true | viewport=width=device-width, initial-scale=1 | tap targets <48px=18/35 | REVIEW
+768px /knitting-crochet/: screenshot=hub-knitting-768.png | no horizontal scroll=true | viewport=width=device-width, initial-scale=1 | tap targets <48px=21/34 | REVIEW
+768px /tools/yarn-blanket-calculator/: screenshot=tool-yarn-blanket-768.png | no horizontal scroll=true | viewport=width=device-width, initial-scale=1 | tap targets <48px=23/42 | REVIEW
+768px /tools/quilt-backing-calculator/: screenshot=tool-quilt-backing-768.png | no horizontal scroll=true | viewport=width=device-width, initial-scale=1 | tap targets <48px=23/38 | REVIEW
+768px /tools/knitting-gauge-calculator/: screenshot=tool-knitting-gauge-768.png | no horizontal scroll=true | viewport=width=device-width, initial-scale=1 | tap targets <48px=23/45 | REVIEW
