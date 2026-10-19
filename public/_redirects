@@ -1,0 +1,5 @@
+# Cloudflare Pages / Netlify style redirects
+# Force HTTPS and apex domain in the host dashboard; examples:
+
+# http://fibercalc.example/* https://fibercalc.example/:splat 301
+# https://www.fibercalc.example/* https://fibercalc.example/:splat 301

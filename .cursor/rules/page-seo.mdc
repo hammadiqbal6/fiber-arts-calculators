@@ -1,0 +1,5 @@
+---
+description: On-page SEO requirements for FiberCalc pages
+globs: src/pages/**/*.astro
+---
+Unique title (<60 with brand), meta description (<155), one H1, canonical, OG tags, answer-first intro, internal links. Tools need WebApplication JSON-LD without fake ratings.

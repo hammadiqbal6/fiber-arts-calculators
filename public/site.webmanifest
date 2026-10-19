@@ -1,0 +1,17 @@
+{
+  "name": "FiberCalc",
+  "short_name": "FiberCalc",
+  "description": "Free knitting, crochet, sewing and quilting calculators",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#f3efe6",
+  "theme_color": "#2f5d50",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ]
+}

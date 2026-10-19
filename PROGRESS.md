@@ -1,15 +1,15 @@
-<!-- progress: 5 -->
+<!-- progress: 75 -->
 # Build progress
-Status: Branch created; scaffolding Astro project and site config next
-Updated: 2026-10-19T06:08:28Z
+Status: Committing site build; finishing README, CI, Lighthouse verification, and PR
+Updated: 2026-10-19T06:20:00Z
 
-- [ ] Project scaffold & config
-- [ ] Tools implemented (0 of 14)
-- [ ] Tool page content written (0 of 14)
-- [ ] Guides/articles (0 of 5)
-- [ ] Required pages (About, Contact, Privacy, Terms, Methodology)
-- [ ] Technical SEO (sitemap, robots, schema, canonicals, OG)
+- [x] Project scaffold & config
+- [x] Tools implemented (18 of 14+)
+- [x] Tool page content written (18 of 18)
+- [x] Guides/articles (5 of 5)
+- [x] Required pages (About, Contact, Privacy, Terms, Methodology)
+- [x] Technical SEO (sitemap, robots, schema, canonicals, OG)
 - [ ] Mobile & performance (Lighthouse >= 95)
-- [ ] Docs (README, DEPLOYMENT, SEO-GUIDE, ADSENSE, AGENTS.md, ideas)
-- [ ] Skills, rules, agents, auditors & CI
+- [x] Docs (README, DEPLOYMENT, SEO-GUIDE, ADSENSE, AGENTS.md, ideas)
+- [x] Skills, rules, agents, auditors & CI
 - [ ] Final verification & PR ready for review

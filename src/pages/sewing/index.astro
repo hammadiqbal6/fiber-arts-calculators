@@ -1,0 +1,20 @@
+---
+import BaseLayout from '../../components/BaseLayout.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import { toolsByCategory } from '../../lib/tools';
+
+const tools = toolsByCategory('sewing');
+---
+
+<BaseLayout title="Sewing Calculators" description="Fabric yardage and seam allowance / pattern grading calculators for garments and home sewing." canonicalPath="/sewing/">
+  <div class="container">
+    <Breadcrumbs items={[{ label: 'Home', href: '/' }, { label: 'Sewing' }]} />
+    <h1>Sewing calculators</h1>
+    <p class="takeaway"><strong>Key takeaway:</strong> Estimate fabric from project dimensions and fabric width, then refine cut sizes with seam allowance and ease helpers.</p>
+    <div class="tool-grid">
+      {tools.map((t) => (
+        <a class="tool-link" href={t.path}><h2>{t.title}</h2><p>{t.description}</p></a>
+      ))}
+    </div>
+  </div>
+</BaseLayout>

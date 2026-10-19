@@ -1,0 +1,26 @@
+---
+import { siteConfig } from '../config/site';
+---
+
+<div class="cookie-banner" data-cookie-banner hidden>
+  <div class="cookie-banner__inner">
+    <p>
+      We use optional analytics and, when enabled, Google AdSense cookies.
+      See our <a href="/privacy/" style="color:#f0d5c4">Privacy Policy</a>.
+      EEA/UK/CH visitors need a certified CMP before personalized ads.
+    </p>
+    <button type="button" class="btn btn--primary" data-cookie-accept>OK</button>
+  </div>
+</div>
+<script>
+  const key = 'fibercalc-cookie-ok';
+  const banner = document.querySelector('[data-cookie-banner]');
+  const btn = document.querySelector('[data-cookie-accept]');
+  if (banner && !localStorage.getItem(key)) {
+    banner.removeAttribute('hidden');
+  }
+  btn?.addEventListener('click', () => {
+    localStorage.setItem(key, '1');
+    banner?.setAttribute('hidden', '');
+  });
+</script>

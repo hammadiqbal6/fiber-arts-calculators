@@ -1,0 +1,17 @@
+---
+import BaseLayout from '../components/BaseLayout.astro';
+import { TOOLS } from '../lib/tools';
+---
+
+<BaseLayout title="Page not found" description="The page you requested was not found on FiberCalc." canonicalPath="/404/" noindex>
+  <div class="container">
+    <h1>Page not found</h1>
+    <p>That URL is not available. Try one of these calculators:</p>
+    <div class="tool-grid">
+      {TOOLS.slice(0, 6).map((t) => (
+        <a class="tool-link" href={t.path}><h2>{t.title}</h2><p>{t.description}</p></a>
+      ))}
+    </div>
+    <p><a class="btn btn--primary" href="/tools/">All tools</a> <a class="btn btn--secondary" href="/">Home</a></p>
+  </div>
+</BaseLayout>

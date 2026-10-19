@@ -1,0 +1,21 @@
+---
+import BaseLayout from '../components/BaseLayout.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+import { siteConfig } from '../config/site';
+---
+
+<BaseLayout title="Methodology & Editorial Policy" description="How FiberCalc calculations are derived, reviewed, sourced, and updated." canonicalPath="/methodology/">
+  <div class="container prose">
+    <Breadcrumbs items={[{ label: 'Home', href: '/' }, { label: 'Methodology' }]} />
+    <h1>Methodology &amp; editorial policy</h1>
+    <p class="meta-row"><span>Updated {siteConfig.launched}</span></p>
+    <h2>How calculations work</h2>
+    <p>Each tool documents its formula on the page. Yarn estimates use area-based density factors calibrated to common pattern yardages and Craft Yarn Council weight categories. Quilt tools use standard perimeter and panel arithmetic. Gauge tools use direct proportion from measured swatches.</p>
+    <h2>Sources</h2>
+    <p>We cite Craft Yarn Council standards for yarn weights and needle/hook charts, and widely published US mattress dimensions for bed planning. Craft blanket and quilt “standard sizes” are conventions, not laws—patterns may differ.</p>
+    <h2>Review</h2>
+    <p>Formulas are covered by automated unit tests in this repository. Editorial text is reviewed for clarity and source links before release. Corrections can be sent via the <a href="/contact/">contact</a> page.</p>
+    <h2>Updates</h2>
+    <p>Pages show “Updated” dates. We revise when standards change, bugs are found, or guides are expanded. We do not invent fake ratings or testimonials in structured data.</p>
+  </div>
+</BaseLayout>

@@ -1,0 +1,23 @@
+---
+import BaseLayout from '../../components/BaseLayout.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import { TOOLS } from '../../lib/tools';
+
+const tools = TOOLS.filter((t) => ['yarn', 'knitting', 'crochet'].includes(t.category));
+const title = 'Knitting & Crochet Calculators';
+const description = 'Yarn estimators, knitting gauge, cast-on, increase/decrease, and crochet blanket stitch calculators.';
+---
+
+<BaseLayout title={title} description={description} canonicalPath="/knitting-crochet/">
+  <div class="container">
+    <Breadcrumbs items={[{ label: 'Home', href: '/' }, { label: 'Knit & crochet' }]} />
+    <h1>Knitting & crochet calculators</h1>
+    <p class="takeaway"><strong>Key takeaway:</strong> Start with yarn weight and gauge, then estimate yardage or stitch counts—every tool here stays on-device.</p>
+    <div class="tool-grid">
+      {tools.map((t) => (
+        <a class="tool-link" href={t.path}><h2>{t.title}</h2><p>{t.description}</p></a>
+      ))}
+    </div>
+    <p>See also <a href="/reference/yarn-weights/">CYC yarn weight standards</a> and <a href="/guides/how-much-yarn-for-a-blanket/">how much yarn for a blanket</a>.</p>
+  </div>
+</BaseLayout>

@@ -1,0 +1,15 @@
+---
+import BaseLayout from '../components/BaseLayout.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+import { siteConfig } from '../config/site';
+---
+
+<BaseLayout title="Contact" description="Contact FiberCalc with questions about the calculators, corrections, or partnership inquiries." canonicalPath="/contact/">
+  <div class="container prose">
+    <Breadcrumbs items={[{ label: 'Home', href: '/' }, { label: 'Contact' }]} />
+    <h1>Contact</h1>
+    <p>Email us at <a href={`mailto:${siteConfig.contactEmail}`}>{siteConfig.contactEmail}</a>. This page is form-ready: replace the mailto with your preferred static form endpoint when you deploy.</p>
+    <p>Please include the tool URL and inputs if you are reporting a calculation issue. We welcome source corrections with links to authoritative references.</p>
+    <p><strong>Do not send personal projects or photos that must remain private</strong>—we do not need files to debug math questions.</p>
+  </div>
+</BaseLayout>

@@ -1,0 +1,5 @@
+---
+description: Performance budgets
+globs: src/**/*
+---
+Prefer vanilla islands over React. Initial JS gzip ≤50KB per chunk. Reserve ad slot height. Avoid render-blocking font CDNs.

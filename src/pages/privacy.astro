@@ -1,0 +1,28 @@
+---
+import BaseLayout from '../components/BaseLayout.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+import { siteConfig } from '../config/site';
+---
+
+<BaseLayout title="Privacy Policy" description="Privacy policy for FiberCalc — client-side tools, cookies, Google AdSense, and analytics disclosure." canonicalPath="/privacy/">
+  <div class="container prose">
+    <Breadcrumbs items={[{ label: 'Home', href: '/' }, { label: 'Privacy' }]} />
+    <h1>Privacy Policy</h1>
+    <p class="meta-row"><span>Last updated {siteConfig.launched}</span></p>
+    <p>{siteConfig.legalName} (“we”) operates {siteConfig.siteName} at {siteConfig.siteUrl}. Calculator inputs are processed locally in your browser and are not uploaded to our servers as part of the tool math.</p>
+    <h2>Information we may collect</h2>
+    <ul>
+      <li>Email messages you send to {siteConfig.contactEmail}</li>
+      <li>Standard server or host logs from our hosting provider</li>
+      <li>Optional analytics (Google Analytics 4) when a measurement ID is configured</li>
+      <li>Advertising cookies when Google AdSense is enabled</li>
+    </ul>
+    <h2>Google AdSense and advertising cookies</h2>
+    <p>When AdSense is enabled, Google and its partners may use cookies to serve ads based on visits to this and other sites. Third parties, including Google, may use cookies (such as the DoubleClick cookie) to serve ads based on a user’s prior visits.</p>
+    <p>Users may opt out of personalized advertising by visiting <a href="https://www.google.com/settings/ads" rel="noopener noreferrer">Google Ads Settings</a> and <a href="https://www.aboutads.info/choices/" rel="noopener noreferrer">www.aboutads.info</a>. For EEA/UK/Switzerland visitors, a Google-certified Consent Management Platform (CMP) is required before personalized ads.</p>
+    <h2>Analytics</h2>
+    <p>If GA4 is configured, Google Analytics may collect pseudonymous usage data (pages viewed, approximate location, device). You can limit analytics via browser controls and Google’s opt-out tools.</p>
+    <h2>Contact</h2>
+    <p>Questions: <a href={`mailto:${siteConfig.contactEmail}`}>{siteConfig.contactEmail}</a></p>
+  </div>
+</BaseLayout>
