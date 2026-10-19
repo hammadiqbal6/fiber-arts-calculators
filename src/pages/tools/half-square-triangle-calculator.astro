@@ -1,0 +1,63 @@
+---
+import ToolLayout from '../../layouts/ToolLayout.astro';
+import HstCalc from '../../components/calculators/HstCalc.astro';
+import { getTool } from '../../data/tools';
+
+const tool = getTool('half-square-triangle-calculator');
+const faqs = [
+    { q: "Why +⅞ inch?", a: "It accounts for two seam allowances and the diagonal cut so the sewn HST finishes correctly after trimming." },
+    { q: "When to use 8-at-a-time?", a: "When you need many identical HSTs quickly from two large squares." }
+];
+---
+
+<ToolLayout tool={tool} answerFirst={"For traditional or two-at-a-time HSTs, cut squares finished_size + ⅞ in. For 3 in finished HSTs, cut 3⅞ in squares. The eight-at-a-time method uses cut_square = (finished × 2) + 1.75 in. Enter finished size, method, and count above to get cutting sizes and fabric area."} faqs={faqs}>
+  <HstCalc slot="tool" />
+
+  <h2>How to use this calculator</h2>
+  <p>Choose finished HST size, unit, method, and how many HSTs you need.</p>
+
+  <div class="key-takeaways">
+    <strong>Key takeaways</strong>
+    <ul>
+      <li>Trim carefully—accuracy compounds across a quilt.</li>
+<li>Press seams toward darker fabric to avoid show-through.</li>
+<li>Starch can reduce stretch on bias edges.</li>
+      <li>Verify critical projects with a swatch or scrap sample.</li>
+    </ul>
+  </div>
+
+  <h2>The formula / method</h2>
+  <p>traditional/2-at-a-time: cut = finished + 0.875". eight-at-a-time: cut = 2×finished + 1.75". Trim to unfinished = finished + 0.5".</p>
+
+  <h2>Worked example</h2>
+  <p>24 HSTs at 3 in finished via two-at-a-time → 12 pairs → 24 squares cut at 3.875 in.</p>
+
+  <h2>Tips</h2>
+  <ul><li>Trim carefully—accuracy compounds across a quilt.</li>
+<li>Press seams toward darker fabric to avoid show-through.</li>
+<li>Starch can reduce stretch on bias edges.</li></ul>
+
+  <h2>Common mistakes</h2>
+  <ul><li>Forgetting to trim to unfinished size.</li>
+<li>Mixing methods mid-project with different seam allowances.</li></ul>
+  
+    <h2>Units: inches, centimeters, yards, meters, grams, ounces</h2>
+    <p>
+      half square triangle calculator results support mixed unit workflows. Length inputs accept inches or centimeters where shown.
+      Fabric and yarn outputs list yards and meters together (1 yd = 0.9144 m). Fiber weights list grams and ounces (1 oz ≈ 28.35 g).
+      Keeping units explicit prevents the most common shopping mistakes when patterns, ball bands, and fabric bolts disagree.
+    </p>
+    <h2>Assumptions and limits</h2>
+    <p>
+      This tool is for planning. Stitch patterns, brand-specific yarn put-up, personal tension, shrinking, and finishing all move the real number.
+      When a designer publishes tested yardage for a pattern, prefer that figure and use our estimate as a second opinion or substitution aid.
+      Measurements assume the geometric models documented in the formula section—not every construction (e.g., circular yokes, bias skirts, or C2C blankets) matches a rectangle.
+    </p>
+    <h2>Privacy</h2>
+    <p>
+      All math runs locally in your browser. We do not upload your project measurements. Shareable result links store state in the query string on your device’s URL only.
+    </p>
+  
+  <h2>Sources</h2>
+  <ul><li><a href="https://www.quiltingdaily.com/" rel="noopener noreferrer">Common HST formulas used across quilting educators (finished + ⅞")</a></li></ul>
+</ToolLayout>

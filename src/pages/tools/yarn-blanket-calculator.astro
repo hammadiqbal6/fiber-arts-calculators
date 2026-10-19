@@ -1,0 +1,67 @@
+---
+import ToolLayout from '../../layouts/ToolLayout.astro';
+import YarnBlanketCalc from '../../components/calculators/YarnBlanketCalc.astro';
+import { getTool } from '../../data/tools';
+
+const tool = getTool('yarn-blanket-calculator');
+const faqs = [
+    { q: "How much yarn for a queen blanket?", a: "Near 90×90 in in worsted often needs 3,500–5,000+ m. Use the queen preset and your CYC category; crochet usually needs more than knit." },
+    { q: "Does crochet use more yarn?", a: "Dense single crochet often uses about 15–25% more yarn than stockinette for the same finished area. Select crochet in the tool to apply that factor." },
+    { q: "Is CYC weight exact?", a: "No—categories are ranges. Two worsted yarns can differ in meters per gram. Always check the ball band." },
+    { q: "Should I buy extra?", a: "Plan at least 10% extra for swatches and dye-lot matching; one spare ball is cheap insurance on large projects." }
+];
+---
+
+<ToolLayout tool={tool} answerFirst={"A throw-size blanket (about 50×60 in / 127×152 cm) in medium/worsted (CYC 4) yarn typically needs roughly 1,800–2,400 meters (2,000–2,600 yards), or about 10–14 standard 100 g balls, depending on stitch pattern and whether you knit or crochet. Enter your exact size and yarn weight above for a planning estimate, then buy extra for swatching."} faqs={faqs}>
+  <YarnBlanketCalc slot="tool" />
+
+  <h2>How to use this calculator</h2>
+  <p>Pick a preset or custom size, choose inches or centimeters, select the Craft Yarn Council yarn weight on your ball band, choose knit or crochet, set a waste percentage, and calculate. Results show meters, yards, grams, ounces, and typical ball counts.</p>
+
+  <div class="key-takeaways">
+    <strong>Key takeaways</strong>
+    <ul>
+      <li>Prefer meters/yards on the label over category alone.</li>
+<li>Cables, bobbles, and dense moss stitch raise yardage.</li>
+<li>Buy from one dye lot for large blankets.</li>
+      <li>Verify critical projects with a swatch or scrap sample.</li>
+    </ul>
+  </div>
+
+  <h2>The formula / method</h2>
+  <p>meters ≈ area_m² × meters_per_m²(CYC weight) × craft_factor × (1 + waste%). Crochet uses a 1.2× craft factor versus knit stockinette. Grams use a typical grams-per-meter for the category. Ball counts divide by a typical ball size.</p>
+
+  <h2>Worked example</h2>
+  <p>A 50×60 in throw in CYC 4, knitting, 10% waste: area ≈ 1.935 m². At ~1,100 m/m² → 1.935 × 1,100 × 1.10 ≈ 2,340 m (~2,560 yd), roughly a dozen 200 m balls.</p>
+
+  <h2>Tips</h2>
+  <ul><li>Prefer meters/yards on the label over category alone.</li>
+<li>Cables, bobbles, and dense moss stitch raise yardage.</li>
+<li>Buy from one dye lot for large blankets.</li>
+<li>Weigh a washed swatch and scale by area for higher accuracy.</li></ul>
+
+  <h2>Common mistakes</h2>
+  <ul><li>Buying by ball count without comparing meters per ball.</li>
+<li>Using sweater yardage charts for blankets.</li>
+<li>Forgetting fringe, borders, and swatches.</li></ul>
+  
+    <h2>Units: inches, centimeters, yards, meters, grams, ounces</h2>
+    <p>
+      yarn blanket calculator results support mixed unit workflows. Length inputs accept inches or centimeters where shown.
+      Fabric and yarn outputs list yards and meters together (1 yd = 0.9144 m). Fiber weights list grams and ounces (1 oz ≈ 28.35 g).
+      Keeping units explicit prevents the most common shopping mistakes when patterns, ball bands, and fabric bolts disagree.
+    </p>
+    <h2>Assumptions and limits</h2>
+    <p>
+      This tool is for planning. Stitch patterns, brand-specific yarn put-up, personal tension, shrinking, and finishing all move the real number.
+      When a designer publishes tested yardage for a pattern, prefer that figure and use our estimate as a second opinion or substitution aid.
+      Measurements assume the geometric models documented in the formula section—not every construction (e.g., circular yokes, bias skirts, or C2C blankets) matches a rectangle.
+    </p>
+    <h2>Privacy</h2>
+    <p>
+      All math runs locally in your browser. We do not upload your project measurements. Shareable result links store state in the query string on your device’s URL only.
+    </p>
+  
+  <h2>Sources</h2>
+  <ul><li><a href="https://www.craftyarncouncil.com/standards/yarn-weight-system" rel="noopener noreferrer">Craft Yarn Council — Yarn Weight System</a></li></ul>
+</ToolLayout>

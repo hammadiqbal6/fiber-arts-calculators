@@ -1,0 +1,53 @@
+---
+---
+<div class="tool-panel" id="backing-tool">
+  <h2>Quilt backing yardage</h2>
+  <form id="backing-form" class="tool-grid tool-grid--2">
+    <div class="field"><label for="qw">Quilt width</label>
+      <input type="number" inputmode="decimal" name="qw" id="qw" value="90" min="1" step="any" required /></div>
+    <div class="field"><label for="ql">Quilt length</label>
+      <input type="number" inputmode="decimal" name="ql" id="ql" value="100" min="1" step="any" required /></div>
+    <div class="field"><label for="unit">Quilt unit</label>
+      <select name="unit" id="unit"><option value="in">Inches</option><option value="cm">cm</option></select></div>
+    <div class="field"><label for="fwidth">Fabric width</label>
+      <input type="number" inputmode="decimal" name="fwidth" id="fwidth" value="42" min="1" step="any" required /></div>
+    <div class="field"><label for="fwunit">Fabric width unit</label>
+      <select name="fwunit" id="fwunit"><option value="in">Inches</option><option value="cm">cm</option></select></div>
+    <div class="field"><label for="overhang">Overhang each side</label>
+      <input type="number" inputmode="decimal" name="overhang" id="overhang" value="4" min="0" step="any" /></div>
+    <div class="field"><label for="waste">Waste %</label>
+      <input type="number" inputmode="decimal" name="waste" id="waste" value="5" min="0" max="30" /></div>
+    <div class="field" style="display:flex;align-items:flex-end"><button type="submit" class="btn btn--primary" style="width:100%">Calculate</button></div>
+  </form>
+  <div class="results" aria-live="polite"><h3>Results</h3><dl data-results></dl>
+    <div class="share-row"><button type="button" class="btn btn--ghost" data-share>Copy result link</button>
+    <button type="button" class="btn btn--ghost" onclick="window.print()">Print</button></div>
+  </div>
+</div>
+<script>
+  import { quiltBacking, num, readQuery, writeQuery, setResults } from '../../lib/client-calc';
+  const form = document.getElementById('backing-form');
+  const root = document.getElementById('backing-tool');
+  function run() {
+    const r = quiltBacking({
+      quiltWidth: num(form.elements.namedItem('qw')),
+      quiltLength: num(form.elements.namedItem('ql')),
+      unit: form.elements.namedItem('unit').value,
+      fabricWidth: num(form.elements.namedItem('fwidth')),
+      fabricWidthUnit: form.elements.namedItem('fwunit').value,
+      overhang: num(form.elements.namedItem('overhang')),
+      wastePercent: num(form.elements.namedItem('waste')),
+    });
+    setResults(root, [
+      ['Backing size (in)', r.backingWidth + ' × ' + r.backingLength],
+      ['Panels', String(r.panels)],
+      ['Seam orientation', r.seamOrientation],
+      ['Yards', r.yards + ' yd'],
+      ['Meters', r.meters + ' m'],
+    ]);
+    writeQuery(form);
+  }
+  form.addEventListener('submit', (e) => { e.preventDefault(); run(); });
+  root.querySelector('[data-share]')?.addEventListener('click', async () => { writeQuery(form); await navigator.clipboard.writeText(location.href); });
+  readQuery(form); run();
+</script>

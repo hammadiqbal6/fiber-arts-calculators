@@ -1,0 +1,64 @@
+---
+import ToolLayout from '../../layouts/ToolLayout.astro';
+import NeedleHookCalc from '../../components/calculators/NeedleHookCalc.astro';
+import { getTool } from '../../data/tools';
+
+const tool = getTool('needle-hook-size-converter');
+const faqs = [
+    { q: "Why do some rows show a dash?", a: "Not every metric size has a traditional US or UK number." },
+    { q: "Are Japanese hook sizes the same?", a: "Japanese sizes differ—convert via mm whenever possible." }
+];
+---
+
+<ToolLayout tool={tool} answerFirst={"Knitting needle and crochet hook sizes convert across US, UK, and metric (mm) systems, but not every size exists in every system. A US 8 knitting needle is 5.0 mm; a US H-8 crochet hook is also 5.0 mm. Use the converter above or the Craft Yarn Council charts cited below."} faqs={faqs}>
+  <NeedleHookCalc slot="tool" />
+
+  <h2>How to use this calculator</h2>
+  <p>Choose needle or hook, pick the system you know, enter the size, and read metric/US/UK equivalents.</p>
+
+  <div class="key-takeaways">
+    <strong>Key takeaways</strong>
+    <ul>
+      <li>Trust metric mm when patterns list both.</li>
+<li>Steel hooks for thread use a different numbering system.</li>
+<li>Bamboo and metal needles of the same label can feel different—swatch.</li>
+      <li>Verify critical projects with a swatch or scrap sample.</li>
+    </ul>
+  </div>
+
+  <h2>The formula / method</h2>
+  <p>Lookup against CYC standard conversion tables (exact mm matches).</p>
+
+  <h2>Worked example</h2>
+  <p>US needle 6 → 4.0 mm → UK 8. US hook G-6 → 4.0 mm → UK 8.</p>
+
+  <h2>Tips</h2>
+  <ul><li>Trust metric mm when patterns list both.</li>
+<li>Steel hooks for thread use a different numbering system.</li>
+<li>Bamboo and metal needles of the same label can feel different—swatch.</li></ul>
+
+  <h2>Common mistakes</h2>
+  <ul><li>Assuming US knitting and crochet letters/numbers are interchangeable without checking mm.</li>
+<li>Using UK and US numbers interchangeably.</li></ul>
+  
+    <h2>Units: inches, centimeters, yards, meters, grams, ounces</h2>
+    <p>
+      needle hook size converter results support mixed unit workflows. Length inputs accept inches or centimeters where shown.
+      Fabric and yarn outputs list yards and meters together (1 yd = 0.9144 m). Fiber weights list grams and ounces (1 oz ≈ 28.35 g).
+      Keeping units explicit prevents the most common shopping mistakes when patterns, ball bands, and fabric bolts disagree.
+    </p>
+    <h2>Assumptions and limits</h2>
+    <p>
+      This tool is for planning. Stitch patterns, brand-specific yarn put-up, personal tension, shrinking, and finishing all move the real number.
+      When a designer publishes tested yardage for a pattern, prefer that figure and use our estimate as a second opinion or substitution aid.
+      Measurements assume the geometric models documented in the formula section—not every construction (e.g., circular yokes, bias skirts, or C2C blankets) matches a rectangle.
+    </p>
+    <h2>Privacy</h2>
+    <p>
+      All math runs locally in your browser. We do not upload your project measurements. Shareable result links store state in the query string on your device’s URL only.
+    </p>
+  
+  <h2>Sources</h2>
+  <ul><li><a href="https://www.craftyarncouncil.com/standards/knitting-needle-sizes" rel="noopener noreferrer">CYC knitting needle sizes</a></li>
+<li><a href="https://www.craftyarncouncil.com/standards/crochet-hook-sizes" rel="noopener noreferrer">CYC crochet hook sizes</a></li></ul>
+</ToolLayout>

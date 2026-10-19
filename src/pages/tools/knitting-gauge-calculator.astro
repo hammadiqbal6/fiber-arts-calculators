@@ -1,0 +1,63 @@
+---
+import ToolLayout from '../../layouts/ToolLayout.astro';
+import GaugeCalc from '../../components/calculators/GaugeCalc.astro';
+import { getTool } from '../../data/tools';
+
+const tool = getTool('knitting-gauge-calculator');
+const faqs = [
+    { q: "What if I have too many stitches per inch?", a: "Try a larger needle (thicker needle → fewer stitches per inch) and swatch again." },
+    { q: "Does row gauge always matter?", a: "Critical for armhole depth and yoke lengths; some patterns adjust by inches instead of rows." }
+];
+---
+
+<ToolLayout tool={tool} answerFirst={"Knitting gauge is stitches and rows per 4 inches (10 cm). If your swatch has 20 stitches in 4 in, your stitch gauge is 5 stitches per inch. Use the calculator to derive gauge from any swatch size, convert stitch counts to finished measurements, and resize pattern stitch/row counts when your gauge differs."} faqs={faqs}>
+  <GaugeCalc slot="tool" />
+
+  <h2>How to use this calculator</h2>
+  <p>Measure a blocked swatch, enter stitches/rows and dimensions, then optionally enter pattern stitch counts and pattern gauge to resize.</p>
+
+  <div class="key-takeaways">
+    <strong>Key takeaways</strong>
+    <ul>
+      <li>Block the swatch as you will the garment.</li>
+<li>Row gauge matters for length; stitch gauge for width.</li>
+<li>Measure center stitches, not edges.</li>
+      <li>Verify critical projects with a swatch or scrap sample.</li>
+    </ul>
+  </div>
+
+  <h2>The formula / method</h2>
+  <p>stitches_per_4in = stitches_in_swatch / swatch_width_in × 4. Finished width = pattern_stitches / stitches_per_4in × 4. Resized stitches = pattern_stitches × (your_sts_per_4in / pattern_sts_per_4in).</p>
+
+  <h2>Worked example</h2>
+  <p>Pattern 100 sts at 20 sts/4"; you get 18 sts/4" → resized cast-on ≈ 90 sts.</p>
+
+  <h2>Tips</h2>
+  <ul><li>Block the swatch as you will the garment.</li>
+<li>Row gauge matters for length; stitch gauge for width.</li>
+<li>Measure center stitches, not edges.</li></ul>
+
+  <h2>Common mistakes</h2>
+  <ul><li>Measuring unblocked swatches for garments that will be washed.</li>
+<li>Changing needle size without re-swatching.</li></ul>
+  
+    <h2>Units: inches, centimeters, yards, meters, grams, ounces</h2>
+    <p>
+      knitting gauge calculator results support mixed unit workflows. Length inputs accept inches or centimeters where shown.
+      Fabric and yarn outputs list yards and meters together (1 yd = 0.9144 m). Fiber weights list grams and ounces (1 oz ≈ 28.35 g).
+      Keeping units explicit prevents the most common shopping mistakes when patterns, ball bands, and fabric bolts disagree.
+    </p>
+    <h2>Assumptions and limits</h2>
+    <p>
+      This tool is for planning. Stitch patterns, brand-specific yarn put-up, personal tension, shrinking, and finishing all move the real number.
+      When a designer publishes tested yardage for a pattern, prefer that figure and use our estimate as a second opinion or substitution aid.
+      Measurements assume the geometric models documented in the formula section—not every construction (e.g., circular yokes, bias skirts, or C2C blankets) matches a rectangle.
+    </p>
+    <h2>Privacy</h2>
+    <p>
+      All math runs locally in your browser. We do not upload your project measurements. Shareable result links store state in the query string on your device’s URL only.
+    </p>
+  
+  <h2>Sources</h2>
+  <ul><li><a href="https://www.craftyarncouncil.com/standards" rel="noopener noreferrer">Craft Yarn Council — Tips for proper gauge</a></li></ul>
+</ToolLayout>

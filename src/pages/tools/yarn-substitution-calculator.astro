@@ -1,0 +1,63 @@
+---
+import ToolLayout from '../../layouts/ToolLayout.astro';
+import YarnSubCalc from '../../components/calculators/YarnSubCalc.astro';
+import { getTool } from '../../data/tools';
+
+const tool = getTool('yarn-substitution-calculator');
+const faqs = [
+    { q: "Can I substitute bulky for worsted?", a: "Only with a new gauge swatch and pattern resize—fabric thickness and yardage both change." },
+    { q: "What is WPI?", a: "Wraps per inch—another thickness check when CYC category is missing." }
+];
+---
+
+<ToolLayout tool={tool} answerFirst={"To substitute yarn, match thickness (CYC category or WPI) and total meters first—not ball count. Converting 1,000 m of worsted (CYC 4) to DK (CYC 3) typically requires more meters because DK fabric uses more length per area. Use the converter above, then swatch for gauge and drape."} faqs={faqs}>
+  <YarnSubCalc slot="tool" />
+
+  <h2>How to use this calculator</h2>
+  <p>Enter original and substitute CYC categories plus original meters (and grams if known). Read recommended meters/grams and the density ratio.</p>
+
+  <div class="key-takeaways">
+    <strong>Key takeaways</strong>
+    <ul>
+      <li>Check fiber (wool vs cotton) for drape and blocking.</li>
+<li>Compare recommended needle/hook ranges.</li>
+<li>Buy an extra ball when crossing categories.</li>
+      <li>Verify critical projects with a swatch or scrap sample.</li>
+    </ul>
+  </div>
+
+  <h2>The formula / method</h2>
+  <p>recommended_meters = original_meters × (sub_meters_per_m² / original_meters_per_m²). Grams scale with grams-per-meter and the same ratio.</p>
+
+  <h2>Worked example</h2>
+  <p>1,000 m of CYC 4 → CYC 3 uses ratio 1400/1100 ≈ 1.27 → about 1,270 m of DK for a similar fabric area.</p>
+
+  <h2>Tips</h2>
+  <ul><li>Check fiber (wool vs cotton) for drape and blocking.</li>
+<li>Compare recommended needle/hook ranges.</li>
+<li>Buy an extra ball when crossing categories.</li></ul>
+
+  <h2>Common mistakes</h2>
+  <ul><li>Matching only “worsted” names across brands.</li>
+<li>Ignoring meters on the label.</li></ul>
+  
+    <h2>Units: inches, centimeters, yards, meters, grams, ounces</h2>
+    <p>
+      yarn substitution calculator results support mixed unit workflows. Length inputs accept inches or centimeters where shown.
+      Fabric and yarn outputs list yards and meters together (1 yd = 0.9144 m). Fiber weights list grams and ounces (1 oz ≈ 28.35 g).
+      Keeping units explicit prevents the most common shopping mistakes when patterns, ball bands, and fabric bolts disagree.
+    </p>
+    <h2>Assumptions and limits</h2>
+    <p>
+      This tool is for planning. Stitch patterns, brand-specific yarn put-up, personal tension, shrinking, and finishing all move the real number.
+      When a designer publishes tested yardage for a pattern, prefer that figure and use our estimate as a second opinion or substitution aid.
+      Measurements assume the geometric models documented in the formula section—not every construction (e.g., circular yokes, bias skirts, or C2C blankets) matches a rectangle.
+    </p>
+    <h2>Privacy</h2>
+    <p>
+      All math runs locally in your browser. We do not upload your project measurements. Shareable result links store state in the query string on your device’s URL only.
+    </p>
+  
+  <h2>Sources</h2>
+  <ul><li><a href="https://www.craftyarncouncil.com/standards/yarn-weight-system" rel="noopener noreferrer">Craft Yarn Council — Yarn Weight System</a></li></ul>
+</ToolLayout>

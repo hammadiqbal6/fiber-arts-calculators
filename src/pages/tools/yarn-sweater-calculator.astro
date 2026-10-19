@@ -1,0 +1,64 @@
+---
+import ToolLayout from '../../layouts/ToolLayout.astro';
+import YarnSweaterCalc from '../../components/calculators/YarnSweaterCalc.astro';
+import { getTool } from '../../data/tools';
+
+const tool = getTool('yarn-sweater-calculator');
+const faqs = [
+    { q: "How much yarn for a size large sweater?", a: "Increase chest/length in the tool. L often needs 10–20% more than M in the same yarn." },
+    { q: "Does cardigan vs pullover matter?", a: "Cardigans may use similar yarn if button bands replace steeks; add a little for bands and pockets." },
+    { q: "What about lace sweaters?", a: "Open lace can use less yarn by weight for the same size; dense cables use more." }
+];
+---
+
+<ToolLayout tool={tool} answerFirst={"An adult medium pullover (about 40 in / 102 cm chest) in worsted (CYC 4) yarn commonly needs roughly 1,100–1,800 meters (1,200–2,000 yards), depending on length, sleeves, stitch pattern, and ease. Use chest, body length, and sleeve length above for a planning estimate—always confirm against your pattern’s yardage when available."} faqs={faqs}>
+  <YarnSweaterCalc slot="tool" />
+
+  <h2>How to use this calculator</h2>
+  <p>Choose a chest preset or enter measurements in inches, select yarn weight, add waste (15% is a sensible default for garments), and calculate.</p>
+
+  <div class="key-takeaways">
+    <strong>Key takeaways</strong>
+    <ul>
+      <li>Raglan, steeked, and colorwork sweaters can diverge widely—treat this as a shopping buffer.</li>
+<li>Short sleeves or cropped bodies need less yarn.</li>
+<li>Match fiber content when substituting to protect drape.</li>
+      <li>Verify critical projects with a swatch or scrap sample.</li>
+    </ul>
+  </div>
+
+  <h2>The formula / method</h2>
+  <p>We approximate the body as chest×length and sleeves as two rectangles (~35% of chest × sleeve length), convert to area, then apply the same CYC meters-per-m² model used for blankets with a garment waste factor.</p>
+
+  <h2>Worked example</h2>
+  <p>Chest 40 in, length 25 in, sleeves 18 in, CYC 4, 15% waste → combined area modeled as a square of equal area, then × ~1,100 m/m² × 1.15.</p>
+
+  <h2>Tips</h2>
+  <ul><li>Raglan, steeked, and colorwork sweaters can diverge widely—treat this as a shopping buffer.</li>
+<li>Short sleeves or cropped bodies need less yarn.</li>
+<li>Match fiber content when substituting to protect drape.</li></ul>
+
+  <h2>Common mistakes</h2>
+  <ul><li>Ignoring yardage listed in a tested pattern.</li>
+<li>Substituting bulky for DK without recalculating gauge and yardage.</li></ul>
+  
+    <h2>Units: inches, centimeters, yards, meters, grams, ounces</h2>
+    <p>
+      yarn sweater calculator results support mixed unit workflows. Length inputs accept inches or centimeters where shown.
+      Fabric and yarn outputs list yards and meters together (1 yd = 0.9144 m). Fiber weights list grams and ounces (1 oz ≈ 28.35 g).
+      Keeping units explicit prevents the most common shopping mistakes when patterns, ball bands, and fabric bolts disagree.
+    </p>
+    <h2>Assumptions and limits</h2>
+    <p>
+      This tool is for planning. Stitch patterns, brand-specific yarn put-up, personal tension, shrinking, and finishing all move the real number.
+      When a designer publishes tested yardage for a pattern, prefer that figure and use our estimate as a second opinion or substitution aid.
+      Measurements assume the geometric models documented in the formula section—not every construction (e.g., circular yokes, bias skirts, or C2C blankets) matches a rectangle.
+    </p>
+    <h2>Privacy</h2>
+    <p>
+      All math runs locally in your browser. We do not upload your project measurements. Shareable result links store state in the query string on your device’s URL only.
+    </p>
+  
+  <h2>Sources</h2>
+  <ul><li><a href="https://www.craftyarncouncil.com/standards/yarn-weight-system" rel="noopener noreferrer">Craft Yarn Council — Yarn Weight System</a></li></ul>
+</ToolLayout>

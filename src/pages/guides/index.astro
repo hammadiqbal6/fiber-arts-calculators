@@ -1,0 +1,59 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+
+const guides = [
+  {
+    href: '/guides/how-much-yarn-do-i-need/',
+    title: 'How much yarn do I need?',
+    blurb: 'Plan yarn for blankets, sweaters, hats, and scarves with CYC weights.',
+  },
+  {
+    href: '/guides/knitting-gauge-explained/',
+    title: 'Knitting gauge explained',
+    blurb: 'Swatch, measure, and resize patterns when your gauge differs.',
+  },
+  {
+    href: '/guides/crochet-blanket-sizes/',
+    title: 'Crochet blanket sizes',
+    blurb: 'Standard sizes and how to turn gauge into stitch counts.',
+  },
+  {
+    href: '/guides/fabric-yardage-basics/',
+    title: 'Fabric yardage basics',
+    blurb: 'Bolt width, panels, pattern repeats, and waste factors.',
+  },
+  {
+    href: '/guides/quilt-backing-and-binding/',
+    title: 'Quilt backing and binding',
+    blurb: 'Overhang, piecing, strip math, and buying tips.',
+  },
+  {
+    href: '/guides/yarn-substitution-guide/',
+    title: 'Yarn substitution guide',
+    blurb: 'Match meters, thickness, and fiber when swapping yarns.',
+  },
+];
+---
+
+<BaseLayout
+  title="Fiber Arts Guides"
+  description="Practical guides on yarn planning, gauge, crochet blanket sizes, fabric yardage, and quilt finishing."
+  canonicalPath="/guides/"
+>
+  <Breadcrumbs items={[{ label: 'Home', href: '/' }, { label: 'Guides' }]} />
+  <h1 class="page-title">Guides</h1>
+  <p class="lead">In-depth articles that interlink with every calculator—answer-first, with formulas and sources.</p>
+  <ul class="tool-cards">
+    {
+      guides.map((g) => (
+        <li>
+          <a href={g.href}>
+            <strong>{g.title}</strong>
+            <span>{g.blurb}</span>
+          </a>
+        </li>
+      ))
+    }
+  </ul>
+</BaseLayout>

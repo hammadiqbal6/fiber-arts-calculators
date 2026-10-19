@@ -1,0 +1,63 @@
+---
+import ToolLayout from '../../layouts/ToolLayout.astro';
+import YarnHatCalc from '../../components/calculators/YarnHatCalc.astro';
+import { getTool } from '../../data/tools';
+
+const tool = getTool('yarn-hat-calculator');
+const faqs = [
+    { q: "How much yarn for a baby hat?", a: "Often 50–100 m of DK or worsted. Use newborn/baby circumferences (14–16 in)." },
+    { q: "Can one skein finish a hat?", a: "Frequently yes in worsted; check meters, not just “one ball.”" }
+];
+---
+
+<ToolLayout tool={tool} answerFirst={"An adult beanie (about 22 in / 56 cm circumference and 8 in / 20 cm depth) in worsted yarn typically needs about 100–180 meters (110–200 yards)—often one 100 g ball with leftovers. Enter your circumference and depth above for a tighter estimate."} faqs={faqs}>
+  <YarnHatCalc slot="tool" />
+
+  <h2>How to use this calculator</h2>
+  <p>Enter head circumference and hat depth in inches, pick CYC weight, set waste, and calculate.</p>
+
+  <div class="key-takeaways">
+    <strong>Key takeaways</strong>
+    <ul>
+      <li>Slouchy hats need extra depth and yarn.</li>
+<li>Brims and cables increase yardage.</li>
+<li>Measure the wearer’s head, not your guess.</li>
+      <li>Verify critical projects with a swatch or scrap sample.</li>
+    </ul>
+  </div>
+
+  <h2>The formula / method</h2>
+  <p>Surface ≈ circumference × depth (cylinder approximation for a beanie), then CYC meters-per-m² with waste.</p>
+
+  <h2>Worked example</h2>
+  <p>22×8 in in CYC 4 with 12% waste is a small area—usually under 200 m for plain stockinette.</p>
+
+  <h2>Tips</h2>
+  <ul><li>Slouchy hats need extra depth and yarn.</li>
+<li>Brims and cables increase yardage.</li>
+<li>Measure the wearer’s head, not your guess.</li></ul>
+
+  <h2>Common mistakes</h2>
+  <ul><li>Using baby yardage for adult hats.</li>
+<li>Forgetting pompoms use surprising amounts of yarn.</li></ul>
+  
+    <h2>Units: inches, centimeters, yards, meters, grams, ounces</h2>
+    <p>
+      yarn hat calculator results support mixed unit workflows. Length inputs accept inches or centimeters where shown.
+      Fabric and yarn outputs list yards and meters together (1 yd = 0.9144 m). Fiber weights list grams and ounces (1 oz ≈ 28.35 g).
+      Keeping units explicit prevents the most common shopping mistakes when patterns, ball bands, and fabric bolts disagree.
+    </p>
+    <h2>Assumptions and limits</h2>
+    <p>
+      This tool is for planning. Stitch patterns, brand-specific yarn put-up, personal tension, shrinking, and finishing all move the real number.
+      When a designer publishes tested yardage for a pattern, prefer that figure and use our estimate as a second opinion or substitution aid.
+      Measurements assume the geometric models documented in the formula section—not every construction (e.g., circular yokes, bias skirts, or C2C blankets) matches a rectangle.
+    </p>
+    <h2>Privacy</h2>
+    <p>
+      All math runs locally in your browser. We do not upload your project measurements. Shareable result links store state in the query string on your device’s URL only.
+    </p>
+  
+  <h2>Sources</h2>
+  <ul><li><a href="https://www.craftyarncouncil.com/standards/yarn-weight-system" rel="noopener noreferrer">Craft Yarn Council — Yarn Weight System</a></li></ul>
+</ToolLayout>

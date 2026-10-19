@@ -1,0 +1,25 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { siteConfig } from '../config/site';
+---
+
+<BaseLayout
+  title="Authors & Reviewers"
+  description="Author and reviewer bios for StitchCalc fiber arts calculators."
+  canonicalPath="/authors/"
+>
+  <h1 class="page-title">Authors & reviewers</h1>
+  <div class="prose">
+    <h2>{siteConfig.author.name}</h2>
+    <p>{siteConfig.author.bio}</p>
+    <p role="note">
+      Placeholder identity for launch configuration—replace with a real editor name, photo optional, and craft experience summary in
+      <code>src/config/site.ts</code>.
+    </p>
+    <h2>{siteConfig.reviewer.name}</h2>
+    <p>
+      Reviews formula clarity and source citations for yarn, gauge, and quilt math. Placeholder until a named reviewer is assigned.
+    </p>
+    <p>Contact: <a href={`mailto:${siteConfig.contactEmail}`}>{siteConfig.contactEmail}</a>.</p>
+  </div>
+</BaseLayout>

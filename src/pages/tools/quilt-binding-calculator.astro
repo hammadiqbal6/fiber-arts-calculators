@@ -1,0 +1,63 @@
+---
+import ToolLayout from '../../layouts/ToolLayout.astro';
+import QuiltBindingCalc from '../../components/calculators/QuiltBindingCalc.astro';
+import { getTool } from '../../data/tools';
+
+const tool = getTool('quilt-binding-calculator');
+const faqs = [
+    { q: "2.25 vs 2.5 in strips?", a: "Both common for double-fold binding; 2.5 in is more forgiving for beginners." },
+    { q: "Straight grain or bias?", a: "Straight grain for straight edges; bias for scallops and curves." }
+];
+---
+
+<ToolLayout tool={tool} answerFirst={"Binding length ≈ quilt perimeter + about 12 in for joins and corners. For a 60×70 in quilt, perimeter is 260 in; with 2.5 in strips on 42 in fabric you typically cut 7+ strips and need roughly ½ yard. Enter your quilt size above for exact strip counts."} faqs={faqs}>
+  <QuiltBindingCalc slot="tool" />
+
+  <h2>How to use this calculator</h2>
+  <p>Enter quilt width/length, strip cut width (often 2.25–2.5 in for double-fold), and fabric width.</p>
+
+  <div class="key-takeaways">
+    <strong>Key takeaways</strong>
+    <ul>
+      <li>Bias binding stretches around curves.</li>
+<li>Join strips with 45° seams to reduce bulk.</li>
+<li>Test finished width on a scrap sandwich.</li>
+      <li>Verify critical projects with a swatch or scrap sample.</li>
+    </ul>
+  </div>
+
+  <h2>The formula / method</h2>
+  <p>perimeter = 2×(w+l); total_strip = perimeter + 12; strips = ceil(total_strip / (fabric_width − 1)); fabric_inches = strips × strip_cut_width.</p>
+
+  <h2>Worked example</h2>
+  <p>60×70 in → 260 + 12 = 272 in of strip; on 42 in goods ≈ 7 strips of 2.5 in ≈ 0.5 yd.</p>
+
+  <h2>Tips</h2>
+  <ul><li>Bias binding stretches around curves.</li>
+<li>Join strips with 45° seams to reduce bulk.</li>
+<li>Test finished width on a scrap sandwich.</li></ul>
+
+  <h2>Common mistakes</h2>
+  <ul><li>Cutting too few strips and splicing leftovers poorly.</li>
+<li>Using selvage in the strip length.</li></ul>
+  
+    <h2>Units: inches, centimeters, yards, meters, grams, ounces</h2>
+    <p>
+      quilt binding calculator results support mixed unit workflows. Length inputs accept inches or centimeters where shown.
+      Fabric and yarn outputs list yards and meters together (1 yd = 0.9144 m). Fiber weights list grams and ounces (1 oz ≈ 28.35 g).
+      Keeping units explicit prevents the most common shopping mistakes when patterns, ball bands, and fabric bolts disagree.
+    </p>
+    <h2>Assumptions and limits</h2>
+    <p>
+      This tool is for planning. Stitch patterns, brand-specific yarn put-up, personal tension, shrinking, and finishing all move the real number.
+      When a designer publishes tested yardage for a pattern, prefer that figure and use our estimate as a second opinion or substitution aid.
+      Measurements assume the geometric models documented in the formula section—not every construction (e.g., circular yokes, bias skirts, or C2C blankets) matches a rectangle.
+    </p>
+    <h2>Privacy</h2>
+    <p>
+      All math runs locally in your browser. We do not upload your project measurements. Shareable result links store state in the query string on your device’s URL only.
+    </p>
+  
+  <h2>Sources</h2>
+  <ul><li><a href="https://www.quiltingdaily.com/" rel="noopener noreferrer">Standard double-fold binding practice in quilting references</a></li></ul>
+</ToolLayout>

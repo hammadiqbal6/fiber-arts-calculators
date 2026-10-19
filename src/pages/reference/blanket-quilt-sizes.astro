@@ -1,0 +1,78 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import { BLANKET_SIZES, QUILT_SIZES } from '../../data/sizes';
+---
+
+<BaseLayout
+  title="Blanket & Quilt Size Chart"
+  description="Standard finished blanket and quilt sizes in inches and centimeters for knitting, crochet, and quilting projects."
+  canonicalPath="/reference/blanket-quilt-sizes/"
+>
+  <Breadcrumbs
+    items={[
+      { label: 'Home', href: '/' },
+      { label: 'Reference', href: '/reference/' },
+      { label: 'Blanket & quilt sizes' },
+    ]}
+  />
+  <h1 class="page-title">Blanket & quilt size chart</h1>
+  <div class="answer-box">
+    <p>
+      Use these finished dimensions as planning presets. Blanket sizes are common knit/crochet targets; quilt sizes are typical finished tops.
+      For bed coverage with drop, use the <a href="/tools/quilt-size-calculator/">quilt size calculator</a> with mattress measurements.
+    </p>
+  </div>
+  <div class="prose">
+    <h2>Knit & crochet blankets</h2>
+    <div style="overflow-x:auto">
+      <table>
+        <thead>
+          <tr><th>Name</th><th>Inches</th><th>Centimeters</th></tr>
+        </thead>
+        <tbody>
+          {
+            BLANKET_SIZES.map((s) => (
+              <tr>
+                <td>{s.name}</td>
+                <td>
+                  {s.widthIn} × {s.lengthIn}
+                </td>
+                <td>
+                  {Math.round(s.widthIn * 2.54)} × {Math.round(s.lengthIn * 2.54)}
+                </td>
+              </tr>
+            ))
+          }
+        </tbody>
+      </table>
+    </div>
+    <h2>Quilts (finished)</h2>
+    <div style="overflow-x:auto">
+      <table>
+        <thead>
+          <tr><th>Name</th><th>Inches</th><th>Centimeters</th></tr>
+        </thead>
+        <tbody>
+          {
+            QUILT_SIZES.map((s) => (
+              <tr>
+                <td>{s.name}</td>
+                <td>
+                  {s.widthIn} × {s.lengthIn}
+                </td>
+                <td>
+                  {Math.round(s.widthIn * 2.54)} × {Math.round(s.lengthIn * 2.54)}
+                </td>
+              </tr>
+            ))
+          }
+        </tbody>
+      </table>
+    </div>
+    <p>
+      Related: <a href="/tools/yarn-blanket-calculator/">yarn blanket calculator</a>,
+      <a href="/tools/crochet-blanket-calculator/">crochet blanket calculator</a>.
+    </p>
+  </div>
+</BaseLayout>

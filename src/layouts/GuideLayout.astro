@@ -1,0 +1,69 @@
+---
+import BaseLayout from './BaseLayout.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+import { siteConfig } from '../config/site';
+
+interface Props {
+  title: string;
+  description: string;
+  path: string;
+  answerFirst: string;
+}
+
+const { title, description, path, answerFirst } = Astro.props;
+
+const articleLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Article',
+  headline: title,
+  description,
+  datePublished: siteConfig.contentPublished,
+  dateModified: siteConfig.contentUpdated,
+  author: { '@type': 'Person', name: siteConfig.author.name },
+  publisher: { '@type': 'Organization', name: siteConfig.brandName, url: siteConfig.siteUrl },
+  mainEntityOfPage: new URL(path, siteConfig.siteUrl).toString(),
+};
+
+const breadcrumbLd = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: siteConfig.siteUrl + '/' },
+    { '@type': 'ListItem', position: 2, name: 'Guides', item: siteConfig.siteUrl + '/guides/' },
+    { '@type': 'ListItem', position: 3, name: title },
+  ],
+};
+---
+
+<BaseLayout
+  title={title}
+  description={description}
+  canonicalPath={path}
+  ogType="article"
+  jsonLd={[articleLd, breadcrumbLd]}
+  published={siteConfig.contentPublished}
+  modified={siteConfig.contentUpdated}
+>
+  <Breadcrumbs
+    items={[
+      { label: 'Home', href: '/' },
+      { label: 'Guides', href: '/guides/' },
+      { label: title },
+    ]}
+  />
+  <h1 class="page-title">{title}</h1>
+  <div class="meta-row">
+    <span>Published {siteConfig.contentPublished}</span>
+    <span>Updated {siteConfig.contentUpdated}</span>
+    <span>By {siteConfig.author.name}</span>
+  </div>
+  <div class="answer-box"><p>{answerFirst}</p></div>
+  <article class="prose">
+    <slot />
+  </article>
+  <div class="author-box">
+    <strong>{siteConfig.author.name}</strong>
+    <span>{siteConfig.author.bio}</span>
+    <span>Reviewed by {siteConfig.reviewer.name}. See <a href="/methodology/">methodology</a>.</span>
+  </div>
+</BaseLayout>

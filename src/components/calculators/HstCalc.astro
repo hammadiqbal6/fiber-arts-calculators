@@ -1,0 +1,48 @@
+---
+---
+<div class="tool-panel" id="hst-tool">
+  <h2>Half-square triangle cutting</h2>
+  <form id="hst-form" class="tool-grid tool-grid--2">
+    <div class="field"><label for="finished">Finished HST size</label>
+      <input type="number" inputmode="decimal" name="finished" id="finished" value="3" min="0.5" step="any" required /></div>
+    <div class="field"><label for="unit">Unit</label>
+      <select name="unit" id="unit"><option value="in">Inches</option><option value="cm">cm</option></select></div>
+    <div class="field"><label for="method">Method</label>
+      <select name="method" id="method">
+        <option value="traditional">Traditional</option>
+        <option value="two-at-a-time">Two-at-a-time</option>
+        <option value="eight-at-a-time">Eight-at-a-time</option>
+      </select></div>
+    <div class="field"><label for="count">How many HSTs</label>
+      <input type="number" inputmode="numeric" name="count" id="count" value="24" min="1" required /></div>
+    <div class="field" style="display:flex;align-items:flex-end"><button type="submit" class="btn btn--primary" style="width:100%">Calculate</button></div>
+  </form>
+  <div class="results" aria-live="polite"><h3>Results</h3><dl data-results></dl><p data-notes style="margin-top:0.75rem"></p>
+    <div class="share-row"><button type="button" class="btn btn--ghost" data-share>Copy result link</button>
+    <button type="button" class="btn btn--ghost" onclick="window.print()">Print</button></div>
+  </div>
+</div>
+<script>
+  import { halfSquareTriangles, num, readQuery, writeQuery, setResults } from '../../lib/client-calc';
+  const form = document.getElementById('hst-form');
+  const root = document.getElementById('hst-tool');
+  function run() {
+    const r = halfSquareTriangles({
+      finishedSize: num(form.elements.namedItem('finished')),
+      unit: form.elements.namedItem('unit').value,
+      method: form.elements.namedItem('method').value,
+      count: num(form.elements.namedItem('count')),
+    });
+    setResults(root, [
+      ['Cut square size', r.cutSquareSize + ' ' + r.cutSquareUnit],
+      ['Squares to cut', String(r.squaresToCut)],
+      ['HSTs per pair of squares', String(r.hstsProducedPerSquarePair)],
+      ['Fabric area (approx)', r.fabricAreaSqIn + ' in²'],
+    ]);
+    root.querySelector('[data-notes]').textContent = r.notes;
+    writeQuery(form);
+  }
+  form.addEventListener('submit', (e) => { e.preventDefault(); run(); });
+  root.querySelector('[data-share]')?.addEventListener('click', async () => { writeQuery(form); await navigator.clipboard.writeText(location.href); });
+  readQuery(form); run();
+</script>

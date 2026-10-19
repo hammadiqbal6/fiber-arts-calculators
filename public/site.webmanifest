@@ -1,0 +1,17 @@
+{
+  "name": "StitchCalc",
+  "short_name": "StitchCalc",
+  "description": "Free knitting, crochet, sewing & quilting calculators",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#f7f3ec",
+  "theme_color": "#1f6b4f",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ]
+}

@@ -1,0 +1,42 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import { CATEGORIES, toolsByCategory } from '../../data/tools';
+
+const cat = CATEGORIES.sewing;
+const tools = toolsByCategory('sewing');
+---
+
+<BaseLayout
+  title="Sewing Calculators"
+  description="Free sewing calculators for fabric yardage, seam allowance, pattern grading, and cross-stitch Aida fabric size."
+  canonicalPath={cat.path}
+>
+  <Breadcrumbs items={[{ label: 'Home', href: '/' }, { label: 'Sewing' }]} />
+  <h1 class="page-title">Sewing calculators</h1>
+  <div class="answer-box">
+    <p>
+      Estimate fabric for garments, curtains, upholstery, and tablecloths; add seam allowance and ease; size Aida cloth for cross-stitch charts.
+    </p>
+  </div>
+  <p class="lead">{cat.description}</p>
+  <ul class="tool-cards">
+    {
+      tools.map((t) => (
+        <li>
+          <a href={t.path}>
+            <strong>{t.title}</strong>
+            <span>{t.description}</span>
+          </a>
+        </li>
+      ))
+    }
+  </ul>
+  <div class="related">
+    <h2>Guides</h2>
+    <ul>
+      <li><a href="/guides/fabric-yardage-basics/">Fabric yardage basics</a></li>
+      <li><a href="/guides/quilt-backing-and-binding/">Quilt backing & binding</a></li>
+    </ul>
+  </div>
+</BaseLayout>

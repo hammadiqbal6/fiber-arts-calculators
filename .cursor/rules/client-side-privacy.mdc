@@ -1,0 +1,7 @@
+---
+description: Client-side only privacy
+globs: src/**/*
+---
+- Never upload user measurements to a server.
+- Calculators must work offline after load.
+- Document GA/AdSense cookies in Privacy when enabled.

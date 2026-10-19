@@ -1,0 +1,69 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { siteConfig } from '../config/site';
+import { TOOLS, CATEGORIES } from '../data/tools';
+
+const title = `${siteConfig.brandName} – Yarn & Quilt Calculators`;
+const description =
+  'Free knitting, crochet, sewing and quilting calculators for yarn, gauge, fabric yardage, and quilt math. Runs in your browser.';
+---
+
+<BaseLayout title={title} description={description} canonicalPath="/">
+  <section class="hero">
+    <h1 class="hero__brand">{siteConfig.brandName}</h1>
+    <p class="hero__lead">
+      Free fiber-arts calculators for yarn, gauge, fabric, and quilts—accurate formulas, sourced reference charts, zero uploads.
+    </p>
+    <div class="btn-row">
+      <a class="btn btn--primary" href="/tools/yarn-blanket-calculator/">Yarn blanket calculator</a>
+      <a class="btn btn--ghost" href="/knitting/">Browse knitting tools</a>
+    </div>
+  </section>
+
+  <section aria-labelledby="cats">
+    <h2 id="cats" class="page-title" style="font-size:1.5rem">Tool categories</h2>
+    <ul class="tool-cards tool-cards--3">
+      {
+        Object.values(CATEGORIES).map((c) => (
+          <li>
+            <a href={c.path}>
+              <strong>{c.name}</strong>
+              <span>{c.description}</span>
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </section>
+
+  <section aria-labelledby="popular" style="margin-top:2.5rem">
+    <h2 id="popular" class="page-title" style="font-size:1.5rem">All calculators</h2>
+    <ul class="tool-cards tool-cards--3">
+      {
+        TOOLS.map((t) => (
+          <li>
+            <a href={t.path}>
+              <strong>{t.title}</strong>
+              <span>{t.description}</span>
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </section>
+
+  <section class="prose" style="margin-top:2.5rem">
+    <h2>Why {siteConfig.brandName}?</h2>
+    <p>
+      Fiber-arts SERPs still have room for careful, mobile-first tools with real explanations—not bare widgets.
+      Every calculator ships with formulas, worked examples, FAQs, and citations (including
+      <a href="https://www.craftyarncouncil.com/standards/yarn-weight-system">Craft Yarn Council</a> yarn weights).
+      Math runs entirely on your device.
+    </p>
+    <p>
+      Start with the <a href="/guides/how-much-yarn-do-i-need/">yarn planning guide</a>,
+      <a href="/guides/knitting-gauge-explained/">gauge explained</a>, or the
+      <a href="/reference/yarn-weight-chart/">yarn weight chart</a>.
+    </p>
+  </section>
+</BaseLayout>

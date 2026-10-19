@@ -1,0 +1,7 @@
+---
+description: Accessibility requirements
+globs: src/**/*
+---
+- Labels for every input; tap targets ≥48px; visible focus.
+- inputmode/decimal or numeric for numbers; 16px+ body text.
+- Keyboard operable nav and forms.

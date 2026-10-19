@@ -1,0 +1,43 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import { CATEGORIES, toolsByCategory } from '../../data/tools';
+
+const cat = CATEGORIES.quilting;
+const tools = toolsByCategory('quilting');
+---
+
+<BaseLayout
+  title="Quilting Calculators"
+  description="Free quilting calculators for quilt size from mattress, backing yardage, binding strips, and half-square triangle cutting."
+  canonicalPath={cat.path}
+>
+  <Breadcrumbs items={[{ label: 'Home', href: '/' }, { label: 'Quilting' }]} />
+  <h1 class="page-title">Quilting calculators</h1>
+  <div class="answer-box">
+    <p>
+      Size quilts from mattress measurements, calculate pieced backing and binding, and cut accurate half-square triangles with traditional, 2-at-a-time, or 8-at-a-time methods.
+    </p>
+  </div>
+  <p class="lead">{cat.description}</p>
+  <ul class="tool-cards">
+    {
+      tools.map((t) => (
+        <li>
+          <a href={t.path}>
+            <strong>{t.title}</strong>
+            <span>{t.description}</span>
+          </a>
+        </li>
+      ))
+    }
+  </ul>
+  <div class="related">
+    <h2>Reference & guides</h2>
+    <ul>
+      <li><a href="/reference/blanket-quilt-sizes/">Blanket & quilt size chart</a></li>
+      <li><a href="/reference/mattress-sizes/">Mattress size chart</a></li>
+      <li><a href="/guides/quilt-backing-and-binding/">Backing & binding guide</a></li>
+    </ul>
+  </div>
+</BaseLayout>

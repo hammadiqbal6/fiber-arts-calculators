@@ -1,0 +1,60 @@
+---
+---
+<div class="tool-panel" id="crochet-blanket-tool">
+  <h2>Crochet blanket stitch count</h2>
+  <form id="crochet-blanket-form" class="tool-grid tool-grid--2">
+    <div class="field"><label for="preset">Preset</label>
+      <select name="preset" id="preset">
+        <option value="custom">Custom</option>
+        <option value="throw" data-w="50" data-l="60">throw (50×60 in)</option><option value="crib" data-w="36" data-l="54">crib (36×54 in)</option><option value="afghan" data-w="50" data-l="65">afghan (50×65 in)</option><option value="twin" data-w="66" data-l="90">twin (66×90 in)</option>
+      </select></div>
+    <div class="field"><label for="unit">Unit</label>
+      <select name="unit" id="unit"><option value="in">Inches</option><option value="cm">cm</option></select></div>
+    <div class="field"><label for="width">Width</label>
+      <input type="number" inputmode="decimal" name="width" id="width" value="40" min="1" step="any" required /></div>
+    <div class="field"><label for="length">Length</label>
+      <input type="number" inputmode="decimal" name="length" id="length" value="48" min="1" step="any" required /></div>
+    <div class="field"><label for="sts4">Stitches per 4"</label>
+      <input type="number" inputmode="decimal" name="sts4" id="sts4" value="14" min="1" step="any" required /></div>
+    <div class="field"><label for="rows4">Rows per 4"</label>
+      <input type="number" inputmode="decimal" name="rows4" id="rows4" value="15" min="1" step="any" required /></div>
+    <div class="field" style="display:flex;align-items:flex-end"><button type="submit" class="btn btn--primary" style="width:100%">Calculate</button></div>
+  </form>
+  <div class="results" aria-live="polite"><h3>Results</h3><dl data-results></dl>
+    <div class="share-row"><button type="button" class="btn btn--ghost" data-share>Copy result link</button>
+    <button type="button" class="btn btn--ghost" onclick="window.print()">Print</button></div>
+  </div>
+</div>
+<script>
+  import { crochetBlanketStitches, num, readQuery, writeQuery, setResults } from '../../lib/client-calc';
+  const form = document.getElementById('crochet-blanket-form');
+  const root = document.getElementById('crochet-blanket-tool');
+  form.elements.namedItem('preset').addEventListener('change', () => {
+    const opt = form.elements.namedItem('preset').selectedOptions[0];
+    if (opt.dataset.w) {
+      form.elements.namedItem('width').value = opt.dataset.w;
+      form.elements.namedItem('length').value = opt.dataset.l;
+      form.elements.namedItem('unit').value = 'in';
+    }
+  });
+  function run() {
+    const r = crochetBlanketStitches({
+      width: num(form.elements.namedItem('width')),
+      length: num(form.elements.namedItem('length')),
+      unit: form.elements.namedItem('unit').value,
+      stitchesPer4in: num(form.elements.namedItem('sts4')),
+      rowsPer4in: num(form.elements.namedItem('rows4')),
+    });
+    setResults(root, [
+      ['Stitches across', String(r.stitchesWide)],
+      ['Starting chain (≈)', String(r.startingChain)],
+      ['Rows', String(r.rowsTall)],
+      ['Approx. total stitches', String(r.totalStitchesApprox)],
+      ['Size', r.widthIn + ' × ' + r.lengthIn + ' in'],
+    ]);
+    writeQuery(form);
+  }
+  form.addEventListener('submit', (e) => { e.preventDefault(); run(); });
+  root.querySelector('[data-share]')?.addEventListener('click', async () => { writeQuery(form); await navigator.clipboard.writeText(location.href); });
+  readQuery(form); run();
+</script>

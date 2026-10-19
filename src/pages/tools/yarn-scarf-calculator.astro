@@ -1,0 +1,63 @@
+---
+import ToolLayout from '../../layouts/ToolLayout.astro';
+import YarnScarfCalc from '../../components/calculators/YarnScarfCalc.astro';
+import { getTool } from '../../data/tools';
+
+const tool = getTool('yarn-scarf-calculator');
+const faqs = [
+    { q: "How long should a scarf be?", a: "Often wingspan (about 55–65 in for many adults) or personal preference." },
+    { q: "Crochet scarf yarn?", a: "Select crochet in the tool; expect higher yardage than knit for the same size." }
+];
+---
+
+<ToolLayout tool={tool} answerFirst={"A classic scarf about 8×60 in (20×152 cm) in worsted yarn often needs roughly 350–550 meters (380–600 yards). Wider or longer scarves and crochet fabrics need more—enter your dimensions above."} faqs={faqs}>
+  <YarnScarfCalc slot="tool" />
+
+  <h2>How to use this calculator</h2>
+  <p>Enter width and length in inches, choose yarn weight and knit/crochet, then calculate.</p>
+
+  <div class="key-takeaways">
+    <strong>Key takeaways</strong>
+    <ul>
+      <li>Infinity cowls: use circumference × height as width × length.</li>
+<li>Fringe can add 10–20% yarn.</li>
+<li>Soft hand and drape matter as much as yardage.</li>
+      <li>Verify critical projects with a swatch or scrap sample.</li>
+    </ul>
+  </div>
+
+  <h2>The formula / method</h2>
+  <p>Rectangular area × CYC meters-per-m² × craft factor × waste.</p>
+
+  <h2>Worked example</h2>
+  <p>8×60 in knit CYC 4 at 10% waste is a mid-size scarf—typically two 100 g balls depending on meters per ball.</p>
+
+  <h2>Tips</h2>
+  <ul><li>Infinity cowls: use circumference × height as width × length.</li>
+<li>Fringe can add 10–20% yarn.</li>
+<li>Soft hand and drape matter as much as yardage.</li></ul>
+
+  <h2>Common mistakes</h2>
+  <ul><li>Planning only by “two skeins” without meters.</li>
+<li>Ignoring that seed stitch eats yarn.</li></ul>
+  
+    <h2>Units: inches, centimeters, yards, meters, grams, ounces</h2>
+    <p>
+      yarn scarf calculator results support mixed unit workflows. Length inputs accept inches or centimeters where shown.
+      Fabric and yarn outputs list yards and meters together (1 yd = 0.9144 m). Fiber weights list grams and ounces (1 oz ≈ 28.35 g).
+      Keeping units explicit prevents the most common shopping mistakes when patterns, ball bands, and fabric bolts disagree.
+    </p>
+    <h2>Assumptions and limits</h2>
+    <p>
+      This tool is for planning. Stitch patterns, brand-specific yarn put-up, personal tension, shrinking, and finishing all move the real number.
+      When a designer publishes tested yardage for a pattern, prefer that figure and use our estimate as a second opinion or substitution aid.
+      Measurements assume the geometric models documented in the formula section—not every construction (e.g., circular yokes, bias skirts, or C2C blankets) matches a rectangle.
+    </p>
+    <h2>Privacy</h2>
+    <p>
+      All math runs locally in your browser. We do not upload your project measurements. Shareable result links store state in the query string on your device’s URL only.
+    </p>
+  
+  <h2>Sources</h2>
+  <ul><li><a href="https://www.craftyarncouncil.com/standards/yarn-weight-system" rel="noopener noreferrer">Craft Yarn Council — Yarn Weight System</a></li></ul>
+</ToolLayout>

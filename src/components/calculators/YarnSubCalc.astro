@@ -1,0 +1,56 @@
+---
+---
+<div class="tool-panel" id="yarn-sub-tool">
+  <h2>Convert yarn amounts between weights</h2>
+  <form id="yarn-sub-form" class="tool-grid tool-grid--2">
+    <div class="field"><label for="orig">Original CYC weight</label><select name="orig" id="orig"><option value="0" >0 – Lace</option>
+<option value="1" >1 – Super Fine</option>
+<option value="2" >2 – Fine</option>
+<option value="3" >3 – Light (DK)</option>
+<option value="4" selected>4 – Medium (Worsted)</option>
+<option value="5" >5 – Bulky</option>
+<option value="6" >6 – Super Bulky</option>
+<option value="7" >7 – Jumbo</option></select></div>
+    <div class="field"><label for="sub">Substitute CYC weight</label><select name="sub" id="sub"><option value="0" >0 – Lace</option>
+<option value="1" >1 – Super Fine</option>
+<option value="2" >2 – Fine</option>
+<option value="3" selected>3 – Light (DK)</option>
+<option value="4" >4 – Medium (Worsted)</option>
+<option value="5" >5 – Bulky</option>
+<option value="6" >6 – Super Bulky</option>
+<option value="7" >7 – Jumbo</option></select></div>
+    <div class="field"><label for="meters">Original meters</label>
+      <input type="number" inputmode="decimal" name="meters" id="meters" value="1000" min="1" step="any" required /></div>
+    <div class="field"><label for="grams">Original grams (optional)</label>
+      <input type="number" inputmode="decimal" name="grams" id="grams" value="" min="0" step="any" /></div>
+    <div class="field" style="display:flex;align-items:flex-end"><button type="submit" class="btn btn--primary" style="width:100%">Convert</button></div>
+  </form>
+  <div class="results" aria-live="polite"><h3>Results</h3><dl data-results></dl>
+    <div class="share-row"><button type="button" class="btn btn--ghost" data-share>Copy result link</button></div>
+  </div>
+</div>
+<script>
+  import { substituteYarn, num, readQuery, writeQuery, setResults, round } from '../../lib/client-calc';
+  const form = document.getElementById('yarn-sub-form');
+  const root = document.getElementById('yarn-sub-tool');
+  function run() {
+    const g = form.elements.namedItem('grams').value;
+    const r = substituteYarn({
+      originalCategory: form.elements.namedItem('orig').value,
+      substituteCategory: form.elements.namedItem('sub').value,
+      originalMeters: num(form.elements.namedItem('meters')),
+      originalGrams: g === '' ? undefined : num(form.elements.namedItem('grams')),
+    });
+    setResults(root, [
+      ['Recommended meters', r.recommendedMeters + ' m'],
+      ['Recommended yards', round(r.recommendedMeters / 0.9144, 1) + ' yd'],
+      ['Recommended grams', r.recommendedGrams + ' g'],
+      ['Density ratio', String(r.gaugeRatio)],
+      ['Note', r.note],
+    ]);
+    writeQuery(form);
+  }
+  form.addEventListener('submit', (e) => { e.preventDefault(); run(); });
+  root.querySelector('[data-share]')?.addEventListener('click', async () => { writeQuery(form); await navigator.clipboard.writeText(location.href); });
+  readQuery(form); run();
+</script>

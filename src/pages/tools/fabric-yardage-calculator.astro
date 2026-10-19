@@ -1,0 +1,63 @@
+---
+import ToolLayout from '../../layouts/ToolLayout.astro';
+import FabricCalc from '../../components/calculators/FabricCalc.astro';
+import { getTool } from '../../data/tools';
+
+const tool = getTool('fabric-yardage-calculator');
+const faqs = [
+    { q: "How much fabric for a tablecloth?", a: "Table length + 2×drop by table width + 2×drop, then run through the calculator with your fabric width." },
+    { q: "Yards vs meters?", a: "Results show both. 1 yard ≈ 0.9144 meters." }
+];
+---
+
+<ToolLayout tool={tool} answerFirst={"Fabric yardage depends on piece size, fabric width, and how many panels fit across the bolt. For two 40×84 in curtain panels on 54 in wide fabric with 10% waste, expect roughly 5+ yards after paneling and waste. Use the tool for garments, curtains, upholstery, and tablecloths with optional pattern-repeat rounding."} faqs={faqs}>
+  <FabricCalc slot="tool" />
+
+  <h2>How to use this calculator</h2>
+  <p>Select project type, enter piece width/length, fabric width, piece count, waste, and optional pattern repeat.</p>
+
+  <div class="key-takeaways">
+    <strong>Key takeaways</strong>
+    <ul>
+      <li>Add fullness (1.5×–3×) to curtain width before calculating if gathering.</li>
+<li>Directional prints and naps may force one-way layouts.</li>
+<li>Upholstery often needs extra for welting.</li>
+      <li>Verify critical projects with a swatch or scrap sample.</li>
+    </ul>
+  </div>
+
+  <h2>The formula / method</h2>
+  <p>panels = ceil(pieces / floor(fabric_width/piece_width)); total_length = panels × piece_length × (1+waste), with piece_length optionally rounded to pattern repeat.</p>
+
+  <h2>Worked example</h2>
+  <p>2 curtain panels 40 in wide on 54 in goods → one panel fits across, need 2 lengths of 84 in + waste ≈ 5.1 yd.</p>
+
+  <h2>Tips</h2>
+  <ul><li>Add fullness (1.5×–3×) to curtain width before calculating if gathering.</li>
+<li>Directional prints and naps may force one-way layouts.</li>
+<li>Upholstery often needs extra for welting.</li></ul>
+
+  <h2>Common mistakes</h2>
+  <ul><li>Ignoring selvages and usable width.</li>
+<li>Forgetting pattern matching on plaids.</li></ul>
+  
+    <h2>Units: inches, centimeters, yards, meters, grams, ounces</h2>
+    <p>
+      fabric yardage calculator results support mixed unit workflows. Length inputs accept inches or centimeters where shown.
+      Fabric and yarn outputs list yards and meters together (1 yd = 0.9144 m). Fiber weights list grams and ounces (1 oz ≈ 28.35 g).
+      Keeping units explicit prevents the most common shopping mistakes when patterns, ball bands, and fabric bolts disagree.
+    </p>
+    <h2>Assumptions and limits</h2>
+    <p>
+      This tool is for planning. Stitch patterns, brand-specific yarn put-up, personal tension, shrinking, and finishing all move the real number.
+      When a designer publishes tested yardage for a pattern, prefer that figure and use our estimate as a second opinion or substitution aid.
+      Measurements assume the geometric models documented in the formula section—not every construction (e.g., circular yokes, bias skirts, or C2C blankets) matches a rectangle.
+    </p>
+    <h2>Privacy</h2>
+    <p>
+      All math runs locally in your browser. We do not upload your project measurements. Shareable result links store state in the query string on your device’s URL only.
+    </p>
+  
+  <h2>Sources</h2>
+  <ul><li><a href="https://extension.umn.edu/" rel="noopener noreferrer">General sewing yardage principles — measure twice, account for width and matching (extension/home ec guidance)</a></li></ul>
+</ToolLayout>

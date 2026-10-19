@@ -1,0 +1,47 @@
+# StitchCalc robots.txt
+# Allow major search and AI-search crawlers. Training crawlers: documented choice — currently allowed.
+# To disallow training only, uncomment the Disallow lines in the training section below.
+
+User-agent: *
+Allow: /
+Disallow: /embed/
+Disallow: /*?utm_
+
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Claude-SearchBot
+Allow: /
+
+# --- AI training crawlers (optional policy) ---
+# Currently ALLOWED. Uncomment Disallow to opt out of training corpora.
+# This does not affect Google Search ranking.
+User-agent: GPTBot
+Allow: /
+# Disallow: /
+
+User-agent: Google-Extended
+Allow: /
+# Disallow: /
+
+User-agent: ClaudeBot
+Allow: /
+# Disallow: /
+
+User-agent: CCBot
+Allow: /
+# Disallow: /
+
+Sitemap: https://example.com/sitemap-index.xml

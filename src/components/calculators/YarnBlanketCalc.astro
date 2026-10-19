@@ -1,0 +1,126 @@
+---
+import { YARN_WEIGHTS } from '../../data/yarn-weights';
+import { BLANKET_SIZES } from '../../data/sizes';
+---
+
+<div class="tool-panel" id="yarn-blanket-tool">
+  <h2>Calculate blanket yarn</h2>
+  <form id="yarn-blanket-form" class="tool-grid tool-grid--2">
+    <div class="field">
+      <label for="preset">Blanket preset</label>
+      <select name="preset" id="preset">
+        <option value="custom">Custom size</option>
+        {BLANKET_SIZES.map((s) => (
+          <option value={s.id} data-w={s.widthIn} data-l={s.lengthIn}>
+            {s.name} ({s.widthIn}×{s.lengthIn} in)
+          </option>
+        ))}
+      </select>
+    </div>
+    <div class="field">
+      <label for="unit">Length unit</label>
+      <select name="unit" id="unit">
+        <option value="in">Inches</option>
+        <option value="cm">Centimeters</option>
+      </select>
+    </div>
+    <div class="field">
+      <label for="width">Width</label>
+      <input type="number" inputmode="decimal" name="width" id="width" value="50" min="1" step="any" required />
+    </div>
+    <div class="field">
+      <label for="length">Length</label>
+      <input type="number" inputmode="decimal" name="length" id="length" value="60" min="1" step="any" required />
+    </div>
+    <div class="field">
+      <label for="yarn">Yarn weight (CYC)</label>
+      <select name="yarn" id="yarn">
+        {YARN_WEIGHTS.map((y) => (
+          <option value={y.category} selected={y.category === '4'}>
+            {y.category} – {y.name}
+          </option>
+        ))}
+      </select>
+    </div>
+    <div class="field">
+      <label for="craft">Craft</label>
+      <select name="craft" id="craft">
+        <option value="knit">Knitting</option>
+        <option value="crochet">Crochet</option>
+      </select>
+    </div>
+    <div class="field">
+      <label for="waste">Waste / swatch %</label>
+      <input type="number" inputmode="decimal" name="waste" id="waste" value="10" min="0" max="40" />
+    </div>
+    <div class="field" style="display:flex;align-items:flex-end">
+      <button type="submit" class="btn btn--primary" style="width:100%">Calculate</button>
+    </div>
+  </form>
+  <div class="results" aria-live="polite">
+    <h3>Results</h3>
+    <dl data-results></dl>
+    <div class="share-row">
+      <button type="button" class="btn btn--ghost" data-share>Copy result link</button>
+      <button type="button" class="btn btn--ghost" onclick="window.print()">Print</button>
+    </div>
+  </div>
+</div>
+
+<script>
+  import {
+    estimateRectYarn,
+    num,
+    readQuery,
+    writeQuery,
+    setResults,
+    round,
+    fromGrams,
+  } from '../../lib/client-calc';
+
+  const form = document.getElementById('yarn-blanket-form') as HTMLFormElement;
+  const root = document.getElementById('yarn-blanket-tool')!;
+  const preset = form.elements.namedItem('preset') as HTMLSelectElement;
+
+  function run() {
+    const unit = (form.elements.namedItem('unit') as HTMLSelectElement).value as 'in' | 'cm';
+    const r = estimateRectYarn({
+      width: num(form.elements.namedItem('width') as HTMLInputElement),
+      length: num(form.elements.namedItem('length') as HTMLInputElement),
+      unit,
+      yarnCategory: (form.elements.namedItem('yarn') as HTMLSelectElement).value,
+      wastePercent: num(form.elements.namedItem('waste') as HTMLInputElement),
+      craft: (form.elements.namedItem('craft') as HTMLSelectElement).value as 'knit' | 'crochet',
+    });
+    setResults(root, [
+      ['Yarn', r.yarnName],
+      ['Area', `${r.areaSqM} m²`],
+      ['Meters needed', `${r.metersNeeded} m`],
+      ['Yards needed', `${round(r.metersNeeded / 0.9144, 1)} yd`],
+      ['Grams', `${r.gramsNeeded} g`],
+      ['Ounces', `${round(fromGrams(r.gramsNeeded, 'oz'), 1)} oz`],
+      ['Typical balls', `${r.ballsNeeded} × ${r.typicalBallMeters} m`],
+    ]);
+    writeQuery(form);
+  }
+
+  preset.addEventListener('change', () => {
+    const opt = preset.selectedOptions[0];
+    if (opt?.dataset.w) {
+      (form.elements.namedItem('width') as HTMLInputElement).value = opt.dataset.w;
+      (form.elements.namedItem('length') as HTMLInputElement).value = opt.dataset.l!;
+      (form.elements.namedItem('unit') as HTMLSelectElement).value = 'in';
+    }
+  });
+
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    run();
+  });
+  root.querySelector('[data-share]')?.addEventListener('click', async () => {
+    writeQuery(form);
+    await navigator.clipboard.writeText(window.location.href);
+  });
+  readQuery(form);
+  run();
+</script>

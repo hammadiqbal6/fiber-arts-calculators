@@ -1,0 +1,63 @@
+---
+import ToolLayout from '../../layouts/ToolLayout.astro';
+import CrochetBlanketCalc from '../../components/calculators/CrochetBlanketCalc.astro';
+import { getTool } from '../../data/tools';
+
+const tool = getTool('crochet-blanket-calculator');
+const faqs = [
+    { q: "How many chains for a baby blanket?", a: "Depends on gauge. A 30×36 in stroller blanket at 14 sts/4\" needs about 105 stitches across." },
+    { q: "Can I use this for knit blankets?", a: "The stitch-count idea is similar, but use the knitting gauge and cast-on calculators for knit-specific tips." }
+];
+---
+
+<ToolLayout tool={tool} answerFirst={"To size a crochet blanket, multiply your stitch gauge by the target width: stitches_across = (width_inches / 4) × stitches_per_4in. For a 40 in wide blanket at 14 sc per 4 in, cast on about 140 stitches (plus turning chain). Enter width, length, and gauge above for starting chain and row count."} faqs={faqs}>
+  <CrochetBlanketCalc slot="tool" />
+
+  <h2>How to use this calculator</h2>
+  <p>Choose a preset or custom size, enter your stitches and rows per 4 inches from a swatch, and calculate starting chain, stitches across, and rows.</p>
+
+  <div class="key-takeaways">
+    <strong>Key takeaways</strong>
+    <ul>
+      <li>Swatch in your pattern stitch, not just sc if the blanket uses granny clusters.</li>
+<li>Corner-to-corner (C2C) uses different math—count squares, not linear sts.</li>
+<li>Add border width separately.</li>
+      <li>Verify critical projects with a swatch or scrap sample.</li>
+    </ul>
+  </div>
+
+  <h2>The formula / method</h2>
+  <p>stitches_wide = round((width_in/4)×sts_per_4in); rows = round((length_in/4)×rows_per_4in); starting_chain ≈ stitches_wide + 1.</p>
+
+  <h2>Worked example</h2>
+  <p>40×48 in at 14 sts / 15 rows per 4" → 140 sts × 180 rows.</p>
+
+  <h2>Tips</h2>
+  <ul><li>Swatch in your pattern stitch, not just sc if the blanket uses granny clusters.</li>
+<li>Corner-to-corner (C2C) uses different math—count squares, not linear sts.</li>
+<li>Add border width separately.</li></ul>
+
+  <h2>Common mistakes</h2>
+  <ul><li>Using packaging gauge instead of your hook and tension.</li>
+<li>Forgetting that turning chains can count as stitches in some patterns.</li></ul>
+  
+    <h2>Units: inches, centimeters, yards, meters, grams, ounces</h2>
+    <p>
+      crochet blanket calculator results support mixed unit workflows. Length inputs accept inches or centimeters where shown.
+      Fabric and yarn outputs list yards and meters together (1 yd = 0.9144 m). Fiber weights list grams and ounces (1 oz ≈ 28.35 g).
+      Keeping units explicit prevents the most common shopping mistakes when patterns, ball bands, and fabric bolts disagree.
+    </p>
+    <h2>Assumptions and limits</h2>
+    <p>
+      This tool is for planning. Stitch patterns, brand-specific yarn put-up, personal tension, shrinking, and finishing all move the real number.
+      When a designer publishes tested yardage for a pattern, prefer that figure and use our estimate as a second opinion or substitution aid.
+      Measurements assume the geometric models documented in the formula section—not every construction (e.g., circular yokes, bias skirts, or C2C blankets) matches a rectangle.
+    </p>
+    <h2>Privacy</h2>
+    <p>
+      All math runs locally in your browser. We do not upload your project measurements. Shareable result links store state in the query string on your device’s URL only.
+    </p>
+  
+  <h2>Sources</h2>
+  <ul><li><a href="https://www.craftyarncouncil.com/standards" rel="noopener noreferrer">Craft Yarn Council — Crochet standards</a></li></ul>
+</ToolLayout>

@@ -1,0 +1,28 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { siteConfig } from '../config/site';
+---
+
+<BaseLayout
+  title="About"
+  description={`About ${siteConfig.brandName}: free, privacy-friendly knitting, crochet, sewing, and quilting calculators.`}
+  canonicalPath="/about/"
+>
+  <h1 class="page-title">About {siteConfig.brandName}</h1>
+  <div class="prose">
+    <p>
+      {siteConfig.brandName} is a free tool site for fiber artists. We publish client-side calculators for yarn planning,
+      knitting gauge, crochet blanket sizing, fabric yardage, quilt finishing, and reference charts grounded in
+      Craft Yarn Council standards and common industry sizes.
+    </p>
+    <p>
+      Every tool runs in your browser—measurements stay on your device. Each page includes formulas, worked examples,
+      limitations, and sources so you can verify the math.
+    </p>
+    <p>
+      Brand, domain, analytics, and AdSense values are placeholders in <code>src/config/site.ts</code> until the owner configures them.
+      Contact: <a href={`mailto:${siteConfig.contactEmail}`}>{siteConfig.contactEmail}</a>.
+    </p>
+    <p>See also <a href="/methodology/">methodology</a>, <a href="/authors/">authors</a>, and <a href="/privacy/">privacy</a>.</p>
+  </div>
+</BaseLayout>

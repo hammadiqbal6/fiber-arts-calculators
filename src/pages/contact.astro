@@ -1,0 +1,20 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { siteConfig } from '../config/site';
+---
+
+<BaseLayout
+  title="Contact"
+  description={`Contact ${siteConfig.brandName} about calculator corrections, sources, or partnership ideas.`}
+  canonicalPath="/contact/"
+>
+  <h1 class="page-title">Contact</h1>
+  <div class="prose">
+    <p>
+      Email us at <a href={`mailto:${siteConfig.contactEmail}`}>{siteConfig.contactEmail}</a>.
+      Replace this address in <code>src/config/site.ts</code> (or <code>PUBLIC_CONTACT_EMAIL</code>) before launch.
+    </p>
+    <p>Please include links and sources when reporting a formula issue—we update tools with dated changelogs on the methodology page.</p>
+    <p>This page is form-ready: you may later point a static form provider at the same mailbox without changing the privacy posture of the calculators themselves.</p>
+  </div>
+</BaseLayout>

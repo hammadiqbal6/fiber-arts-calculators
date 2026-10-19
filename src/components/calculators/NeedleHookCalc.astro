@@ -1,0 +1,67 @@
+---
+import { KNITTING_NEEDLES, CROCHET_HOOKS } from '../../data/needles-hooks';
+---
+<div class="tool-panel" id="needle-tool">
+  <h2>Needle & hook size converter</h2>
+  <form id="needle-form" class="tool-grid tool-grid--2">
+    <div class="field"><label for="kind">Convert</label>
+      <select name="kind" id="kind">
+        <option value="needle">Knitting needle</option>
+        <option value="hook">Crochet hook</option>
+      </select></div>
+    <div class="field"><label for="system">From system</label>
+      <select name="system" id="system">
+        <option value="metric">Metric (mm)</option>
+        <option value="us">US</option>
+        <option value="uk">UK</option>
+      </select></div>
+    <div class="field"><label for="value">Size value</label>
+      <input type="text" name="value" id="value" value="5" required />
+      <p class="field-hint">Examples: 5, 8, 10.5, H-8</p></div>
+    <div class="field" style="display:flex;align-items:flex-end"><button type="submit" class="btn btn--primary" style="width:100%">Convert</button></div>
+  </form>
+  <div class="results" aria-live="polite"><h3>Results</h3><dl data-results></dl></div>
+  <h3 style="margin-top:1.5rem;font-size:1.05rem">Knitting needle chart (sample)</h3>
+  <div style="overflow-x:auto">
+    <table>
+      <thead><tr><th>Metric mm</th><th>US</th><th>UK</th></tr></thead>
+      <tbody>
+        {KNITTING_NEEDLES.slice(0, 12).map((n) => (
+          <tr><td>{n.metricMm}</td><td>{n.us}</td><td>{n.uk}</td></tr>
+        ))}
+      </tbody>
+    </table>
+  </div>
+</div>
+<script>
+  import { KNITTING_NEEDLES, CROCHET_HOOKS, readQuery, writeQuery, setResults } from '../../lib/client-calc';
+  const form = document.getElementById('needle-form');
+  const root = document.getElementById('needle-tool');
+  function matchRow(list, system, value) {
+    const v = value.trim().toLowerCase();
+    return list.find((row) => {
+      if (system === 'metric') return Math.abs(row.metricMm - parseFloat(v)) < 0.01;
+      if (system === 'us') return String(row.us).toLowerCase() === v;
+      return String(row.uk).toLowerCase() === v;
+    });
+  }
+  function run() {
+    const kind = form.elements.namedItem('kind').value;
+    const system = form.elements.namedItem('system').value;
+    const value = form.elements.namedItem('value').value;
+    const list = kind === 'needle' ? KNITTING_NEEDLES : CROCHET_HOOKS;
+    const row = matchRow(list, system, value);
+    if (!row) {
+      setResults(root, [['Status', 'No exact match — check the chart or try metric mm']]);
+    } else {
+      setResults(root, [
+        ['Metric', row.metricMm + ' mm'],
+        ['US', String(row.us)],
+        ['UK', String(row.uk)],
+      ]);
+    }
+    writeQuery(form);
+  }
+  form.addEventListener('submit', (e) => { e.preventDefault(); run(); });
+  readQuery(form); run();
+</script>

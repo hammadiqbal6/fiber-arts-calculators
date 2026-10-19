@@ -1,0 +1,53 @@
+---
+---
+<div class="tool-panel" id="incdec-tool">
+  <h2>Increase or decrease evenly</h2>
+  <form id="incdec-form" class="tool-grid tool-grid--2">
+    <div class="field"><label for="current">Current stitches</label>
+      <input type="number" inputmode="numeric" name="current" id="current" value="100" min="2" required /></div>
+    <div class="field"><label for="target">Target stitches (optional)</label>
+      <input type="number" inputmode="numeric" name="target" id="target" value="110" min="1" /></div>
+    <div class="field"><label for="mode">Mode</label>
+      <select name="mode" id="mode"><option value="increase">Increase</option><option value="decrease">Decrease</option></select></div>
+    <div class="field"><label for="change">Or change by (stitches)</label>
+      <input type="number" inputmode="numeric" name="change" id="change" value="10" min="1" /></div>
+    <div class="field" style="display:flex;align-items:flex-end"><button type="submit" class="btn btn--primary" style="width:100%">Calculate</button></div>
+  </form>
+  <div class="results" aria-live="polite"><h3>Results</h3><dl data-results></dl><p data-detail style="margin-top:0.75rem"></p>
+    <div class="share-row"><button type="button" class="btn btn--ghost" data-share>Copy result link</button></div>
+  </div>
+</div>
+<script>
+  import { evenIncreaseDecrease, targetStitchChange, num, readQuery, writeQuery, setResults } from '../../lib/client-calc';
+  const form = document.getElementById('incdec-form');
+  const root = document.getElementById('incdec-tool');
+  function run() {
+    const current = num(form.elements.namedItem('current'));
+    const targetVal = form.elements.namedItem('target').value;
+    let mode = form.elements.namedItem('mode').value;
+    let changeBy = num(form.elements.namedItem('change'));
+    if (targetVal !== '') {
+      const t = targetStitchChange(current, num(form.elements.namedItem('target')));
+      if (t.mode === 'none') {
+        setResults(root, [['Status', 'Already at target stitch count']]);
+        root.querySelector('[data-detail]').textContent = '';
+        writeQuery(form); return;
+      }
+      mode = t.mode; changeBy = t.changeBy;
+      form.elements.namedItem('mode').value = mode;
+      form.elements.namedItem('change').value = String(changeBy);
+    }
+    const r = evenIncreaseDecrease({ currentStitches: current, changeBy, mode });
+    setResults(root, [
+      ['Mode', mode],
+      ['Change by', String(changeBy)],
+      ['Plain between (approx)', String(r.plainBetween)],
+      ['Instructions', r.instructions],
+    ]);
+    root.querySelector('[data-detail]').textContent = r.detailed.join(' ');
+    writeQuery(form);
+  }
+  form.addEventListener('submit', (e) => { e.preventDefault(); run(); });
+  root.querySelector('[data-share]')?.addEventListener('click', async () => { writeQuery(form); await navigator.clipboard.writeText(location.href); });
+  readQuery(form); run();
+</script>

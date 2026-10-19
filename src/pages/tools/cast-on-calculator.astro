@@ -1,0 +1,63 @@
+---
+import ToolLayout from '../../layouts/ToolLayout.astro';
+import CastOnCalc from '../../components/calculators/CastOnCalc.astro';
+import { getTool } from '../../data/tools';
+
+const tool = getTool('cast-on-calculator');
+const faqs = [
+    { q: "How many stitches to cast on for a scarf?", a: "Depends on width and gauge—e.g., 8 in at 20 sts/4\" → 40 stitches." },
+    { q: "Does cast-on method change the count?", a: "Count stays the same; long-tail vs cable affects edge elasticity, not the stitch total you need for width." }
+];
+---
+
+<ToolLayout tool={tool} answerFirst={"Cast-on stitches = (desired width in inches ÷ 4) × stitches_per_4in, plus any edge stitches. At 20 stitches per 4 inches, a 20 inch panel needs 100 cast-on stitches. Enter your gauge and width above to get the number instantly."} faqs={faqs}>
+  <CastOnCalc slot="tool" />
+
+  <h2>How to use this calculator</h2>
+  <p>Enter desired width, unit, stitch gauge per 4 inches, and optional edge/seam stitches.</p>
+
+  <div class="key-takeaways">
+    <strong>Key takeaways</strong>
+    <ul>
+      <li>Use blocked gauge for garments.</li>
+<li>Add selvedge stitches if your pattern expects them separately.</li>
+<li>For ribbing, cast on a multiple of the rib repeat.</li>
+      <li>Verify critical projects with a swatch or scrap sample.</li>
+    </ul>
+  </div>
+
+  <h2>The formula / method</h2>
+  <p>cast_on = round((width_in/4)×sts_per_4in) + edge_stitches.</p>
+
+  <h2>Worked example</h2>
+  <p>Width 18 in at 18 sts/4" → (18/4)×18 = 81 stitches.</p>
+
+  <h2>Tips</h2>
+  <ul><li>Use blocked gauge for garments.</li>
+<li>Add selvedge stitches if your pattern expects them separately.</li>
+<li>For ribbing, cast on a multiple of the rib repeat.</li></ul>
+
+  <h2>Common mistakes</h2>
+  <ul><li>Using row gauge instead of stitch gauge.</li>
+<li>Measuring stretchy cast-ons under tension inconsistently.</li></ul>
+  
+    <h2>Units: inches, centimeters, yards, meters, grams, ounces</h2>
+    <p>
+      cast on calculator results support mixed unit workflows. Length inputs accept inches or centimeters where shown.
+      Fabric and yarn outputs list yards and meters together (1 yd = 0.9144 m). Fiber weights list grams and ounces (1 oz ≈ 28.35 g).
+      Keeping units explicit prevents the most common shopping mistakes when patterns, ball bands, and fabric bolts disagree.
+    </p>
+    <h2>Assumptions and limits</h2>
+    <p>
+      This tool is for planning. Stitch patterns, brand-specific yarn put-up, personal tension, shrinking, and finishing all move the real number.
+      When a designer publishes tested yardage for a pattern, prefer that figure and use our estimate as a second opinion or substitution aid.
+      Measurements assume the geometric models documented in the formula section—not every construction (e.g., circular yokes, bias skirts, or C2C blankets) matches a rectangle.
+    </p>
+    <h2>Privacy</h2>
+    <p>
+      All math runs locally in your browser. We do not upload your project measurements. Shareable result links store state in the query string on your device’s URL only.
+    </p>
+  
+  <h2>Sources</h2>
+  <ul><li><a href="https://www.craftyarncouncil.com/standards" rel="noopener noreferrer">Craft Yarn Council standards</a></li></ul>
+</ToolLayout>

@@ -1,0 +1,38 @@
+---
+---
+<div class="tool-panel" id="caston-tool">
+  <h2>Cast-on stitch calculator</h2>
+  <form id="caston-form" class="tool-grid tool-grid--2">
+    <div class="field"><label for="width">Desired width</label>
+      <input type="number" inputmode="decimal" name="width" id="width" value="20" min="1" step="any" required /></div>
+    <div class="field"><label for="unit">Unit</label>
+      <select name="unit" id="unit"><option value="in">Inches</option><option value="cm">cm</option></select></div>
+    <div class="field"><label for="sts4">Stitches per 4"</label>
+      <input type="number" inputmode="decimal" name="sts4" id="sts4" value="20" min="1" step="any" required /></div>
+    <div class="field"><label for="edge">Edge / seam stitches</label>
+      <input type="number" inputmode="numeric" name="edge" id="edge" value="0" min="0" /></div>
+    <div class="field" style="display:flex;align-items:flex-end"><button type="submit" class="btn btn--primary" style="width:100%">Calculate</button></div>
+  </form>
+  <div class="results" aria-live="polite"><h3>Results</h3><dl data-results></dl>
+    <div class="share-row"><button type="button" class="btn btn--ghost" data-share>Copy result link</button>
+    <button type="button" class="btn btn--ghost" onclick="window.print()">Print</button></div>
+  </div>
+</div>
+<script>
+  import { castOnStitches, num, readQuery, writeQuery, setResults } from '../../lib/client-calc';
+  const form = document.getElementById('caston-form');
+  const root = document.getElementById('caston-tool');
+  function run() {
+    const n = castOnStitches({
+      desiredWidth: num(form.elements.namedItem('width')),
+      unit: form.elements.namedItem('unit').value,
+      stitchesPer4in: num(form.elements.namedItem('sts4')),
+      edgeStitches: num(form.elements.namedItem('edge')),
+    });
+    setResults(root, [['Cast on', n + ' stitches']]);
+    writeQuery(form);
+  }
+  form.addEventListener('submit', (e) => { e.preventDefault(); run(); });
+  root.querySelector('[data-share]')?.addEventListener('click', async () => { writeQuery(form); await navigator.clipboard.writeText(location.href); });
+  readQuery(form); run();
+</script>

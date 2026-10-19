@@ -1,0 +1,42 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { siteConfig } from '../config/site';
+---
+
+<BaseLayout
+  title="Privacy Policy"
+  description={`Privacy policy for ${siteConfig.brandName}, including analytics and Google AdSense disclosures.`}
+  canonicalPath="/privacy/"
+>
+  <h1 class="page-title">Privacy Policy</h1>
+  <p class="meta-row">Last updated {siteConfig.contentUpdated}</p>
+  <div class="prose">
+    <h2>Summary</h2>
+    <p>
+      Calculators run entirely in your browser. We do not upload your project measurements to our servers.
+      Shareable result links store values only in the page URL query string on your device.
+    </p>
+    <h2>Cookies and local storage</h2>
+    <p>
+      We may store a preference flag (for example, cookie-notice dismissal) in localStorage.
+      If the site owner enables Google Analytics 4, GA4 may set cookies to collect usage statistics.
+    </p>
+    <h2>Google AdSense and advertising</h2>
+    <p>
+      When AdSense is enabled, Google and third-party vendors use cookies to serve ads based on prior visits to this site or other sites.
+      Google’s use of advertising cookies enables it and its partners to serve ads based on your visit to this site and/or other sites on the Internet.
+      You may opt out of personalized advertising by visiting
+      <a href="https://www.google.com/settings/ads" rel="noopener noreferrer">Google Ads Settings</a>
+      or <a href="https://www.aboutads.info" rel="noopener noreferrer">www.aboutads.info</a>.
+      DoubleClick cookies may be used for ad serving; opt-out information is available via Google’s ads settings.
+    </p>
+    <p>
+      For users in the EEA, UK, and Switzerland, a Google-certified consent management platform (CMP) implementing the IAB TCF is required before personalized ads.
+      Configure a CMP before enabling ads for those regions. See the repository file docs/ADSENSE.md for setup steps.
+    </p>
+    <h2>Contact</h2>
+    <p>
+      Questions: <a href={`mailto:${siteConfig.contactEmail}`}>{siteConfig.contactEmail}</a>.
+    </p>
+  </div>
+</BaseLayout>

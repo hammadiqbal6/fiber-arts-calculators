@@ -1,0 +1,35 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { siteConfig } from '../config/site';
+---
+
+<BaseLayout
+  title="Methodology & Editorial Policy"
+  description="How StitchCalc calculates yarn, gauge, fabric, and quilt figures, and how we review sources."
+  canonicalPath="/methodology/"
+>
+  <h1 class="page-title">Methodology & editorial policy</h1>
+  <div class="prose">
+    <h2>E-E-A-T commitments</h2>
+    <p>
+      We show formulas on every tool page, cite authoritative standards (especially the Craft Yarn Council),
+      keep “last updated” dates visible, and separate planning estimates from pattern-tested yardage.
+    </p>
+    <h2>Calculation principles</h2>
+    <ul>
+      <li>Pure functions in TypeScript with unit tests for every formula module.</li>
+      <li>Unit conversions use exact factors (1 in = 2.54 cm; 1 yd = 0.9144 m; 1 oz = 28.349523125 g).</li>
+      <li>Yarn density factors are CYC-category averages for planning—not brand-specific put-ups.</li>
+      <li>Quilt HST formulas use traditional finished + ⅞" and eight-at-a-time (2×finished + 1.75").</li>
+    </ul>
+    <h2>Review process</h2>
+    <p>
+      Placeholder reviewer: {siteConfig.reviewer.name}. Before launch, the owner should replace placeholders with real bios on
+      <a href="/authors/">authors</a> and verify charts against primary sources after any CYC update.
+    </p>
+    <h2>Corrections</h2>
+    <p>
+      Email <a href={`mailto:${siteConfig.contactEmail}`}>{siteConfig.contactEmail}</a> with sources. Material formula changes update page dates and sitemap lastmod.
+    </p>
+  </div>
+</BaseLayout>

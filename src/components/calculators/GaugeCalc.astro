@@ -1,0 +1,81 @@
+---
+---
+<div class="tool-panel" id="gauge-tool">
+  <h2>Gauge, size & pattern resize</h2>
+  <form id="gauge-form">
+    <h3 class="visually-hidden">Swatch</h3>
+    <div class="tool-grid tool-grid--2">
+      <div class="field"><label for="sts">Stitches in swatch</label>
+        <input type="number" inputmode="decimal" name="sts" id="sts" value="20" min="1" required /></div>
+      <div class="field"><label for="rows">Rows in swatch</label>
+        <input type="number" inputmode="decimal" name="rows" id="rows" value="28" min="1" required /></div>
+      <div class="field"><label for="sw">Swatch width</label>
+        <input type="number" inputmode="decimal" name="sw" id="sw" value="4" min="0.5" step="any" required /></div>
+      <div class="field"><label for="sh">Swatch height</label>
+        <input type="number" inputmode="decimal" name="sh" id="sh" value="4" min="0.5" step="any" required /></div>
+      <div class="field"><label for="unit">Unit</label>
+        <select name="unit" id="unit"><option value="in">Inches</option><option value="cm">Centimeters</option></select></div>
+    </div>
+    <h3 style="font-size:1rem;margin:1rem 0 0.5rem">Stitches → finished size</h3>
+    <div class="tool-grid tool-grid--2">
+      <div class="field"><label for="pstitches">Pattern stitches</label>
+        <input type="number" inputmode="decimal" name="pstitches" id="pstitches" value="100" min="1" /></div>
+      <div class="field"><label for="prows">Pattern rows</label>
+        <input type="number" inputmode="decimal" name="prows" id="prows" value="120" min="1" /></div>
+    </div>
+    <h3 style="font-size:1rem;margin:1rem 0 0.5rem">Resize to your gauge</h3>
+    <div class="tool-grid tool-grid--2">
+      <div class="field"><label for="psts4">Pattern sts / 4"</label>
+        <input type="number" inputmode="decimal" name="psts4" id="psts4" value="20" min="1" step="any" /></div>
+      <div class="field"><label for="prows4">Pattern rows / 4"</label>
+        <input type="number" inputmode="decimal" name="prows4" id="prows4" value="28" min="1" step="any" /></div>
+    </div>
+    <button type="submit" class="btn btn--primary" style="margin-top:0.75rem">Calculate</button>
+  </form>
+  <div class="results" aria-live="polite"><h3>Results</h3><dl data-results></dl>
+    <div class="share-row"><button type="button" class="btn btn--ghost" data-share>Copy result link</button>
+    <button type="button" class="btn btn--ghost" onclick="window.print()">Print</button></div>
+  </div>
+</div>
+<script>
+  import { calculateGauge, stitchesToSize, resizePattern, num, readQuery, writeQuery, setResults } from '../../lib/client-calc';
+  const form = document.getElementById('gauge-form');
+  const root = document.getElementById('gauge-tool');
+  function run() {
+    const unit = form.elements.namedItem('unit').value;
+    const g = calculateGauge({
+      stitchesInSwatch: num(form.elements.namedItem('sts')),
+      rowsInSwatch: num(form.elements.namedItem('rows')),
+      swatchWidth: num(form.elements.namedItem('sw')),
+      swatchHeight: num(form.elements.namedItem('sh')),
+      unit,
+    });
+    const size = stitchesToSize({
+      stitches: num(form.elements.namedItem('pstitches')),
+      rows: num(form.elements.namedItem('prows')),
+      stitchesPer4in: g.stitchesPer4in,
+      rowsPer4in: g.rowsPer4in,
+    });
+    const resized = resizePattern({
+      patternStitchesPer4in: num(form.elements.namedItem('psts4')),
+      patternRowsPer4in: num(form.elements.namedItem('prows4')),
+      yourStitchesPer4in: g.stitchesPer4in,
+      yourRowsPer4in: g.rowsPer4in,
+      patternStitchCount: num(form.elements.namedItem('pstitches')),
+      patternRowCount: num(form.elements.namedItem('prows')),
+    });
+    setResults(root, [
+      ['Your gauge (sts/4")', String(g.stitchesPer4in)],
+      ['Your gauge (rows/4")', String(g.rowsPer4in)],
+      ['Sts / 10 cm', String(g.stitchesPer10cm)],
+      ['Finished width', size.widthIn + ' in / ' + size.widthCm + ' cm'],
+      ['Finished height', size.heightIn + ' in / ' + size.heightCm + ' cm'],
+      ['Resized stitch count', String(resized.newStitchCount)],
+      ['Resized row count', String(resized.newRowCount)],
+    ]);
+    writeQuery(form);
+  }
+  form.addEventListener('submit', (e) => { e.preventDefault(); run(); });
+  root.querySelector('[data-share]')?.addEventListener('click', async () => { writeQuery(form); await navigator.clipboard.writeText(location.href); });
+  readQuery(form); run();
+</script>

@@ -1,0 +1,43 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import { CATEGORIES, toolsByCategory } from '../../data/tools';
+import { siteConfig } from '../../config/site';
+
+const cat = CATEGORIES.knitting;
+const tools = toolsByCategory('knitting');
+const description =
+  'Free knitting calculators: yarn for blankets, sweaters, hats and scarves, gauge and cast-on math, even increases/decreases, and yarn substitution.';
+---
+
+<BaseLayout title="Knitting Calculators" description={description} canonicalPath={cat.path}>
+  <Breadcrumbs items={[{ label: 'Home', href: '/' }, { label: 'Knitting' }]} />
+  <h1 class="page-title">Knitting calculators</h1>
+  <div class="answer-box">
+    <p>
+      This knitting hub links every {siteConfig.brandName} tool for yarn estimates, gauge, cast-on counts, and even shaping.
+      Start with gauge if you are resizing a pattern; start with yarn tools if you are shopping for a project.
+    </p>
+  </div>
+  <p class="lead">{cat.description}</p>
+  <ul class="tool-cards">
+    {
+      tools.map((t) => (
+        <li>
+          <a href={t.path}>
+            <strong>{t.title}</strong>
+            <span>{t.description}</span>
+          </a>
+        </li>
+      ))
+    }
+  </ul>
+  <div class="related">
+    <h2>Guides</h2>
+    <ul>
+      <li><a href="/guides/how-much-yarn-do-i-need/">How much yarn do I need?</a></li>
+      <li><a href="/guides/knitting-gauge-explained/">Knitting gauge explained</a></li>
+      <li><a href="/reference/yarn-weight-chart/">CYC yarn weight chart</a></li>
+    </ul>
+  </div>
+</BaseLayout>

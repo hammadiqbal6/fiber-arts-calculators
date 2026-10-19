@@ -1,0 +1,5 @@
+# Cloudflare Pages / Netlify style redirects
+# Force HTTPS and host at the DNS/CDN layer; examples:
+
+# http://example.com/*  https://example.com/:splat  301
+# https://www.example.com/*  https://example.com/:splat  301

@@ -1,0 +1,31 @@
+---
+import { siteConfig } from '../config/site';
+---
+
+<div class="cookie-banner" id="cookie-banner" role="dialog" aria-label="Cookie notice">
+  <div class="cookie-banner__inner">
+    <p>
+      We use essential cookies for preferences. If analytics or AdSense are enabled by the site owner,
+      third-party cookies may be used. See our <a href="/privacy/" style="color:#fff">Privacy Policy</a>.
+      Contact: {siteConfig.contactEmail}.
+    </p>
+    <button type="button" class="btn btn--primary" id="cookie-accept">OK</button>
+  </div>
+</div>
+
+<script>
+  const key = 'stitchcalc-cookie-ok';
+  const banner = document.getElementById('cookie-banner');
+  const btn = document.getElementById('cookie-accept');
+  try {
+    if (!localStorage.getItem(key)) banner?.classList.add('is-visible');
+  } catch {
+    banner?.classList.add('is-visible');
+  }
+  btn?.addEventListener('click', () => {
+    try {
+      localStorage.setItem(key, '1');
+    } catch {}
+    banner?.classList.remove('is-visible');
+  });
+</script>

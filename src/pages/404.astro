@@ -1,0 +1,27 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { TOOLS } from '../data/tools';
+---
+
+<BaseLayout
+  title="Page not found"
+  description="The page you requested is not available. Browse knitting, crochet, sewing, and quilting calculators."
+  canonicalPath="/404/"
+  noindex={true}
+>
+  <h1 class="page-title">Page not found</h1>
+  <p class="lead">That URL is not in our sitemap. Try a popular calculator:</p>
+  <ul class="tool-cards">
+    {
+      TOOLS.slice(0, 6).map((t) => (
+        <li>
+          <a href={t.path}>
+            <strong>{t.title}</strong>
+            <span>{t.description}</span>
+          </a>
+        </li>
+      ))
+    }
+  </ul>
+  <p><a class="btn btn--primary" href="/">Back to homepage</a></p>
+</BaseLayout>

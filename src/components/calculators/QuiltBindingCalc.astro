@@ -1,0 +1,51 @@
+---
+---
+<div class="tool-panel" id="binding-tool">
+  <h2>Quilt binding calculator</h2>
+  <form id="binding-form" class="tool-grid tool-grid--2">
+    <div class="field"><label for="qw">Quilt width</label>
+      <input type="number" inputmode="decimal" name="qw" id="qw" value="60" min="1" step="any" required /></div>
+    <div class="field"><label for="ql">Quilt length</label>
+      <input type="number" inputmode="decimal" name="ql" id="ql" value="70" min="1" step="any" required /></div>
+    <div class="field"><label for="unit">Unit</label>
+      <select name="unit" id="unit"><option value="in">Inches</option><option value="cm">cm</option></select></div>
+    <div class="field"><label for="strip">Strip cut width</label>
+      <input type="number" inputmode="decimal" name="strip" id="strip" value="2.5" min="1" step="any" /></div>
+    <div class="field"><label for="fwidth">Fabric width</label>
+      <input type="number" inputmode="decimal" name="fwidth" id="fwidth" value="42" min="1" step="any" /></div>
+    <div class="field"><label for="fwunit">Fabric width unit</label>
+      <select name="fwunit" id="fwunit"><option value="in">Inches</option><option value="cm">cm</option></select></div>
+    <div class="field" style="display:flex;align-items:flex-end"><button type="submit" class="btn btn--primary" style="width:100%">Calculate</button></div>
+  </form>
+  <div class="results" aria-live="polite"><h3>Results</h3><dl data-results></dl>
+    <div class="share-row"><button type="button" class="btn btn--ghost" data-share>Copy result link</button>
+    <button type="button" class="btn btn--ghost" onclick="window.print()">Print</button></div>
+  </div>
+</div>
+<script>
+  import { quiltBinding, num, readQuery, writeQuery, setResults } from '../../lib/client-calc';
+  const form = document.getElementById('binding-form');
+  const root = document.getElementById('binding-tool');
+  function run() {
+    const r = quiltBinding({
+      quiltWidth: num(form.elements.namedItem('qw')),
+      quiltLength: num(form.elements.namedItem('ql')),
+      unit: form.elements.namedItem('unit').value,
+      stripCutWidth: num(form.elements.namedItem('strip')),
+      stripCutUnit: 'in',
+      fabricWidth: num(form.elements.namedItem('fwidth')),
+      fabricWidthUnit: form.elements.namedItem('fwunit').value,
+    });
+    setResults(root, [
+      ['Perimeter', r.perimeterIn + ' in'],
+      ['Strip length needed', r.totalStripLengthIn + ' in'],
+      ['Strips to cut', String(r.stripsNeeded)],
+      ['Fabric yards', r.fabricYards + ' yd'],
+      ['Fabric meters', r.fabricMeters + ' m'],
+    ]);
+    writeQuery(form);
+  }
+  form.addEventListener('submit', (e) => { e.preventDefault(); run(); });
+  root.querySelector('[data-share]')?.addEventListener('click', async () => { writeQuery(form); await navigator.clipboard.writeText(location.href); });
+  readQuery(form); run();
+</script>

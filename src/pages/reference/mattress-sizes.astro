@@ -1,0 +1,60 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import { MATTRESS_SIZES } from '../../data/sizes';
+---
+
+<BaseLayout
+  title="US Mattress Size Chart"
+  description="Standard US mattress dimensions from crib to California king for quilt and bedspread planning."
+  canonicalPath="/reference/mattress-sizes/"
+>
+  <Breadcrumbs
+    items={[
+      { label: 'Home', href: '/' },
+      { label: 'Reference', href: '/reference/' },
+      { label: 'Mattress sizes' },
+    ]}
+  />
+  <h1 class="page-title">US mattress size chart</h1>
+  <div class="answer-box">
+    <p>
+      US mattress sleeping surfaces follow industry-standard widths and lengths (twin 38×75 in, queen 60×80 in, king 76×80 in, and more).
+      Measure your mattress if possible—pillow-top depth affects drop, not the sleeping surface listed here.
+    </p>
+  </div>
+  <div class="prose">
+    <div style="overflow-x:auto">
+      <table>
+        <thead>
+          <tr><th>Name</th><th>Inches</th><th>Centimeters</th><th>Notes</th></tr>
+        </thead>
+        <tbody>
+          {
+            MATTRESS_SIZES.map((s) => (
+              <tr>
+                <td>{s.name}</td>
+                <td>
+                  {s.widthIn} × {s.lengthIn}
+                </td>
+                <td>
+                  {Math.round(s.widthIn * 2.54)} × {Math.round(s.lengthIn * 2.54)}
+                </td>
+                <td>{s.notes ?? '—'}</td>
+              </tr>
+            ))
+          }
+        </tbody>
+      </table>
+    </div>
+    <p>
+      Plan quilt coverage with the <a href="/tools/quilt-size-calculator/">quilt size calculator</a>
+      (mattress + drop + pillow tuck).
+    </p>
+    <h2>Sources</h2>
+    <p>
+      Industry-standard US mattress dimensions widely published by bedding retailers and consumer guides
+      (e.g. twin 38×75, full 54×75, queen 60×80, king 76×80, California king 72×84).
+    </p>
+  </div>
+</BaseLayout>

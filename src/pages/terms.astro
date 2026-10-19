@@ -1,0 +1,25 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { siteConfig } from '../config/site';
+---
+
+<BaseLayout
+  title="Terms of Use"
+  description={`Terms of use for ${siteConfig.brandName} calculators and content.`}
+  canonicalPath="/terms/"
+>
+  <h1 class="page-title">Terms of Use</h1>
+  <p class="meta-row">Last updated {siteConfig.contentUpdated}</p>
+  <div class="prose">
+    <p>
+      {siteConfig.brandName} provides free educational calculators and reference content for fiber arts.
+      Results are estimates for planning only—not professional manufacturing specifications.
+      Always swatch, measure twice, and follow tested patterns when accuracy matters.
+    </p>
+    <p>
+      Content is provided “as is” without warranties. We are not liable for material shortages, project failures, or damages arising from use of the tools.
+      You may link to our pages; embedding is allowed via the documented embed snippets with visible credit links.
+    </p>
+    <p>Contact: <a href={`mailto:${siteConfig.contactEmail}`}>{siteConfig.contactEmail}</a>.</p>
+  </div>
+</BaseLayout>

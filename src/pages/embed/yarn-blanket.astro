@@ -1,0 +1,32 @@
+---
+import YarnBlanketCalc from '../../components/calculators/YarnBlanketCalc.astro';
+import { siteConfig } from '../../config/site';
+import '../../styles/global.css';
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex" />
+    <title>Embed: Yarn Blanket Calculator | {siteConfig.brandName}</title>
+    <style>
+      body {
+        margin: 0;
+        padding: 0.75rem;
+        background: #fffdf8;
+      }
+      .credit {
+        font-size: 0.85rem;
+        margin-top: 0.75rem;
+      }
+    </style>
+  </head>
+  <body>
+    <YarnBlanketCalc />
+    <p class="credit">
+      Calculator by <a href={siteConfig.siteUrl} target="_blank" rel="noopener">{siteConfig.brandName}</a>
+    </p>
+  </body>
+</html>

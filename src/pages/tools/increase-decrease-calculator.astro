@@ -1,0 +1,63 @@
+---
+import ToolLayout from '../../layouts/ToolLayout.astro';
+import IncDecCalc from '../../components/calculators/IncDecCalc.astro';
+import { getTool } from '../../data/tools';
+
+const tool = getTool('increase-decrease-calculator');
+const faqs = [
+    { q: "Increase evenly in crochet?", a: "Same spacing idea: place sc2inc (or preferred increase) every n stitches." },
+    { q: "What if the math does not divide evenly?", a: "The tool uses remainder groups so some sections are one stitch larger—this is normal and still looks even." }
+];
+---
+
+<ToolLayout tool={tool} answerFirst={"To increase or decrease evenly, divide your current stitch count by the number of changes. For example, to increase 10 stitches across 60, work about every 6 stitches then M1. The calculator writes plain-English instructions for increases (M1) or decreases (k2tog) including uneven remainders."} faqs={faqs}>
+  <IncDecCalc slot="tool" />
+
+  <h2>How to use this calculator</h2>
+  <p>Enter current stitches and either a target count or a change-by amount, choose increase or decrease, and read the spaced instructions.</p>
+
+  <div class="key-takeaways">
+    <strong>Key takeaways</strong>
+    <ul>
+      <li>On circular rounds, place markers to verify spacing.</li>
+<li>For lace, keep pattern repeats intact when possible.</li>
+<li>Mirror increases/decreases on garment sides.</li>
+      <li>Verify critical projects with a swatch or scrap sample.</li>
+    </ul>
+  </div>
+
+  <h2>The formula / method</h2>
+  <p>groups = change_count; base = floor(current/groups); remainder stitches create slightly larger groups so shaping stays even.</p>
+
+  <h2>Worked example</h2>
+  <p>100 sts decrease by 10 → *k9, k2tog* ×10 → 90 sts when remainder is zero.</p>
+
+  <h2>Tips</h2>
+  <ul><li>On circular rounds, place markers to verify spacing.</li>
+<li>For lace, keep pattern repeats intact when possible.</li>
+<li>Mirror increases/decreases on garment sides.</li></ul>
+
+  <h2>Common mistakes</h2>
+  <ul><li>Clustering all decreases at the edges accidentally.</li>
+<li>Decreasing more stitches than you have.</li></ul>
+  
+    <h2>Units: inches, centimeters, yards, meters, grams, ounces</h2>
+    <p>
+      increase decrease calculator results support mixed unit workflows. Length inputs accept inches or centimeters where shown.
+      Fabric and yarn outputs list yards and meters together (1 yd = 0.9144 m). Fiber weights list grams and ounces (1 oz ≈ 28.35 g).
+      Keeping units explicit prevents the most common shopping mistakes when patterns, ball bands, and fabric bolts disagree.
+    </p>
+    <h2>Assumptions and limits</h2>
+    <p>
+      This tool is for planning. Stitch patterns, brand-specific yarn put-up, personal tension, shrinking, and finishing all move the real number.
+      When a designer publishes tested yardage for a pattern, prefer that figure and use our estimate as a second opinion or substitution aid.
+      Measurements assume the geometric models documented in the formula section—not every construction (e.g., circular yokes, bias skirts, or C2C blankets) matches a rectangle.
+    </p>
+    <h2>Privacy</h2>
+    <p>
+      All math runs locally in your browser. We do not upload your project measurements. Shareable result links store state in the query string on your device’s URL only.
+    </p>
+  
+  <h2>Sources</h2>
+  <ul><li><a href="https://www.craftyarncouncil.com/standards" rel="noopener noreferrer">General knitting reference technique — even shaping arithmetic (pattern math)</a></li></ul>
+</ToolLayout>

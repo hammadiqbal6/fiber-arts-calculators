@@ -1,0 +1,55 @@
+---
+---
+<div class="tool-panel" id="aida-tool">
+  <h2>Cross-stitch / Aida fabric size</h2>
+  <form id="aida-form" class="tool-grid tool-grid--2">
+    <div class="field"><label for="wide">Design stitches wide</label>
+      <input type="number" inputmode="numeric" name="wide" id="wide" value="140" min="1" required /></div>
+    <div class="field"><label for="high">Design stitches high</label>
+      <input type="number" inputmode="numeric" name="high" id="high" value="180" min="1" required /></div>
+    <div class="field"><label for="count">Aida count</label>
+      <select name="count" id="count">
+        <option value="11">11-count</option>
+        <option value="14" selected>14-count</option>
+        <option value="16">16-count</option>
+        <option value="18">18-count</option>
+        <option value="20">20-count</option>
+        <option value="22">22-count</option>
+      </select></div>
+    <div class="field"><label for="margin">Margin each side</label>
+      <input type="number" inputmode="decimal" name="margin" id="margin" value="3" min="0" step="any" /></div>
+    <div class="field"><label for="munit">Margin unit</label>
+      <select name="munit" id="munit"><option value="in">Inches</option><option value="cm">cm</option></select></div>
+    <div class="field"><label for="extra">Finishing extra each side</label>
+      <input type="number" inputmode="decimal" name="extra" id="extra" value="0" min="0" step="any" /></div>
+    <div class="field" style="display:flex;align-items:flex-end"><button type="submit" class="btn btn--primary" style="width:100%">Calculate</button></div>
+  </form>
+  <div class="results" aria-live="polite"><h3>Results</h3><dl data-results></dl>
+    <div class="share-row"><button type="button" class="btn btn--ghost" data-share>Copy result link</button>
+    <button type="button" class="btn btn--ghost" onclick="window.print()">Print</button></div>
+  </div>
+</div>
+<script>
+  import { crossStitchFabric, num, readQuery, writeQuery, setResults } from '../../lib/client-calc';
+  const form = document.getElementById('aida-form');
+  const root = document.getElementById('aida-tool');
+  function run() {
+    const r = crossStitchFabric({
+      designStitchesWide: num(form.elements.namedItem('wide')),
+      designStitchesHigh: num(form.elements.namedItem('high')),
+      aidaCount: num(form.elements.namedItem('count')),
+      margin: num(form.elements.namedItem('margin')),
+      marginUnit: form.elements.namedItem('munit').value,
+      finishingExtra: num(form.elements.namedItem('extra')),
+    });
+    setResults(root, [
+      ['Design size', r.designWidthIn + ' × ' + r.designHeightIn + ' in (' + r.designWidthCm + ' × ' + r.designHeightCm + ' cm)'],
+      ['Cut fabric', r.cutWidthIn + ' × ' + r.cutHeightIn + ' in (' + r.cutWidthCm + ' × ' + r.cutHeightCm + ' cm)'],
+      ['Aida count', String(r.aidaCount)],
+    ]);
+    writeQuery(form);
+  }
+  form.addEventListener('submit', (e) => { e.preventDefault(); run(); });
+  root.querySelector('[data-share]')?.addEventListener('click', async () => { writeQuery(form); await navigator.clipboard.writeText(location.href); });
+  readQuery(form); run();
+</script>

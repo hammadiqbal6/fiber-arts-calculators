@@ -1,0 +1,63 @@
+---
+import ToolLayout from '../../layouts/ToolLayout.astro';
+import SeamCalc from '../../components/calculators/SeamCalc.astro';
+import { getTool } from '../../data/tools';
+
+const tool = getTool('seam-allowance-calculator');
+const faqs = [
+    { q: "What is the standard seam allowance?", a: "⅝ in (1.5 cm) is common for US woven garments; always check your pattern." },
+    { q: "Is this full pattern grading?", a: "No—it is a linear helper. Professional grading uses measurement charts per grade rule." }
+];
+---
+
+<ToolLayout tool={tool} answerFirst={"Cut measurement = finished measurement + (seam_allowance × number_of_seam_edges) + ease. For a 20 in finished width with ⅝ in seams on both sides, cut 21.25 in. The same tool applies simple linear pattern grading: new = base + (grade_per_size × sizes_away)."} faqs={faqs}>
+  <SeamCalc slot="tool" />
+
+  <h2>How to use this calculator</h2>
+  <p>Enter finished measurement, seam allowance, edge count, and ease. Optionally grade a base measurement up or down by size steps.</p>
+
+  <div class="key-takeaways">
+    <strong>Key takeaways</strong>
+    <ul>
+      <li>Commercial patterns often include SA—do not double-add.</li>
+<li>Knits may use ⅜ in SA.</li>
+<li>Quilting commonly uses ¼ in.</li>
+      <li>Verify critical projects with a swatch or scrap sample.</li>
+    </ul>
+  </div>
+
+  <h2>The formula / method</h2>
+  <p>cut = finished + edges×SA + ease; graded = base + grade×sizes_away.</p>
+
+  <h2>Worked example</h2>
+  <p>Finished 36 in bust panel equivalent with ⅝ in SA ×2 → 37.25 in cut. Grade +1 in for two sizes → 38 in.</p>
+
+  <h2>Tips</h2>
+  <ul><li>Commercial patterns often include SA—do not double-add.</li>
+<li>Knits may use ⅜ in SA.</li>
+<li>Quilting commonly uses ¼ in.</li></ul>
+
+  <h2>Common mistakes</h2>
+  <ul><li>Adding seam allowance to patterns that already include it.</li>
+<li>Grading all measurements by the same rule (bust/waist/hip grade differently on real blocks).</li></ul>
+  
+    <h2>Units: inches, centimeters, yards, meters, grams, ounces</h2>
+    <p>
+      seam allowance calculator results support mixed unit workflows. Length inputs accept inches or centimeters where shown.
+      Fabric and yarn outputs list yards and meters together (1 yd = 0.9144 m). Fiber weights list grams and ounces (1 oz ≈ 28.35 g).
+      Keeping units explicit prevents the most common shopping mistakes when patterns, ball bands, and fabric bolts disagree.
+    </p>
+    <h2>Assumptions and limits</h2>
+    <p>
+      This tool is for planning. Stitch patterns, brand-specific yarn put-up, personal tension, shrinking, and finishing all move the real number.
+      When a designer publishes tested yardage for a pattern, prefer that figure and use our estimate as a second opinion or substitution aid.
+      Measurements assume the geometric models documented in the formula section—not every construction (e.g., circular yokes, bias skirts, or C2C blankets) matches a rectangle.
+    </p>
+    <h2>Privacy</h2>
+    <p>
+      All math runs locally in your browser. We do not upload your project measurements. Shareable result links store state in the query string on your device’s URL only.
+    </p>
+  
+  <h2>Sources</h2>
+  <ul><li><a href="https://extension.psu.edu/" rel="noopener noreferrer">Standard garment seam allowances — ⅝ in common in US home sewing</a></li></ul>
+</ToolLayout>

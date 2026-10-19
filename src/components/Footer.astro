@@ -1,0 +1,41 @@
+---
+import { siteConfig } from '../config/site';
+import { TOOLS, CATEGORIES } from '../data/tools';
+---
+
+<footer class="site-footer">
+  <div class="site-footer__inner">
+    <div>
+      <p class="brand" style="margin:0 0 0.5rem">{siteConfig.brandName}</p>
+      <p style="margin:0;color:var(--color-ink-muted);max-width:28rem">
+        {siteConfig.tagline}. All calculations run in your browser — nothing is uploaded.
+      </p>
+    </div>
+    <div>
+      <h2>Categories</h2>
+      <ul>
+        {Object.values(CATEGORIES).map((c) => (
+          <li><a href={c.path}>{c.name}</a></li>
+        ))}
+      </ul>
+    </div>
+    <div>
+      <h2>Site</h2>
+      <ul>
+        <li><a href="/about/">About</a></li>
+        <li><a href="/methodology/">Methodology</a></li>
+        <li><a href="/authors/">Authors</a></li>
+        <li><a href="/contact/">Contact</a></li>
+        <li><a href="/privacy/">Privacy</a></li>
+        <li><a href="/terms/">Terms</a></li>
+        <li><a href="/guides/">Guides</a></li>
+      </ul>
+    </div>
+  </div>
+  <p style="max-width:var(--max);margin:1.5rem auto 0;padding:0 1rem;font-size:0.85rem;color:var(--color-ink-muted)">
+    © {new Date().getFullYear()} {siteConfig.brandName}. Estimates for planning only — always swatch and check your pattern.
+    Popular tools: {TOOLS.slice(0, 4).map((t, i) => (
+      <><a href={t.path}>{t.shortTitle}</a>{i < 3 ? ' · ' : ''}</>
+    ))}
+  </p>
+</footer>

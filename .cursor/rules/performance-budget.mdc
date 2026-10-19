@@ -1,0 +1,7 @@
+---
+description: Performance budgets
+globs: src/**/*
+---
+- No heavy frameworks for calculators; keep islands small.
+- Reserve ad slot min-heights; avoid layout shift.
+- Prefer system fonts; lazy-load non-critical scripts only on interaction when adding heavy libs.

@@ -1,0 +1,63 @@
+---
+import ToolLayout from '../../layouts/ToolLayout.astro';
+import AmigurumiCalc from '../../components/calculators/AmigurumiCalc.astro';
+import { getTool } from '../../data/tools';
+
+const tool = getTool('amigurumi-yarn-calculator');
+const faqs = [
+    { q: "What yarn is best for amigurumi?", a: "Smooth cotton or acrylic in sport/DK with tight single crochet is popular for definition and washability." },
+    { q: "Why does my toy use more yarn?", a: "Larger hooks, looser tension, or denser stuffing increase consumption—raise the density factor." }
+];
+---
+
+<ToolLayout tool={tool} answerFirst={"A small amigurumi about 6 in (15 cm) tall in DK or sport yarn often needs roughly 30–80 grams, depending on how tightly you crochet and stuff. Scale height in the calculator—yarn need grows quickly with size because surface area rises with the square of height."} faqs={faqs}>
+  <AmigurumiCalc slot="tool" />
+
+  <h2>How to use this calculator</h2>
+  <p>Enter finished height, choose yarn weight (DK/sport are common), adjust density for tight stuffing, and calculate.</p>
+
+  <div class="key-takeaways">
+    <strong>Key takeaways</strong>
+    <ul>
+      <li>Safety eyes and stuffing are separate from yarn math.</li>
+<li>Use the same hook and tension as your pattern swatch.</li>
+<li>Keep leftovers for embroidery details.</li>
+      <li>Verify critical projects with a swatch or scrap sample.</li>
+    </ul>
+  </div>
+
+  <h2>The formula / method</h2>
+  <p>Approximate the toy as a sphere with diameter = height; use surface area as a crochet fabric rectangle equivalent, then CYC crochet meters with waste.</p>
+
+  <h2>Worked example</h2>
+  <p>A 6 in toy in CYC 3 at density 1.0 is typically well under one 100 g ball; a 12 in toy needs far more than 2× the yarn.</p>
+
+  <h2>Tips</h2>
+  <ul><li>Safety eyes and stuffing are separate from yarn math.</li>
+<li>Use the same hook and tension as your pattern swatch.</li>
+<li>Keep leftovers for embroidery details.</li></ul>
+
+  <h2>Common mistakes</h2>
+  <ul><li>Assuming linear scaling with height.</li>
+<li>Substituting bulky yarn without resizing the pattern.</li></ul>
+  
+    <h2>Units: inches, centimeters, yards, meters, grams, ounces</h2>
+    <p>
+      amigurumi yarn calculator results support mixed unit workflows. Length inputs accept inches or centimeters where shown.
+      Fabric and yarn outputs list yards and meters together (1 yd = 0.9144 m). Fiber weights list grams and ounces (1 oz ≈ 28.35 g).
+      Keeping units explicit prevents the most common shopping mistakes when patterns, ball bands, and fabric bolts disagree.
+    </p>
+    <h2>Assumptions and limits</h2>
+    <p>
+      This tool is for planning. Stitch patterns, brand-specific yarn put-up, personal tension, shrinking, and finishing all move the real number.
+      When a designer publishes tested yardage for a pattern, prefer that figure and use our estimate as a second opinion or substitution aid.
+      Measurements assume the geometric models documented in the formula section—not every construction (e.g., circular yokes, bias skirts, or C2C blankets) matches a rectangle.
+    </p>
+    <h2>Privacy</h2>
+    <p>
+      All math runs locally in your browser. We do not upload your project measurements. Shareable result links store state in the query string on your device’s URL only.
+    </p>
+  
+  <h2>Sources</h2>
+  <ul><li><a href="https://www.craftyarncouncil.com/standards/yarn-weight-system" rel="noopener noreferrer">Craft Yarn Council — Yarn Weight System</a></li></ul>
+</ToolLayout>

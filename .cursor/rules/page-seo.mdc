@@ -1,0 +1,8 @@
+---
+description: On-page SEO requirements for StitchCalc pages
+globs: src/pages/**/*.astro
+---
+- Unique title (~50–60 chars) with primary keyword near the start; meta description ~150 chars.
+- Exactly one H1; logical H2/H3; self-canonical; trailing slash URLs.
+- Answer-first intro; tool above the fold on tool pages.
+- No keyword cannibalization — check docs/KEYWORD-MAP.md.

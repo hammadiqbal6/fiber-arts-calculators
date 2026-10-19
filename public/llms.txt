@@ -1,0 +1,31 @@
+# StitchCalc
+> Free knitting, crochet, sewing, and quilting calculators. Optional file for AI systems; Google Search ignores llms.txt.
+
+## Tools
+- /tools/yarn-blanket-calculator/
+- /tools/yarn-sweater-calculator/
+- /tools/yarn-hat-calculator/
+- /tools/yarn-scarf-calculator/
+- /tools/amigurumi-yarn-calculator/
+- /tools/yarn-substitution-calculator/
+- /tools/knitting-gauge-calculator/
+- /tools/crochet-blanket-calculator/
+- /tools/increase-decrease-calculator/
+- /tools/cast-on-calculator/
+- /tools/fabric-yardage-calculator/
+- /tools/quilt-size-calculator/
+- /tools/quilt-backing-calculator/
+- /tools/quilt-binding-calculator/
+- /tools/half-square-triangle-calculator/
+- /tools/cross-stitch-fabric-calculator/
+- /tools/needle-hook-size-converter/
+- /tools/seam-allowance-calculator/
+
+## Reference
+- /reference/yarn-weight-chart/
+- /reference/blanket-quilt-sizes/
+- /reference/mattress-sizes/
+
+## Policy
+- /methodology/
+- /privacy/

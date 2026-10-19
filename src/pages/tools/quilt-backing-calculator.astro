@@ -1,0 +1,63 @@
+---
+import ToolLayout from '../../layouts/ToolLayout.astro';
+import QuiltBackingCalc from '../../components/calculators/QuiltBackingCalc.astro';
+import { getTool } from '../../data/tools';
+
+const tool = getTool('quilt-backing-calculator');
+const faqs = [
+    { q: "How much extra for longarm?", a: "Many longarm quilters ask 4 in per side (8 in added to width and length). Confirm with your quilter." },
+    { q: "Can I piece scraps?", a: "Yes—extra seams are fine if well pressed and larger than the top." }
+];
+---
+
+<ToolLayout tool={tool} answerFirst={"Backing should be larger than the quilt top—commonly 3–4 inches beyond each side for longarm quilting. Yardage depends on fabric width: a 90×100 in quilt on 42 in fabric usually needs pieced backing and several yards. The calculator picks a vertical or horizontal seam layout that uses less fabric."} faqs={faqs}>
+  <QuiltBackingCalc slot="tool" />
+
+  <h2>How to use this calculator</h2>
+  <p>Enter quilt size, fabric width, overhang, and waste. Read panels, orientation, yards, and meters.</p>
+
+  <div class="key-takeaways">
+    <strong>Key takeaways</strong>
+    <ul>
+      <li>Wide-back (108 in) fabric can eliminate seams for many queens.</li>
+<li>Press seams open on backing for flatter quilting.</li>
+<li>Square up after piecing.</li>
+      <li>Verify critical projects with a swatch or scrap sample.</li>
+    </ul>
+  </div>
+
+  <h2>The formula / method</h2>
+  <p>backing = quilt + 2×overhang on each dimension; panels = ceil(needed_width / fabric_width) (or horizontal alternative); buy length = panels × backing_length × (1+waste).</p>
+
+  <h2>Worked example</h2>
+  <p>90×100 in quilt + 4 in overhang on 42 in fabric typically needs 3 vertical panels and ~8+ yards depending on waste.</p>
+
+  <h2>Tips</h2>
+  <ul><li>Wide-back (108 in) fabric can eliminate seams for many queens.</li>
+<li>Press seams open on backing for flatter quilting.</li>
+<li>Square up after piecing.</li></ul>
+
+  <h2>Common mistakes</h2>
+  <ul><li>Buying top yardage only for backing.</li>
+<li>Skipping overhang for machine quilting.</li></ul>
+  
+    <h2>Units: inches, centimeters, yards, meters, grams, ounces</h2>
+    <p>
+      quilt backing calculator results support mixed unit workflows. Length inputs accept inches or centimeters where shown.
+      Fabric and yarn outputs list yards and meters together (1 yd = 0.9144 m). Fiber weights list grams and ounces (1 oz ≈ 28.35 g).
+      Keeping units explicit prevents the most common shopping mistakes when patterns, ball bands, and fabric bolts disagree.
+    </p>
+    <h2>Assumptions and limits</h2>
+    <p>
+      This tool is for planning. Stitch patterns, brand-specific yarn put-up, personal tension, shrinking, and finishing all move the real number.
+      When a designer publishes tested yardage for a pattern, prefer that figure and use our estimate as a second opinion or substitution aid.
+      Measurements assume the geometric models documented in the formula section—not every construction (e.g., circular yokes, bias skirts, or C2C blankets) matches a rectangle.
+    </p>
+    <h2>Privacy</h2>
+    <p>
+      All math runs locally in your browser. We do not upload your project measurements. Shareable result links store state in the query string on your device’s URL only.
+    </p>
+  
+  <h2>Sources</h2>
+  <ul><li><a href="https://www.quiltingdaily.com/" rel="noopener noreferrer">Quilting daily / standard backing practice (industry common overhang 4")</a></li></ul>
+</ToolLayout>

@@ -1,0 +1,7 @@
+---
+description: Content quality bar
+globs: src/pages/**/*.astro
+---
+- No lorem ipsum, TODOs, or stub pages.
+- Tool pages 600–1200 words of original useful content with formula, example, FAQ, sources.
+- Cite Craft Yarn Council or other primary sources with links.

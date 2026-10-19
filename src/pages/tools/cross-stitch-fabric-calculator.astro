@@ -1,0 +1,63 @@
+---
+import ToolLayout from '../../layouts/ToolLayout.astro';
+import CrossStitchCalc from '../../components/calculators/CrossStitchCalc.astro';
+import { getTool } from '../../data/tools';
+
+const tool = getTool('cross-stitch-fabric-calculator');
+const faqs = [
+    { q: "11-count vs 14-count?", a: "11-count makes larger stitches and a bigger design for the same chart; 14-count is the most common beginner count." },
+    { q: "Does this work for evenweave?", a: "Yes if you stitch over one on a count that matches stitches per inch; for over-two, halve the effective count." }
+];
+---
+
+<ToolLayout tool={tool} answerFirst={"Design size (inches) = stitch_count ÷ aida_count. A 140×180 stitch design on 14-count Aida is 10×12.9 in. Add margins (often 2–3 in each side) for framing. The calculator outputs design and cut fabric sizes in inches and centimeters."} faqs={faqs}>
+  <CrossStitchCalc slot="tool" />
+
+  <h2>How to use this calculator</h2>
+  <p>Enter design stitches wide/high, Aida count, margin, and optional finishing extra.</p>
+
+  <div class="key-takeaways">
+    <strong>Key takeaways</strong>
+    <ul>
+      <li>Higher count → smaller design for the same stitch chart.</li>
+<li>Allow extra for hoop/q-snap coverage.</li>
+<li>Pre-wash fabric if you will wash the finished piece.</li>
+      <li>Verify critical projects with a swatch or scrap sample.</li>
+    </ul>
+  </div>
+
+  <h2>The formula / method</h2>
+  <p>design_in = stitches / aida_count; cut_in = design_in + 2×(margin + finishing_extra).</p>
+
+  <h2>Worked example</h2>
+  <p>140×180 on 14-count with 3 in margins → design 10×12.86 in; cut ≈ 16×18.86 in.</p>
+
+  <h2>Tips</h2>
+  <ul><li>Higher count → smaller design for the same stitch chart.</li>
+<li>Allow extra for hoop/q-snap coverage.</li>
+<li>Pre-wash fabric if you will wash the finished piece.</li></ul>
+
+  <h2>Common mistakes</h2>
+  <ul><li>Buying fabric equal to design size with no margin.</li>
+<li>Mixing up aida count with linen over-two measurements.</li></ul>
+  
+    <h2>Units: inches, centimeters, yards, meters, grams, ounces</h2>
+    <p>
+      cross stitch fabric calculator results support mixed unit workflows. Length inputs accept inches or centimeters where shown.
+      Fabric and yarn outputs list yards and meters together (1 yd = 0.9144 m). Fiber weights list grams and ounces (1 oz ≈ 28.35 g).
+      Keeping units explicit prevents the most common shopping mistakes when patterns, ball bands, and fabric bolts disagree.
+    </p>
+    <h2>Assumptions and limits</h2>
+    <p>
+      This tool is for planning. Stitch patterns, brand-specific yarn put-up, personal tension, shrinking, and finishing all move the real number.
+      When a designer publishes tested yardage for a pattern, prefer that figure and use our estimate as a second opinion or substitution aid.
+      Measurements assume the geometric models documented in the formula section—not every construction (e.g., circular yokes, bias skirts, or C2C blankets) matches a rectangle.
+    </p>
+    <h2>Privacy</h2>
+    <p>
+      All math runs locally in your browser. We do not upload your project measurements. Shareable result links store state in the query string on your device’s URL only.
+    </p>
+  
+  <h2>Sources</h2>
+  <ul><li><a href="https://www.dmc.com/us/" rel="noopener noreferrer">Cross-stitch fabric count basics — stitches per inch</a></li></ul>
+</ToolLayout>

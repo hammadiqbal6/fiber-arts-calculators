@@ -1,0 +1,49 @@
+---
+import { siteConfig } from '../config/site';
+const path = Astro.url.pathname;
+const links = [
+  { href: '/knitting/', label: 'Knitting' },
+  { href: '/crochet/', label: 'Crochet' },
+  { href: '/sewing/', label: 'Sewing' },
+  { href: '/quilting/', label: 'Quilting' },
+  { href: '/guides/', label: 'Guides' },
+  { href: '/reference/', label: 'Reference' },
+];
+---
+
+<header class="site-header">
+  <div class="site-header__inner">
+    <a class="brand" href="/">{siteConfig.brandName}</a>
+    <button
+      type="button"
+      class="nav-toggle"
+      aria-expanded="false"
+      aria-controls="site-nav"
+      id="nav-toggle"
+    >
+      Menu
+    </button>
+    <nav class="site-nav" id="site-nav" aria-label="Primary">
+      <ul>
+        {
+          links.map((l) => (
+            <li>
+              <a href={l.href} aria-current={path.startsWith(l.href) ? 'page' : undefined}>
+                {l.label}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<script>
+  const btn = document.getElementById('nav-toggle');
+  const nav = document.getElementById('site-nav');
+  btn?.addEventListener('click', () => {
+    const open = nav?.classList.toggle('is-open');
+    btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+  });
+</script>

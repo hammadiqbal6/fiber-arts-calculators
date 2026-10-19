@@ -1,0 +1,63 @@
+---
+import ToolLayout from '../../layouts/ToolLayout.astro';
+import QuiltSizeCalc from '../../components/calculators/QuiltSizeCalc.astro';
+import { getTool } from '../../data/tools';
+
+const tool = getTool('quilt-size-calculator');
+const faqs = [
+    { q: "What drop should I use?", a: "Often 10–15 in for a modest overhang; measure from mattress top to desired coverage." },
+    { q: "Do quilt sizes include binding?", a: "These are finished top targets; binding wraps the edge and does not add much to face dimensions." }
+];
+---
+
+<ToolLayout tool={tool} answerFirst={"Quilt width ≈ mattress width + 2×drop; quilt length ≈ mattress length + drop + pillow tuck. For a queen mattress (60×80 in) with 12 in drop and 10 in tuck, plan about 84×102 in. Presets above use standard US mattress sizes."} faqs={faqs}>
+  <QuiltSizeCalc slot="tool" />
+
+  <h2>How to use this calculator</h2>
+  <p>Pick a mattress preset or enter dimensions, set side/foot drop and pillow tuck, choose units, and calculate.</p>
+
+  <div class="key-takeaways">
+    <strong>Key takeaways</strong>
+    <ul>
+      <li>Measure your actual mattress; brands vary slightly.</li>
+<li>Extra deep mattresses need taller drops.</li>
+<li>Finished quilt size ≠ batting cut size—add for quilting take-up.</li>
+      <li>Verify critical projects with a swatch or scrap sample.</li>
+    </ul>
+  </div>
+
+  <h2>The formula / method</h2>
+  <p>quilt_w = mattress_w + 2×drop; quilt_l = mattress_l + drop + pillow_tuck.</p>
+
+  <h2>Worked example</h2>
+  <p>Twin 38×75 with 10 in drop and 8 in tuck → 58×93 in.</p>
+
+  <h2>Tips</h2>
+  <ul><li>Measure your actual mattress; brands vary slightly.</li>
+<li>Extra deep mattresses need taller drops.</li>
+<li>Finished quilt size ≠ batting cut size—add for quilting take-up.</li></ul>
+
+  <h2>Common mistakes</h2>
+  <ul><li>Using blanket throw sizes as bed quilt sizes.</li>
+<li>Forgetting pillow tuck at the head.</li></ul>
+  
+    <h2>Units: inches, centimeters, yards, meters, grams, ounces</h2>
+    <p>
+      quilt size calculator results support mixed unit workflows. Length inputs accept inches or centimeters where shown.
+      Fabric and yarn outputs list yards and meters together (1 yd = 0.9144 m). Fiber weights list grams and ounces (1 oz ≈ 28.35 g).
+      Keeping units explicit prevents the most common shopping mistakes when patterns, ball bands, and fabric bolts disagree.
+    </p>
+    <h2>Assumptions and limits</h2>
+    <p>
+      This tool is for planning. Stitch patterns, brand-specific yarn put-up, personal tension, shrinking, and finishing all move the real number.
+      When a designer publishes tested yardage for a pattern, prefer that figure and use our estimate as a second opinion or substitution aid.
+      Measurements assume the geometric models documented in the formula section—not every construction (e.g., circular yokes, bias skirts, or C2C blankets) matches a rectangle.
+    </p>
+    <h2>Privacy</h2>
+    <p>
+      All math runs locally in your browser. We do not upload your project measurements. Shareable result links store state in the query string on your device’s URL only.
+    </p>
+  
+  <h2>Sources</h2>
+  <ul><li><a href="https://www.mattressadvisor.com/mattress-sizes/" rel="noopener noreferrer">US mattress sizes — industry standard dimensions</a></li></ul>
+</ToolLayout>

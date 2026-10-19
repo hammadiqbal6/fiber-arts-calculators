@@ -1,0 +1,52 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import { CATEGORIES, toolsByCategory } from '../../data/tools';
+
+const cat = CATEGORIES.reference;
+const tools = toolsByCategory('reference');
+---
+
+<BaseLayout
+  title="Fiber Arts Reference Charts"
+  description="Yarn weight standards, needle and hook conversions, blanket, quilt, and mattress size charts with sources."
+  canonicalPath={cat.path}
+>
+  <Breadcrumbs items={[{ label: 'Home', href: '/' }, { label: 'Reference' }]} />
+  <h1 class="page-title">Reference charts</h1>
+  <div class="answer-box">
+    <p>
+      Sourced charts for Craft Yarn Council yarn weights, needle/hook conversions, and standard blanket, quilt, and mattress dimensions—paired with calculators that use the same data.
+    </p>
+  </div>
+  <ul class="tool-cards">
+    {
+      tools.map((t) => (
+        <li>
+          <a href={t.path}>
+            <strong>{t.title}</strong>
+            <span>{t.description}</span>
+          </a>
+        </li>
+      ))
+    }
+    <li>
+      <a href="/reference/yarn-weight-chart/">
+        <strong>CYC yarn weight chart</strong>
+        <span>Categories 0–7 with gauge and needle ranges.</span>
+      </a>
+    </li>
+    <li>
+      <a href="/reference/blanket-quilt-sizes/">
+        <strong>Blanket & quilt sizes</strong>
+        <span>Finished dimensions for common projects.</span>
+      </a>
+    </li>
+    <li>
+      <a href="/reference/mattress-sizes/">
+        <strong>Mattress sizes</strong>
+        <span>US twin through California king.</span>
+      </a>
+    </li>
+  </ul>
+</BaseLayout>

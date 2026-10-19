@@ -1,0 +1,33 @@
+{
+  "name": "fiber-arts-calculators",
+  "type": "module",
+  "version": "1.0.0",
+  "description": "Free knitting, crochet, sewing & quilting calculators",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build && node scripts/patch-robots.mjs",
+    "preview": "astro preview",
+    "astro": "astro",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "audit": "npm run build && node scripts/audit/run-all.mjs",
+    "audit:seo": "node scripts/audit/seo-audit.mjs",
+    "audit:adsense": "node scripts/audit/adsense-audit.mjs",
+    "audit:budget": "node scripts/audit/js-budget.mjs",
+    "audit:links": "node scripts/audit/link-check.mjs",
+    "lhci": "lhci autorun",
+    "check": "npm run test && npm run audit"
+  },
+  "dependencies": {
+    "@astrojs/sitemap": "^3.3.1",
+    "astro": "^5.13.0"
+  },
+  "devDependencies": {
+    "@lhci/cli": "^0.14.0",
+    "typescript": "^5.8.3",
+    "vitest": "^3.2.4"
+  }
+}

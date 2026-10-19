@@ -1,0 +1,110 @@
+---
+import BaseLayout from './BaseLayout.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+import AdSlot from '../components/AdSlot.astro';
+import { siteConfig } from '../config/site';
+import { CATEGORIES, relatedTools, type ToolDef } from '../data/tools';
+
+interface Props {
+  tool: ToolDef;
+  answerFirst: string;
+  faqs: { q: string; a: string }[];
+}
+
+const { tool, answerFirst, faqs } = Astro.props;
+const cat = CATEGORIES[tool.category];
+const related = relatedTools(tool.slug);
+const crumbs = [
+  { label: 'Home', href: '/' },
+  { label: cat.name, href: cat.path },
+  { label: tool.shortTitle },
+];
+
+const appLd = {
+  '@context': 'https://schema.org',
+  '@type': 'WebApplication',
+  name: tool.title,
+  url: new URL(tool.path, siteConfig.siteUrl).toString(),
+  applicationCategory: 'UtilitiesApplication',
+  operatingSystem: 'Any',
+  browserRequirements: 'Requires JavaScript',
+  offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
+  description: tool.description,
+  datePublished: siteConfig.contentPublished,
+  dateModified: siteConfig.contentUpdated,
+  author: { '@type': 'Organization', name: siteConfig.brandName },
+};
+
+const breadcrumbLd = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: crumbs.map((c, i) => ({
+    '@type': 'ListItem',
+    position: i + 1,
+    name: c.label,
+    ...(c.href ? { item: new URL(c.href, siteConfig.siteUrl).toString() } : {}),
+  })),
+};
+---
+
+<BaseLayout
+  title={tool.title}
+  description={tool.description}
+  canonicalPath={tool.path}
+  jsonLd={[appLd, breadcrumbLd]}
+>
+  <Breadcrumbs items={crumbs} />
+  <h1 class="page-title">{tool.title}</h1>
+  <p class="lead">{tool.description}</p>
+  <div class="meta-row">
+    <span>Updated {siteConfig.contentUpdated}</span>
+    <span>Units: in/cm · yd/m · g/oz</span>
+    <span>Runs offline in your browser</span>
+  </div>
+
+  <div class="answer-box">
+    <p>{answerFirst}</p>
+  </div>
+
+  <slot name="tool" />
+
+  <AdSlot variant="in-article" />
+
+  <article class="prose">
+    <slot />
+  </article>
+
+  <section class="prose" aria-labelledby="faq-heading">
+    <h2 id="faq-heading">FAQ</h2>
+    {
+      faqs.map((f) => (
+        <div>
+          <h3>{f.q}</h3>
+          <p>{f.a}</p>
+        </div>
+      ))
+    }
+  </section>
+
+  <aside class="related" aria-labelledby="related-heading">
+    <h2 id="related-heading">Related calculators & guides</h2>
+    <ul>
+      {related.map((r) => (
+        <li>
+          <a href={r.path}>{r.title}</a>
+        </li>
+      ))}
+      <li><a href="/guides/how-much-yarn-do-i-need/">How much yarn do I need?</a></li>
+      <li><a href={cat.path}>{cat.name} hub</a></li>
+    </ul>
+  </aside>
+
+  <div class="author-box">
+    <strong>Written by {siteConfig.author.name}</strong>
+    <span>Reviewed for formula clarity by {siteConfig.reviewer.name}</span>
+    <span>
+      Method: client-side formulas documented on our <a href="/methodology/">methodology</a> page.
+      Sources cited in-page. Last updated {siteConfig.contentUpdated}.
+    </span>
+  </div>
+</BaseLayout>
