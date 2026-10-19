@@ -1,4 +1,4 @@
-Generated: 2026-10-19T06:31:09.679Z
+Generated: 2026-10-19T06:44:51.636Z
 Sitemap URLs: 38
 Built HTML pages (excl. embed, 404): 38
 Match: OK (sitemap includes hubs/tools/guides; embed excluded)

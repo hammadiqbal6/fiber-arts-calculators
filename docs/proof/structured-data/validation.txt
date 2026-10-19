@@ -1,4 +1,4 @@
-Structured data validation — 2026-10-19T06:31:09.679Z
+Structured data validation — 2026-10-19T06:44:51.636Z
 
 home: 2 block(s), errors: 1
   - $.publisher: missing @context

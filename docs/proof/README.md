@@ -10,15 +10,15 @@ This runs `npm run build`, serves `dist/` on port 4173, executes Lighthouse, Pla
 
 | Check | Tool + version | Date (UTC) | Budget | Reproduce |
 |---|---|---|---|---|
-| Unit tests | Vitest 3.2.7 | 2026-10-19T06:31:09.679Z | PASS if tests.txt shows all passed | `npm test` |
-| SEO / link / JS audits | scripts/audit/*.mjs | 2026-10-19T06:31:09.679Z | PASS if seo-audit.txt has no ✗ | `npm run build && node scripts/audit/run-all.mjs` |
-| Lighthouse mobile | Lighthouse 12.8.2 | 2026-10-19T06:31:09.679Z | Perf/A11y/BP/SEO ≥95 | `npm run proof (includes LH)` |
-| Lighthouse desktop (home) | Lighthouse 12.8.2 | 2026-10-19T06:31:09.679Z | Recorded | `npm run proof` |
-| Structured data | scripts/proof/generate-proof.mjs | 2026-10-19T06:31:09.679Z | PASS if validation.txt 0 errors | `npm run proof` |
-| Sitemap / robots | scripts/proof/generate-proof.mjs | 2026-10-19T06:31:09.679Z | PASS if counts OK | `npm run proof` |
-| Mobile screenshots | Playwright 1.64.1 | 2026-10-19T06:31:09.679Z | See mobile/checks.txt | `npm run proof` |
-| Bundle per-page JS | gzip sum of script refs | 2026-10-19T06:31:09.679Z | ≤50 KB/page | `npm run proof` |
-| AdSense readiness | adsense-readiness.md | 2026-10-19T06:31:09.679Z | Checklist + word counts | `npm run proof` |
+| Unit tests | Vitest 3.2.7 | 2026-10-19T06:44:51.636Z | PASS if tests.txt shows all passed | `npm test` |
+| SEO / link / JS audits | scripts/audit/*.mjs | 2026-10-19T06:44:51.636Z | PASS if seo-audit.txt has no ✗ | `npm run build && node scripts/audit/run-all.mjs` |
+| Lighthouse mobile | Lighthouse 12.8.2 | 2026-10-19T06:44:51.636Z | Perf/A11y/BP/SEO ≥95 | `npm run proof` |
+| Lighthouse desktop (home) | Lighthouse 12.8.2 | 2026-10-19T06:44:51.636Z | Recorded | `npm run proof` |
+| Structured data | scripts/proof/generate-proof.mjs | 2026-10-19T06:44:51.636Z | PASS if validation.txt 0 errors | `npm run proof` |
+| Sitemap / robots | scripts/proof/generate-proof.mjs | 2026-10-19T06:44:51.636Z | PASS if counts OK | `npm run proof` |
+| Mobile screenshots | Playwright 1.64.1 | 2026-10-19T06:44:51.636Z | See mobile/checks.txt | `npm run proof` |
+| Bundle per-page JS | gzip sum of script refs | 2026-10-19T06:44:51.636Z | ≤50 KB/page | `npm run proof` |
+| AdSense readiness | adsense-readiness.md | 2026-10-19T06:44:51.636Z | Checklist + word counts | `npm run proof` |
 
 ## Contents
 

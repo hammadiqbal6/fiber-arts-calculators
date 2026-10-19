@@ -1,4 +1,4 @@
-Mobile checks — 2026-10-19T06:31:09.679Z
+Mobile checks — 2026-10-19T06:44:51.636Z
 
 360px /: screenshot=home-360.png | no horizontal scroll=true | viewport=width=device-width, initial-scale=1 | tap targets <48px=14/35 | REVIEW
 360px /knitting-crochet/: screenshot=hub-knitting-360.png | no horizontal scroll=true | viewport=width=device-width, initial-scale=1 | tap targets <48px=17/34 | REVIEW

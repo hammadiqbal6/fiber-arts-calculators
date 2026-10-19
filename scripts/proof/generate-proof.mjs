@@ -482,7 +482,7 @@ function generateProofReadme(versions, summary) {
   const rows = [
     ['Unit tests', `Vitest ${versions.vitest}`, RUN_UTC, 'PASS if tests.txt shows all passed', 'npm test'],
     ['SEO / link / JS audits', 'scripts/audit/*.mjs', RUN_UTC, 'PASS if seo-audit.txt has no ✗', 'npm run build && node scripts/audit/run-all.mjs'],
-    ['Lighthouse mobile', `Lighthouse ${versions.lighthouse}`, RUN_UTC, 'Perf/A11y/BP/SEO ≥95', 'npm run proof (includes LH)'],
+    ['Lighthouse mobile', `Lighthouse ${versions.lighthouse}`, RUN_UTC, 'Perf/A11y/BP/SEO ≥95', 'npm run proof'],
     ['Lighthouse desktop (home)', `Lighthouse ${versions.lighthouse}`, RUN_UTC, 'Recorded', 'npm run proof'],
     ['Structured data', 'scripts/proof/generate-proof.mjs', RUN_UTC, 'PASS if validation.txt 0 errors', 'npm run proof'],
     ['Sitemap / robots', 'scripts/proof/generate-proof.mjs', RUN_UTC, 'PASS if counts OK', 'npm run proof'],
