@@ -24,10 +24,10 @@ export const siteConfig = {
   siteName: envString(import.meta.env.PUBLIC_SITE_NAME, 'FiberCalc'),
   /** Short tagline for homepage and Organization schema. */
   tagline: 'Free knitting, crochet, sewing & quilting calculators',
-  /** Neutral placeholder contact — replace before AdSense / launch. */
+  /** Public contact email (footer, Contact/Privacy/Terms, Organization JSON-LD). Override with PUBLIC_CONTACT_EMAIL. */
   contactEmail: envString(
     import.meta.env.PUBLIC_CONTACT_EMAIL,
-    'hello@example.com',
+    'hammadiqbal117@gmail.com',
   ),
   /** Legal entity / publisher name for Privacy, Terms, Organization. */
   legalName: envString(import.meta.env.PUBLIC_LEGAL_NAME, 'FiberCalc'),
