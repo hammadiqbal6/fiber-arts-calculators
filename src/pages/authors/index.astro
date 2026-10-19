@@ -1,0 +1,15 @@
+---
+import BaseLayout from '../../components/BaseLayout.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import { siteConfig } from '../../config/site';
+---
+
+<BaseLayout title="Authors & Reviewers" description="Author and reviewer bios for FiberCalc editorial content and calculator documentation." canonicalPath="/authors/">
+  <div class="container prose">
+    <Breadcrumbs items={[{ label: 'Home', href: '/' }, { label: 'Authors' }]} />
+    <h1>Authors &amp; reviewers</h1>
+    <h2>{siteConfig.defaultAuthor.name}</h2>
+    <p>Role: {siteConfig.defaultAuthor.role}. The editorial team maintains calculator documentation, worked examples, and reference tables. Replace this placeholder bio with a named maker/educator before monetization for stronger E-E-A-T.</p>
+    <p>Contact: <a href={`mailto:${siteConfig.contactEmail}`}>{siteConfig.contactEmail}</a></p>
+  </div>
+</BaseLayout>

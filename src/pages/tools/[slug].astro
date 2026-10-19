@@ -1,0 +1,110 @@
+---
+import BaseLayout from '../../components/BaseLayout.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import AdSlot from '../../components/AdSlot.astro';
+import RelatedTools from '../../components/RelatedTools.astro';
+import { TOOL_PAGES } from '../../data/tool-pages';
+import { getTool, TOOLS } from '../../lib/tools';
+import { siteConfig } from '../../config/site';
+
+export function getStaticPaths() {
+  return TOOL_PAGES.map((p) => ({ params: { slug: p.slug } }));
+}
+
+const { slug } = Astro.params;
+const page = TOOL_PAGES.find((p) => p.slug === slug)!;
+const tool = getTool(slug!)!;
+const lastUpdated = siteConfig.launched;
+
+const jsonLd = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'WebApplication',
+    name: page.h1,
+    description: page.description,
+    url: new URL(tool.path, siteConfig.siteUrl).toString(),
+    applicationCategory: 'UtilitiesApplication',
+    operatingSystem: 'Any',
+    browserRequirements: 'Requires JavaScript',
+    offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
+    provider: { '@type': 'Organization', name: siteConfig.legalName, url: siteConfig.siteUrl },
+    dateModified: lastUpdated,
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Home', item: siteConfig.siteUrl + '/' },
+      { '@type': 'ListItem', position: 2, name: 'Tools', item: siteConfig.siteUrl + '/tools/' },
+      { '@type': 'ListItem', position: 3, name: page.h1, item: siteConfig.siteUrl + tool.path },
+    ],
+  },
+];
+---
+
+<BaseLayout title={page.title} description={page.description} canonicalPath={tool.path} jsonLd={jsonLd}>
+  <div class="container">
+    <Breadcrumbs items={[
+      { label: 'Home', href: '/' },
+      { label: 'Tools', href: '/tools/' },
+      { label: tool.shortTitle },
+    ]} />
+
+    <h1>{page.h1}</h1>
+    <div class="meta-row">
+      <span>Updated {lastUpdated}</span>
+      <span>Reviewed by <a href="/authors/">{siteConfig.defaultAuthor.name}</a></span>
+      <span>Runs 100% in your browser</span>
+    </div>
+
+    <div class="calculator-shell" data-calc={page.calc}>
+      <form set:html={page.form + '<div class="field full"><button class="btn btn--primary" type="submit">Calculate</button></div>'} />
+      <div class="results" data-results hidden>
+        <h2>Results</h2>
+        <dl data-results-dl></dl>
+        <p data-share></p>
+      </div>
+    </div>
+
+    <AdSlot slot="after-tool" />
+
+    <article class="prose">
+      <div class="takeaway">
+        <p><strong>Key takeaway:</strong> {page.answer}</p>
+      </div>
+      <p>{page.answer}</p>
+      {page.sections.map(([heading, body]) => (
+        <>
+          <h2>{heading}</h2>
+          <p>{body}</p>
+        </>
+      ))}
+
+      <h2>FAQ</h2>
+      <div class="faq">
+        {page.faqs.map(([q, a]) => (
+          <details>
+            <summary>{q}</summary>
+            <p>{a}</p>
+          </details>
+        ))}
+      </div>
+
+      <h2>Sources</h2>
+      <ul>
+        {page.sources.map(([label, href]) => (
+          <li><a href={href} rel="noopener noreferrer">{label}</a></li>
+        ))}
+      </ul>
+    </article>
+
+    <RelatedTools slugs={tool.related} />
+    <p><a href={`/embed/${tool.slug}/`}>Embed this calculator</a> on your blog with credit.</p>
+  </div>
+
+  <script>
+    import { initTool } from '../../scripts/tool-client';
+    const el = document.querySelector('[data-calc]');
+    if (el) initTool(el.getAttribute('data-calc') || '');
+  </script>
+</BaseLayout>

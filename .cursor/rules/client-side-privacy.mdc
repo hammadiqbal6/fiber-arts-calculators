@@ -1,0 +1,5 @@
+---
+description: Client-side only privacy
+globs: src/**/*
+---
+No uploads of user project data. Calculator math stays in-browser. Document cookies only for optional GA4/AdSense.

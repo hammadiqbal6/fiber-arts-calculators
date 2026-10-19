@@ -1,0 +1,21 @@
+---
+import BaseLayout from '../../components/BaseLayout.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import { GUIDES } from '../../data/guides';
+---
+
+<BaseLayout title="Fiber Arts Guides & Tutorials" description="Guides on yarn amounts, knitting gauge, quilt backing, HST math, and yarn substitution—paired with free calculators." canonicalPath="/guides/">
+  <div class="container">
+    <Breadcrumbs items={[{ label: 'Home', href: '/' }, { label: 'Guides' }]} />
+    <h1>Guides</h1>
+    <p>Practical articles that answer common maker questions and link to the matching calculator.</p>
+    <div class="tool-grid">
+      {GUIDES.map((g) => (
+        <a class="tool-link" href={`/guides/${g.slug}/`}>
+          <h2>{g.title}</h2>
+          <p>{g.description}</p>
+        </a>
+      ))}
+    </div>
+  </div>
+</BaseLayout>

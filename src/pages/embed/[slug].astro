@@ -1,0 +1,49 @@
+---
+import { TOOL_PAGES } from '../../data/tool-pages';
+import { getTool } from '../../lib/tools';
+import { siteConfig } from '../../config/site';
+
+export function getStaticPaths() {
+  return TOOL_PAGES.map((p) => ({ params: { slug: p.slug } }));
+}
+
+const page = TOOL_PAGES.find((p) => p.slug === Astro.params.slug)!;
+const tool = getTool(page.slug)!;
+const embedSnippet = `<iframe src="${siteConfig.siteUrl}/embed/${tool.slug}/?framed=1" title="${page.h1}" loading="lazy" style="width:100%;min-height:520px;border:1px solid #d5cdc0;border-radius:8px;"></iframe>
+<p>Calculator by <a href="${siteConfig.siteUrl}${tool.path}">${siteConfig.siteName}</a></p>`;
+const framed = Astro.url.searchParams.get('framed') === '1';
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Embed {page.h1}</title>
+    <meta name="robots" content="noindex,follow" />
+    <link rel="canonical" href={`${siteConfig.siteUrl}/embed/${tool.slug}/`} />
+    <link rel="stylesheet" href="/embed.css" />
+  </head>
+  <body class="embed-body">
+    {!framed && (
+      <header class="embed-header">
+        <h1>Embed: {page.h1}</h1>
+        <p>Copy the snippet below. Credit link is required.</p>
+        <textarea readonly rows="6">{embedSnippet}</textarea>
+        <p><a href={tool.path}>Open full tool page</a></p>
+      </header>
+    )}
+    <div class="calculator-shell" data-calc={page.calc}>
+      <p class="embed-brand"><a href={tool.path} target="_blank" rel="noopener">{siteConfig.siteName}</a> — {page.h1}</p>
+      <form set:html={page.form + '<div class="field full"><button class="btn btn--primary" type="submit">Calculate</button></div>'} />
+      <div class="results" data-results hidden>
+        <h2>Results</h2>
+        <dl data-results-dl></dl>
+      </div>
+    </div>
+    <script>
+      import { initTool } from '../../scripts/tool-client';
+      const el = document.querySelector('[data-calc]');
+      if (el) initTool(el.getAttribute('data-calc') || '');
+    </script>
+  </body>
+</html>

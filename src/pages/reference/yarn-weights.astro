@@ -1,0 +1,45 @@
+---
+import BaseLayout from '../../components/BaseLayout.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import { YARN_WEIGHTS } from '../../lib/reference/yarn-weights';
+import { siteConfig } from '../../config/site';
+
+const title = 'Craft Yarn Council Yarn Weight Standards';
+const description = 'CYC yarn weight categories 0–7 with knit/crochet gauge ranges, needle and hook sizes, and source links.';
+---
+
+<BaseLayout title={title} description={description} canonicalPath="/reference/yarn-weights/">
+  <div class="container prose">
+    <Breadcrumbs items={[{ label: 'Home', href: '/' }, { label: 'Reference', href: '/reference/' }, { label: 'Yarn weights' }]} />
+    <h1>Craft Yarn Council yarn weight standards</h1>
+    <p class="meta-row"><span>Updated {siteConfig.launched}</span></p>
+    <div class="takeaway">
+      <p><strong>Key takeaway:</strong> The Craft Yarn Council Standard Yarn Weight System labels yarn categories 0 (Lace) through 7 (Jumbo) with typical gauges and tool sizes. Use the category number on the ball band when estimating yardage in our <a href="/tools/yarn-blanket-calculator/">yarn calculators</a>.</p>
+    </div>
+    <p>The table below summarizes publicly documented CYC ranges. Always confirm the icon and gauge on your specific yarn band—brand naming (especially “DK” vs “worsted”) can vary.</p>
+    <table>
+      <thead>
+        <tr>
+          <th>#</th><th>Name</th><th>Knit sts / 4"</th><th>Needles (mm)</th><th>Crochet sc / 4"</th><th>Hooks (mm)</th>
+        </tr>
+      </thead>
+      <tbody>
+        {YARN_WEIGHTS.map((y) => (
+          <tr>
+            <td>{y.id}</td>
+            <td>{y.name}</td>
+            <td>{y.knitGaugeSts4in[0]}–{y.knitGaugeSts4in[1]}</td>
+            <td>{y.needleMetricMm[0]}–{y.needleMetricMm[1]}</td>
+            <td>{y.crochetGaugeSc4in[0]}–{y.crochetGaugeSc4in[1]}</td>
+            <td>{y.hookMetricMm[0]}–{y.hookMetricMm[1]}</td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
+    <h2>Source</h2>
+    <ul>
+      <li><a href="https://www.craftyarncouncil.com/standards/yarn-weight-system" rel="noopener noreferrer">Craft Yarn Council — Standard Yarn Weight System</a></li>
+    </ul>
+    <p>Related: <a href="/tools/yarn-substitution-calculator/">yarn substitution calculator</a>, <a href="/tools/needle-hook-converter/">needle &amp; hook converter</a>.</p>
+  </div>
+</BaseLayout>

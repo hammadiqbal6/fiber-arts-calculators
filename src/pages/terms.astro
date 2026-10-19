@@ -1,0 +1,17 @@
+---
+import BaseLayout from '../components/BaseLayout.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+import { siteConfig } from '../config/site';
+---
+
+<BaseLayout title="Terms of Use" description="Terms of use for FiberCalc free fiber arts calculators." canonicalPath="/terms/">
+  <div class="container prose">
+    <Breadcrumbs items={[{ label: 'Home', href: '/' }, { label: 'Terms' }]} />
+    <h1>Terms of Use</h1>
+    <p class="meta-row"><span>Last updated {siteConfig.launched}</span></p>
+    <p>By using {siteConfig.siteName}, you agree that calculators are provided “as is” for educational and planning purposes. Results are estimates and may not match a specific pattern, yarn, or fabric lot.</p>
+    <p>You are responsible for verifying critical measurements before cutting fabric or purchasing non-returnable supplies. We are not liable for project outcomes, material waste, or commercial losses.</p>
+    <p>Content is owned by {siteConfig.legalName} unless otherwise noted. You may embed tools with credit per the embed page instructions. Do not scrape the site in ways that degrade service or violate applicable law.</p>
+    <p>Contact: <a href={`mailto:${siteConfig.contactEmail}`}>{siteConfig.contactEmail}</a></p>
+  </div>
+</BaseLayout>

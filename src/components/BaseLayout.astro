@@ -1,0 +1,154 @@
+---
+import '../styles/global.css';
+import { siteConfig } from '../config/site';
+import CookieNotice from './CookieNotice.astro';
+
+interface Props {
+  title: string;
+  description: string;
+  canonicalPath: string;
+  ogImage?: string;
+  jsonLd?: Record<string, unknown> | Record<string, unknown>[];
+  noindex?: boolean;
+}
+
+const {
+  title,
+  description,
+  canonicalPath,
+  ogImage = siteConfig.defaultOgImage,
+  jsonLd = [],
+  noindex = false,
+} = Astro.props;
+
+const canonical = new URL(canonicalPath, siteConfig.siteUrl).toString();
+const ogUrl = new URL(ogImage, siteConfig.siteUrl).toString();
+const fullTitle = title.includes(siteConfig.siteName)
+  ? title
+  : `${title} | ${siteConfig.siteName}`;
+const schemas = Array.isArray(jsonLd) ? jsonLd : [jsonLd];
+const nav = [
+  { href: '/knitting-crochet/', label: 'Knit & crochet' },
+  { href: '/sewing/', label: 'Sewing' },
+  { href: '/quilting/', label: 'Quilting' },
+  { href: '/guides/', label: 'Guides' },
+  { href: '/reference/', label: 'Reference' },
+];
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{fullTitle}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    {noindex && <meta name="robots" content="noindex,follow" />}
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content={siteConfig.siteName} />
+    <meta property="og:title" content={fullTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={ogUrl} />
+    <meta property="og:locale" content={siteConfig.locale} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={fullTitle} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogUrl} />
+    {siteConfig.twitterHandle && (
+      <meta name="twitter:site" content={siteConfig.twitterHandle} />
+    )}
+    {siteConfig.googleSiteVerification && (
+      <meta name="google-site-verification" content={siteConfig.googleSiteVerification} />
+    )}
+    {siteConfig.bingSiteVerification && (
+      <meta name="msvalidate.01" content={siteConfig.bingSiteVerification} />
+    )}
+    <meta name="theme-color" content={siteConfig.themeColor} />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="manifest" href="/site.webmanifest" />
+    {schemas.map((schema) => (
+      <script type="application/ld+json" set:html={JSON.stringify(schema)} />
+    ))}
+    {siteConfig.ga4MeasurementId && (
+      <>
+        <script async src={`https://www.googletagmanager.com/gtag/js?id=${siteConfig.ga4MeasurementId}`}></script>
+        <script define:vars={{ gaId: siteConfig.ga4MeasurementId }}>
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', gaId, { anonymize_ip: true });
+        </script>
+      </>
+    )}
+  </head>
+  <body>
+    <a class="visually-hidden" href="#main">Skip to content</a>
+    <header class="site-header">
+      <div class="container site-header__inner">
+        <a class="brand" href="/">{siteConfig.siteName}</a>
+        <button
+          class="nav-toggle"
+          type="button"
+          aria-expanded="false"
+          aria-controls="site-nav"
+          data-nav-toggle
+        >
+          Menu
+        </button>
+        <nav class="site-nav" id="site-nav" data-site-nav aria-label="Primary">
+          <ul>
+            {nav.map((item) => (
+              <li>
+                <a
+                  href={item.href}
+                  aria-current={Astro.url.pathname.startsWith(item.href) ? 'page' : undefined}
+                >
+                  {item.label}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </nav>
+      </div>
+    </header>
+    <main id="main">
+      <slot />
+    </main>
+    <footer class="site-footer">
+      <div class="container site-footer__grid">
+        <div>
+          <strong>{siteConfig.siteName}</strong>
+          <p>{siteConfig.tagline}. All calculations run in your browser — nothing is uploaded.</p>
+          <p>Contact: <a href={`mailto:${siteConfig.contactEmail}`}>{siteConfig.contactEmail}</a></p>
+        </div>
+        <div>
+          <strong>Tools</strong>
+          <p><a href="/knitting-crochet/">Knit & crochet</a></p>
+          <p><a href="/sewing/">Sewing</a></p>
+          <p><a href="/quilting/">Quilting</a></p>
+          <p><a href="/tools/">All calculators</a></p>
+        </div>
+        <div>
+          <strong>Site</strong>
+          <p><a href="/about/">About</a></p>
+          <p><a href="/methodology/">Methodology</a></p>
+          <p><a href="/privacy/">Privacy</a></p>
+          <p><a href="/terms/">Terms</a></p>
+          <p><a href="/contact/">Contact</a></p>
+          <p><a href="/authors/">Authors</a></p>
+        </div>
+      </div>
+    </footer>
+    <CookieNotice />
+    <script>
+      const toggle = document.querySelector('[data-nav-toggle]');
+      const nav = document.querySelector('[data-site-nav]');
+      toggle?.addEventListener('click', () => {
+        const open = nav?.classList.toggle('is-open');
+        toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+      });
+    </script>
+  </body>
+</html>

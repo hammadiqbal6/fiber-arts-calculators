@@ -1,0 +1,76 @@
+---
+import BaseLayout from '../components/BaseLayout.astro';
+import AdSlot from '../components/AdSlot.astro';
+import { siteConfig } from '../config/site';
+import { TOOLS, CATEGORIES } from '../lib/tools';
+
+const title = 'Knitting, Crochet & Quilt Calculators';
+const description = 'FiberCalc free yarn, gauge, fabric, quilt, and cross-stitch calculators. Instant client-side math with inches/cm, yards/meters, and grams/oz.';
+
+const jsonLd = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'WebSite',
+    name: siteConfig.siteName,
+    url: siteConfig.siteUrl,
+    description: siteConfig.tagline,
+    publisher: { '@type': 'Organization', name: siteConfig.legalName, url: siteConfig.siteUrl },
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'Organization',
+    name: siteConfig.legalName,
+    url: siteConfig.siteUrl,
+    email: siteConfig.contactEmail,
+  },
+];
+---
+
+<BaseLayout title={title} description={description} canonicalPath="/" jsonLd={jsonLd}>
+  <section class="hero">
+    <div class="container">
+      <div class="hero__panel">
+        <p class="hero__brand">{siteConfig.siteName}</p>
+        <h1>{siteConfig.tagline}</h1>
+        <p class="hero__lead">
+          Plan yarn, gauge, fabric, and quilt cuts in your browser—no signup, no uploads.
+          Built for makers who want clear math with inches or centimeters.
+        </p>
+        <div class="btn-row">
+          <a class="btn btn--primary" href="/tools/">Browse all calculators</a>
+          <a class="btn btn--secondary" href="/knitting-crochet/">Yarn & gauge tools</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="container">
+    <AdSlot />
+    <h2>Popular tools</h2>
+    <div class="tool-grid">
+      {TOOLS.slice(0, 6).map((t) => (
+        <a class="tool-link" href={t.path}>
+          <h3>{t.title}</h3>
+          <p>{t.description}</p>
+        </a>
+      ))}
+    </div>
+
+    <h2>Browse by craft</h2>
+    <div class="tool-grid">
+      {[
+        { href: '/knitting-crochet/', title: 'Knitting & crochet', body: 'Yarn estimates, gauge, cast-on, and even shaping.' },
+        { href: '/sewing/', title: 'Sewing', body: 'Fabric yardage, seam allowance, and grading helpers.' },
+        { href: '/quilting/', title: 'Quilting', body: 'Quilt size, backing, binding, and HST cutting.' },
+        { href: '/reference/', title: 'Reference', body: 'Needle/hook converters and Aida fabric sizing.' },
+        { href: '/guides/', title: 'Guides', body: 'Deep-dive articles interlinked with every tool.' },
+        { href: '/reference/yarn-weights/', title: 'CYC yarn weights', body: 'Craft Yarn Council standards table with sources.' },
+      ].map((c) => (
+        <a class="tool-link" href={c.href}>
+          <h3>{c.title}</h3>
+          <p>{c.body}</p>
+        </a>
+      ))}
+    </div>
+  </div>
+</BaseLayout>

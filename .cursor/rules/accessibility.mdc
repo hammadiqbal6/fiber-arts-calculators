@@ -1,0 +1,5 @@
+---
+description: Accessibility requirements
+globs: src/**/*
+---
+Labels for every input, 48px targets, keyboard focus visible, contrast on brand green/cream, inputmode on numbers.

@@ -1,0 +1,21 @@
+---
+import BaseLayout from '../../components/BaseLayout.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import { toolsByCategory } from '../../lib/tools';
+
+const tools = toolsByCategory('reference');
+---
+
+<BaseLayout title="Fiber Arts Reference Tables & Converters" description="Needle and hook size converter, cross-stitch Aida calculator, CYC yarn weights, and quilt size charts." canonicalPath="/reference/">
+  <div class="container">
+    <Breadcrumbs items={[{ label: 'Home', href: '/' }, { label: 'Reference' }]} />
+    <h1>Reference & converters</h1>
+    <div class="tool-grid">
+      {tools.map((t) => (
+        <a class="tool-link" href={t.path}><h2>{t.title}</h2><p>{t.description}</p></a>
+      ))}
+      <a class="tool-link" href="/reference/yarn-weights/"><h2>CYC yarn weight standards</h2><p>Categories 0–7 with gauges and sources.</p></a>
+      <a class="tool-link" href="/reference/quilt-sizes/"><h2>Quilt & mattress sizes</h2><p>Standard blanket, quilt, and mattress dimensions.</p></a>
+    </div>
+  </div>
+</BaseLayout>

@@ -1,0 +1,44 @@
+---
+import { siteConfig } from '../config/site';
+
+interface Props {
+  slot?: string;
+  format?: 'horizontal' | 'rectangle';
+}
+
+const { slot = 'top', format = 'horizontal' } = Astro.props;
+const enabled = Boolean(siteConfig.adsenseEnabled && siteConfig.adsensePublisherId);
+const minHeight = format === 'rectangle' ? '250px' : '100px';
+---
+
+<aside
+  class="ad-slot"
+  data-ad-slot={slot}
+  style={`min-height:${minHeight}`}
+  aria-label="Advertisement"
+>
+  {enabled ? (
+    <>
+      <script
+        async
+        src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${siteConfig.adsensePublisherId}`}
+        crossorigin="anonymous"
+      ></script>
+      <ins
+        class="adsbygoogle"
+        style={`display:block;min-height:${minHeight}`}
+        data-ad-client={siteConfig.adsensePublisherId}
+        data-ad-slot={slot}
+        data-ad-format="auto"
+        data-full-width-responsive="true"
+      ></ins>
+      <script>
+        try {
+          (window.adsbygoogle = window.adsbygoogle || []).push({});
+        } catch (e) {}
+      </script>
+    </>
+  ) : (
+    <span>Ad space reserved — configure PUBLIC_ADSENSE_PUBLISHER_ID to enable</span>
+  )}
+</aside>
