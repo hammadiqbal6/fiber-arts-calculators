@@ -82,7 +82,8 @@ Edit `.env` with your real values. Astro exposes only variables prefixed with `P
 | `PUBLIC_ADSENSE_PUBLISHER_ID` | When monetizing | `pub-XXXXXXXXXXXXXXXX` |
 | `PUBLIC_ADSENSE_ENABLED` | When monetizing | Set `true` only after publisher ID + ads.txt |
 | `PUBLIC_GA4_MEASUREMENT_ID` | Optional | `G-XXXXXXXXXX` |
-| `PUBLIC_GOOGLE_SITE_VERIFICATION` | Optional | Search Console HTML tag **content** value |
+| `PUBLIC_GSC_VERIFICATION` | Optional | Search Console HTML tag **content** value (`google-site-verification`) |
+| `PUBLIC_GOOGLE_SITE_VERIFICATION` | Optional | Legacy alias for `PUBLIC_GSC_VERIFICATION` |
 | `PUBLIC_BING_SITE_VERIFICATION` | Optional | Bing meta verification content |
 | `PUBLIC_INDEXNOW_KEY` | Optional | IndexNow key string (see §5) |
 | `PUBLIC_TWITTER_HANDLE` | Optional | `@handle` for Twitter cards |
@@ -496,7 +497,7 @@ PUBLIC_SITE_NAME=FiberCalc
 PUBLIC_CONTACT_EMAIL=hello@yourdomain.com
 PUBLIC_LEGAL_NAME=Your Name or LLC
 PUBLIC_GA4_MEASUREMENT_ID=
-PUBLIC_GOOGLE_SITE_VERIFICATION=
+PUBLIC_GSC_VERIFICATION=
 PUBLIC_BING_SITE_VERIFICATION=
 PUBLIC_INDEXNOW_KEY=
 PUBLIC_ADSENSE_PUBLISHER_ID=

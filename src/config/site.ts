@@ -3,7 +3,8 @@
  * All brand/domain/analytics/ads values live here (or via env overrides).
  *
  * Build-time env: see `.env.example`. Cloudflare Workers Builds should set
- * PUBLIC_SITE_URL (and optional PUBLIC_GA4_MEASUREMENT_ID) so Astro bakes them in.
+ * PUBLIC_SITE_URL and optional PUBLIC_GA4_MEASUREMENT_ID / PUBLIC_GSC_VERIFICATION
+ * so Astro bakes them into static HTML.
  */
 const DEFAULT_SITE_URL =
   'https://fiber-arts-calculators.hammadiqbal117.workers.dev';
@@ -44,9 +45,13 @@ export const siteConfig = {
   adsenseEnabled: envString(import.meta.env.PUBLIC_ADSENSE_ENABLED, 'false') === 'true',
   /** GA4 measurement ID, e.g. G-XXXXXXXX. Empty = no analytics script. */
   ga4MeasurementId: envString(import.meta.env.PUBLIC_GA4_MEASUREMENT_ID),
-  /** Google Search Console HTML tag content value (meta name="google-site-verification"). */
+  /**
+   * Google Search Console HTML tag content value (meta name="google-site-verification").
+   * Prefer PUBLIC_GSC_VERIFICATION; PUBLIC_GOOGLE_SITE_VERIFICATION remains as a legacy alias.
+   */
   googleSiteVerification: envString(
-    import.meta.env.PUBLIC_GOOGLE_SITE_VERIFICATION,
+    import.meta.env.PUBLIC_GSC_VERIFICATION ||
+      import.meta.env.PUBLIC_GOOGLE_SITE_VERIFICATION,
   ),
   /** Bing Webmaster verification meta content. */
   bingSiteVerification: envString(import.meta.env.PUBLIC_BING_SITE_VERIFICATION),

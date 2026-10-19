@@ -107,7 +107,8 @@ All owner placeholders live in **`src/config/site.ts`** (overridable via `PUBLIC
 | `PUBLIC_ADSENSE_PUBLISHER_ID` | AdSense `pub-…` |
 | `PUBLIC_ADSENSE_ENABLED` | `true` to render ad slots |
 | `PUBLIC_GA4_MEASUREMENT_ID` | Google Analytics 4 |
-| `PUBLIC_GOOGLE_SITE_VERIFICATION` | Search Console meta |
+| `PUBLIC_GSC_VERIFICATION` | Search Console meta (`google-site-verification`) |
+| `PUBLIC_GOOGLE_SITE_VERIFICATION` | Legacy alias for `PUBLIC_GSC_VERIFICATION` |
 | `PUBLIC_BING_SITE_VERIFICATION` | Bing Webmaster meta |
 | `PUBLIC_INDEXNOW_KEY` | IndexNow key file name |
 | `PUBLIC_TWITTER_HANDLE` | Twitter card @handle |
