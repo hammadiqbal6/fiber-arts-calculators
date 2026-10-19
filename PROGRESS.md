@@ -1,7 +1,7 @@
-<!-- progress: 75 -->
+<!-- progress: 100 -->
 # Build progress
-Status: Committing site build; finishing README, CI, Lighthouse verification, and PR
-Updated: 2026-10-19T06:20:00Z
+Status: Complete — audits and Lighthouse mobile passed; PR ready for review
+Updated: 2026-10-19T06:22:00Z
 
 - [x] Project scaffold & config
 - [x] Tools implemented (18 of 14+)
@@ -9,7 +9,7 @@ Updated: 2026-10-19T06:20:00Z
 - [x] Guides/articles (5 of 5)
 - [x] Required pages (About, Contact, Privacy, Terms, Methodology)
 - [x] Technical SEO (sitemap, robots, schema, canonicals, OG)
-- [ ] Mobile & performance (Lighthouse >= 95)
+- [x] Mobile & performance (Lighthouse >= 95)
 - [x] Docs (README, DEPLOYMENT, SEO-GUIDE, ADSENSE, AGENTS.md, ideas)
 - [x] Skills, rules, agents, auditors & CI
-- [ ] Final verification & PR ready for review
+- [x] Final verification & PR ready for review
