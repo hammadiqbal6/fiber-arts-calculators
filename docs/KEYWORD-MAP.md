@@ -17,7 +17,7 @@
 | `/tools/yarn-amigurumi-calculator/` | amigurumi yarn calculator | how much yarn for amigurumi |
 | `/tools/yarn-substitution-calculator/` | yarn substitution calculator | yarn weight converter grams yards |
 | `/tools/knitting-gauge-calculator/` | knitting gauge calculator | resize knitting pattern gauge |
-| `/tools/crochet-blanket-calculator/` | crochet blanket calculator | crochet blanket stitch count |
+| `/tools/crochet-blanket-calculator/` | crochet blanket starting chain calculator | crochet blanket stitch count |
 | `/tools/increase-decrease-calculator/` | increase decrease evenly calculator | space increases evenly knitting |
 | `/tools/cast-on-calculator/` | cast on calculator | how many stitches to cast on |
 | `/tools/fabric-yardage-calculator/` | fabric yardage calculator | curtain fabric calculator |
@@ -29,6 +29,8 @@
 | `/tools/needle-hook-converter/` | knitting needle size converter | crochet hook size conversion |
 | `/tools/seam-allowance-calculator/` | seam allowance calculator | pattern grading ease |
 | `/guides/how-much-yarn-for-a-blanket/` | how much yarn for a blanket | throw blanket yarn amount |
+| `/guides/how-many-stitches-to-cast-on-for-a-hat/` | how many stitches to cast on for a hat | hat cast on stitches |
+| `/guides/how-much-quilt-binding-do-i-need/` | how much quilt binding do I need | quilt binding yardage |
 | `/guides/knitting-gauge-explained/` | knitting gauge explained | how to measure knitting gauge |
 | `/guides/quilt-backing-yardage-guide/` | quilt backing yardage | how much backing fabric |
 | `/guides/half-square-triangle-math/` | half square triangle formula | HST size chart |

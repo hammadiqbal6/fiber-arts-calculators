@@ -1,0 +1,50 @@
+---
+/**
+ * Sparing cross-site links — only when genuinely topical. Never sitewide footer spam.
+ * Sister origins follow PUBLIC_SITE_URL host pattern: <repo>.hammadiqbal117.workers.dev
+ */
+interface Link {
+  href: string;
+  label: string;
+  note: string;
+}
+
+interface Props {
+  links: Link[];
+  heading?: string;
+}
+
+const { links, heading = 'Related tools from our other sites' } = Astro.props;
+if (!links.length) return;
+---
+
+<aside class="sister-tools" aria-label={heading}>
+  <h2>{heading}</h2>
+  <ul>
+    {links.map((l) => (
+      <li>
+        <a href={l.href} rel="noopener noreferrer">{l.label}</a>
+        <span> — {l.note}</span>
+      </li>
+    ))}
+  </ul>
+</aside>
+
+<style>
+  .sister-tools {
+    margin: var(--space-6) 0;
+    padding: var(--space-4) 0;
+    border-top: 1px dashed var(--color-border);
+    max-width: 48rem;
+    font-size: 0.95rem;
+    color: var(--color-ink-muted);
+  }
+  .sister-tools h2 {
+    font-size: 1.1rem;
+    margin-top: 0;
+  }
+  .sister-tools ul {
+    margin: 0;
+    padding-left: 1.2rem;
+  }
+</style>

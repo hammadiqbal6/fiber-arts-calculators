@@ -37,8 +37,13 @@ body.embed-body {
 .field input, .field select {
   min-height: 48px; padding: 0.65rem 0.75rem;
   border: 1px solid var(--color-border); border-radius: var(--radius);
-  font: inherit; width: 100%;
+  font: inherit; font-size: max(1rem, 16px); width: 100%;
 }
+.field[hidden], [data-mode-show][hidden] { display: none !important; }
+.btn { display: inline-flex; align-items: center; justify-content: center; min-height: 48px; padding: 0.6rem 1rem; border-radius: var(--radius); font-weight: 700; cursor: pointer; font-size: 1rem; text-decoration: none; border: 1px solid transparent; }
+.btn--primary { background: var(--color-brand); color: #fff; }
+.btn--secondary { background: transparent; border-color: var(--color-brand); color: var(--color-brand-dark); }
+.btn-row { display: flex; flex-wrap: wrap; gap: 0.5rem; }
 .btn {
   display: inline-flex; align-items: center; justify-content: center;
   min-height: 48px; padding: 0.7rem 1.15rem; border-radius: var(--radius);

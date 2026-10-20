@@ -1,0 +1,71 @@
+---
+import { siteConfig } from '../config/site';
+
+interface Props {
+  slug: string;
+  title: string;
+  toolPath: string;
+}
+
+const { slug, title, toolPath } = Astro.props;
+const iframeSrc = `${siteConfig.siteUrl}/embed/${slug}/?framed=1`;
+const snippet = `<iframe src="${iframeSrc}" title="${title}" loading="lazy" style="width:100%;min-height:520px;border:1px solid #d5cdc0;border-radius:8px;"></iframe>
+<p>Calculator by <a href="${siteConfig.siteUrl}${toolPath}">${siteConfig.siteName}</a> — free fiber arts tools.</p>`;
+---
+
+<section class="embed-share" aria-labelledby="embed-heading">
+  <h2 id="embed-heading">Embed this tool</h2>
+  <p>
+    Paste this snippet on your blog or pattern notes. The credit link back to the full calculator is required.
+  </p>
+  <label class="visually-hidden" for={`embed-code-${slug}`}>Embed HTML</label>
+  <textarea id={`embed-code-${slug}`} class="embed-share__code" readonly rows="5" data-embed-code>{snippet}</textarea>
+  <div class="btn-row">
+    <button type="button" class="btn btn--secondary" data-copy-embed>Copy embed code</button>
+    <a class="btn btn--secondary" href={`/embed/${slug}/`}>Open embed page</a>
+  </div>
+  <p class="embed-share__status" data-copy-status aria-live="polite"></p>
+</section>
+
+<style>
+  .embed-share {
+    margin: var(--space-6) 0;
+    max-width: 48rem;
+  }
+  .embed-share__code {
+    width: 100%;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    font-size: 0.85rem;
+    min-height: 7rem;
+    padding: 0.75rem;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius);
+    background: var(--color-surface);
+    color: inherit;
+    resize: vertical;
+  }
+  .embed-share__status {
+    min-height: 1.5rem;
+    font-size: 0.9rem;
+    color: var(--color-brand-dark);
+  }
+</style>
+
+<script>
+  document.querySelectorAll('[data-copy-embed]').forEach((btn) => {
+    btn.addEventListener('click', async () => {
+      const section = btn.closest('.embed-share');
+      const code = section?.querySelector<HTMLTextAreaElement>('[data-embed-code]');
+      const status = section?.querySelector<HTMLElement>('[data-copy-status]');
+      if (!code) return;
+      try {
+        await navigator.clipboard.writeText(code.value);
+        if (status) status.textContent = 'Copied. Paste into your page HTML.';
+      } catch {
+        code.focus();
+        code.select();
+        if (status) status.textContent = 'Select the code and copy (Ctrl/Cmd+C).';
+      }
+    });
+  });
+</script>

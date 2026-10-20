@@ -3,42 +3,89 @@ import BaseLayout from '../../components/BaseLayout.astro';
 import Breadcrumbs from '../../components/Breadcrumbs.astro';
 import { YARN_WEIGHTS } from '../../lib/reference/yarn-weights';
 import { siteConfig } from '../../config/site';
+import { CANONICAL_PERSON_ID } from '../../config/site';
 
 const title = 'Craft Yarn Council Yarn Weight Standards';
-const description = 'CYC yarn weight categories 0–7 with knit/crochet gauge ranges, needle and hook sizes, and source links.';
+const description =
+  'CYC yarn weight categories 0–7 with knit/crochet gauge ranges, needle and hook sizes, and source links. Mobile-friendly table with scroll.';
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'CollectionPage',
+      '@id': `${siteConfig.siteUrl}/reference/yarn-weights/#page`,
+      name: title,
+      description,
+      url: `${siteConfig.siteUrl}/reference/yarn-weights/`,
+      author: { '@id': CANONICAL_PERSON_ID },
+    },
+    {
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        { '@type': 'ListItem', position: 1, name: 'Home', item: `${siteConfig.siteUrl}/` },
+        { '@type': 'ListItem', position: 2, name: 'Reference', item: `${siteConfig.siteUrl}/reference/` },
+        { '@type': 'ListItem', position: 3, name: 'Yarn weights', item: `${siteConfig.siteUrl}/reference/yarn-weights/` },
+      ],
+    },
+    {
+      '@type': 'Dataset',
+      name: 'CYC Standard Yarn Weight System (summary)',
+      description: 'Summary table of Craft Yarn Council yarn weight categories 0–7 with typical gauges.',
+      url: `${siteConfig.siteUrl}/reference/yarn-weights/`,
+      creator: { '@type': 'Organization', name: 'Craft Yarn Council' },
+      citation: 'https://www.craftyarncouncil.com/standards/yarn-weight-system',
+    },
+  ],
+};
 ---
 
-<BaseLayout title={title} description={description} canonicalPath="/reference/yarn-weights/">
+<BaseLayout title={title} description={description} canonicalPath="/reference/yarn-weights/" jsonLd={jsonLd}>
   <div class="container prose">
     <Breadcrumbs items={[{ label: 'Home', href: '/' }, { label: 'Reference', href: '/reference/' }, { label: 'Yarn weights' }]} />
     <h1>Craft Yarn Council yarn weight standards</h1>
-    <p class="meta-row"><span>Updated {siteConfig.launched}</span></p>
+    <p class="meta-row"><span>Last reviewed {siteConfig.lastReviewed}</span></p>
     <div class="takeaway">
       <p><strong>Key takeaway:</strong> The Craft Yarn Council Standard Yarn Weight System labels yarn categories 0 (Lace) through 7 (Jumbo) with typical gauges and tool sizes. Use the category number on the ball band when estimating yardage in our <a href="/tools/yarn-blanket-calculator/">yarn calculators</a>.</p>
     </div>
     <p>The table below summarizes publicly documented CYC ranges. Always confirm the icon and gauge on your specific yarn band—brand naming (especially “DK” vs “worsted”) can vary.</p>
-    <table>
-      <thead>
-        <tr>
-          <th>#</th><th>Name</th><th>Knit sts / 4"</th><th>Needles (mm)</th><th>Crochet sc / 4"</th><th>Hooks (mm)</th>
-        </tr>
-      </thead>
-      <tbody>
-        {YARN_WEIGHTS.map((y) => (
+
+    <figure class="diagram">
+      <img
+        src="/images/diagram-yarn-weights.svg"
+        alt="Diagram of Craft Yarn Council yarn weight categories 0 through 7 showing relative yarn thickness"
+        width="1200"
+        height="900"
+        loading="lazy"
+      />
+      <figcaption>Redrawn thickness chart for quick scanning. Official ranges: Craft Yarn Council Yarn Weight System.</figcaption>
+    </figure>
+
+    <div class="table-scroll" tabindex="0" role="region" aria-label="Yarn weight standards table">
+      <table>
+        <caption>CYC yarn weight categories with typical knit and crochet gauges</caption>
+        <thead>
           <tr>
-            <td>{y.id}</td>
-            <td>{y.name}</td>
-            <td>{y.knitGaugeSts4in[0]}–{y.knitGaugeSts4in[1]}</td>
-            <td>{y.needleMetricMm[0]}–{y.needleMetricMm[1]}</td>
-            <td>{y.crochetGaugeSc4in[0]}–{y.crochetGaugeSc4in[1]}</td>
-            <td>{y.hookMetricMm[0]}–{y.hookMetricMm[1]}</td>
+            <th>#</th><th>Name</th><th>Knit sts/4″</th><th>Needles mm</th><th>Crochet sc/4″</th><th>Hooks mm</th>
           </tr>
-        ))}
-      </tbody>
-    </table>
+        </thead>
+        <tbody>
+          {YARN_WEIGHTS.map((y) => (
+            <tr>
+              <td>{y.id}</td>
+              <td>{y.name}</td>
+              <td>{y.knitGaugeSts4in[0]}–{y.knitGaugeSts4in[1]}</td>
+              <td>{y.needleMetricMm[0]}–{y.needleMetricMm[1]}</td>
+              <td>{y.crochetGaugeSc4in[0]}–{y.crochetGaugeSc4in[1]}</td>
+              <td>{y.hookMetricMm[0]}–{y.hookMetricMm[1]}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
     <h2>Source</h2>
     <ul>
-      <li><a href="https://www.craftyarncouncil.com/standards/yarn-weight-system" rel="noopener noreferrer">Craft Yarn Council — Standard Yarn Weight System</a></li>
+      <li><a href="https://www.craftyarncouncil.com/standards/yarn-weight-system" rel="noopener noreferrer">Craft Yarn Council — Standard Yarn Weight System</a> (checked {siteConfig.lastReviewed})</li>
     </ul>
     <p>Related: <a href="/tools/yarn-substitution-calculator/">yarn substitution calculator</a>, <a href="/tools/needle-hook-converter/">needle &amp; hook converter</a>.</p>
   </div>

@@ -2,12 +2,14 @@
 import '../styles/global.css';
 import { siteConfig } from '../config/site';
 import CookieNotice from './CookieNotice.astro';
+import Analytics from './Analytics.astro';
 
 interface Props {
   title: string;
   description: string;
   canonicalPath: string;
   ogImage?: string;
+  ogImageAlt?: string;
   jsonLd?: Record<string, unknown> | Record<string, unknown>[];
   noindex?: boolean;
 }
@@ -17,15 +19,19 @@ const {
   description,
   canonicalPath,
   ogImage = siteConfig.defaultOgImage,
+  ogImageAlt = siteConfig.defaultOgImageAlt,
   jsonLd = [],
   noindex = false,
 } = Astro.props;
 
 const canonical = new URL(canonicalPath, siteConfig.siteUrl).toString();
 const ogUrl = new URL(ogImage, siteConfig.siteUrl).toString();
-const fullTitle = title.includes(siteConfig.siteName)
-  ? title
-  : `${title} | ${siteConfig.siteName}`;
+const titleNeedsBrand = !title.includes(siteConfig.siteName);
+const fullTitle = titleNeedsBrand && [...title].length <= 50
+  ? `${title} | ${siteConfig.siteName}`
+  : titleNeedsBrand && [...title].length <= 55
+    ? `${title} | ${siteConfig.siteName}`
+    : title;
 const schemas = Array.isArray(jsonLd) ? jsonLd : [jsonLd];
 const nav = [
   { href: '/knitting-crochet/', label: 'Knit & crochet' },
@@ -43,6 +49,7 @@ const nav = [
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{fullTitle}</title>
     <meta name="description" content={description} />
+    <meta name="author" content={siteConfig.defaultAuthor.name} />
     <link rel="canonical" href={canonical} />
     {noindex && <meta name="robots" content="noindex,follow" />}
     <meta property="og:type" content="website" />
@@ -51,11 +58,15 @@ const nav = [
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonical} />
     <meta property="og:image" content={ogUrl} />
+    <meta property="og:image:width" content={String(siteConfig.defaultOgImageWidth)} />
+    <meta property="og:image:height" content={String(siteConfig.defaultOgImageHeight)} />
+    <meta property="og:image:alt" content={ogImageAlt} />
     <meta property="og:locale" content={siteConfig.locale} />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={fullTitle} />
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={ogUrl} />
+    <meta name="twitter:image:alt" content={ogImageAlt} />
     {siteConfig.twitterHandle && (
       <meta name="twitter:site" content={siteConfig.twitterHandle} />
     )}
@@ -66,28 +77,16 @@ const nav = [
       <meta name="msvalidate.01" content={siteConfig.bingSiteVerification} />
     )}
     <meta name="theme-color" content={siteConfig.themeColor} />
-    <link rel="icon" href="/favicon.ico" sizes="any" />
+    <meta name="apple-mobile-web-app-title" content={siteConfig.siteShortName} />
+    <link rel="icon" href="/favicon.ico" sizes="48x48" />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="icon" href="/favicon-96x96.png" type="image/png" sizes="96x96" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" sizes="180x180" />
     <link rel="manifest" href="/site.webmanifest" />
     {schemas.map((schema) => (
       <script type="application/ld+json" set:html={JSON.stringify(schema)} />
     ))}
-    {siteConfig.ga4MeasurementId && (
-      <>
-        {/* is:inline keeps gtag external + config in the HTML (not bundled/hoisted). */}
-        <script
-          is:inline
-          async
-          src={`https://www.googletagmanager.com/gtag/js?id=${siteConfig.ga4MeasurementId}`}
-        ></script>
-        <script is:inline define:vars={{ gaId: siteConfig.ga4MeasurementId }}>
-          window.dataLayer = window.dataLayer || [];
-          function gtag(){dataLayer.push(arguments);}
-          gtag('js', new Date());
-          gtag('config', gaId, { anonymize_ip: true });
-        </script>
-      </>
-    )}
+    <Analytics />
   </head>
   <body>
     <a class="visually-hidden" href="#main">Skip to content</a>
@@ -127,6 +126,7 @@ const nav = [
         <div>
           <strong>{siteConfig.siteName}</strong>
           <p>{siteConfig.tagline}. All calculations run in your browser — nothing is uploaded.</p>
+          <p>Maintained by <a href="/about/#maintainer">{siteConfig.defaultAuthor.name}</a>.</p>
           <p>Contact: <a href={`mailto:${siteConfig.contactEmail}`}>{siteConfig.contactEmail}</a></p>
         </div>
         <div>
@@ -143,7 +143,6 @@ const nav = [
           <p><a href="/privacy/">Privacy</a></p>
           <p><a href="/terms/">Terms</a></p>
           <p><a href="/contact/">Contact</a></p>
-          <p><a href="/authors/">Authors</a></p>
         </div>
       </div>
     </footer>

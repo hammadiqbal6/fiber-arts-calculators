@@ -3,12 +3,23 @@ import BaseLayout from '../../components/BaseLayout.astro';
 import Breadcrumbs from '../../components/Breadcrumbs.astro';
 import { TOOLS } from '../../lib/tools';
 import { siteConfig } from '../../config/site';
+import { collectionPageGraph } from '../../lib/schema';
 
-const title = 'All Fiber Arts Calculators';
-const description = 'Complete list of free FiberCalc knitting, crochet, sewing, quilting, and cross-stitch calculators.';
+const title = 'All Fiber Arts Calculators | FiberCalc';
+const description =
+  'Complete list of free FiberCalc knitting, crochet, sewing, quilting, and cross-stitch calculators. Client-side math with inches/cm and yards/meters.';
+const jsonLd = collectionPageGraph({
+  name: title,
+  description,
+  path: '/tools/',
+  crumbs: [
+    { name: 'Home', path: '/' },
+    { name: 'Tools', path: '/tools/' },
+  ],
+});
 ---
 
-<BaseLayout title={title} description={description} canonicalPath="/tools/">
+<BaseLayout title={title} description={description} canonicalPath="/tools/" jsonLd={jsonLd}>
   <div class="container">
     <Breadcrumbs items={[{ label: 'Home', href: '/' }, { label: 'Tools' }]} />
     <h1>All calculators</h1>

@@ -2,15 +2,40 @@
 import BaseLayout from '../../components/BaseLayout.astro';
 import Breadcrumbs from '../../components/Breadcrumbs.astro';
 import { toolsByCategory } from '../../lib/tools';
+import { collectionPageGraph } from '../../lib/schema';
 
 const tools = toolsByCategory('quilting');
+const title = 'Quilting Calculators: Size, Backing, Binding & HST';
+const description =
+  'Free quilting calculators for quilt size from blocks, backing yardage and panels, binding strips, and half-square triangle cutting sizes. Plan before you cut.';
+const jsonLd = collectionPageGraph({
+  name: title,
+  description,
+  path: '/quilting/',
+  crumbs: [
+    { name: 'Home', path: '/' },
+    { name: 'Quilting', path: '/quilting/' },
+  ],
+});
 ---
 
-<BaseLayout title="Quilting Calculators" description="Quilt size, backing, binding, and half-square triangle cutting calculators." canonicalPath="/quilting/">
+<BaseLayout title={title} description={description} canonicalPath="/quilting/" jsonLd={jsonLd}>
   <div class="container">
     <Breadcrumbs items={[{ label: 'Home', href: '/' }, { label: 'Quilting' }]} />
     <h1>Quilting calculators</h1>
     <p class="takeaway"><strong>Key takeaway:</strong> Plan the top from blocks and borders, then calculate backing panels and binding strips before you cut.</p>
+    <div class="prose">
+      <p>
+        Start with the <a href="/tools/quilt-size-calculator/">quilt size calculator</a> to turn a block grid into
+        finished inches (or fit blocks to a twin/queen target). Use the
+        <a href="/tools/quilt-backing-calculator/">quilt backing calculator</a> for yardage and panel layout, then
+        the <a href="/tools/quilt-binding-calculator/">binding calculator</a> for strip counts. The
+        <a href="/tools/hst-calculator/">HST calculator</a> covers 2-, 4-, and 8-at-a-time cut sizes. For narrative
+        how-tos without competing for the same calculator keyword, see the
+        <a href="/guides/quilt-backing-yardage-guide/">backing yardage guide</a> and
+        <a href="/guides/half-square-triangle-math/">HST math guide</a>.
+      </p>
+    </div>
     <div class="tool-grid">
       {tools.map((t) => (
         <a class="tool-link" href={t.path}><h2>{t.title}</h2><p>{t.description}</p></a>

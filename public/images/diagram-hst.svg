@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 900" role="img" aria-labelledby="hstTitle hstDesc">
+  <title id="hstTitle">Half-square triangle 2-at-a-time cutting diagram</title>
+  <desc id="hstDesc">Square of fabric with a diagonal drawn corner to corner, illustrating the 2-at-a-time HST method and finished triangle size versus cut size.</desc>
+  <rect width="1200" height="900" fill="#fffdf8"/>
+  <text x="60" y="70" font-family="Georgia, serif" font-size="34" fill="#1f3f36">HST: 2-at-a-time method</text>
+  <text x="60" y="110" font-family="Segoe UI, sans-serif" font-size="18" fill="#4a5651">Cut size H finished HST + seam allowance (commonly +^3 for a ¼3 seam). Trim after pressing.</text>
+  <g transform="translate(180,180)">
+    <rect width="420" height="420" fill="#e8f0ec" stroke="#2f5d50" stroke-width="4"/>
+    <line x1="0" y1="420" x2="420" y2="0" stroke="#c45c26" stroke-width="4"/>
+    <text x="90" y="280" font-family="Segoe UI, sans-serif" font-size="22" fill="#1f3f36">Cut square</text>
+    <text x="250" y="140" font-family="Segoe UI, sans-serif" font-size="22" fill="#c45c26">Sew on diagonal</text>
+  </g>
+  <g transform="translate(720,220)">
+    <path d="M0 280 L280 280 L280 0 Z" fill="#f0d5c4" stroke="#2f5d50" stroke-width="3"/>
+    <path d="M40 320 L320 320 L320 40 Z" fill="#e4ddd0" stroke="#2f5d50" stroke-width="3" transform="translate(0,-20)"/>
+    <text x="0" y="360" font-family="Segoe UI, sans-serif" font-size="20" fill="#1c2421">Two HSTs after cut &amp; press</text>
+    <text x="0" y="395" font-family="Segoe UI, sans-serif" font-size="16" fill="#4a5651">Finished size measured on short legs</text>
+  </g>
+  <text x="60" y="760" font-family="Segoe UI, sans-serif" font-size="18" fill="#1c2421">4-at-a-time and 8-at-a-time use larger starter squares  see the HST calculator for each methods cut size.</text>
+  <text x="60" y="820" font-family="Segoe UI, sans-serif" font-size="14" fill="#4a5651">Traditional quilting formulas; always confirm with your patterns seam allowance.</text>
+</svg>

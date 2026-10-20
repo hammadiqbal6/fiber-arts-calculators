@@ -1,26 +1,48 @@
 ---
 import { siteConfig } from '../config/site';
+const gaId = siteConfig.ga4MeasurementId;
 ---
 
-<div class="cookie-banner" data-cookie-banner hidden>
+<div class="cookie-banner" data-cookie-banner hidden role="dialog" aria-label="Cookie notice">
   <div class="cookie-banner__inner">
     <p>
-      We use optional analytics and, when enabled, Google AdSense cookies.
-      See our <a href="/privacy/" style="color:#f0d5c4">Privacy Policy</a>.
-      EEA/UK/CH visitors need a certified CMP before personalized ads.
+      We use optional analytics cookies.
+      <a href="/privacy/" style="color:#f0d5c4">Privacy</a>
     </p>
-    <button type="button" class="btn btn--primary" data-cookie-accept>OK</button>
+    <div class="cookie-banner__actions">
+      <button type="button" class="btn btn--secondary cookie-banner__reject" data-cookie-reject>No thanks</button>
+      <button type="button" class="btn btn--primary" data-cookie-accept>OK</button>
+    </div>
   </div>
 </div>
-<script>
+<script define:vars={{ gaId }}>
+  import { grantAnalyticsConsent, scheduleAnalytics, hasAnalyticsConsent } from '../scripts/analytics';
+
   const key = 'fibercalc-cookie-ok';
+  const rejectKey = 'fibercalc-cookie-no';
   const banner = document.querySelector('[data-cookie-banner]');
-  const btn = document.querySelector('[data-cookie-accept]');
-  if (banner && !localStorage.getItem(key)) {
+  const accept = document.querySelector('[data-cookie-accept]');
+  const reject = document.querySelector('[data-cookie-reject]');
+
+  if (banner && !localStorage.getItem(key) && !localStorage.getItem(rejectKey)) {
     banner.removeAttribute('hidden');
   }
-  btn?.addEventListener('click', () => {
+
+  accept?.addEventListener('click', () => {
     localStorage.setItem(key, '1');
+    localStorage.removeItem(rejectKey);
+    banner?.setAttribute('hidden', '');
+    grantAnalyticsConsent();
+    scheduleAnalytics(gaId);
+  });
+
+  reject?.addEventListener('click', () => {
+    localStorage.setItem(rejectKey, '1');
+    localStorage.removeItem(key);
     banner?.setAttribute('hidden', '');
   });
+
+  if (hasAnalyticsConsent()) {
+    scheduleAnalytics(gaId);
+  }
 </script>

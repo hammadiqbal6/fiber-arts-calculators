@@ -6,6 +6,7 @@ const scripts = [
   'scripts/audit/adsense-audit.mjs',
   'scripts/audit/js-budget.mjs',
   'scripts/audit/link-check.mjs',
+  'scripts/audit/html-hygiene.mjs',
 ];
 
 let failed = false;

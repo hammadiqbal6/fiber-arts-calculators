@@ -7,11 +7,11 @@ export const TOOL_PAGES: ToolPageContent[] = [
   {
     slug: "yarn-blanket-calculator",
     calc: "yarn-blanket",
-    h1: "Yarn Blanket Calculator",
-    title: "Yarn Blanket Calculator",
-    description: "Estimate skeins, yards, meters, and grams for knit or crochet blankets by size and Craft Yarn Council yarn weight.",
+    h1: "Yarn Blanket Calculator: How Much Yarn for a Blanket?",
+    title: "Yarn Blanket Calculator: How Much Yarn for a Blanket?",
+    description: "Find how many yards and skeins you need for a knit or crochet blanket. Pick a baby, throw, twin or queen size and yarn weight for an instant yardage estimate.",
     answer: "A typical 50\u00d760 inch throw in medium (worsted / category 4) yarn needs about 1,100\u20131,400 yards (1,000\u20131,280 m) to knit, or roughly 25\u201330% more to crochet. Enter dimensions, yarn weight, and skein size below for a project-specific estimate with waste allowance.",
-    form: `<div class="field"><label for="preset">Preset size</label><select id="preset" name="preset" data-preset><option value="">Custom</option><option value="30x36">Baby 30×36"</option><option value="50x60" selected>Throw 50×60"</option><option value="66x90">Twin 66×90"</option><option value="90x100">Queen 90×100"</option></select></div>\\n<div class="field"><label for="unit">Units</label><select id="unit" name="unit" ><option value="in">Inches</option><option value="cm">Centimeters</option></select></div>\\n<div class="field"><label for="width">Width</label><input id="width" name="width" type="number" inputmode="decimal" min="1" step="any" value="50" required /></div>\\n<div class="field"><label for="length">Length</label><input id="length" name="length" type="number" inputmode="decimal" min="1" step="any" value="60" required /></div>\\n<div class="field"><label for="yarnWeight">Yarn weight (CYC)</label><select id="yarnWeight" name="yarnWeight" >
+    form: `<div class="field"><label for="preset">Preset size</label><select id="preset" name="preset" data-preset><option value="">Custom</option><option value="30x36">Baby 30×36"</option><option value="50x60" selected>Throw 50×60"</option><option value="66x90">Twin 66×90"</option><option value="90x100">Queen 90×100"</option></select></div><div class="field"><label for="unit">Units</label><select id="unit" name="unit" ><option value="in">Inches</option><option value="cm">Centimeters</option></select></div><div class="field"><label for="width">Width</label><input id="width" name="width" type="number" inputmode="decimal" min="1" step="any" value="50" required /></div><div class="field"><label for="length">Length</label><input id="length" name="length" type="number" inputmode="decimal" min="1" step="any" value="60" required /></div><div class="field"><label for="yarnWeight">Yarn weight (CYC)</label><select id="yarnWeight" name="yarnWeight" >
 <option value="0">0 — Lace</option>
 <option value="1">1 — Super Fine</option>
 <option value="2">2 — Fine / Sport</option>
@@ -19,7 +19,7 @@ export const TOOL_PAGES: ToolPageContent[] = [
 <option value="4" selected>4 — Medium / Worsted</option>
 <option value="5">5 — Bulky</option>
 <option value="6">6 — Super Bulky</option>
-<option value="7">7 — Jumbo</option></select></div>\\n<div class="field"><label for="method">Method</label><select id="method" name="method" ><option value="knit">Knitting</option><option value="crochet">Crochet</option></select></div>\\n<div class="field"><label for="skeinLength">Length per skein</label><input id="skeinLength" name="skeinLength" type="number" inputmode="decimal" min="1" step="any" value="200" required /></div>\\n<div class="field"><label for="skeinLengthUnit">Skein unit</label><select id="skeinLengthUnit" name="skeinLengthUnit" ><option value="yd">Yards</option><option value="m">Meters</option></select></div>\\n<div class="field"><label for="skeinGrams">Grams per skein</label><input id="skeinGrams" name="skeinGrams" type="number" inputmode="decimal" min="0" step="any" value="100" /></div>`,
+<option value="7">7 — Jumbo</option></select></div><div class="field"><label for="method">Method</label><select id="method" name="method" ><option value="knit">Knitting</option><option value="crochet">Crochet</option></select></div><div class="field"><label for="skeinLength">Length per skein</label><input id="skeinLength" name="skeinLength" type="number" inputmode="decimal" min="1" step="any" value="200" required /></div><div class="field"><label for="skeinLengthUnit">Skein unit</label><select id="skeinLengthUnit" name="skeinLengthUnit" ><option value="yd">Yards</option><option value="m">Meters</option></select></div><div class="field"><label for="skeinGrams">Grams per skein</label><input id="skeinGrams" name="skeinGrams" type="number" inputmode="decimal" min="0" step="any" value="100" /></div>`,
     sections: [
       ["How this calculator works", "The tool multiplies blanket area by a yarn-density factor for your Craft Yarn Council weight and craft method, adds a 10% waste allowance, then divides by skein length for whole skeins. Optional grams use your skein weight or category midpoints from typical CYC-linked yardage ranges."],
       ["Formula and method", "Yards \u2248 width_in \u00d7 length_in \u00d7 density(weight, method) \u00d7 1.10. Densities are planning averages calibrated to common pattern yardages for throws. Crochet multiplies knit density by about 1.28. Cables and dense textures use more yarn than stockinette averages."],
@@ -34,18 +34,16 @@ export const TOOL_PAGES: ToolPageContent[] = [
       ["Does crochet use more yarn than knitting?", "Yes. For the same size and weight category, crochet typically needs about 25\u201330% more yarn."],
       ["Should I buy an extra skein?", "Yes for solid-color projects when dye lots matter."],
     ],
-    sources: [
-      ["Craft Yarn Council Yarn Weight System", "https://www.craftyarncouncil.com/standards/yarn-weight-system"],
-    ],
+    sources: [["Craft Yarn Council — Standard Yarn Weight System","https://www.craftyarncouncil.com/standards/yarn-weight-system"],["Craft Yarn Council — Standards overview","https://www.craftyarncouncil.com/standards"]],
   },
   {
     slug: "yarn-sweater-calculator",
     calc: "yarn-sweater",
-    h1: "Yarn Sweater Calculator",
-    title: "Yarn Sweater Calculator",
-    description: "Estimate yarn yardage and skeins for sweaters by size, yarn weight, and knit or crochet method.",
+    h1: "Yarn Sweater Calculator: How Much Yarn for a Sweater?",
+    title: "Yarn Sweater Calculator: How Much Yarn by Size?",
+    description: "Estimate yards and skeins for a knit or crochet sweater by chest size and Craft Yarn Council yarn weight. Free planning tool with inches or centimeters and skein math.",
     answer: "A medium adult sweater in worsted (category 4) yarn usually needs about 1,000\u20131,400 yards to knit, more for long sleeves, cables, or crochet. Pick a size and yarn weight below to estimate skeins from your ball-band yardage.",
-    form: `<div class="field"><label for="size">Size</label><select id="size" name="size" ><option value="xs">XS</option><option value="s">S</option><option value="m" selected>M</option><option value="l">L</option><option value="xl">XL</option><option value="2xl">2XL</option></select></div>\\n<div class="field"><label for="yarnWeight">Yarn weight (CYC)</label><select id="yarnWeight" name="yarnWeight" >
+    form: `<div class="field"><label for="size">Size</label><select id="size" name="size" ><option value="xs">XS</option><option value="s">S</option><option value="m" selected>M</option><option value="l">L</option><option value="xl">XL</option><option value="2xl">2XL</option></select></div><div class="field"><label for="yarnWeight">Yarn weight (CYC)</label><select id="yarnWeight" name="yarnWeight" >
 <option value="0">0 — Lace</option>
 <option value="1">1 — Super Fine</option>
 <option value="2">2 — Fine / Sport</option>
@@ -53,7 +51,7 @@ export const TOOL_PAGES: ToolPageContent[] = [
 <option value="4" selected>4 — Medium / Worsted</option>
 <option value="5">5 — Bulky</option>
 <option value="6">6 — Super Bulky</option>
-<option value="7">7 — Jumbo</option></select></div>\\n<div class="field"><label for="method">Method</label><select id="method" name="method" ><option value="knit">Knitting</option><option value="crochet">Crochet</option></select></div>\\n<div class="field"><label for="skeinLength">Length per skein</label><input id="skeinLength" name="skeinLength" type="number" inputmode="decimal" min="1" step="any" value="200" required /></div>\\n<div class="field"><label for="skeinLengthUnit">Skein unit</label><select id="skeinLengthUnit" name="skeinLengthUnit" ><option value="yd">Yards</option><option value="m">Meters</option></select></div>\\n<div class="field"><label for="skeinGrams">Grams per skein</label><input id="skeinGrams" name="skeinGrams" type="number" inputmode="decimal" min="0" step="any" value="100" /></div>`,
+<option value="7">7 — Jumbo</option></select></div><div class="field"><label for="method">Method</label><select id="method" name="method" ><option value="knit">Knitting</option><option value="crochet">Crochet</option></select></div><div class="field"><label for="skeinLength">Length per skein</label><input id="skeinLength" name="skeinLength" type="number" inputmode="decimal" min="1" step="any" value="200" required /></div><div class="field"><label for="skeinLengthUnit">Skein unit</label><select id="skeinLengthUnit" name="skeinLengthUnit" ><option value="yd">Yards</option><option value="m">Meters</option></select></div><div class="field"><label for="skeinGrams">Grams per skein</label><input id="skeinGrams" name="skeinGrams" type="number" inputmode="decimal" min="0" step="any" value="100" /></div>`,
     sections: [
       ["How sweater yarn estimates are built", "We approximate the sweater as a body rectangle (chest \u00d7 length) plus two sleeves, convert that surface to an equivalent area, then apply the density model with a 15% waste factor for seaming, ribbing, and swatches."],
       ["Formula", "Body area = chest \u00d7 length; sleeve area \u2248 2 \u00d7 (chest/4 + 2\") \u00d7 sleeve length; total yards = area \u00d7 density \u00d7 1.15. Size chart values are common adult finished measurements in inches."],
@@ -67,18 +65,16 @@ export const TOOL_PAGES: ToolPageContent[] = [
       ["How many skeins for a sweater?", "Worsted adult sweaters often need 5\u201310 skeins of 200 yd / 100 g, depending on size and stitch pattern."],
       ["What if my yarn is DK?", "Choose category 3. DK usually needs more yards than worsted for the same size."],
     ],
-    sources: [
-      ["Craft Yarn Council Yarn Weight System", "https://www.craftyarncouncil.com/standards/yarn-weight-system"],
-    ],
+    sources: [["Craft Yarn Council — Standard Yarn Weight System","https://www.craftyarncouncil.com/standards/yarn-weight-system"],["Craft Yarn Council — Body measurements & ease","https://www.craftyarncouncil.com/standards/body-sizing"]],
   },
   {
     slug: "yarn-hat-calculator",
     calc: "yarn-hat",
-    h1: "Yarn Hat Calculator",
-    title: "Yarn Hat Calculator",
-    description: "Calculate yarn yards and skeins for knit or crochet hats from circumference, depth, and yarn weight.",
+    h1: "Yarn Hat Calculator: How Much Yarn for a Hat?",
+    title: "Yarn Hat Calculator: Yards & Skeins by Size",
+    description: "Calculate yarn yards and skeins for knit or crochet hats from circumference, depth and CYC yarn weight. Free estimator for beanie and adult sizes in inches.",
     answer: "Most adult knit hats in worsted yarn use about 100\u2013180 yards (90\u2013165 m). Enter head circumference and hat depth below\u2014child sizes need less; slouchy or brioche hats need more.",
-    form: `<div class="field"><label for="circumference">Circumference (inches)</label><input id="circumference" name="circumference" type="number" inputmode="decimal" min="1" step="any" value="22" required /></div>\\n<div class="field"><label for="depth">Depth (inches)</label><input id="depth" name="depth" type="number" inputmode="decimal" min="1" step="any" value="8" required /></div>\\n<div class="field"><label for="yarnWeight">Yarn weight (CYC)</label><select id="yarnWeight" name="yarnWeight" >
+    form: `<div class="field"><label for="circumference">Circumference (inches)</label><input id="circumference" name="circumference" type="number" inputmode="decimal" min="1" step="any" value="22" required /></div><div class="field"><label for="depth">Depth (inches)</label><input id="depth" name="depth" type="number" inputmode="decimal" min="1" step="any" value="8" required /></div><div class="field"><label for="yarnWeight">Yarn weight (CYC)</label><select id="yarnWeight" name="yarnWeight" >
 <option value="0">0 — Lace</option>
 <option value="1">1 — Super Fine</option>
 <option value="2">2 — Fine / Sport</option>
@@ -86,7 +82,7 @@ export const TOOL_PAGES: ToolPageContent[] = [
 <option value="4" selected>4 — Medium / Worsted</option>
 <option value="5">5 — Bulky</option>
 <option value="6">6 — Super Bulky</option>
-<option value="7">7 — Jumbo</option></select></div>\\n<div class="field"><label for="method">Method</label><select id="method" name="method" ><option value="knit">Knitting</option><option value="crochet">Crochet</option></select></div>\\n<div class="field"><label for="skeinLength">Length per skein</label><input id="skeinLength" name="skeinLength" type="number" inputmode="decimal" min="1" step="any" value="200" required /></div>\\n<div class="field"><label for="skeinLengthUnit">Skein unit</label><select id="skeinLengthUnit" name="skeinLengthUnit" ><option value="yd">Yards</option><option value="m">Meters</option></select></div>\\n<div class="field"><label for="skeinGrams">Grams per skein</label><input id="skeinGrams" name="skeinGrams" type="number" inputmode="decimal" min="0" step="any" value="100" /></div>`,
+<option value="7">7 — Jumbo</option></select></div><div class="field"><label for="method">Method</label><select id="method" name="method" ><option value="knit">Knitting</option><option value="crochet">Crochet</option></select></div><div class="field"><label for="skeinLength">Length per skein</label><input id="skeinLength" name="skeinLength" type="number" inputmode="decimal" min="1" step="any" value="200" required /></div><div class="field"><label for="skeinLengthUnit">Skein unit</label><select id="skeinLengthUnit" name="skeinLengthUnit" ><option value="yd">Yards</option><option value="m">Meters</option></select></div><div class="field"><label for="skeinGrams">Grams per skein</label><input id="skeinGrams" name="skeinGrams" type="number" inputmode="decimal" min="0" step="any" value="100" /></div>`,
     sections: [
       ["Method", "We model the hat as a tapered cylinder: area \u2248 circumference \u00d7 depth \u00d7 0.85, then apply yarn density and 10% waste. Use finished hat circumference (often 1\u20132\" negative ease for knit ribbed hats)."],
       ["Worked example", "Adult 22\" \u00d7 8\" depth, worsted knit: expect roughly one 200 yd skein with leftover for a pom-pom."],
@@ -99,18 +95,16 @@ export const TOOL_PAGES: ToolPageContent[] = [
       ["How much yarn for an adult hat?", "About 100\u2013180 yards of worsted for a classic beanie; bulky may need only 60\u2013100 yards."],
       ["Child hat yardage?", "Try 18\u201320\" circumference and 6\u20137\" depth for many toddlers."],
     ],
-    sources: [
-      ["Craft Yarn Council Yarn Weight System", "https://www.craftyarncouncil.com/standards/yarn-weight-system"],
-    ],
+    sources: [["Craft Yarn Council — Yarn Weight System","https://www.craftyarncouncil.com/standards/yarn-weight-system"],["Craft Yarn Council — Head circumference chart","https://www.craftyarncouncil.com/standards/head-circumference-chart"]],
   },
   {
     slug: "yarn-scarf-calculator",
     calc: "yarn-scarf",
-    h1: "Yarn Scarf Calculator",
-    title: "Yarn Scarf Calculator",
-    description: "Estimate yarn for scarves and wraps by width, length, yarn weight, and knit or crochet.",
+    h1: "Yarn Scarf Calculator: How Much Yarn for a Scarf?",
+    title: "Yarn Scarf Calculator: Width, Length & Yardage",
+    description: "Estimate yarn yards and skeins for scarves and wraps by width, length, yarn weight and knit or crochet. Free calculator with yards, meters and optional grams.",
     answer: "A classic 8\u00d760 inch worsted knit scarf often needs about 350\u2013500 yards. Wider wraps and lace scarves vary widely\u2014enter your dimensions and skein details below.",
-    form: `<div class="field"><label for="unit">Units</label><select id="unit" name="unit" ><option value="in">Inches</option><option value="cm">Centimeters</option></select></div>\\n<div class="field"><label for="width">Width</label><input id="width" name="width" type="number" inputmode="decimal" min="1" step="any" value="8" required /></div>\\n<div class="field"><label for="length">Length</label><input id="length" name="length" type="number" inputmode="decimal" min="1" step="any" value="60" required /></div>\\n<div class="field"><label for="yarnWeight">Yarn weight (CYC)</label><select id="yarnWeight" name="yarnWeight" >
+    form: `<div class="field"><label for="unit">Units</label><select id="unit" name="unit" ><option value="in">Inches</option><option value="cm">Centimeters</option></select></div><div class="field"><label for="width">Width</label><input id="width" name="width" type="number" inputmode="decimal" min="1" step="any" value="8" required /></div><div class="field"><label for="length">Length</label><input id="length" name="length" type="number" inputmode="decimal" min="1" step="any" value="60" required /></div><div class="field"><label for="yarnWeight">Yarn weight (CYC)</label><select id="yarnWeight" name="yarnWeight" >
 <option value="0">0 — Lace</option>
 <option value="1">1 — Super Fine</option>
 <option value="2">2 — Fine / Sport</option>
@@ -118,7 +112,7 @@ export const TOOL_PAGES: ToolPageContent[] = [
 <option value="4" selected>4 — Medium / Worsted</option>
 <option value="5">5 — Bulky</option>
 <option value="6">6 — Super Bulky</option>
-<option value="7">7 — Jumbo</option></select></div>\\n<div class="field"><label for="method">Method</label><select id="method" name="method" ><option value="knit">Knitting</option><option value="crochet">Crochet</option></select></div>\\n<div class="field"><label for="skeinLength">Length per skein</label><input id="skeinLength" name="skeinLength" type="number" inputmode="decimal" min="1" step="any" value="200" required /></div>\\n<div class="field"><label for="skeinLengthUnit">Skein unit</label><select id="skeinLengthUnit" name="skeinLengthUnit" ><option value="yd">Yards</option><option value="m">Meters</option></select></div>\\n<div class="field"><label for="skeinGrams">Grams per skein</label><input id="skeinGrams" name="skeinGrams" type="number" inputmode="decimal" min="0" step="any" value="100" /></div>`,
+<option value="7">7 — Jumbo</option></select></div><div class="field"><label for="method">Method</label><select id="method" name="method" ><option value="knit">Knitting</option><option value="crochet">Crochet</option></select></div><div class="field"><label for="skeinLength">Length per skein</label><input id="skeinLength" name="skeinLength" type="number" inputmode="decimal" min="1" step="any" value="200" required /></div><div class="field"><label for="skeinLengthUnit">Skein unit</label><select id="skeinLengthUnit" name="skeinLengthUnit" ><option value="yd">Yards</option><option value="m">Meters</option></select></div><div class="field"><label for="skeinGrams">Grams per skein</label><input id="skeinGrams" name="skeinGrams" type="number" inputmode="decimal" min="0" step="any" value="100" /></div>`,
     sections: [
       ["How it works", "Scarves use the rectangle yarn model with an 8% waste factor. Open lace uses less yarn than the average; dense rib uses more."],
       ["Worked example", "8\u00d760\" worsted knit scarf at 200 yd/skein: expect about 2\u20133 skeins. A 20\u00d770\" DK wrap can need 600\u2013900 yards."],
@@ -131,18 +125,16 @@ export const TOOL_PAGES: ToolPageContent[] = [
       ["How many balls for a scarf?", "Often 1\u20133 balls of 200 yd worsted for a narrow scarf."],
       ["Meters or yards?", "Select your skein unit to match the ball band."],
     ],
-    sources: [
-      ["Craft Yarn Council Yarn Weight System", "https://www.craftyarncouncil.com/standards/yarn-weight-system"],
-    ],
+    sources: [["Craft Yarn Council — Standard Yarn Weight System","https://www.craftyarncouncil.com/standards/yarn-weight-system"]],
   },
   {
     slug: "yarn-amigurumi-calculator",
     calc: "yarn-amigurumi",
-    h1: "Amigurumi Yarn Calculator",
-    title: "Amigurumi Yarn Calculator",
-    description: "Estimate yarn for amigurumi from finished height and yarn weight in inches or centimeters.",
+    h1: "Amigurumi Yarn Calculator: Yarn for Soft Toys",
+    title: "Amigurumi Yarn Calculator: Height to Yardage",
+    description: "Estimate yarn for amigurumi from finished height and Craft Yarn Council yarn weight. Free planner for crochet toys in inches or centimeters with skein counts.",
     answer: "A 6 inch amigurumi in light (DK / category 3) cotton often needs about 50\u2013120 yards of main color, depending on girth and accessories. Enter height and yarn weight for a planning estimate.",
-    form: `<div class="field"><label for="unit">Units</label><select id="unit" name="unit" ><option value="in">Inches</option><option value="cm">Centimeters</option></select></div>\\n<div class="field"><label for="height">Finished height</label><input id="height" name="height" type="number" inputmode="decimal" min="1" step="any" value="6" required /></div>\\n<div class="field"><label for="yarnWeight">Yarn weight (CYC)</label><select id="yarnWeight" name="yarnWeight" >
+    form: `<div class="field"><label for="unit">Units</label><select id="unit" name="unit" ><option value="in">Inches</option><option value="cm">Centimeters</option></select></div><div class="field"><label for="height">Finished height</label><input id="height" name="height" type="number" inputmode="decimal" min="1" step="any" value="6" required /></div><div class="field"><label for="yarnWeight">Yarn weight (CYC)</label><select id="yarnWeight" name="yarnWeight" >
 <option value="0">0 — Lace</option>
 <option value="1">1 — Super Fine</option>
 <option value="2">2 — Fine / Sport</option>
@@ -150,7 +142,7 @@ export const TOOL_PAGES: ToolPageContent[] = [
 <option value="4">4 — Medium / Worsted</option>
 <option value="5">5 — Bulky</option>
 <option value="6">6 — Super Bulky</option>
-<option value="7">7 — Jumbo</option></select></div>\\n<div class="field"><label for="skeinLength">Length per skein</label><input id="skeinLength" name="skeinLength" type="number" inputmode="decimal" min="1" step="any" value="150" required /></div>\\n<div class="field"><label for="skeinLengthUnit">Skein unit</label><select id="skeinLengthUnit" name="skeinLengthUnit" ><option value="yd">Yards</option><option value="m">Meters</option></select></div>\\n<div class="field"><label for="skeinGrams">Grams per skein</label><input id="skeinGrams" name="skeinGrams" type="number" inputmode="decimal" min="0" step="any" value="50" /></div>`,
+<option value="7">7 — Jumbo</option></select></div><div class="field"><label for="skeinLength">Length per skein</label><input id="skeinLength" name="skeinLength" type="number" inputmode="decimal" min="1" step="any" value="150" required /></div><div class="field"><label for="skeinLengthUnit">Skein unit</label><select id="skeinLengthUnit" name="skeinLengthUnit" ><option value="yd">Yards</option><option value="m">Meters</option></select></div><div class="field"><label for="skeinGrams">Grams per skein</label><input id="skeinGrams" name="skeinGrams" type="number" inputmode="decimal" min="0" step="any" value="50" /></div>`,
     sections: [
       ["Method", "We approximate the toy as a sphere-like surface from height (radius \u2248 height/2.5), compute surface area, then apply crochet density and 15% waste."],
       ["Worked example", "6\" tall figure, DK yarn, 150 yd skeins: expect under one skein of main color for a simple shape."],
@@ -163,18 +155,16 @@ export const TOOL_PAGES: ToolPageContent[] = [
       ["How much yarn for amigurumi?", "Small 4\u20136\" toys often fit in 50\u2013150 yards of DK or worsted main color."],
       ["Best yarn weight?", "DK and worsted cotton or acrylic are common; categories 2\u20134 cover most patterns."],
     ],
-    sources: [
-      ["Craft Yarn Council Yarn Weight System", "https://www.craftyarncouncil.com/standards/yarn-weight-system"],
-    ],
+    sources: [["Craft Yarn Council — Standard Yarn Weight System","https://www.craftyarncouncil.com/standards/yarn-weight-system"],["Craft Yarn Council — Crochet standards","https://www.craftyarncouncil.com/standards"]],
   },
   {
     slug: "yarn-substitution-calculator",
     calc: "yarn-substitution",
-    h1: "Yarn Substitution & Weight Converter",
-    title: "Yarn Substitution Calculator",
-    description: "Convert yarn yardage between Craft Yarn Council weights and convert grams, ounces, yards, and meters.",
+    h1: "Yarn Substitution Calculator: Weight & Yardage Converter",
+    title: "Yarn Substitution Calculator: CYC Weight Converter",
+    description: "Convert yarn yardage between Craft Yarn Council weights and convert grams, ounces, yards and meters. Free substitution helper so you can swap skeins with confidence.",
     answer: "To substitute yarn, keep fabric weight similar: convert original yards into grams using the old weight\u2019s yards-per-100 g average, then back into yards for the new weight. Use the converter below for CYC categories 0\u20137 and unit changes.",
-    form: `<div class="field"><label for="mode">Mode</label><select id="mode" name="mode" ><option value="substitute" selected>Substitute between weights</option><option value="convert">Convert g / oz / yd / m</option></select></div>\\n<div class="field"><label for="yards">Original yards (substitute mode)</label><input id="yards" name="yards" type="number" inputmode="decimal" min="0" step="any" value="400" required /></div>\\n<div class="field"><label for="fromWeight">From weight</label><select id="fromWeight" name="fromWeight" >
+    form: `<div class="field"><label for="mode">Mode</label><select id="mode" name="mode" ><option value="substitute" selected>Substitute between weights</option><option value="convert">Convert g / oz / yd / m</option></select></div><div class="field"><label for="yards">Original yards (substitute mode)</label><input id="yards" name="yards" type="number" inputmode="decimal" min="0" step="any" value="400" required /></div><div class="field"><label for="fromWeight">From weight</label><select id="fromWeight" name="fromWeight" >
 <option value="0">0 — Lace</option>
 <option value="1">1 — Super Fine</option>
 <option value="2">2 — Fine / Sport</option>
@@ -182,7 +172,7 @@ export const TOOL_PAGES: ToolPageContent[] = [
 <option value="4" selected>4 — Medium / Worsted</option>
 <option value="5">5 — Bulky</option>
 <option value="6">6 — Super Bulky</option>
-<option value="7">7 — Jumbo</option></select></div>\\n<div class="field"><label for="toWeight">To weight</label><select id="toWeight" name="toWeight" >
+<option value="7">7 — Jumbo</option></select></div><div class="field"><label for="toWeight">To weight</label><select id="toWeight" name="toWeight" >
 <option value="0">0 — Lace</option>
 <option value="1">1 — Super Fine</option>
 <option value="2">2 — Fine / Sport</option>
@@ -190,7 +180,7 @@ export const TOOL_PAGES: ToolPageContent[] = [
 <option value="4">4 — Medium / Worsted</option>
 <option value="5">5 — Bulky</option>
 <option value="6">6 — Super Bulky</option>
-<option value="7">7 — Jumbo</option></select></div>\\n<div class="field"><label for="value">Value (convert mode)</label><input id="value" name="value" type="number" inputmode="decimal" min="0" step="any" value="100" required /></div>\\n<div class="field"><label for="fromUnit">From unit</label><select id="fromUnit" name="fromUnit" ><option value="g">Grams</option><option value="oz">Ounces</option><option value="yd">Yards</option><option value="m">Meters</option></select></div>\\n<div class="field"><label for="yarnWeight">Weight for convert mode</label><select id="yarnWeight" name="yarnWeight" >
+<option value="7">7 — Jumbo</option></select></div><div class="field"><label for="value">Value (convert mode)</label><input id="value" name="value" type="number" inputmode="decimal" min="0" step="any" value="100" required /></div><div class="field"><label for="fromUnit">From unit</label><select id="fromUnit" name="fromUnit" ><option value="g">Grams</option><option value="oz">Ounces</option><option value="yd">Yards</option><option value="m">Meters</option></select></div><div class="field"><label for="yarnWeight">Weight for convert mode</label><select id="yarnWeight" name="yarnWeight" >
 <option value="0">0 — Lace</option>
 <option value="1">1 — Super Fine</option>
 <option value="2">2 — Fine / Sport</option>
@@ -211,18 +201,16 @@ export const TOOL_PAGES: ToolPageContent[] = [
       ["Can I substitute DK for worsted?", "Sometimes, with more yardage and adjusted needle size. Swatch for gauge and hand."],
       ["How many grams in a skein?", "Read the band. This tool converts using category averages when you only know yards or grams."],
     ],
-    sources: [
-      ["Craft Yarn Council Yarn Weight System", "https://www.craftyarncouncil.com/standards/yarn-weight-system"],
-    ],
+    sources: [["Craft Yarn Council — Standard Yarn Weight System","https://www.craftyarncouncil.com/standards/yarn-weight-system"],["Craft Yarn Council — Yarn standards FAQs","https://www.craftyarncouncil.com/standards/faqs"]],
   },
   {
     slug: "knitting-gauge-calculator",
     calc: "knitting-gauge",
-    h1: "Knitting Gauge Calculator",
-    title: "Knitting Gauge Calculator",
-    description: "Calculate stitches and rows per inch from a swatch, convert gauge to finished size, or resize a pattern to your gauge.",
+    h1: "Knitting Gauge Calculator: Stitches Per Inch & Resize",
+    title: "Knitting Gauge Calculator: Stitches Per Inch & Resize",
+    description: "Free knitting gauge calculator: get stitches and rows per inch from your swatch, convert gauge to finished size, or resize a pattern to match your own gauge.",
     answer: "Gauge is stitches and rows in a measured swatch\u2014usually reported per 4 inches (10 cm). Measure a blocked swatch, enter stitch/row counts and dimensions, then convert to cast-on counts or resize a pattern so finished measurements stay correct.",
-    form: `<div class="field"><label for="mode">Mode</label><select id="mode" name="mode" ><option value="gauge" selected>Swatch → gauge</option><option value="size">Gauge → size</option><option value="resize">Resize pattern</option></select></div>\\n<div class="field"><label for="stitches">Stitches in swatch</label><input id="stitches" name="stitches" type="number" inputmode="decimal" min="1" step="any" value="20" required /></div>\\n<div class="field"><label for="rows">Rows in swatch</label><input id="rows" name="rows" type="number" inputmode="decimal" min="1" step="any" value="28" required /></div>\\n<div class="field"><label for="swatchWidth">Swatch width</label><input id="swatchWidth" name="swatchWidth" type="number" inputmode="decimal" min="0.1" step="any" value="4" required /></div>\\n<div class="field"><label for="swatchHeight">Swatch height</label><input id="swatchHeight" name="swatchHeight" type="number" inputmode="decimal" min="0.1" step="any" value="4" required /></div>\\n<div class="field"><label for="swatchUnit">Swatch units</label><select id="swatchUnit" name="swatchUnit" ><option value="in">Inches</option><option value="cm">Centimeters</option></select></div>\\n<div class="field"><label for="targetWidth">Target width (size mode)</label><input id="targetWidth" name="targetWidth" type="number" inputmode="decimal" min="0" step="any" value="20" /></div>\\n<div class="field"><label for="targetLength">Target length (size mode)</label><input id="targetLength" name="targetLength" type="number" inputmode="decimal" min="0" step="any" value="10" /></div>\\n<div class="field"><label for="targetUnit">Target units</label><select id="targetUnit" name="targetUnit" ><option value="in">Inches</option><option value="cm">Centimeters</option></select></div>\\n<div class="field"><label for="patternStitches">Pattern stitches (resize)</label><input id="patternStitches" name="patternStitches" type="number" inputmode="decimal" min="0" step="any" value="100" /></div>\\n<div class="field"><label for="patternRows">Pattern rows (resize)</label><input id="patternRows" name="patternRows" type="number" inputmode="decimal" min="0" step="any" value="120" /></div>\\n<div class="field"><label for="patternSts4">Pattern sts per 4"</label><input id="patternSts4" name="patternSts4" type="number" inputmode="decimal" min="0" step="any" value="20" /></div>\\n<div class="field"><label for="patternRows4">Pattern rows per 4"</label><input id="patternRows4" name="patternRows4" type="number" inputmode="decimal" min="0" step="any" value="28" /></div>`,
+    form: `<div class="field"><label for="mode">Mode</label><select id="mode" name="mode" data-mode-select><option value="gauge" selected>Swatch → gauge</option><option value="size">Gauge → size</option><option value="resize">Resize pattern</option></select></div><div class="field" data-mode-show="gauge size resize"><label for="stitches">Stitches in swatch</label><input id="stitches" name="stitches" type="number" inputmode="decimal" min="1" step="any" value="20" required /></div><div class="field" data-mode-show="gauge size resize"><label for="rows">Rows in swatch</label><input id="rows" name="rows" type="number" inputmode="decimal" min="1" step="any" value="28" required /></div><div class="field" data-mode-show="gauge size resize"><label for="swatchWidth">Swatch width</label><input id="swatchWidth" name="swatchWidth" type="number" inputmode="decimal" min="0.1" step="any" value="4" required /></div><div class="field" data-mode-show="gauge size resize"><label for="swatchHeight">Swatch height</label><input id="swatchHeight" name="swatchHeight" type="number" inputmode="decimal" min="0.1" step="any" value="4" required /></div><div class="field" data-mode-show="gauge size resize"><label for="swatchUnit">Swatch units</label><select id="swatchUnit" name="swatchUnit" ><option value="in">Inches</option><option value="cm">Centimeters</option></select></div><div class="field" data-mode-show="size" hidden><label for="targetWidth">Target width</label><input id="targetWidth" name="targetWidth" type="number" inputmode="decimal" min="0" step="any" value="20" /></div><div class="field" data-mode-show="size" hidden><label for="targetLength">Target length</label><input id="targetLength" name="targetLength" type="number" inputmode="decimal" min="0" step="any" value="10" /></div><div class="field" data-mode-show="size" hidden><label for="targetUnit">Target units</label><select id="targetUnit" name="targetUnit" ><option value="in">Inches</option><option value="cm">Centimeters</option></select></div><div class="field" data-mode-show="resize" hidden><label for="patternStitches">Pattern stitches</label><input id="patternStitches" name="patternStitches" type="number" inputmode="decimal" min="0" step="any" value="100" /></div><div class="field" data-mode-show="resize" hidden><label for="patternRows">Pattern rows</label><input id="patternRows" name="patternRows" type="number" inputmode="decimal" min="0" step="any" value="120" /></div><div class="field" data-mode-show="resize" hidden><label for="patternSts4">Pattern sts per 4"</label><input id="patternSts4" name="patternSts4" type="number" inputmode="decimal" min="0" step="any" value="20" /></div><div class="field" data-mode-show="resize" hidden><label for="patternRows4">Pattern rows per 4"</label><input id="patternRows4" name="patternRows4" type="number" inputmode="decimal" min="0" step="any" value="28" /></div>`,
     sections: [
       ["Why gauge matters", "If you have more stitches per inch than the pattern, the same cast-on makes a narrower fabric. Resizing multiplies pattern stitches by (your sts per 4\") / (pattern sts per 4\")."],
       ["Formulas", "sts/in = swatch_stitches \u00f7 swatch_width_in; target stitches = round(target_width_in \u00d7 sts/in); resized stitches = round(pattern_stitches \u00d7 your_sts4 / pattern_sts4)."],
@@ -236,18 +224,16 @@ export const TOOL_PAGES: ToolPageContent[] = [
       ["How do I measure knitting gauge?", "Knit a swatch at least 4\u20136\" wide, block it, then count stitches and rows over 4 inches in the center."],
       ["What if row gauge is off but stitch gauge matches?", "Adjust length by working fewer or more rows; stitch gauge controls width."],
     ],
-    sources: [
-      ["Craft Yarn Council \u2014 Standards and guidelines", "https://www.craftyarncouncil.com/standards"],
-    ],
+    sources: [["Craft Yarn Council — Standards and guidelines","https://www.craftyarncouncil.com/standards"],["Craft Yarn Council — Yarn Weight System (gauge ranges)","https://www.craftyarncouncil.com/standards/yarn-weight-system"]],
   },
   {
     slug: "crochet-blanket-calculator",
     calc: "crochet-blanket",
-    h1: "Crochet Blanket Size & Stitch Calculator",
-    title: "Crochet Blanket Calculator",
-    description: "Calculate starting chain, stitches across, and rows for a crochet blanket from gauge and finished size.",
+    h1: "Crochet Blanket Starting Chain & Stitch Calculator",
+    title: "Crochet Blanket Starting Chain & Stitch Calculator",
+    description: "Calculate starting chain, stitches across and rows for a crochet blanket from your gauge and finished size. Free stitch planner—not a yarn yardage estimator.",
     answer: "Stitches across = blanket width \u00d7 (stitches in 4\" \u00f7 4). Rows = length \u00d7 (rows in 4\" \u00f7 4). Enter your gauge and target size to get starting chain (stitches + turning chain) and total stitch estimates.",
-    form: `<div class="field"><label for="unit">Units</label><select id="unit" name="unit" ><option value="in">Inches</option><option value="cm">Centimeters</option></select></div>\\n<div class="field"><label for="width">Blanket width</label><input id="width" name="width" type="number" inputmode="decimal" min="1" step="any" value="36" required /></div>\\n<div class="field"><label for="length">Blanket length</label><input id="length" name="length" type="number" inputmode="decimal" min="1" step="any" value="40" required /></div>\\n<div class="field"><label for="stitchesPer4in">Stitches per 4 inches</label><input id="stitchesPer4in" name="stitchesPer4in" type="number" inputmode="decimal" min="1" step="any" value="12" required /></div>\\n<div class="field"><label for="rowsPer4in">Rows per 4 inches</label><input id="rowsPer4in" name="rowsPer4in" type="number" inputmode="decimal" min="1" step="any" value="14" required /></div>\\n<div class="field"><label for="turningChain">Turning chain stitches</label><input id="turningChain" name="turningChain" type="number" inputmode="decimal" min="0" step="any" value="1" required /></div>`,
+    form: `<div class="field"><label for="unit">Units</label><select id="unit" name="unit" ><option value="in">Inches</option><option value="cm">Centimeters</option></select></div><div class="field"><label for="width">Blanket width</label><input id="width" name="width" type="number" inputmode="decimal" min="1" step="any" value="36" required /></div><div class="field"><label for="length">Blanket length</label><input id="length" name="length" type="number" inputmode="decimal" min="1" step="any" value="40" required /></div><div class="field"><label for="stitchesPer4in">Stitches per 4 inches</label><input id="stitchesPer4in" name="stitchesPer4in" type="number" inputmode="decimal" min="1" step="any" value="12" required /></div><div class="field"><label for="rowsPer4in">Rows per 4 inches</label><input id="rowsPer4in" name="rowsPer4in" type="number" inputmode="decimal" min="1" step="any" value="14" required /></div><div class="field"><label for="turningChain">Turning chain stitches</label><input id="turningChain" name="turningChain" type="number" inputmode="decimal" min="0" step="any" value="1" required /></div>`,
     sections: [
       ["How it works", "After you swatch in your stitch pattern, measure stitches and rows per 4 inches. The calculator scales those rates to your blanket size."],
       ["Worked example", "36\u00d740\" blanket at 12 sts / 14 rows per 4\": 108 stitches across, starting chain 109, 140 rows."],
@@ -260,18 +246,16 @@ export const TOOL_PAGES: ToolPageContent[] = [
       ["How many chains for a crochet blanket?", "Chains \u2248 stitches across + turning chain. Get stitches across from width and gauge with this tool."],
       ["What size is a baby blanket?", "Common crochet baby blankets are about 30\u00d736\" to 36\u00d752\"."],
     ],
-    sources: [
-      ["Craft Yarn Council crochet standards", "https://www.craftyarncouncil.com/standards"],
-    ],
+    sources: [["Craft Yarn Council — Standards and guidelines","https://www.craftyarncouncil.com/standards"],["Craft Yarn Council — Crochet abbreviations","https://www.craftyarncouncil.com/standards/crochet-abbreviations"]],
   },
   {
     slug: "increase-decrease-calculator",
     calc: "increase-decrease",
-    h1: "Increase & Decrease Evenly Calculator",
-    title: "Even Increase Calculator",
-    description: "Space knitting or crochet increases and decreases evenly across a row or round with clear instructions.",
+    h1: "Even Increase & Decrease Calculator for Knit & Crochet",
+    title: "Even Increase Calculator: Space Inc/Dec Evenly",
+    description: "Space knitting or crochet increases and decreases evenly across a row or round. Free calculator with clear instructions for flat rows and work in the round.",
     answer: "To shape evenly, place the same number of increases or decreases at nearly equal stitch intervals. Enter current stitches and how many changes you need\u2014the tool targets the new stitch count and drafts a spacing instruction for flat or in-the-round work.",
-    form: `<div class="field"><label for="currentStitches">Current stitches</label><input id="currentStitches" name="currentStitches" type="number" inputmode="decimal" min="2" step="any" value="80" required /></div>\\n<div class="field"><label for="changeCount">Increases or decreases</label><input id="changeCount" name="changeCount" type="number" inputmode="decimal" min="1" step="any" value="8" required /></div>\\n<div class="field"><label for="mode">Mode</label><select id="mode" name="mode" ><option value="increase" selected>Increase</option><option value="decrease">Decrease</option></select></div>\\n<div class="field"><label for="inTheRound">Worked</label><select id="inTheRound" name="inTheRound" ><option value="yes" selected>In the round</option><option value="no">Flat (rows)</option></select></div>`,
+    form: `<div class="field"><label for="currentStitches">Current stitches</label><input id="currentStitches" name="currentStitches" type="number" inputmode="decimal" min="2" step="any" value="80" required /></div><div class="field"><label for="changeCount">Increases or decreases</label><input id="changeCount" name="changeCount" type="number" inputmode="decimal" min="1" step="any" value="8" required /></div><div class="field"><label for="mode">Mode</label><select id="mode" name="mode" ><option value="increase" selected>Increase</option><option value="decrease">Decrease</option></select></div><div class="field"><label for="inTheRound">Worked</label><select id="inTheRound" name="inTheRound" ><option value="yes" selected>In the round</option><option value="no">Flat (rows)</option></select></div>`,
     sections: [
       ["Method", "We distribute shaping points across the current stitch count using evenly spaced positions. Instructions use M1/KFB for increases and K2tog/SSK for decreases\u2014substitute crochet sc increases or sc2tog as needed."],
       ["Worked example", "80 stitches, increase 8 in the round \u2192 88 stitches with shaping about every 10 stitches."],
@@ -285,18 +269,16 @@ export const TOOL_PAGES: ToolPageContent[] = [
       ["How do I increase evenly in knitting?", "Divide the round into equal sections and place one increase in each\u2014this calculator writes that spacing for you."],
       ["Does this work for crochet?", "Yes\u2014use the same spacing with crochet increase and decrease stitches."],
     ],
-    sources: [
-      ["Craft Yarn Council \u2014 knitting abbreviations", "https://www.craftyarncouncil.com/standards/knit-abbreviations"],
-    ],
+    sources: [["Craft Yarn Council — Knitting abbreviations","https://www.craftyarncouncil.com/standards/knitting-abbreviations"],["Craft Yarn Council — Crochet abbreviations","https://www.craftyarncouncil.com/standards/crochet-abbreviations"]],
   },
   {
     slug: "cast-on-calculator",
     calc: "cast-on",
-    h1: "Cast-On Calculator",
-    title: "Cast-On Calculator",
-    description: "Calculate how many stitches to cast on from gauge, desired width, ease percentage, and optional ribbing factor.",
+    h1: "Cast-On Calculator: Stitches from Gauge & Width",
+    title: "Cast-On Calculator: Stitches from Gauge & Width",
+    description: "Calculate how many stitches to cast on from gauge, desired width, ease percentage and optional ribbing factor. Free knitting planner for hats, scarves and garments.",
     answer: "Cast-on stitches \u2248 desired width (with ease) \u00d7 stitches per inch. Enter stitches per 4 inches, target width, and ease\u2014the calculator rounds to a whole stitch count and can tighten counts for ribbing pull-in.",
-    form: `<div class="field"><label for="unit">Width units</label><select id="unit" name="unit" ><option value="in">Inches</option><option value="cm">Centimeters</option></select></div>\\n<div class="field"><label for="width">Desired width</label><input id="width" name="width" type="number" inputmode="decimal" min="0.5" step="any" value="20" required /></div>\\n<div class="field"><label for="stitchesPer4in">Stitches per 4 inches</label><input id="stitchesPer4in" name="stitchesPer4in" type="number" inputmode="decimal" min="1" step="any" value="20" required /></div>\\n<div class="field"><label for="easePercent">Ease percent</label><input id="easePercent" name="easePercent" type="number" inputmode="decimal" min="0" step="any" value="0" required /></div>\\n<div class="field"><label for="ribbingFactor">Ribbing factor (1 = none)</label><input id="ribbingFactor" name="ribbingFactor" type="number" inputmode="decimal" min="0.5" step="any" value="1" required /></div>`,
+    form: `<div class="field"><label for="unit">Width units</label><select id="unit" name="unit" ><option value="in">Inches</option><option value="cm">Centimeters</option></select></div><div class="field"><label for="width">Desired width</label><input id="width" name="width" type="number" inputmode="decimal" min="0.5" step="any" value="20" required /></div><div class="field"><label for="stitchesPer4in">Stitches per 4 inches</label><input id="stitchesPer4in" name="stitchesPer4in" type="number" inputmode="decimal" min="1" step="any" value="20" required /></div><div class="field"><label for="easePercent">Ease percent</label><input id="easePercent" name="easePercent" type="number" inputmode="decimal" min="0" step="any" value="0" required /></div><div class="field"><label for="ribbingFactor">Ribbing factor (1 = none)</label><input id="ribbingFactor" name="ribbingFactor" type="number" inputmode="decimal" min="0.5" step="any" value="1" required /></div>`,
     sections: [
       ["Formula", "stitches = round(width_in \u00d7 (1 + ease%/100) \u00d7 (stitchesPer4in / 4) \u00d7 ribbingFactor). A ribbing factor near 0.9 helps when casting on in rib that springs in."],
       ["Worked example", "20\" width, 20 sts/4\" (5 sts/in), 5% ease \u2192 21\" effective \u00d7 5 = 105 stitches."],
@@ -310,18 +292,16 @@ export const TOOL_PAGES: ToolPageContent[] = [
       ["How many stitches to cast on for a hat?", "Use head circumference with negative ease and your stitch gauge."],
       ["What is ease?", "Ease is the difference between body and garment measurements."],
     ],
-    sources: [
-      ["Craft Yarn Council \u2014 Standards", "https://www.craftyarncouncil.com/standards"],
-    ],
+    sources: [["Craft Yarn Council — Standards and guidelines","https://www.craftyarncouncil.com/standards"],["Craft Yarn Council — Body measurements & ease","https://www.craftyarncouncil.com/standards/body-sizing"]],
   },
   {
     slug: "fabric-yardage-calculator",
     calc: "fabric-yardage",
-    h1: "Fabric Yardage Calculator",
-    title: "Fabric Yardage Calculator",
-    description: "Estimate fabric yards or meters for garments, curtains, upholstery, and tablecloths with waste and pattern repeat.",
+    h1: "Fabric Yardage Calculator: Garments, Curtains & More",
+    title: "Fabric Yardage Calculator: How Much Fabric to Buy?",
+    description: "Estimate fabric yards or meters for garments, curtains, upholstery and tablecloths with waste and pattern repeat. Free sewing yardage planner with fabric width input.",
     answer: "Fabric needed depends on project type, finished dimensions, fabric width, fullness (curtains), and pattern repeat. Enter those values below to estimate yards and meters\u2014always confirm against pattern envelopes for garments.",
-    form: `<div class="field"><label for="project">Project</label><select id="project" name="project" ><option value="garment">Garment</option><option value="curtains" selected>Curtains</option><option value="upholstery">Upholstery</option><option value="tablecloth">Tablecloth</option></select></div>\\n<div class="field"><label for="unit">Item units</label><select id="unit" name="unit" ><option value="in">Inches</option><option value="cm">Centimeters</option></select></div>\\n<div class="field"><label for="width">Finished width</label><input id="width" name="width" type="number" inputmode="decimal" min="1" step="any" value="60" required /></div>\\n<div class="field"><label for="length">Finished length / drop</label><input id="length" name="length" type="number" inputmode="decimal" min="1" step="any" value="84" required /></div>\\n<div class="field"><label for="fabricWidth">Fabric width</label><input id="fabricWidth" name="fabricWidth" type="number" inputmode="decimal" min="1" step="any" value="54" required /></div>\\n<div class="field"><label for="fabricWidthUnit">Fabric width units</label><select id="fabricWidthUnit" name="fabricWidthUnit" ><option value="in">Inches</option><option value="cm">Centimeters</option></select></div>\\n<div class="field"><label for="patternRepeat">Pattern repeat length</label><input id="patternRepeat" name="patternRepeat" type="number" inputmode="decimal" min="0" step="any" value="0" /></div>\\n<div class="field"><label for="wastePercent">Waste percent</label><input id="wastePercent" name="wastePercent" type="number" inputmode="decimal" min="0" step="any" value="10" required /></div>\\n<div class="field"><label for="fullness">Curtain fullness (×)</label><input id="fullness" name="fullness" type="number" inputmode="decimal" min="0" step="any" value="2" required /></div>\\n<div class="field"><label for="garmentFactor">Garment length factor</label><input id="garmentFactor" name="garmentFactor" type="number" inputmode="decimal" min="0" step="any" value="1.5" required /></div>`,
+    form: `<div class="field"><label for="project">Project</label><select id="project" name="project" ><option value="garment">Garment</option><option value="curtains" selected>Curtains</option><option value="upholstery">Upholstery</option><option value="tablecloth">Tablecloth</option></select></div><div class="field"><label for="unit">Item units</label><select id="unit" name="unit" ><option value="in">Inches</option><option value="cm">Centimeters</option></select></div><div class="field"><label for="width">Finished width</label><input id="width" name="width" type="number" inputmode="decimal" min="1" step="any" value="60" required /></div><div class="field"><label for="length">Finished length / drop</label><input id="length" name="length" type="number" inputmode="decimal" min="1" step="any" value="84" required /></div><div class="field"><label for="fabricWidth">Fabric width</label><input id="fabricWidth" name="fabricWidth" type="number" inputmode="decimal" min="1" step="any" value="54" required /></div><div class="field"><label for="fabricWidthUnit">Fabric width units</label><select id="fabricWidthUnit" name="fabricWidthUnit" ><option value="in">Inches</option><option value="cm">Centimeters</option></select></div><div class="field"><label for="patternRepeat">Pattern repeat length</label><input id="patternRepeat" name="patternRepeat" type="number" inputmode="decimal" min="0" step="any" value="0" /></div><div class="field"><label for="wastePercent">Waste percent</label><input id="wastePercent" name="wastePercent" type="number" inputmode="decimal" min="0" step="any" value="10" required /></div><div class="field"><label for="fullness">Curtain fullness (×)</label><input id="fullness" name="fullness" type="number" inputmode="decimal" min="0" step="any" value="2" required /></div><div class="field"><label for="garmentFactor">Garment length factor</label><input id="garmentFactor" name="garmentFactor" type="number" inputmode="decimal" min="0" step="any" value="1.5" required /></div>`,
     sections: [
       ["How estimates are calculated", "Curtains: panels = ceil(window width \u00d7 fullness \u00f7 fabric width); cut length \u2248 drop + 10\" hem/header, rounded up to pattern repeat, times panels. Upholstery and tablecloths add wrap or overhang. Garments use a planning factor\u2014not a nested pattern layout."],
       ["Worked example", "60\" window, 84\" drop, 2\u00d7 fullness, 54\" fabric: multiple panels and several yards before waste."],
@@ -334,18 +314,16 @@ export const TOOL_PAGES: ToolPageContent[] = [
       ["How much fabric for curtains?", "Often about 2\u00d7 window width in total fabric width (fullness), times drop plus hem/header."],
       ["Yards to meters?", "Results show both. 1 yard = 0.9144 meters."],
     ],
-    sources: [
-      ["General home-sewing fabric planning practices", "https://www.craftyarncouncil.com/standards"],
-    ],
+    sources: [["Craft Yarn Council — Body measurements (garment sizing context)","https://www.craftyarncouncil.com/standards/body-sizing"]],
   },
   {
     slug: "quilt-size-calculator",
     calc: "quilt-size",
-    h1: "Quilt Size Calculator",
-    title: "Quilt Size Calculator",
-    description: "Plan quilt dimensions from your block grid or fit blocks into a target twin, queen, or custom size.",
+    h1: "Quilt Size Calculator: Blocks, Sashing & Borders",
+    title: "Quilt Size Calculator: Blocks to Finished Dimensions",
+    description: "Plan quilt dimensions from your block grid or fit blocks into a twin, queen or custom size. Free quilting calculator for blocks, sashing, borders and finished inches.",
     answer: "Finished quilt width = blocks across \u00d7 block size + sashing between blocks + borders on both sides. Use \u201cfrom blocks\u201d to size a top, or \u201cfit to target\u201d to see how many blocks fit a twin, queen, or custom quilt.",
-    form: `<div class="field"><label for="mode">Mode</label><select id="mode" name="mode" ><option value="blocks" selected>From block grid</option><option value="fit">Fit blocks to target size</option></select></div>\\n<div class="field"><label for="blocksAcross">Blocks across</label><input id="blocksAcross" name="blocksAcross" type="number" inputmode="decimal" min="1" step="any" value="8" required /></div>\\n<div class="field"><label for="blocksDown">Blocks down</label><input id="blocksDown" name="blocksDown" type="number" inputmode="decimal" min="1" step="any" value="10" required /></div>\\n<div class="field"><label for="finishedBlockIn">Finished block (inches)</label><input id="finishedBlockIn" name="finishedBlockIn" type="number" inputmode="decimal" min="0.5" step="any" value="12" required /></div>\\n<div class="field"><label for="sashingIn">Sashing width (inches)</label><input id="sashingIn" name="sashingIn" type="number" inputmode="decimal" min="0" step="any" value="2" required /></div>\\n<div class="field"><label for="borderIn">Border width each side (inches)</label><input id="borderIn" name="borderIn" type="number" inputmode="decimal" min="0" step="any" value="4" required /></div>\\n<div class="field"><label for="targetWidth">Target width</label><input id="targetWidth" name="targetWidth" type="number" inputmode="decimal" min="1" step="any" value="80" required /></div>\\n<div class="field"><label for="targetLength">Target length</label><input id="targetLength" name="targetLength" type="number" inputmode="decimal" min="1" step="any" value="90" required /></div>\\n<div class="field"><label for="unit">Target units</label><select id="unit" name="unit" ><option value="in">Inches</option><option value="cm">Centimeters</option></select></div>`,
+    form: `<div class="field"><label for="mode">Mode</label><select id="mode" name="mode" ><option value="blocks" selected>From block grid</option><option value="fit">Fit blocks to target size</option></select></div><div class="field"><label for="blocksAcross">Blocks across</label><input id="blocksAcross" name="blocksAcross" type="number" inputmode="decimal" min="1" step="any" value="8" required /></div><div class="field"><label for="blocksDown">Blocks down</label><input id="blocksDown" name="blocksDown" type="number" inputmode="decimal" min="1" step="any" value="10" required /></div><div class="field"><label for="finishedBlockIn">Finished block (inches)</label><input id="finishedBlockIn" name="finishedBlockIn" type="number" inputmode="decimal" min="0.5" step="any" value="12" required /></div><div class="field"><label for="sashingIn">Sashing width (inches)</label><input id="sashingIn" name="sashingIn" type="number" inputmode="decimal" min="0" step="any" value="2" required /></div><div class="field"><label for="borderIn">Border width each side (inches)</label><input id="borderIn" name="borderIn" type="number" inputmode="decimal" min="0" step="any" value="4" required /></div><div class="field"><label for="targetWidth">Target width</label><input id="targetWidth" name="targetWidth" type="number" inputmode="decimal" min="1" step="any" value="80" required /></div><div class="field"><label for="targetLength">Target length</label><input id="targetLength" name="targetLength" type="number" inputmode="decimal" min="1" step="any" value="90" required /></div><div class="field"><label for="unit">Target units</label><select id="unit" name="unit" ><option value="in">Inches</option><option value="cm">Centimeters</option></select></div>`,
     sections: [
       ["Formulas", "width = blocksAcross\u00d7block + (blocksAcross\u22121)\u00d7sashing + 2\u00d7border (same for length). Fit mode floors how many block+sashing steps fit inside the target after borders."],
       ["Worked example", "8\u00d710 grid of 12\" blocks with 2\" sashing and 4\" borders produces a large top\u2014use the tool to tune block count before buying fabric."],
@@ -359,18 +337,16 @@ export const TOOL_PAGES: ToolPageContent[] = [
       ["What size is a queen quilt?", "Many patterns use about 84\u00d792\" for a queen top; confirm mattress plus desired drop."],
       ["How many 12\" blocks for a twin?", "Often around 6\u00d78 to 7\u00d79 blocks depending on sashing and borders\u2014use fit mode."],
     ],
-    sources: [
-      ["US mattress size charts (industry / ISPA summaries)", "https://www.sleepproducts.org/"],
-    ],
+    sources: [["International Sleep Products Association (mattress industry)","https://www.sleepproducts.org/"],["Craft Yarn Council — Standards overview","https://www.craftyarncouncil.com/standards"]],
   },
   {
     slug: "quilt-backing-calculator",
     calc: "quilt-backing",
-    h1: "Quilt Backing Calculator",
-    title: "Quilt Backing Calculator",
-    description: "Calculate quilt backing fabric yardage, panel count, and seam orientation for any quilt size.",
+    h1: "Quilt Backing Calculator: Yardage & Panel Layout",
+    title: "Quilt Backing Calculator: Fabric Yardage & Panels",
+    description: "Calculate quilt backing fabric yardage, panel count and seam orientation for any quilt size. Free quilting tool for 42–108 inch wide fabric and overhang.",
     answer: "Backing should be larger than the quilt top\u2014commonly 3\u20134 inches extra on each side for longarming. This calculator adds overhang, chooses a horizontal or vertical seam to minimize fabric, and reports yards and meters.",
-    form: `<div class="field"><label for="unit">Quilt units</label><select id="unit" name="unit" ><option value="in">Inches</option><option value="cm">Centimeters</option></select></div>\\n<div class="field"><label for="quiltWidth">Quilt width</label><input id="quiltWidth" name="quiltWidth" type="number" inputmode="decimal" min="1" step="any" value="80" required /></div>\\n<div class="field"><label for="quiltLength">Quilt length</label><input id="quiltLength" name="quiltLength" type="number" inputmode="decimal" min="1" step="any" value="90" required /></div>\\n<div class="field"><label for="fabricWidth">Fabric width</label><input id="fabricWidth" name="fabricWidth" type="number" inputmode="decimal" min="1" step="any" value="44" required /></div>\\n<div class="field"><label for="fabricWidthUnit">Fabric width units</label><select id="fabricWidthUnit" name="fabricWidthUnit" ><option value="in">Inches</option><option value="cm">Centimeters</option></select></div>\\n<div class="field"><label for="overhangIn">Overhang each side (inches)</label><input id="overhangIn" name="overhangIn" type="number" inputmode="decimal" min="0" step="any" value="4" required /></div>`,
+    form: `<div class="field"><label for="unit">Quilt units</label><select id="unit" name="unit" ><option value="in">Inches</option><option value="cm">Centimeters</option></select></div><div class="field"><label for="quiltWidth">Quilt width</label><input id="quiltWidth" name="quiltWidth" type="number" inputmode="decimal" min="1" step="any" value="80" required /></div><div class="field"><label for="quiltLength">Quilt length</label><input id="quiltLength" name="quiltLength" type="number" inputmode="decimal" min="1" step="any" value="90" required /></div><div class="field"><label for="fabricWidth">Fabric width</label><input id="fabricWidth" name="fabricWidth" type="number" inputmode="decimal" min="1" step="any" value="44" required /></div><div class="field"><label for="fabricWidthUnit">Fabric width units</label><select id="fabricWidthUnit" name="fabricWidthUnit" ><option value="in">Inches</option><option value="cm">Centimeters</option></select></div><div class="field"><label for="overhangIn">Overhang each side (inches)</label><input id="overhangIn" name="overhangIn" type="number" inputmode="decimal" min="0" step="any" value="4" required /></div>`,
     sections: [
       ["Method", "Required backing width/length = quilt size + 2\u00d7overhang. We compare piecing panels across the width versus the length and pick the orientation that uses less fabric, adding a little length for seam allowances when panels > 1."],
       ["Worked example", "80\u00d790\" quilt, 4\" overhang, 44\" fabric: typically two panels and on the order of 5+ yards depending on seam direction."],
@@ -383,18 +359,16 @@ export const TOOL_PAGES: ToolPageContent[] = [
       ["How much backing for a queen quilt?", "Often 8\u20139 yards of 44\" fabric pieced, or about 3 yards of 108\" wide back\u2014run your measurements here."],
       ["How much overhang do I need?", "Longarm quilters often ask for 4\" per side; domestic quilting may allow 2\u20133\"."],
     ],
-    sources: [
-      ["Common quilting shop backing practices", "https://www.craftyarncouncil.com/standards"],
-    ],
+    sources: [["International Sleep Products Association","https://www.sleepproducts.org/"],["National Museum of African American History — quilt layers overview","https://nmaahc.si.edu/explore/stories/evolution-expression"]],
   },
   {
     slug: "quilt-binding-calculator",
     calc: "quilt-binding",
-    h1: "Quilt Binding Calculator",
-    title: "Quilt Binding Calculator",
-    description: "Find binding strip count and fabric yardage from quilt perimeter and strip width.",
+    h1: "Quilt Binding Calculator: Strips & Fabric Yardage",
+    title: "Quilt Binding Calculator: Strips, Joins & Yardage",
+    description: "Find binding strip count and fabric yardage from quilt perimeter and strip width. Free double-fold binding planner for straight-grain and bias binding.",
     answer: "Binding length \u2248 quilt perimeter plus about 12 inches for joins and corners. Strips needed = ceil(that length \u00f7 usable fabric width). Enter quilt size and strip width (often 2.5\" for double-fold binding).",
-    form: `<div class="field"><label for="unit">Quilt units</label><select id="unit" name="unit" ><option value="in">Inches</option><option value="cm">Centimeters</option></select></div>\\n<div class="field"><label for="quiltWidth">Quilt width</label><input id="quiltWidth" name="quiltWidth" type="number" inputmode="decimal" min="1" step="any" value="60" required /></div>\\n<div class="field"><label for="quiltLength">Quilt length</label><input id="quiltLength" name="quiltLength" type="number" inputmode="decimal" min="1" step="any" value="70" required /></div>\\n<div class="field"><label for="bindingWidthIn">Strip width (inches)</label><input id="bindingWidthIn" name="bindingWidthIn" type="number" inputmode="decimal" min="0.5" step="any" value="2.5" required /></div>\\n<div class="field"><label for="fabricWidth">Fabric width</label><input id="fabricWidth" name="fabricWidth" type="number" inputmode="decimal" min="1" step="any" value="42" required /></div>\\n<div class="field"><label for="fabricWidthUnit">Fabric width units</label><select id="fabricWidthUnit" name="fabricWidthUnit" ><option value="in">Inches</option><option value="cm">Centimeters</option></select></div>`,
+    form: `<div class="field"><label for="unit">Quilt units</label><select id="unit" name="unit" ><option value="in">Inches</option><option value="cm">Centimeters</option></select></div><div class="field"><label for="quiltWidth">Quilt width</label><input id="quiltWidth" name="quiltWidth" type="number" inputmode="decimal" min="1" step="any" value="60" required /></div><div class="field"><label for="quiltLength">Quilt length</label><input id="quiltLength" name="quiltLength" type="number" inputmode="decimal" min="1" step="any" value="70" required /></div><div class="field"><label for="bindingWidthIn">Strip width (inches)</label><input id="bindingWidthIn" name="bindingWidthIn" type="number" inputmode="decimal" min="0.5" step="any" value="2.5" required /></div><div class="field"><label for="fabricWidth">Fabric width</label><input id="fabricWidth" name="fabricWidth" type="number" inputmode="decimal" min="1" step="any" value="42" required /></div><div class="field"><label for="fabricWidthUnit">Fabric width units</label><select id="fabricWidthUnit" name="fabricWidthUnit" ><option value="in">Inches</option><option value="cm">Centimeters</option></select></div>`,
     sections: [
       ["Formula", "perimeter = 2\u00d7(width + length); strip_length = perimeter + join_waste; strips = ceil(strip_length / (fabric_width \u2212 2)); yards \u2248 (strips \u00d7 strip_width) / 36."],
       ["Worked example", "60\u00d770\" quilt \u2192 260\" perimeter + 12\" waste; on 42\" fabric you typically cut 7 strips of 2.5\" \u2192 about 0.5 yard."],
@@ -407,18 +381,16 @@ export const TOOL_PAGES: ToolPageContent[] = [
       ["How much fabric for quilt binding?", "Often 0.5\u20131 yard for throws; larger bed quilts may need more\u2014calculate from perimeter."],
       ["What strip width should I cut?", "2.5\" is common for double-fold binding on quilts with batting; some prefer 2.25\"."],
     ],
-    sources: [
-      ["Standard double-fold binding methods taught by quilt guilds", "https://www.craftyarncouncil.com/standards"],
-    ],
+    sources: [["International Sleep Products Association (bedding size context)","https://www.sleepproducts.org/"]],
   },
   {
     slug: "hst-calculator",
     calc: "hst",
-    h1: "Half-Square Triangle & Block Cutting Calculator",
-    title: "HST Cutting Calculator",
-    description: "Calculate HST square sizes and yield for 2-at-a-time, 4-at-a-time, and 8-at-a-time methods.",
+    h1: "HST Calculator: Half-Square Triangle Cutting Sizes",
+    title: "HST Calculator: Half-Square Triangle Cutting Sizes",
+    description: "Free half-square triangle calculator. Enter the finished HST size to get the square size to cut for 2-at-a-time, 4-at-a-time and 8-at-a-time methods and yield.",
     answer: "For classic 2-at-a-time HSTs, cut squares = finished HST size + 7/8 inch. Eight-at-a-time squares are about 2 \u00d7 finished + 1.75\". Enter your finished HST size and how many you need.",
-    form: `<div class="field"><label for="finishedHstIn">Finished HST size (inches)</label><input id="finishedHstIn" name="finishedHstIn" type="number" inputmode="decimal" min="0.25" step="any" value="3" required /></div>\\n<div class="field"><label for="hstNeeded">HSTs needed</label><input id="hstNeeded" name="hstNeeded" type="number" inputmode="decimal" min="1" step="any" value="40" required /></div>\\n<div class="field"><label for="method">Method</label><select id="method" name="method" ><option value="two-at-a-time" selected>2 at a time</option><option value="four-at-a-time">4 at a time</option><option value="eight-at-a-time">8 at a time</option></select></div>`,
+    form: `<div class="field"><label for="finishedHstIn">Finished HST size (inches)</label><input id="finishedHstIn" name="finishedHstIn" type="number" inputmode="decimal" min="0.25" step="any" value="3" required /></div><div class="field"><label for="hstNeeded">HSTs needed</label><input id="hstNeeded" name="hstNeeded" type="number" inputmode="decimal" min="1" step="any" value="40" required /></div><div class="field"><label for="method">Method</label><select id="method" name="method" ><option value="two-at-a-time" selected>2 at a time</option><option value="four-at-a-time">4 at a time</option><option value="eight-at-a-time">8 at a time</option></select></div>`,
     sections: [
       ["Formulas", "2-at-a-time: square = finished + 0.875\". 4-at-a-time: square = finished + 1\". 8-at-a-time: square = 2\u00d7finished + 1.75\". Yield per fabric pair is 2, 4, or 8 HSTs respectively."],
       ["Worked example", "40 finished 3\" HSTs with 8-at-a-time: square 7.75\"; 5 pairs (10 squares) produce 40 HSTs."],
@@ -432,18 +404,16 @@ export const TOOL_PAGES: ToolPageContent[] = [
       ["What size squares for 3\" HSTs?", "3.875\" squares for 2-at-a-time; about 7.75\" for 8-at-a-time."],
       ["Which method should I use?", "2-at-a-time for a few HSTs; 8-at-a-time for scrap-busting large batches."],
     ],
-    sources: [
-      ["Traditional quilting HST cutting formulas", "https://www.craftyarncouncil.com/standards"],
-    ],
+    sources: [["Murray State University — Quilting arts basics (quilt layers)","https://digitalcommons.murraystate.edu/cgi/viewcontent.cgi?article=1483&context=bis437"]],
   },
   {
     slug: "cross-stitch-fabric-calculator",
     calc: "cross-stitch",
-    h1: "Cross-Stitch Fabric (Aida Count) Calculator",
-    title: "Cross-Stitch Aida Calculator",
-    description: "Convert stitch counts and Aida count into design size and fabric cut size with margins in inches or cm.",
+    h1: "Cross-Stitch Aida Calculator: Fabric Cut Size",
+    title: "Cross-Stitch Aida Calculator: Count to Fabric Size",
+    description: "Convert stitch counts and Aida count into design size and fabric cut size with margins. Free cross-stitch fabric calculator for 14, 16 and 18 count cloth.",
     answer: "Design size in inches = stitch count \u00f7 Aida count. Fabric to cut = design size + margin on each side. Enter stitches wide/high, count (11, 14, 16, 18\u2026), and margin below.",
-    form: `<div class="field"><label for="stitchesWide">Stitches wide</label><input id="stitchesWide" name="stitchesWide" type="number" inputmode="decimal" min="1" step="any" value="140" required /></div>\\n<div class="field"><label for="stitchesHigh">Stitches high</label><input id="stitchesHigh" name="stitchesHigh" type="number" inputmode="decimal" min="1" step="any" value="180" required /></div>\\n<div class="field"><label for="aidaCount">Aida count (per inch)</label><input id="aidaCount" name="aidaCount" type="number" inputmode="decimal" min="1" step="any" value="14" required /></div>\\n<div class="field"><label for="margin">Margin each side</label><input id="margin" name="margin" type="number" inputmode="decimal" min="0" step="any" value="3" required /></div>\\n<div class="field"><label for="marginUnit">Margin units</label><select id="marginUnit" name="marginUnit" ><option value="in">Inches</option><option value="cm">Centimeters</option></select></div>\\n<div class="field"><label for="stitchesPerSquare">Stitches per square (1=aida, 2=over-two)</label><input id="stitchesPerSquare" name="stitchesPerSquare" type="number" inputmode="decimal" min="1" step="any" value="1" required /></div>\\n<div class="field"><label for="maxWidth">Max design width (reference)</label><input id="maxWidth" name="maxWidth" type="number" inputmode="decimal" min="0" step="any" value="10" /></div>\\n<div class="field"><label for="maxUnit">Max width units</label><select id="maxUnit" name="maxUnit" ><option value="in">Inches</option><option value="cm">Centimeters</option></select></div>`,
+    form: `<div class="field"><label for="stitchesWide">Stitches wide</label><input id="stitchesWide" name="stitchesWide" type="number" inputmode="decimal" min="1" step="any" value="140" required /></div><div class="field"><label for="stitchesHigh">Stitches high</label><input id="stitchesHigh" name="stitchesHigh" type="number" inputmode="decimal" min="1" step="any" value="180" required /></div><div class="field"><label for="aidaCount">Aida count (per inch)</label><input id="aidaCount" name="aidaCount" type="number" inputmode="decimal" min="1" step="any" value="14" required /></div><div class="field"><label for="margin">Margin each side</label><input id="margin" name="margin" type="number" inputmode="decimal" min="0" step="any" value="3" required /></div><div class="field"><label for="marginUnit">Margin units</label><select id="marginUnit" name="marginUnit" ><option value="in">Inches</option><option value="cm">Centimeters</option></select></div><div class="field"><label for="stitchesPerSquare">Stitches per square (1=aida, 2=over-two)</label><input id="stitchesPerSquare" name="stitchesPerSquare" type="number" inputmode="decimal" min="1" step="any" value="1" required /></div><div class="field"><label for="maxWidth">Max design width (reference)</label><input id="maxWidth" name="maxWidth" type="number" inputmode="decimal" min="0" step="any" value="10" /></div><div class="field"><label for="maxUnit">Max width units</label><select id="maxUnit" name="maxUnit" ><option value="in">Inches</option><option value="cm">Centimeters</option></select></div>`,
     sections: [
       ["Formulas", "design_in = stitches / (aida_count / stitches_per_square); fabric_in = design_in + 2\u00d7margin_in. Over-two on 28-count linen behaves like 14-count aida."],
       ["Worked example", "140\u00d7180 stitches on 14-count with 3\" margins \u2192 design 10\u00d712.86\", fabric about 16\u00d718.86\"."],
@@ -456,18 +426,16 @@ export const TOOL_PAGES: ToolPageContent[] = [
       ["What size fabric for my pattern?", "Divide stitches by count, then add margins on all sides\u2014this tool does both."],
       ["14-count vs 16-count?", "Higher count makes a smaller design for the same stitch count."],
     ],
-    sources: [
-      ["Cross-stitch fabric count conventions", "https://www.craftyarncouncil.com/standards"],
-    ],
+    sources: [["Craft Yarn Council — Standards overview","https://www.craftyarncouncil.com/standards"]],
   },
   {
     slug: "needle-hook-converter",
     calc: "needle-hook",
-    h1: "Needle & Hook Size Converter",
-    title: "Needle & Hook Converter",
-    description: "Convert knitting needle and crochet hook sizes between US, UK, and metric millimeters.",
+    h1: "Needle & Hook Size Converter: US, UK & Metric",
+    title: "Needle & Hook Converter: US, UK & Millimeters",
+    description: "Convert knitting needle and crochet hook sizes between US, UK and metric millimeters using Craft Yarn Council charts. Free converter for needles and hooks.",
     answer: "Knitting needles and crochet hooks are labeled differently in the US, UK, and metric systems. Enter a size in any system to see the Craft Yarn Council\u2013aligned equivalents in millimeters, US, and UK.",
-    form: `<div class="field"><label for="kind">Tool</label><select id="kind" name="kind" ><option value="needle" selected>Knitting needle</option><option value="hook">Crochet hook</option></select></div>\\n<div class="field"><label for="system">You have</label><select id="system" name="system" ><option value="metric" selected>Metric (mm)</option><option value="us">US</option><option value="uk">UK</option></select></div>\\n<div class="field"><label for="value">Size value</label><input id="value" name="value" type="text" inputmode="text" value="5" required /></div>`,
+    form: `<div class="field"><label for="kind">Tool</label><select id="kind" name="kind" ><option value="needle" selected>Knitting needle</option><option value="hook">Crochet hook</option></select></div><div class="field"><label for="system">You have</label><select id="system" name="system" ><option value="metric" selected>Metric (mm)</option><option value="us">US</option><option value="uk">UK</option></select></div><div class="field"><label for="value">Size value</label><input id="value" name="value" type="text" inputmode="text" value="5" required /></div>`,
     sections: [
       ["About the charts", "Values follow Craft Yarn Council knitting needle and crochet hook size charts. Some historical UK sizes do not map 1:1; we show the closest published row. Always verify against your tool\u2019s stamped metric size when precision matters."],
       ["Worked example", "US 8 knitting needle = 5.0 mm = UK 6. Crochet H-8 = 5.0 mm."],
@@ -481,19 +449,16 @@ export const TOOL_PAGES: ToolPageContent[] = [
       ["What size is a US 8 needle in mm?", "5.0 mm (UK 6)."],
       ["What is an H crochet hook in mm?", "H-8 is 5.0 mm on the CYC chart."],
     ],
-    sources: [
-      ["CYC knitting needle sizes", "https://www.craftyarncouncil.com/standards/knitting-needle-sizes"],
-      ["CYC crochet hook sizes", "https://www.craftyarncouncil.com/standards/crochet-hook-sizes"],
-    ],
+    sources: [["Craft Yarn Council — Hooks & needles size chart","https://www.craftyarncouncil.com/standards/hooks-and-needles"],["Craft Yarn Council — Steel crochet hook sizes","https://www.craftyarncouncil.com/standards/steel-crochet-hook-crochet-thread-sizes"]],
   },
   {
     slug: "seam-allowance-calculator",
     calc: "seam-allowance",
-    h1: "Seam Allowance & Pattern Grading Helper",
-    title: "Seam Allowance Calculator",
-    description: "Add seam allowances to finished measurements and grade pattern measurements between sizes.",
+    h1: "Seam Allowance Calculator: Cut Size & Pattern Grade",
+    title: "Seam Allowance Calculator: Cut Size & Grading",
+    description: "Add seam allowances to finished measurements and grade between sizes. Free sewing helper for apparel seams, quilting quarter-inch seams and wearing ease.", 1/4\" quilting seams and wearing ease.",
     answer: "Cut size = finished measurement + seam allowance \u00d7 number of seam edges counted. Use the grading mode to step a measurement up or down by a constant grade between sizes, and ease mode to add wearing ease to a body measurement.",
-    form: `<div class="field"><label for="mode">Mode</label><select id="mode" name="mode" ><option value="seam" selected>Add seam allowance</option><option value="grade">Grade between sizes</option><option value="ease">Add ease</option></select></div>\\n<div class="field"><label for="unit">Units</label><select id="unit" name="unit" ><option value="in">Inches</option><option value="cm">Centimeters</option></select></div>\\n<div class="field"><label for="finished">Finished measurement</label><input id="finished" name="finished" type="number" inputmode="decimal" min="0" step="any" value="20" required /></div>\\n<div class="field"><label for="seamAllowance">Seam allowance</label><input id="seamAllowance" name="seamAllowance" type="number" inputmode="decimal" min="0" step="any" value="0.625" required /></div>\\n<div class="field"><label for="seams">Seam edges to add</label><input id="seams" name="seams" type="number" inputmode="decimal" min="0" step="any" value="2" required /></div>\\n<div class="field"><label for="base">Base measurement (grade)</label><input id="base" name="base" type="number" inputmode="decimal" min="0" step="any" value="36" /></div>\\n<div class="field"><label for="fromSize">From size index</label><input id="fromSize" name="fromSize" type="number" inputmode="decimal" min="0" step="any" value="0" /></div>\\n<div class="field"><label for="toSize">To size index</label><input id="toSize" name="toSize" type="number" inputmode="decimal" min="0" step="any" value="2" /></div>\\n<div class="field"><label for="gradePerSize">Grade per size</label><input id="gradePerSize" name="gradePerSize" type="number" inputmode="decimal" min="0" step="any" value="1.5" /></div>\\n<div class="field"><label for="body">Body measurement (ease)</label><input id="body" name="body" type="number" inputmode="decimal" min="0" step="any" value="36" /></div>\\n<div class="field"><label for="ease">Ease to add</label><input id="ease" name="ease" type="number" inputmode="decimal" min="0" step="any" value="2" /></div>`,
+    form: `<div class="field"><label for="mode">Mode</label><select id="mode" name="mode" ><option value="seam" selected>Add seam allowance</option><option value="grade">Grade between sizes</option><option value="ease">Add ease</option></select></div><div class="field"><label for="unit">Units</label><select id="unit" name="unit" ><option value="in">Inches</option><option value="cm">Centimeters</option></select></div><div class="field"><label for="finished">Finished measurement</label><input id="finished" name="finished" type="number" inputmode="decimal" min="0" step="any" value="20" required /></div><div class="field"><label for="seamAllowance">Seam allowance</label><input id="seamAllowance" name="seamAllowance" type="number" inputmode="decimal" min="0" step="any" value="0.625" required /></div><div class="field"><label for="seams">Seam edges to add</label><input id="seams" name="seams" type="number" inputmode="decimal" min="0" step="any" value="2" required /></div><div class="field"><label for="base">Base measurement (grade)</label><input id="base" name="base" type="number" inputmode="decimal" min="0" step="any" value="36" /></div><div class="field"><label for="fromSize">From size index</label><input id="fromSize" name="fromSize" type="number" inputmode="decimal" min="0" step="any" value="0" /></div><div class="field"><label for="toSize">To size index</label><input id="toSize" name="toSize" type="number" inputmode="decimal" min="0" step="any" value="2" /></div><div class="field"><label for="gradePerSize">Grade per size</label><input id="gradePerSize" name="gradePerSize" type="number" inputmode="decimal" min="0" step="any" value="1.5" /></div><div class="field"><label for="body">Body measurement (ease)</label><input id="body" name="body" type="number" inputmode="decimal" min="0" step="any" value="36" /></div><div class="field"><label for="ease">Ease to add</label><input id="ease" name="ease" type="number" inputmode="decimal" min="0" step="any" value="2" /></div>`,
     sections: [
       ["Seam allowance math", "If both sides of a seam get allowance, add SA twice (seams=2). US apparel often uses 5/8\" (0.625\"); quilting uses 1/4\"; some indie patterns use 3/8\" or 1 cm."],
       ["Grading", "graded = base + (toIndex \u2212 fromIndex) \u00d7 gradePerSize. Index sizes consecutively (0=XS \u2026). This is a linear helper, not a full multi-point grade rule set."],
@@ -507,9 +472,7 @@ export const TOOL_PAGES: ToolPageContent[] = [
       ["What is a standard sewing seam allowance?", "Many US garment patterns use 5/8 inch; always check your pattern sheet."],
       ["What seam allowance do quilters use?", "A scant 1/4 inch is standard for piecing."],
     ],
-    sources: [
-      ["Common apparel and quilting seam conventions", "https://www.craftyarncouncil.com/standards"],
-    ],
+    sources: [["Craft Yarn Council — Body measurements & ease","https://www.craftyarncouncil.com/standards/body-sizing"]],
   },
 ];
 export function getToolPage(slug: string) { return TOOL_PAGES.find((t) => t.slug === slug); }

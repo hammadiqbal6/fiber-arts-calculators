@@ -2,22 +2,44 @@
 import BaseLayout from '../../components/BaseLayout.astro';
 import Breadcrumbs from '../../components/Breadcrumbs.astro';
 import { TOOLS } from '../../lib/tools';
+import { collectionPageGraph } from '../../lib/schema';
 
 const tools = TOOLS.filter((t) => ['yarn', 'knitting', 'crochet'].includes(t.category));
-const title = 'Knitting & Crochet Calculators';
-const description = 'Yarn estimators, knitting gauge, cast-on, increase/decrease, and crochet blanket stitch calculators.';
+const title = 'Knitting & Crochet Calculators: Yarn, Gauge & Cast-On';
+const description =
+  'Free knitting and crochet calculators for yarn yardage, gauge, cast-on stitches, even increases, and crochet blanket starting chains. CYC weights, inches or cm.';
+const jsonLd = collectionPageGraph({
+  name: title,
+  description,
+  path: '/knitting-crochet/',
+  crumbs: [
+    { name: 'Home', path: '/' },
+    { name: 'Knit & crochet', path: '/knitting-crochet/' },
+  ],
+});
 ---
 
-<BaseLayout title={title} description={description} canonicalPath="/knitting-crochet/">
+<BaseLayout title={title} description={description} canonicalPath="/knitting-crochet/" jsonLd={jsonLd}>
   <div class="container">
     <Breadcrumbs items={[{ label: 'Home', href: '/' }, { label: 'Knit & crochet' }]} />
-    <h1>Knitting & crochet calculators</h1>
+    <h1>Knitting &amp; crochet calculators</h1>
     <p class="takeaway"><strong>Key takeaway:</strong> Start with yarn weight and gauge, then estimate yardage or stitch counts—every tool here stays on-device.</p>
+    <div class="prose">
+      <p>
+        Use yarn estimators when you are shopping for a blanket, sweater, hat, or scarf. Switch to the
+        <a href="/tools/knitting-gauge-calculator/">knitting gauge calculator</a> when you need stitches per inch
+        or must resize a pattern. For stitch counts—not yarn—use the
+        <a href="/tools/crochet-blanket-calculator/">crochet blanket starting chain calculator</a> and the
+        <a href="/tools/cast-on-calculator/">cast-on calculator</a>. Guides such as
+        <a href="/guides/how-much-yarn-for-a-blanket/">how much yarn for a blanket</a> explain the “why”; the tools
+        do the arithmetic.
+      </p>
+    </div>
     <div class="tool-grid">
       {tools.map((t) => (
         <a class="tool-link" href={t.path}><h2>{t.title}</h2><p>{t.description}</p></a>
       ))}
     </div>
-    <p>See also <a href="/reference/yarn-weights/">CYC yarn weight standards</a> and <a href="/guides/how-much-yarn-for-a-blanket/">how much yarn for a blanket</a>.</p>
+    <p>See also <a href="/reference/yarn-weights/">CYC yarn weight standards</a> and the <a href="/tools/needle-hook-converter/">needle &amp; hook converter</a>.</p>
   </div>
 </BaseLayout>

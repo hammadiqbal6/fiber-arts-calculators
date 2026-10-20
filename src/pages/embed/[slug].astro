@@ -9,8 +9,9 @@ export function getStaticPaths() {
 
 const page = TOOL_PAGES.find((p) => p.slug === Astro.params.slug)!;
 const tool = getTool(page.slug)!;
+const toolCanonical = `${siteConfig.siteUrl}${tool.path}`;
 const embedSnippet = `<iframe src="${siteConfig.siteUrl}/embed/${tool.slug}/?framed=1" title="${page.h1}" loading="lazy" style="width:100%;min-height:520px;border:1px solid #d5cdc0;border-radius:8px;"></iframe>
-<p>Calculator by <a href="${siteConfig.siteUrl}${tool.path}">${siteConfig.siteName}</a></p>`;
+<p>Calculator by <a href="${toolCanonical}">${siteConfig.siteName}</a> — free fiber arts tools.</p>`;
 const framed = Astro.url.searchParams.get('framed') === '1';
 ---
 
@@ -20,22 +21,28 @@ const framed = Astro.url.searchParams.get('framed') === '1';
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Embed {page.h1}</title>
     <meta name="robots" content="noindex,follow" />
-    <link rel="canonical" href={`${siteConfig.siteUrl}/embed/${tool.slug}/`} />
+    <link rel="canonical" href={toolCanonical} />
     <link rel="stylesheet" href="/embed.css" />
+    <meta name="theme-color" content={siteConfig.themeColor} />
   </head>
   <body class="embed-body">
     {!framed && (
       <header class="embed-header">
         <h1>Embed: {page.h1}</h1>
-        <p>Copy the snippet below. Credit link is required.</p>
-        <textarea readonly rows="6">{embedSnippet}</textarea>
-        <p><a href={tool.path}>Open full tool page</a></p>
+        <p>Copy the snippet below. The attribution link back to the full calculator is required.</p>
+        <label for="embed-snippet">Embed HTML</label>
+        <textarea id="embed-snippet" readonly rows="7">{embedSnippet}</textarea>
+        <p class="btn-row">
+          <button type="button" class="btn btn--primary" id="copy-embed">Copy embed code</button>
+          <a class="btn btn--secondary" href={tool.path}>Open full tool page</a>
+        </p>
+        <p id="copy-status" aria-live="polite"></p>
       </header>
     )}
     <div class="calculator-shell" data-calc={page.calc}>
       <p class="embed-brand"><a href={tool.path} target="_blank" rel="noopener">{siteConfig.siteName}</a> — {page.h1}</p>
       <form set:html={page.form + '<div class="field full"><button class="btn btn--primary" type="submit">Calculate</button></div>'} />
-      <div class="results" data-results hidden>
+      <div class="results" data-results hidden role="region" aria-live="polite" aria-atomic="true">
         <h2>Results</h2>
         <dl data-results-dl></dl>
       </div>
@@ -44,6 +51,20 @@ const framed = Astro.url.searchParams.get('framed') === '1';
       import { initTool } from '../../scripts/tool-client';
       const el = document.querySelector('[data-calc]');
       if (el) initTool(el.getAttribute('data-calc') || '');
+      const btn = document.getElementById('copy-embed');
+      const ta = document.getElementById('embed-snippet') as HTMLTextAreaElement | null;
+      const status = document.getElementById('copy-status');
+      btn?.addEventListener('click', async () => {
+        if (!ta) return;
+        try {
+          await navigator.clipboard.writeText(ta.value);
+          if (status) status.textContent = 'Copied. Paste into your page HTML.';
+        } catch {
+          ta.focus();
+          ta.select();
+          if (status) status.textContent = 'Select the code and copy (Ctrl/Cmd+C).';
+        }
+      });
     </script>
   </body>
 </html>

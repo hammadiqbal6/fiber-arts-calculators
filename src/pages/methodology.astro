@@ -2,20 +2,83 @@
 import BaseLayout from '../components/BaseLayout.astro';
 import Breadcrumbs from '../components/Breadcrumbs.astro';
 import { siteConfig } from '../config/site';
+
+const title = 'Methodology & How FiberCalc Tools Work';
+const description =
+  'How FiberCalc formulas are derived, which Craft Yarn Council sources we cite, AI disclosure, correction log, and changelog.';
 ---
 
-<BaseLayout title="Methodology & Editorial Policy" description="How FiberCalc calculations are derived, reviewed, sourced, and updated." canonicalPath="/methodology/">
+<BaseLayout title={title} description={description} canonicalPath="/methodology/">
   <div class="container prose">
     <Breadcrumbs items={[{ label: 'Home', href: '/' }, { label: 'Methodology' }]} />
-    <h1>Methodology &amp; editorial policy</h1>
-    <p class="meta-row"><span>Updated {siteConfig.launched}</span></p>
+    <h1>Methodology</h1>
+    <p class="meta-row">
+      <span>Last reviewed <time datetime={siteConfig.lastReviewed}>{siteConfig.lastReviewed}</time></span>
+      <span>Maintainer: <a href="/about/#maintainer">{siteConfig.defaultAuthor.name}</a></span>
+    </p>
+
     <h2>How calculations work</h2>
-    <p>Each tool documents its formula on the page. Yarn estimates use area-based density factors calibrated to common pattern yardages and Craft Yarn Council weight categories. Quilt tools use standard perimeter and panel arithmetic. Gauge tools use direct proportion from measured swatches.</p>
-    <h2>Sources</h2>
-    <p>We cite Craft Yarn Council standards for yarn weights and needle/hook charts, and widely published US mattress dimensions for bed planning. Craft blanket and quilt “standard sizes” are conventions, not laws—patterns may differ.</p>
-    <h2>Review</h2>
-    <p>Formulas are covered by automated unit tests in this repository. Editorial text is reviewed for clarity and source links before release. Corrections can be sent via the <a href="/contact/">contact</a> page.</p>
-    <h2>Updates</h2>
-    <p>Pages show “Updated” dates. We revise when standards change, bugs are found, or guides are expanded. We do not invent fake ratings or testimonials in structured data.</p>
+    <p>
+      Each calculator documents its formula on the tool page. Yarn estimators use area-based density factors
+      calibrated to common pattern yardages and Craft Yarn Council weight categories. Quilt tools use
+      perimeter and panel arithmetic. Gauge tools use direct proportion from measured swatches. Unit tests in
+      this repository cover the pure math modules.
+    </p>
+
+    <h2>Sources policy</h2>
+    <p>I cite primary, publicly available standards when a tool depends on them:</p>
+    <ul>
+      <li><a href="https://www.craftyarncouncil.com/standards/yarn-weight-system" rel="noopener noreferrer">CYC Standard Yarn Weight System</a></li>
+      <li><a href="https://www.craftyarncouncil.com/standards/hooks-and-needles" rel="noopener noreferrer">CYC Hooks &amp; Needles</a></li>
+      <li><a href="https://www.craftyarncouncil.com/standards/body-sizing" rel="noopener noreferrer">CYC Body measurements / sizing</a></li>
+      <li><a href="https://www.craftyarncouncil.com/standards/woman-size" rel="noopener noreferrer">CYC Woman size charts</a></li>
+      <li><a href="https://www.sleepproducts.org/" rel="noopener noreferrer">International Sleep Products Association</a> (mattress industry context)</li>
+    </ul>
+    <p>
+      Craft “standard” blanket and quilt sizes are community conventions—patterns may differ. I only list a
+      source when the page actually uses that data, and I re-check URLs when content changes.
+    </p>
+
+    <h2>What the tools leave out</h2>
+    <ul>
+      <li>Dye-lot matching, shrinkage after washing, and highly textured stitch patterns that break averages.</li>
+      <li>Longarm quilting fees, batting brand stretch, and directional fabric naps.</li>
+      <li>Legal, medical, or professional design advice of any kind.</li>
+    </ul>
+
+    <h2>AI / automation disclosure</h2>
+    <p>
+      Drafts of explanatory copy may be written with AI assistance. Every formula, rate-style constant, and
+      reference link is checked by {siteConfig.defaultAuthor.name} against the sources listed on each page
+      before publication. Calculator math is implemented in TypeScript with automated tests—not generated at
+      request time.
+    </p>
+
+    <h2 id="corrections">Correction log</h2>
+    <ul>
+      <li>
+        <time datetime="2026-10-20">2026-10-20</time> — Removed anonymous “FiberCalc Team” authorship;
+        named {siteConfig.defaultAuthor.name} as sole maintainer. Fixed escaped <code>\n</code> text in
+        calculator forms. Pointed needle/hook sources at the live CYC Hooks &amp; Needles chart.
+      </li>
+    </ul>
+
+    <h2 id="changelog">Changelog</h2>
+    <ul>
+      <li>
+        <strong>v{siteConfig.calculatorVersion}</strong> ({siteConfig.launched}) — Initial public release of
+        yarn, gauge, sewing, quilting, and reference calculators.
+      </li>
+      <li>
+        <time datetime="2026-10-20">2026-10-20</time> — Mobile SEO / trust pass: PNG Open Graph image,
+        TrustBlock sources, mode-aware knitting gauge fields, compact cookie bar, Consent Mode v2 for GA4.
+      </li>
+    </ul>
+
+    <h2>Dates</h2>
+    <p>
+      “Last reviewed” and <code>dateModified</code> change only when formulas, sources, or substantive text
+      change—not on routine redeploys.
+    </p>
   </div>
 </BaseLayout>

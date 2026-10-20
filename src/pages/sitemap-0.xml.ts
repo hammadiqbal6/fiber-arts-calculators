@@ -19,7 +19,6 @@ export const GET: APIRoute = () => {
     '/privacy/',
     '/terms/',
     '/methodology/',
-    '/authors/',
   ];
   const urls = [
     ...staticPaths,

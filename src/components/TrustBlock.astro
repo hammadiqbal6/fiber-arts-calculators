@@ -1,0 +1,97 @@
+---
+import { siteConfig } from '../config/site';
+
+interface Source {
+  label: string;
+  href: string;
+  usedFor: string;
+  checked?: string;
+}
+
+interface Props {
+  sources: Source[] | [string, string][];
+  formula?: string;
+  version?: string;
+  disclaimer?: string;
+}
+
+const {
+  sources,
+  formula,
+  version = siteConfig.calculatorVersion,
+  disclaimer = 'Estimates only for planning. Fibers, stitch patterns, personal tension, and finishing change real-world usage. When a published pattern conflicts with this tool, prefer the pattern. Not affiliated with Craft Yarn Council or any yarn brand.',
+} = Astro.props;
+
+const reviewed = siteConfig.lastReviewed;
+const reviewedLabel = new Date(reviewed + 'T12:00:00Z').toLocaleDateString('en-US', {
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric',
+  timeZone: 'UTC',
+});
+
+const normalized = sources.map((s) => {
+  if (Array.isArray(s)) {
+    return { label: s[0], href: s[1], usedFor: 'Standards and planning ranges cited on this page.', checked: reviewed };
+  }
+  return { checked: reviewed, ...s };
+});
+---
+
+<section class="trust" aria-labelledby="sources-h">
+  <p class="byline">
+    Built and maintained by{' '}
+    <a href="/about/#maintainer" rel="author">{siteConfig.defaultAuthor.name}</a>
+    {' '}· Last reviewed <time datetime={reviewed}>{reviewedLabel}</time>
+    {' '}· <a href="/methodology/">How this tool works</a>
+  </p>
+
+  {formula && (
+    <>
+      <h2 id="formula-h">Formula</h2>
+      <p>{formula}</p>
+    </>
+  )}
+
+  <h2 id="sources-h">Sources</h2>
+  <ol class="refs">
+    {normalized.map((s) => (
+      <li>
+        <a href={s.href} rel="noopener noreferrer">{s.label}</a>.
+        Used for: {s.usedFor} Checked <time datetime={s.checked}>{s.checked}</time>.
+      </li>
+    ))}
+  </ol>
+
+  <p class="disclaimer">
+    {disclaimer}
+    {' '}Found an error? <a href="/contact/">Tell me</a>.
+  </p>
+  <p class="version">
+    Calculator version {version} · <a href="/methodology/#changelog">Changelog</a>
+  </p>
+</section>
+
+<style>
+  .trust {
+    margin: var(--space-7) 0;
+    padding-top: var(--space-5);
+    border-top: 1px solid var(--color-border);
+    max-width: 48rem;
+  }
+  .byline {
+    font-size: 0.95rem;
+    color: var(--color-ink-muted);
+  }
+  .refs {
+    padding-left: 1.25rem;
+  }
+  .refs li {
+    margin-bottom: var(--space-3);
+  }
+  .disclaimer,
+  .version {
+    font-size: 0.95rem;
+    color: var(--color-ink-muted);
+  }
+</style>

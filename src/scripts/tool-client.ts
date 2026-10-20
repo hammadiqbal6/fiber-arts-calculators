@@ -17,6 +17,12 @@ function num(fd: FormData, key: string, fallback = 0): number {
   return Number.isFinite(v) ? v : fallback;
 }
 
+function track(name: string, params: Record<string, string | number | boolean> = {}) {
+  import('./analytics')
+    .then(({ trackEvent }) => trackEvent(name, params))
+    .catch(() => {});
+}
+
 function showResults(root: HTMLElement, rows: [string, string][], sharePath?: string) {
   const box = root.querySelector<HTMLElement>('[data-results]');
   const dl = root.querySelector<HTMLElement>('[data-results-dl]');
@@ -24,6 +30,7 @@ function showResults(root: HTMLElement, rows: [string, string][], sharePath?: st
   if (!box || !dl) return;
   dl.innerHTML = rows.map(([k, v]) => `<dt>${k}</dt><dd>${v}</dd>`).join('');
   box.hidden = false;
+  box.setAttribute('tabindex', '-1');
   if (share && sharePath) {
     share.innerHTML = `<a href="${sharePath}">Shareable results link</a> · <button type="button" class="btn btn--secondary" data-print>Print results</button>`;
     share.querySelector('[data-print]')?.addEventListener('click', () => window.print());
@@ -421,6 +428,21 @@ const handlers: Record<string, Handler> = {
   },
 };
 
+function syncModeFields(form: HTMLFormElement) {
+  const modeSelect = form.querySelector<HTMLSelectElement>('[data-mode-select], select[name="mode"]');
+  if (!modeSelect) return;
+  const mode = modeSelect.value;
+  form.querySelectorAll<HTMLElement>('[data-mode-show]').forEach((el) => {
+    const modes = (el.getAttribute('data-mode-show') || '').split(/\s+/).filter(Boolean);
+    const show = modes.includes(mode);
+    el.hidden = !show;
+    el.querySelectorAll<HTMLInputElement | HTMLSelectElement>('input, select, textarea').forEach((input) => {
+      if (show) input.removeAttribute('disabled');
+      else input.setAttribute('disabled', '');
+    });
+  });
+}
+
 export function initTool(name: string) {
   const root = document.querySelector<HTMLElement>(`[data-calc="${name}"]`);
   if (!root) return;
@@ -430,6 +452,7 @@ export function initTool(name: string) {
   if (!handler) return;
 
   const shouldRun = hydrateFromQuery(form);
+  syncModeFields(form);
   const run = () => {
     try {
       const fd = new FormData(form);
@@ -443,6 +466,12 @@ export function initTool(name: string) {
   form.addEventListener('submit', (e) => {
     e.preventDefault();
     run();
+    track('calculation_run', { tool_name: name });
+  });
+  form.querySelector('[data-mode-select], select[name="mode"]')?.addEventListener('change', (ev) => {
+    syncModeFields(form);
+    const mode = (ev.target as HTMLSelectElement).value;
+    track('mode_change', { tool_name: name, mode });
   });
 
   // Preset helpers

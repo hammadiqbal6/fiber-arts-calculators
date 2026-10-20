@@ -1,15 +1,29 @@
 ---
+/**
+ * Canonical author URL is /about/#maintainer (playbook).
+ * This page exists so old /authors/ links still work, then we redirect via meta + link.
+ * Prefer the 301 in public/_redirects when deployed on Workers assets.
+ */
 import BaseLayout from '../../components/BaseLayout.astro';
-import Breadcrumbs from '../../components/Breadcrumbs.astro';
 import { siteConfig } from '../../config/site';
 ---
 
-<BaseLayout title="Authors & Reviewers" description="Author and reviewer bios for FiberCalc editorial content and calculator documentation." canonicalPath="/authors/">
+<BaseLayout
+  title="Authors"
+  description={`Author information for ${siteConfig.siteName} redirects to the About page maintainer section.`}
+  canonicalPath="/about/"
+  noindex={true}
+>
   <div class="container prose">
-    <Breadcrumbs items={[{ label: 'Home', href: '/' }, { label: 'Authors' }]} />
-    <h1>Authors &amp; reviewers</h1>
-    <h2>{siteConfig.defaultAuthor.name}</h2>
-    <p>Role: {siteConfig.defaultAuthor.role}.</p>
-    <p>{siteConfig.defaultAuthor.bio}</p>
+    <h1>Authors</h1>
+    <p>
+      {siteConfig.siteName} is maintained by one person,
+      <a href="/about/#maintainer">{siteConfig.defaultAuthor.name}</a>.
+      This authors index redirects there.
+    </p>
+    <meta http-equiv="refresh" content="0;url=/about/#maintainer" />
+    <script is:inline>
+      location.replace('/about/#maintainer');
+    </script>
   </div>
 </BaseLayout>

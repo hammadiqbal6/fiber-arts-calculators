@@ -1,17 +1,77 @@
 ---
 import BaseLayout from '../components/BaseLayout.astro';
 import Breadcrumbs from '../components/Breadcrumbs.astro';
-import { siteConfig } from '../config/site';
+import { AUTHOR_GITHUB, siteConfig } from '../config/site';
+import { aboutProfilePage } from '../lib/schema';
+
+const title = 'About FiberCalc';
+const description =
+  'FiberCalc is a free one-person knitting, crochet, sewing and quilting calculator site by Hammad Iqbal. How tools are made, what they are not, and how to report mistakes.';
 ---
 
-<BaseLayout title="About FiberCalc" description="About FiberCalc — free client-side knitting, crochet, sewing, and quilting calculators for makers." canonicalPath="/about/">
+<BaseLayout title={title} description={description} canonicalPath="/about/" jsonLd={aboutProfilePage()}>
   <div class="container prose">
     <Breadcrumbs items={[{ label: 'Home', href: '/' }, { label: 'About' }]} />
     <h1>About {siteConfig.siteName}</h1>
-    <p>{siteConfig.siteName} is a free toolkit for fiber artists: yarn estimators, gauge math, fabric yardage, quilt backing and binding, HST cutting, cross-stitch fabric sizing, and needle/hook conversion.</p>
-    <p>Every calculator runs entirely in your browser. We do not require accounts and we do not upload your project measurements.</p>
-    <h2>Editorial approach</h2>
-    <p>We document formulas, cite Craft Yarn Council standards where relevant, and show worked examples. Read our <a href="/methodology/">methodology</a> and <a href="/authors/">authors</a> pages for E-E-A-T details.</p>
-    <p>Contact: <a href={`mailto:${siteConfig.contactEmail}`}>{siteConfig.contactEmail}</a></p>
+    <p>
+      {siteConfig.siteName} is a free set of knitting, crochet, sewing and quilting calculators, built and
+      maintained by one person: me, <strong id="maintainer">{siteConfig.defaultAuthor.name}</strong>.
+    </p>
+
+    <h2>Why I built it</h2>
+    <p>
+      I kept opening yarn and quilt planners that hid the math, skipped units, or forced an account before
+      a simple skein count. I wanted tools that run entirely in the browser, show the formula, and cite
+      Craft Yarn Council (CYC) standards where those charts actually apply—so you can check my work.
+    </p>
+
+    <h2 id="who">Who I am</h2>
+    <p>{siteConfig.defaultAuthor.bio}</p>
+    <p>
+      I am not a professional knitting instructor, pattern designer, quilt judge, or textile engineer, and
+      this site is not one either. What I do is turn published, authoritative sources into calculators that
+      are easy to use, and show exactly which sources each tool uses.
+      Find me on <a href={AUTHOR_GITHUB} rel="noopener noreferrer">GitHub</a>.
+    </p>
+
+    <h2>How the tools are made</h2>
+    <p>
+      Every tool lists its formula and its sources near the bottom of the page. Primary references for yarn
+      weight, needle/hook sizes, and body sizing charts are the
+      <a href="https://www.craftyarncouncil.com/standards" rel="noopener noreferrer">Craft Yarn Council standards</a>.
+      Quilt and mattress planning pages also point at industry bedding references where relevant. Each page
+      shows the date I last checked those sources. Full details:
+      <a href="/methodology/">Methodology</a>.
+    </p>
+
+    <h2>What this site does not do</h2>
+    <ul>
+      <li>It does not replace a pattern’s tested yardage, gauge, or cutting chart.</li>
+      <li>Your project measurements stay in your browser; optional analytics cookies load only after consent.</li>
+      <li>It is not affiliated with Craft Yarn Council, yarn brands, or quilt-shop software.</li>
+    </ul>
+
+    <h2>How the site is funded</h2>
+    <p>
+      The site may show Google AdSense ads after approval and may use Google Analytics (GA4) after you accept
+      cookies. There are no affiliate links on tool pages today. See the
+      <a href="/privacy/">Privacy Policy</a> for cookie details.
+    </p>
+
+    <h2>Other free tool sites by {siteConfig.defaultAuthor.name}</h2>
+    <p>I also maintain sibling calculator sites (same maintainer, different niches):</p>
+    <ul>
+      <li><a href="https://payment-fee-calculators.hammadiqbal117.workers.dev/" rel="noopener noreferrer">Payment fee calculators</a></li>
+      <li><a href="https://business-document-generators.hammadiqbal117.workers.dev/" rel="noopener noreferrer">Business document generators</a></li>
+      <li><a href="https://home-garden-calculators.hammadiqbal117.workers.dev/" rel="noopener noreferrer">Home &amp; garden calculators</a></li>
+      <li><a href="https://pet-calculators.hammadiqbal117.workers.dev/" rel="noopener noreferrer">Pet calculators</a></li>
+    </ul>
+
+    <h2>Found a mistake?</h2>
+    <p>
+      Email <a href={`mailto:${siteConfig.contactEmail}`}>{siteConfig.contactEmail}</a> with the page URL,
+      the number that looks wrong, and a link to the source that shows the right one. Confirmed fixes go in
+      the <a href="/methodology/#corrections">correction log</a>.
+    </p>
   </div>
 </BaseLayout>
