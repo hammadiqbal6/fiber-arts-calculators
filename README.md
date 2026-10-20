@@ -104,6 +104,11 @@ All owner placeholders live in **`src/config/site.ts`** (overridable via `PUBLIC
 | Variable | Purpose |
 |---|---|
 | `PUBLIC_SITE_URL` | Canonical origin (no trailing slash) |
+| `PUBLIC_SITE_URL_PAYMENT_FEES` | Sister site: payment-fee-calculators |
+| `PUBLIC_SITE_URL_BUSINESS_DOCS` | Sister site: business-document-generators |
+| `PUBLIC_SITE_URL_HOME_GARDEN` | Sister site: home-garden-calculators |
+| `PUBLIC_SITE_URL_FIBER_ARTS` | Sister site: fiber-arts-calculators |
+| `PUBLIC_SITE_URL_PET` | Sister site: pet-calculators |
 | `PUBLIC_SITE_NAME` | Brand name in nav/schema |
 | `PUBLIC_CONTACT_EMAIL` | Contact + footer + JSON-LD (default: `hammadiqbal117@gmail.com`) |
 | `PUBLIC_LEGAL_NAME` | Privacy/Terms entity |

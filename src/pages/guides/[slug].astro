@@ -3,7 +3,7 @@ import BaseLayout from '../../components/BaseLayout.astro';
 import Breadcrumbs from '../../components/Breadcrumbs.astro';
 import RelatedTools from '../../components/RelatedTools.astro';
 import { GUIDES } from '../../data/guides';
-import { siteConfig } from '../../config/site';
+import { siteConfig, CANONICAL_PERSON_ID } from '../../config/site';
 
 export function getStaticPaths() {
   return GUIDES.map((g) => ({ params: { slug: g.slug } }));
@@ -18,10 +18,27 @@ const jsonLd = [
     '@type': 'Article',
     headline: guide.title,
     description: guide.description,
-    datePublished: guide.datePublished,
-    dateModified: guide.dateModified,
-    author: { '@type': 'Organization', name: siteConfig.defaultAuthor.name },
-    publisher: { '@type': 'Organization', name: siteConfig.legalName, url: siteConfig.siteUrl },
+    datePublished: `${guide.datePublished}T00:00:00+05:00`,
+    dateModified: `${guide.dateModified}T00:00:00+05:00`,
+    author: [
+      {
+        '@type': 'Person',
+        '@id': CANONICAL_PERSON_ID,
+        name: siteConfig.defaultAuthor.name,
+        url: `${siteConfig.siteUrl}/about/`,
+      },
+    ],
+    publisher: {
+      '@type': 'Organization',
+      name: siteConfig.siteName,
+      url: `${siteConfig.siteUrl}/`,
+      logo: {
+        '@type': 'ImageObject',
+        url: `${siteConfig.siteUrl}/logo-512.png`,
+        width: 512,
+        height: 512,
+      },
+    },
     mainEntityOfPage: siteConfig.siteUrl + path,
   },
   {
@@ -47,7 +64,7 @@ const jsonLd = [
     <div class="meta-row">
       <span>Published {guide.datePublished}</span>
       <span>Updated {guide.dateModified}</span>
-      <span>By <a href="/authors/">{siteConfig.defaultAuthor.name}</a></span>
+      <span>By <a href="/about/#maintainer" rel="author">{siteConfig.defaultAuthor.name}</a></span>
     </div>
     {guide.sections.map((block) => {
       if (block.type === 'takeaway') return <div class="takeaway"><p><strong>Key takeaway:</strong> {block.content}</p></div>;

@@ -3,9 +3,14 @@ import BaseLayout from '../../components/BaseLayout.astro';
 import Breadcrumbs from '../../components/Breadcrumbs.astro';
 import AdSlot from '../../components/AdSlot.astro';
 import RelatedTools from '../../components/RelatedTools.astro';
+import TrustBlock from '../../components/TrustBlock.astro';
+import EmbedSnippet from '../../components/EmbedSnippet.astro';
+import SisterTools from '../../components/SisterTools.astro';
 import { TOOL_PAGES } from '../../data/tool-pages';
-import { getTool, TOOLS } from '../../lib/tools';
+import { getTool } from '../../lib/tools';
 import { siteConfig } from '../../config/site';
+import { toolPageGraph } from '../../lib/schema';
+import { sisterLinksFor } from '../../lib/sister-links';
 
 export function getStaticPaths() {
   return TOOL_PAGES.map((p) => ({ params: { slug: p.slug } }));
@@ -14,32 +19,38 @@ export function getStaticPaths() {
 const { slug } = Astro.params;
 const page = TOOL_PAGES.find((p) => p.slug === slug)!;
 const tool = getTool(slug!)!;
-const lastUpdated = siteConfig.launched;
+const sister = sisterLinksFor(tool.slug);
 
-const jsonLd = [
-  {
-    '@context': 'https://schema.org',
-    '@type': 'WebApplication',
-    name: page.h1,
-    description: page.description,
-    url: new URL(tool.path, siteConfig.siteUrl).toString(),
-    applicationCategory: 'UtilitiesApplication',
-    operatingSystem: 'Any',
-    browserRequirements: 'Requires JavaScript',
-    offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
-    provider: { '@type': 'Organization', name: siteConfig.legalName, url: siteConfig.siteUrl },
-    dateModified: lastUpdated,
-  },
-  {
-    '@context': 'https://schema.org',
-    '@type': 'BreadcrumbList',
-    itemListElement: [
-      { '@type': 'ListItem', position: 1, name: 'Home', item: siteConfig.siteUrl + '/' },
-      { '@type': 'ListItem', position: 2, name: 'Tools', item: siteConfig.siteUrl + '/tools/' },
-      { '@type': 'ListItem', position: 3, name: page.h1, item: siteConfig.siteUrl + tool.path },
-    ],
-  },
-];
+const formulaSection = page.sections.find(([h]) =>
+  /formula|how (this|it) (calculator )?works|method/i.test(h),
+);
+const formulaText = formulaSection?.[1] ?? page.answer;
+
+const primaryImage =
+  tool.category === 'yarn' || tool.category === 'knitting' || tool.category === 'crochet'
+    ? '/images/diagram-yarn-weights.svg'
+    : tool.slug === 'needle-hook-converter'
+      ? '/images/diagram-needle-hook.svg'
+      : tool.category === 'quilting'
+        ? '/images/diagram-hst.svg'
+        : undefined;
+
+const sourcesForTrust = page.sources.map(([label, href]) => ({
+  label,
+  href,
+  usedFor: 'Standards and planning ranges cited in this calculator.',
+  checked: siteConfig.lastReviewed,
+}));
+
+const jsonLd = toolPageGraph({
+  name: page.h1,
+  description: page.description,
+  path: tool.path,
+  pageTitle: page.title,
+  citations: page.sources.map(([, href]) => href),
+  faqs: page.faqs,
+  primaryImage,
+});
 ---
 
 <BaseLayout title={page.title} description={page.description} canonicalPath={tool.path} jsonLd={jsonLd}>
@@ -52,15 +63,27 @@ const jsonLd = [
 
     <h1>{page.h1}</h1>
     <div class="meta-row">
-      <span>Updated {lastUpdated}</span>
-      <span>Reviewed by <a href="/authors/">{siteConfig.defaultAuthor.name}</a></span>
       <span>Runs 100% in your browser</span>
+      <span>
+        By <a href="/about/#maintainer" rel="author">{siteConfig.defaultAuthor.name}</a>
+      </span>
+      <span>
+        Last reviewed <time datetime={siteConfig.lastReviewed}>{siteConfig.lastReviewed}</time>
+      </span>
     </div>
 
     <div class="calculator-shell" data-calc={page.calc}>
       <form set:html={page.form + '<div class="field full"><button class="btn btn--primary" type="submit">Calculate</button></div>'} />
-      <div class="results" data-results hidden>
-        <h2>Results</h2>
+      <div
+        class="results"
+        data-results
+        hidden
+        role="region"
+        aria-live="polite"
+        aria-atomic="true"
+        aria-labelledby="results-heading"
+      >
+        <h2 id="results-heading">Results</h2>
         <dl data-results-dl></dl>
         <p data-share></p>
       </div>
@@ -73,6 +96,28 @@ const jsonLd = [
         <p><strong>Key takeaway:</strong> {page.answer}</p>
       </div>
       <p>{page.answer}</p>
+
+      {primaryImage && (
+        <figure class="diagram">
+          <img
+            src={primaryImage}
+            alt={
+              primaryImage.includes('yarn')
+                ? 'Diagram of Craft Yarn Council yarn weight categories 0 through 7 with relative yarn thickness'
+                : primaryImage.includes('needle')
+                  ? 'Diagram comparing metric millimetre knitting needle sizes with typical US size labels'
+                  : 'Diagram of half-square triangle cutting methods showing 2-at-a-time square layout'
+            }
+            width="1200"
+            height="900"
+            loading="lazy"
+          />
+          <figcaption>
+            Reference diagram for this tool family. Redrawn for FiberCalc; see Sources for the authoritative charts.
+          </figcaption>
+        </figure>
+      )}
+
       {page.sections.map(([heading, body]) => (
         <>
           <h2>{heading}</h2>
@@ -89,17 +134,12 @@ const jsonLd = [
           </details>
         ))}
       </div>
-
-      <h2>Sources</h2>
-      <ul>
-        {page.sources.map(([label, href]) => (
-          <li><a href={href} rel="noopener noreferrer">{label}</a></li>
-        ))}
-      </ul>
     </article>
 
+    <TrustBlock sources={sourcesForTrust} formula={formulaText} />
+    <EmbedSnippet slug={tool.slug} title={page.h1} toolPath={tool.path} />
     <RelatedTools slugs={tool.related} />
-    <p><a href={`/embed/${tool.slug}/`}>Embed this calculator</a> on your blog with credit.</p>
+    {sister.length > 0 && <SisterTools links={sister} />}
   </div>
 
   <script>

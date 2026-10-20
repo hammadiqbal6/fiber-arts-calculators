@@ -2,14 +2,35 @@
 import BaseLayout from '../../components/BaseLayout.astro';
 import Breadcrumbs from '../../components/Breadcrumbs.astro';
 import { toolsByCategory } from '../../lib/tools';
+import { collectionPageGraph } from '../../lib/schema';
 
 const tools = toolsByCategory('reference');
+const title = 'Fiber Arts Reference: Yarn Weights & Needles';
+const description =
+  'Reference tables and converters for Craft Yarn Council yarn weights, needle and hook sizes, cross-stitch Aida fabric, and quilt sizes.';
+const jsonLd = collectionPageGraph({
+  name: title,
+  description,
+  path: '/reference/',
+  crumbs: [
+    { name: 'Home', path: '/' },
+    { name: 'Reference', path: '/reference/' },
+  ],
+});
 ---
 
-<BaseLayout title="Fiber Arts Reference Tables & Converters" description="Needle and hook size converter, cross-stitch Aida calculator, CYC yarn weights, and quilt size charts." canonicalPath="/reference/">
+<BaseLayout title={title} description={description} canonicalPath="/reference/" jsonLd={jsonLd}>
   <div class="container">
     <Breadcrumbs items={[{ label: 'Home', href: '/' }, { label: 'Reference' }]} />
-    <h1>Reference & converters</h1>
+    <h1>Reference &amp; converters</h1>
+    <div class="prose">
+      <p>
+        These pages hold charts and converters you will return to while shopping or drafting: CYC yarn weight
+        categories, needle/hook millimetre maps, Aida fabric cut sizes, and common quilt or mattress dimensions.
+        Pair them with the calculators under Knit &amp; crochet, Sewing, and Quilting when you need a project-specific
+        number.
+      </p>
+    </div>
     <div class="tool-grid">
       {tools.map((t) => (
         <a class="tool-link" href={t.path}><h2>{t.title}</h2><p>{t.description}</p></a>

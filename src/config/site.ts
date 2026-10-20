@@ -9,6 +9,10 @@ const DEFAULT_SITE_URL =
   'https://fiber-arts-calculators.hammadiqbal117.workers.dev';
 const DEFAULT_INDEXNOW_KEY = '9638154d8d3e54b9c2ce62eb17469c43';
 
+/** Shared across all five tool sites so Google can resolve one Person entity. */
+export const CANONICAL_PERSON_ID = 'https://github.com/hammadiqbal6#person';
+export const AUTHOR_GITHUB = 'https://github.com/hammadiqbal6';
+
 function envString(value: string | undefined, fallback = ''): string {
   const trimmed = (value ?? '').trim();
   return trimmed || fallback;
@@ -22,12 +26,12 @@ const contactEmail = envString(
 
 const defaultAuthorName = envString(
   import.meta.env.PUBLIC_AUTHOR_NAME,
-  `${siteName} Team`,
+  'Hammad Iqbal',
 );
 
 const defaultAuthorBio = envString(
   import.meta.env.PUBLIC_AUTHOR_BIO,
-  `${siteName} is built and maintained by an independent developer. Calculator documentation, worked examples, and reference tables are based on publicly cited sources (including Craft Yarn Council standards where noted on each page). For questions about formulas or content, email ${contactEmail}.`,
+  'Full-stack developer who builds free, in-browser calculators. I maintain FiberCalc as a one-person project: every formula and Craft Yarn Council citation on these pages is checked by me. I am not a professional knitting instructor, pattern designer, or textile engineer.',
 );
 
 export const siteConfig = {
@@ -38,6 +42,8 @@ export const siteConfig = {
   ),
   /** Display name shown in nav, footer, schema. */
   siteName,
+  /** Short name for PWA / apple-mobile-web-app-title */
+  siteShortName: envString(import.meta.env.PUBLIC_SITE_SHORT_NAME, 'FiberCalc'),
   /** Short tagline for homepage and Organization schema. */
   tagline: 'Free knitting, crochet, sewing & quilting calculators',
   /** Public contact email (footer, Contact/Privacy/Terms, Organization JSON-LD). */
@@ -46,12 +52,13 @@ export const siteConfig = {
   legalName: envString(import.meta.env.PUBLIC_LEGAL_NAME, 'FiberCalc'),
   /** Default locale */
   locale: 'en_US',
-  /** Author shown in bylines (/authors/, tool/guide credits). */
+  /** Author shown in bylines (/about/#maintainer, tool/guide credits). */
   defaultAuthor: {
     name: defaultAuthorName,
     bio: defaultAuthorBio,
-    slug: 'editorial',
-    role: 'Editor',
+    slug: 'hammad-iqbal',
+    role: 'Maintainer',
+    sameAs: [AUTHOR_GITHUB] as string[],
   },
   /** Google AdSense publisher ID. Leave empty to keep ads disabled. */
   adsensePublisherId: envString(import.meta.env.PUBLIC_ADSENSE_PUBLISHER_ID),
@@ -77,10 +84,21 @@ export const siteConfig = {
   ),
   /** Social handles (optional). */
   twitterHandle: envString(import.meta.env.PUBLIC_TWITTER_HANDLE),
-  /** Default OG image path relative to site root. */
-  defaultOgImage: '/og-default.svg',
-  /** Build / content dates */
+  /** Default OG image path relative to site root (PNG 1200×630). */
+  defaultOgImage: '/og-default.png',
+  defaultOgImageWidth: 1200,
+  defaultOgImageHeight: 630,
+  defaultOgImageAlt:
+    'FiberCalc — free knitting, crochet, sewing and quilting calculators',
+  /** First public release date (YYYY-MM-DD). datePublished stays fixed. */
   launched: '2026-10-19',
+  /**
+   * Last content review date. Change only when formulas, sources, or tool copy
+   * actually change (Google helpful-content guidance).
+   */
+  lastReviewed: '2026-10-20',
+  /** Calculator package version shown in TrustBlock. */
+  calculatorVersion: '1.0',
   /** Theme color for manifest / browser UI */
   themeColor: '#2f5d50',
 } as const;

@@ -144,6 +144,101 @@ export const GUIDES: Guide[] = [
       { type: 'p', content: 'Cotton lacks wool’s bounce; acrylic blocks differently than animal fibers; novelty yarns hide stitch patterns. Substitution is both arithmetic and taste.' },
     ],
   },
+  {
+    slug: 'how-many-stitches-to-cast-on-for-a-hat',
+    title: 'How Many Stitches to Cast On for a Hat?',
+    description:
+      'Work out hat cast-on stitches from head circumference and gauge, with ease tips for beanies vs fitted hats, plus a free cast-on calculator link.',
+    primaryKeyword: 'how many stitches to cast on for a hat',
+    datePublished: '2026-10-20',
+    dateModified: '2026-10-20',
+    relatedTools: ['cast-on-calculator', 'knitting-gauge-calculator', 'yarn-hat-calculator'],
+    sections: [
+      {
+        type: 'takeaway',
+        content:
+          'Cast-on stitches ≈ head circumference × stitches per inch, then adjust for negative ease (often 10–20% for stretchy ribbed beanies). Measure a blocked gauge swatch; do not guess from the ball band alone.',
+      },
+      {
+        type: 'p',
+        content:
+          'This guide answers the stitch-count question for hats. For yarn shopping, use the separate yarn hat calculator. For general width math on scarves or sweaters, use the cast-on calculator with your own width and ease.',
+      },
+      { type: 'h2', content: 'How it is calculated' },
+      {
+        type: 'p',
+        content:
+          'stitches = round(circumference_inches × (stitches_in_swatch ÷ swatch_width_inches) × (1 − ease_fraction)). Example: 22″ head, 20 sts over 4″ (5 sts/in), 15% negative ease → 22 × 5 × 0.85 ≈ 94 stitches. Round to a multiple that fits your ribbing (e.g. multiples of 4 for 2×2 rib).',
+      },
+      { type: 'h2', content: 'Worked example' },
+      {
+        type: 'p',
+        content:
+          'Adult woman, 22″ circumference (CYC head chart ranges help), worsted gauge 18 sts/4″ = 4.5 sts/in, classic beanie with ~10% negative ease: 22 × 4.5 × 0.9 ≈ 89, round to 88 for 2×2 rib. Confirm after a brim swatch in the round if your tension changes on DPNs or magic loop.',
+      },
+      { type: 'h2', content: 'Common mistakes' },
+      {
+        type: 'ul',
+        content: [
+          'Using ball-band gauge instead of your blocked swatch',
+          'Forgetting negative ease on stretchy rib, then knitting a loose bucket',
+          'Casting on for circumference but measuring a flat child’s head too tightly',
+        ],
+      },
+      {
+        type: 'h2',
+        content: 'Next steps',
+      },
+      {
+        type: 'p',
+        content:
+          'Run the cast-on calculator with your gauge and ease, check head circumference against CYC charts, then estimate yarn with the hat yardage tool if you still need skein counts.',
+      },
+    ],
+  },
+  {
+    slug: 'how-much-quilt-binding-do-i-need',
+    title: 'How Much Quilt Binding Do I Need?',
+    description:
+      'Calculate quilt binding strip length and fabric yardage from perimeter and strip width, with joins and corner tips, plus a free binding calculator.',
+    primaryKeyword: 'how much quilt binding do I need',
+    datePublished: '2026-10-20',
+    dateModified: '2026-10-20',
+    relatedTools: ['quilt-binding-calculator', 'quilt-size-calculator', 'quilt-backing-calculator'],
+    sections: [
+      {
+        type: 'takeaway',
+        content:
+          'Binding length ≈ quilt perimeter + 10–20″ for joins and corners. Divide by usable strip length (fabric width minus selvages) to get strip count, then convert strips × strip width into yardage.',
+      },
+      {
+        type: 'p',
+        content:
+          'This guide explains binding math in words. Use the quilt binding calculator for strip counts and yardage from your exact perimeter. Size and backing questions belong on their own tools and guides so keywords stay distinct.',
+      },
+      { type: 'h2', content: 'How it is calculated' },
+      {
+        type: 'p',
+        content:
+          'perimeter = 2 × (width + length). Add join allowance (often 10–20″). strips = ceil(total_binding_length ÷ strip_usable_length). fabric inches ≈ strips × strip_width (for straight-grain binding cut across width); divide by 36 for yards. Bias binding needs more fabric—check your pattern.',
+      },
+      { type: 'h2', content: 'Worked example' },
+      {
+        type: 'p',
+        content:
+          '60×80″ quilt: perimeter 280″. Add 20″ → 300″ of binding. With 2½″ strips from 42″ usable width: 300 ÷ 42 ≈ 7.2 → 8 strips. Yardage ≈ 8 × 2.5 / 36 ≈ 0.56 yd—buy at least ⅝–¾ yd so joins and mistakes are covered.',
+      },
+      { type: 'h2', content: 'Tips' },
+      {
+        type: 'ul',
+        content: [
+          'Mitered corners consume a little extra length—do not cut the allowance too tight',
+          'Join strips on the bias to reduce bulk',
+          'Measure the finished quilt after quilting; quilting can draw up the top slightly',
+        ],
+      },
+    ],
+  },
 ];
 
 export function getGuide(slug: string) {

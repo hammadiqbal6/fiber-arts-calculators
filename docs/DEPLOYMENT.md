@@ -78,6 +78,11 @@ Edit `.env` with your real values. Astro exposes only variables prefixed with `P
 | Variable | Required for launch | Purpose |
 |---|---|---|
 | `PUBLIC_SITE_URL` | **Yes** (before SEO) | Canonical origin, **no trailing slash**. Example: `https://www.yourdomain.com` |
+| `PUBLIC_SITE_URL_PAYMENT_FEES` | Recommended | Sister origin (payment fees). Same name on all five repos; update when that site gets a custom domain. |
+| `PUBLIC_SITE_URL_BUSINESS_DOCS` | Recommended | Sister origin (business docs). |
+| `PUBLIC_SITE_URL_HOME_GARDEN` | Recommended | Sister origin (home & garden). |
+| `PUBLIC_SITE_URL_FIBER_ARTS` | Recommended | Sister origin (this niche / fiber arts). |
+| `PUBLIC_SITE_URL_PET` | Recommended | Sister origin (pet calculators). |
 | `PUBLIC_SITE_NAME` | Recommended | Nav, footer, schema (`FiberCalc` default) |
 | `PUBLIC_CONTACT_EMAIL` | **Yes** (AdSense) | Contact page, footer, Privacy |
 | `PUBLIC_LEGAL_NAME` | Recommended | Privacy/Terms/Organization schema |
@@ -93,6 +98,8 @@ Edit `.env` with your real values. Astro exposes only variables prefixed with `P
 | `PUBLIC_TWITTER_HANDLE` | Optional | `@handle` for Twitter cards |
 
 **Important:** `PUBLIC_SITE_URL` is baked into the build (sitemap, canonicals, JSON-LD, `robots.txt` Sitemap line). After you know your live domain, set it in **production env vars** on your host and **redeploy**.
+
+Sister-site URLs (`PUBLIC_SITE_URL_PAYMENT_FEES`, `PUBLIC_SITE_URL_BUSINESS_DOCS`, `PUBLIC_SITE_URL_HOME_GARDEN`, `PUBLIC_SITE_URL_FIBER_ARTS`, `PUBLIC_SITE_URL_PET`) are baked the same way for cross-site links (`src/config/sister-sites.ts`). Set them in **Cloudflare Workers Builds** environment variables alongside `PUBLIC_SITE_URL`. Code falls back to the current `*.workers.dev` defaults if a var is missing.
 
 ### Files to update for production branding
 

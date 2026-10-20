@@ -21,7 +21,13 @@ import { siteConfig } from '../config/site';
     <p>When AdSense is enabled, Google and its partners may use cookies to serve ads based on visits to this and other sites. Third parties, including Google, may use cookies (such as the DoubleClick cookie) to serve ads based on a user’s prior visits.</p>
     <p>Users may opt out of personalized advertising by visiting <a href="https://www.google.com/settings/ads" rel="noopener noreferrer">Google Ads Settings</a> and <a href="https://www.aboutads.info/choices/" rel="noopener noreferrer">www.aboutads.info</a>. For EEA/UK/Switzerland visitors, a Google-certified Consent Management Platform (CMP) is required before personalized ads.</p>
     <h2>Analytics</h2>
-    <p>If GA4 is configured, Google Analytics may collect pseudonymous usage data (pages viewed, approximate location, device). You can limit analytics via browser controls and Google’s opt-out tools.</p>
+    <p>
+      If GA4 is configured, Google Analytics may collect pseudonymous usage data (pages viewed, approximate
+      location, device) <strong>only after you accept the cookie notice</strong>. Until then, Consent Mode v2
+      defaults keep <code>analytics_storage</code> denied, and the GA script is not loaded. You can choose
+      “No thanks” to keep analytics off, or clear site data to see the banner again. You can also limit
+      analytics via browser controls and Google’s opt-out tools.
+    </p>
     <h2>Contact</h2>
     <p>Questions: <a href={`mailto:${siteConfig.contactEmail}`}>{siteConfig.contactEmail}</a></p>
   </div>

@@ -2,31 +2,15 @@
 import BaseLayout from '../components/BaseLayout.astro';
 import AdSlot from '../components/AdSlot.astro';
 import { siteConfig } from '../config/site';
-import { TOOLS, CATEGORIES } from '../lib/tools';
+import { TOOLS } from '../lib/tools';
+import { homeGraph } from '../lib/schema';
 
-const title = 'Knitting, Crochet & Quilt Calculators';
-const description = 'FiberCalc free yarn, gauge, fabric, quilt, and cross-stitch calculators. Instant client-side math with inches/cm, yards/meters, and grams/oz.';
-
-const jsonLd = [
-  {
-    '@context': 'https://schema.org',
-    '@type': 'WebSite',
-    name: siteConfig.siteName,
-    url: siteConfig.siteUrl,
-    description: siteConfig.tagline,
-    publisher: { '@type': 'Organization', name: siteConfig.legalName, url: siteConfig.siteUrl },
-  },
-  {
-    '@context': 'https://schema.org',
-    '@type': 'Organization',
-    name: siteConfig.legalName,
-    url: siteConfig.siteUrl,
-    email: siteConfig.contactEmail,
-  },
-];
+const title = 'Knitting, Crochet & Quilting Calculators – Free | FiberCalc';
+const description =
+  'Free yarn, gauge, fabric yardage, quilt backing, binding and HST calculators for knitters, crocheters, sewists and quilters. Inches or cm, yards or meters.';
 ---
 
-<BaseLayout title={title} description={description} canonicalPath="/" jsonLd={jsonLd}>
+<BaseLayout title={title} description={description} canonicalPath="/" jsonLd={homeGraph()}>
   <section class="hero">
     <div class="container">
       <div class="hero__panel">

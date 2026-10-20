@@ -2,44 +2,78 @@
 import BaseLayout from '../../components/BaseLayout.astro';
 import Breadcrumbs from '../../components/Breadcrumbs.astro';
 import { BLANKET_SIZES, QUILT_SIZES, MATTRESS_SIZES } from '../../lib/reference/sizes';
-import { siteConfig } from '../../config/site';
+import { siteConfig, CANONICAL_PERSON_ID } from '../../config/site';
+
+const title = 'Standard Blanket, Quilt & Mattress Sizes';
+const description =
+  'Reference chart of common blanket, quilt, and US mattress sizes in inches for fiber arts planning. Scrollable tables for phones.';
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'CollectionPage',
+      name: title,
+      description,
+      url: `${siteConfig.siteUrl}/reference/quilt-sizes/`,
+      author: { '@id': CANONICAL_PERSON_ID },
+    },
+    {
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        { '@type': 'ListItem', position: 1, name: 'Home', item: `${siteConfig.siteUrl}/` },
+        { '@type': 'ListItem', position: 2, name: 'Reference', item: `${siteConfig.siteUrl}/reference/` },
+        { '@type': 'ListItem', position: 3, name: 'Sizes', item: `${siteConfig.siteUrl}/reference/quilt-sizes/` },
+      ],
+    },
+  ],
+};
 ---
 
-<BaseLayout title="Standard Blanket, Quilt & Mattress Sizes" description="Reference chart of common blanket, quilt, and US mattress sizes in inches for fiber arts planning." canonicalPath="/reference/quilt-sizes/">
+<BaseLayout title={title} description={description} canonicalPath="/reference/quilt-sizes/" jsonLd={jsonLd}>
   <div class="container prose">
     <Breadcrumbs items={[{ label: 'Home', href: '/' }, { label: 'Reference', href: '/reference/' }, { label: 'Sizes' }]} />
     <h1>Standard blanket, quilt &amp; mattress sizes</h1>
-    <p class="meta-row"><span>Updated {siteConfig.launched}</span></p>
+    <p class="meta-row"><span>Last reviewed {siteConfig.lastReviewed}</span></p>
     <div class="takeaway">
       <p><strong>Key takeaway:</strong> Mattress sizes are industry standards; quilt and knit/crochet blanket sizes are common craft conventions and vary by pattern. Use these as starting points in our <a href="/tools/quilt-size-calculator/">quilt size</a> and <a href="/tools/yarn-blanket-calculator/">yarn blanket</a> calculators.</p>
     </div>
 
     <h2>Knit / crochet blanket sizes (inches)</h2>
-    <table>
-      <thead><tr><th>Name</th><th>Width</th><th>Length</th></tr></thead>
-      <tbody>
-        {BLANKET_SIZES.map((s) => <tr><td>{s.name}</td><td>{s.widthIn}</td><td>{s.lengthIn}</td></tr>)}
-      </tbody>
-    </table>
+    <div class="table-scroll" tabindex="0" role="region" aria-label="Blanket sizes table">
+      <table>
+        <caption>Common knit and crochet blanket finished sizes</caption>
+        <thead><tr><th>Name</th><th>Width</th><th>Length</th></tr></thead>
+        <tbody>
+          {BLANKET_SIZES.map((s) => <tr><td>{s.name}</td><td>{s.widthIn}</td><td>{s.lengthIn}</td></tr>)}
+        </tbody>
+      </table>
+    </div>
 
     <h2>Common quilt top sizes (inches)</h2>
-    <table>
-      <thead><tr><th>Name</th><th>Width</th><th>Length</th></tr></thead>
-      <tbody>
-        {QUILT_SIZES.map((s) => <tr><td>{s.name}</td><td>{s.widthIn}</td><td>{s.lengthIn}</td></tr>)}
-      </tbody>
-    </table>
+    <div class="table-scroll" tabindex="0" role="region" aria-label="Quilt sizes table">
+      <table>
+        <caption>Common quilt top finished sizes</caption>
+        <thead><tr><th>Name</th><th>Width</th><th>Length</th></tr></thead>
+        <tbody>
+          {QUILT_SIZES.map((s) => <tr><td>{s.name}</td><td>{s.widthIn}</td><td>{s.lengthIn}</td></tr>)}
+        </tbody>
+      </table>
+    </div>
 
     <h2>US mattress sizes (inches)</h2>
-    <table>
-      <thead><tr><th>Name</th><th>Width</th><th>Length</th></tr></thead>
-      <tbody>
-        {MATTRESS_SIZES.map((s) => <tr><td>{s.name}</td><td>{s.widthIn}</td><td>{s.lengthIn}</td></tr>)}
-      </tbody>
-    </table>
+    <div class="table-scroll" tabindex="0" role="region" aria-label="Mattress sizes table">
+      <table>
+        <caption>Common US mattress dimensions</caption>
+        <thead><tr><th>Name</th><th>Width</th><th>Length</th></tr></thead>
+        <tbody>
+          {MATTRESS_SIZES.map((s) => <tr><td>{s.name}</td><td>{s.widthIn}</td><td>{s.lengthIn}</td></tr>)}
+        </tbody>
+      </table>
+    </div>
     <h2>Sources</h2>
     <ul>
-      <li>US mattress dimensions as commonly published in bedding industry charts (see <a href="https://www.sleepproducts.org/" rel="noopener noreferrer">ISPA</a> and major retailer size guides).</li>
+      <li>US mattress dimensions as commonly published in bedding industry charts (see <a href="https://www.sleepproducts.org/" rel="noopener noreferrer">ISPA</a>).</li>
       <li>Quilt and craft blanket ranges reflect widespread pattern conventions; always confirm your pattern.</li>
     </ul>
   </div>

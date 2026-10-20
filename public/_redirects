@@ -1,4 +1,23 @@
 # Workers static assets redirects (source destination [status]).
-# Apex/www HTTPS host redirects are configured in the Cloudflare dashboard for this Worker.
-# Add path rules here when needed, e.g.:
-# /old-path/ /new-path/ 301
+# Prefer 301/308 for SEO consolidation. Note: assets.html_handling
+# force-trailing-slash still emits 307 for bare paths unless listed here.
+
+/sitemap.xml /sitemap-index.xml 301
+/authors /about/ 301
+/authors/ /about/ 301
+
+# Trailing-slash consolidation (308 permanent) for key entry URLs.
+# Cloudflare html_handling may still 307 other bare paths — see PR notes.
+/about /about/ 308
+/contact /contact/ 308
+/privacy /privacy/ 308
+/terms /terms/ 308
+/methodology /methodology/ 308
+/tools /tools/ 308
+/guides /guides/ 308
+/knitting-crochet /knitting-crochet/ 308
+/sewing /sewing/ 308
+/quilting /quilting/ 308
+/reference /reference/ 308
+/reference/yarn-weights /reference/yarn-weights/ 308
+/reference/quilt-sizes /reference/quilt-sizes/ 308
