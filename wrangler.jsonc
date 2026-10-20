@@ -12,6 +12,9 @@
     // Match Astro trailingSlash: 'always'
     "html_handling": "force-trailing-slash"
   },
+  // PUBLIC_* are build-time (Astro). Set the same keys in Cloudflare Workers Builds
+  // dashboard env vars (including PUBLIC_SITE_URL and PUBLIC_SITE_URL_* sister origins).
+  // Runtime Worker vars are not used for this static site.
   "observability": {
     "enabled": true,
     "traces": {

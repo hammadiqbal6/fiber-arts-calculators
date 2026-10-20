@@ -3,6 +3,9 @@ import BaseLayout from '../components/BaseLayout.astro';
 import Breadcrumbs from '../components/Breadcrumbs.astro';
 import { AUTHOR_GITHUB, siteConfig } from '../config/site';
 import { aboutProfilePage } from '../lib/schema';
+import { sisterSiteDirectory } from '../lib/sister-links';
+
+const otherSites = sisterSiteDirectory();
 
 const title = 'About FiberCalc';
 const description =
@@ -61,10 +64,9 @@ const description =
     <h2>Other free tool sites by {siteConfig.defaultAuthor.name}</h2>
     <p>I also maintain sibling calculator sites (same maintainer, different niches):</p>
     <ul>
-      <li><a href="https://payment-fee-calculators.hammadiqbal117.workers.dev/" rel="noopener noreferrer">Payment fee calculators</a></li>
-      <li><a href="https://business-document-generators.hammadiqbal117.workers.dev/" rel="noopener noreferrer">Business document generators</a></li>
-      <li><a href="https://home-garden-calculators.hammadiqbal117.workers.dev/" rel="noopener noreferrer">Home &amp; garden calculators</a></li>
-      <li><a href="https://pet-calculators.hammadiqbal117.workers.dev/" rel="noopener noreferrer">Pet calculators</a></li>
+      {otherSites.map((s) => (
+        <li><a href={s.href} rel="noopener noreferrer">{s.label}</a></li>
+      ))}
     </ul>
 
     <h2>Found a mistake?</h2>
