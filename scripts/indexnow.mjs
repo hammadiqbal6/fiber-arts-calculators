@@ -18,9 +18,12 @@ import { readFile, access } from 'node:fs/promises';
 import { join, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
-const DEFAULT_SITE_URL =
-  'https://fiber-arts-calculators.hammadiqbal117.workers.dev';
-const DEFAULT_KEY = '9638154d8d3e54b9c2ce62eb17469c43';
+import {
+  DEFAULT_SITE_URL,
+  DEFAULT_INDEXNOW_KEY,
+} from '../src/config/defaults.mjs';
+
+const DEFAULT_KEY = DEFAULT_INDEXNOW_KEY;
 const INDEXNOW_ENDPOINT = 'https://api.indexnow.org/indexnow';
 const BATCH_SIZE = 10_000;
 

@@ -3,6 +3,8 @@ import { spawnSync } from 'node:child_process';
 
 const scripts = [
   'scripts/audit/seo-audit.mjs',
+  'scripts/audit/seo-guardrails.mjs',
+  'scripts/audit/site-origin.mjs',
   'scripts/audit/adsense-audit.mjs',
   'scripts/audit/js-budget.mjs',
   'scripts/audit/link-check.mjs',

@@ -1,20 +1,54 @@
 ---
 import BaseLayout from '../components/BaseLayout.astro';
 import Breadcrumbs from '../components/Breadcrumbs.astro';
-import { siteConfig } from '../config/site';
+import { siteConfig, CANONICAL_PERSON_ID } from '../config/site';
 
-const title = 'Methodology & How FiberCalc Tools Work';
+const title = 'Methodology & How Tools Work';
 const description =
-  'How FiberCalc formulas are derived, which Craft Yarn Council sources we cite, AI disclosure, correction log, and changelog.';
+  'How FiberCalc formulas are derived, which Craft Yarn Council sources we cite, AI disclosure, correction log, and changelog for knitting and quilting calculators.';
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'WebPage',
+      '@id': `${siteConfig.siteUrl}/methodology/#page`,
+      name: title,
+      description,
+      url: `${siteConfig.siteUrl}/methodology/`,
+      dateModified: `${siteConfig.lastReviewed}T00:00:00+05:00`,
+      author: { '@id': CANONICAL_PERSON_ID },
+      isPartOf: { '@id': `${siteConfig.siteUrl}/#website` },
+    },
+    {
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        { '@type': 'ListItem', position: 1, name: 'Home', item: `${siteConfig.siteUrl}/` },
+        {
+          '@type': 'ListItem',
+          position: 2,
+          name: 'Methodology',
+          item: `${siteConfig.siteUrl}/methodology/`,
+        },
+      ],
+    },
+  ],
+};
 ---
 
-<BaseLayout title={title} description={description} canonicalPath="/methodology/">
+<BaseLayout title={title} description={description} canonicalPath="/methodology/" jsonLd={jsonLd}>
   <div class="container prose">
     <Breadcrumbs items={[{ label: 'Home', href: '/' }, { label: 'Methodology' }]} />
     <h1>Methodology</h1>
     <p class="meta-row">
       <span>Last reviewed <time datetime={siteConfig.lastReviewed}>{siteConfig.lastReviewed}</time></span>
       <span>Maintainer: <a href="/about/#maintainer">{siteConfig.defaultAuthor.name}</a></span>
+    </p>
+
+    <p>
+      FiberCalc publishes free, in-browser knitting, crochet, sewing, and quilting calculators. This page explains how
+      formulas are chosen, which primary sources we cite, how AI may assist copy (never unchecked math), and where we
+      log corrections. Use it when you need provenance—not as a substitute for a pattern’s tested yardage chart.
     </p>
 
     <h2>How calculations work</h2>
@@ -62,6 +96,10 @@ const description =
         appeared as visible text between calculator fields. Pointed needle/hook sources at the live CYC
         Hooks &amp; Needles chart.
       </li>
+      <li>
+        <time datetime="2026-10-23">2026-10-23</time> — SEO/AEO pass: GA module scripts, 308 trailing-slash
+        Worker, expanded guides, tool→guide links, site-origin single setting for future custom domain.
+      </li>
     </ul>
 
     <h2 id="changelog">Changelog</h2>
@@ -74,12 +112,17 @@ const description =
         <time datetime="2026-10-20">2026-10-20</time> — Mobile SEO / trust pass: PNG Open Graph image,
         TrustBlock sources, mode-aware knitting gauge fields, compact cookie bar, Consent Mode v2 for GA4.
       </li>
+      <li>
+        <time datetime="2026-10-23">2026-10-23</time> — Guides expanded, new articles, llms.txt inventory,
+        per-page OG images, audit guardrails.
+      </li>
     </ul>
 
     <h2>Dates</h2>
     <p>
       “Last reviewed” and <code>dateModified</code> change only when formulas, sources, or substantive text
-      change—not on routine redeploys.
+      change—not on routine redeploys. Canonical URLs always use the single <code>PUBLIC_SITE_URL</code>
+      setting (documented in the repo as <code>docs/CUSTOM-DOMAIN.md</code>).
     </p>
   </div>
 </BaseLayout>

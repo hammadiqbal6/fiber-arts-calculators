@@ -3,7 +3,14 @@ import { siteConfig } from '../config/site';
 const gaId = siteConfig.ga4MeasurementId;
 ---
 
-<div class="cookie-banner" data-cookie-banner hidden role="dialog" aria-label="Cookie notice">
+<div
+  class="cookie-banner"
+  data-cookie-banner
+  data-ga-id={gaId || ''}
+  hidden
+  role="dialog"
+  aria-label="Cookie notice"
+>
   <div class="cookie-banner__inner">
     <p>
       We use optional analytics cookies.
@@ -15,7 +22,8 @@ const gaId = siteConfig.ga4MeasurementId;
     </div>
   </div>
 </div>
-<script define:vars={{ gaId }}>
+{/* Bundled module — read gaId from data-attribute (never import inside define:vars). */}
+<script>
   import { grantAnalyticsConsent, scheduleAnalytics, hasAnalyticsConsent } from '../scripts/analytics';
 
   const key = 'fibercalc-cookie-ok';
@@ -23,6 +31,7 @@ const gaId = siteConfig.ga4MeasurementId;
   const banner = document.querySelector('[data-cookie-banner]');
   const accept = document.querySelector('[data-cookie-accept]');
   const reject = document.querySelector('[data-cookie-reject]');
+  const gaId = banner?.getAttribute('data-ga-id') || '';
 
   if (banner && !localStorage.getItem(key) && !localStorage.getItem(rejectKey)) {
     banner.removeAttribute('hidden');
@@ -33,7 +42,7 @@ const gaId = siteConfig.ga4MeasurementId;
     localStorage.removeItem(rejectKey);
     banner?.setAttribute('hidden', '');
     grantAnalyticsConsent();
-    scheduleAnalytics(gaId);
+    if (gaId) scheduleAnalytics(gaId);
   });
 
   reject?.addEventListener('click', () => {
@@ -42,7 +51,7 @@ const gaId = siteConfig.ga4MeasurementId;
     banner?.setAttribute('hidden', '');
   });
 
-  if (hasAnalyticsConsent()) {
+  if (hasAnalyticsConsent() && gaId) {
     scheduleAnalytics(gaId);
   }
 </script>

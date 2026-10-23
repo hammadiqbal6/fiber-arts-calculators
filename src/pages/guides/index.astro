@@ -2,13 +2,45 @@
 import BaseLayout from '../../components/BaseLayout.astro';
 import Breadcrumbs from '../../components/Breadcrumbs.astro';
 import { GUIDES } from '../../data/guides';
+import { siteConfig, CANONICAL_PERSON_ID } from '../../config/site';
+import { collectionPageGraph } from '../../lib/schema';
+
+const title = 'Fiber Arts Guides';
+const description =
+  'Guides on yarn amounts, knitting gauge, quilt backing, HST math, fabric yardage, and yarn substitution—each paired with free FiberCalc calculators.';
+
+const jsonLd = [
+  collectionPageGraph({
+    name: title,
+    description,
+    path: '/guides/',
+    crumbs: [
+      { name: 'Home', path: '/' },
+      { name: 'Guides', path: '/guides/' },
+    ],
+  }),
+  {
+    '@context': 'https://schema.org',
+    '@type': 'ItemList',
+    itemListElement: GUIDES.map((g, i) => ({
+      '@type': 'ListItem',
+      position: i + 1,
+      name: g.title,
+      url: `${siteConfig.siteUrl}/guides/${g.slug}/`,
+    })),
+    author: { '@id': CANONICAL_PERSON_ID },
+  },
+];
 ---
 
-<BaseLayout title="Fiber Arts Guides & Tutorials" description="Guides on yarn amounts, knitting gauge, quilt backing, HST math, and yarn substitution—paired with free calculators." canonicalPath="/guides/">
+<BaseLayout title={title} description={description} canonicalPath="/guides/" jsonLd={jsonLd}>
   <div class="container">
     <Breadcrumbs items={[{ label: 'Home', href: '/' }, { label: 'Guides' }]} />
     <h1>Guides</h1>
-    <p>Practical articles that answer common maker questions and link to the matching calculator.</p>
+    <p>
+      Practical articles that answer common maker questions with worked examples and tables, then link to the matching
+      calculator so you can run the numbers for your project.
+    </p>
     <div class="tool-grid">
       {GUIDES.map((g) => (
         <a class="tool-link" href={`/guides/${g.slug}/`}>

@@ -35,5 +35,13 @@
 | `/guides/quilt-backing-yardage-guide/` | quilt backing yardage | how much backing fabric |
 | `/guides/half-square-triangle-math/` | half square triangle formula | HST size chart |
 | `/guides/yarn-substitution-basics/` | yarn substitution guide | substitute yarn weight |
+| `/guides/how-much-yarn-for-a-sweater/` | how much yarn for a sweater | sweater yarn yardage skeins |
+| `/guides/how-many-skeins-for-a-scarf/` | how many skeins for a scarf | scarf yarn estimator |
+| `/guides/how-to-increase-evenly-across-a-row/` | how to increase evenly across a row | space increases evenly knitting |
+| `/guides/crochet-hook-size-conversion-chart/` | crochet hook size conversion chart | hook size mm US UK |
+| `/guides/how-many-yards-of-fabric/` | how many yards of fabric do I need | fabric yardage estimator |
+| `/guides/what-size-aida-for-cross-stitch/` | what size aida for cross stitch pattern | aida count fabric size |
+| `/guides/how-much-yarn-for-amigurumi/` | how much yarn for amigurumi | amigurumi yarn estimator |
+| `/guides/does-crochet-use-more-yarn-than-knitting/` | does crochet use more yarn than knitting | crochet vs knit yarn amount |
 
 No two URLs share the same primary intent.

@@ -1,0 +1,26 @@
+---
+import { getGuide } from '../data/guides';
+
+interface Props {
+  slugs: string[];
+  title?: string;
+}
+const { slugs, title = 'Learn more' } = Astro.props;
+const guides = slugs.map((s) => getGuide(s)).filter(Boolean);
+---
+
+{
+  guides.length > 0 && (
+    <section class="related" aria-labelledby="learn-more-heading">
+      <h2 id="learn-more-heading">{title}</h2>
+      <div class="tool-grid">
+        {guides.map((g) => (
+          <a class="tool-link" href={`/guides/${g!.slug}/`}>
+            <h3>{g!.title}</h3>
+            <p>{g!.description}</p>
+          </a>
+        ))}
+      </div>
+    </section>
+  )
+}

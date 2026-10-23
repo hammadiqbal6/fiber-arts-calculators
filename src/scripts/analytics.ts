@@ -7,6 +7,8 @@ declare global {
     dataLayer: unknown[];
     gtag?: (...args: unknown[]) => void;
     __fiberGaReady?: boolean;
+    /** Set by Analytics.astro inline stub (never put import in define:vars). */
+    __FIBER_GA_ID?: string;
   }
 }
 
