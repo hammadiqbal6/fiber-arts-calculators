@@ -2,4 +2,4 @@
 description: On-page SEO requirements for FiberCalc pages
 globs: src/pages/**/*.astro
 ---
-Unique title (≤60 rendered, including brand), meta description 120–160 (audit 50–165), one H1, canonical from siteConfig.siteUrl, OG tags (no og:image trailing slash), 40–60 word answer-first intro under H1, internal links including Learn more guides. Tools need WebApplication JSON-LD without fake ratings; guides need Article + FAQPage. See docs/SEO-GUARDRAILS.md.
+Unique title (25–65 rendered including brand, target ~30–60), meta description 70–160 (target ~120–160), one H1, canonical from siteConfig.siteUrl, OG tags (no og:image trailing slash), 40–60 word answer-first intro under H1, internal links including Learn more guides. Tools need WebApplication JSON-LD without fake ratings; guides need Article + FAQPage. See docs/SEO-GUARDRAILS.md.

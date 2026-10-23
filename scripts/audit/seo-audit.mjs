@@ -72,11 +72,16 @@ for (const file of pages) {
   const h1s = [...html.matchAll(/<h1\b[^>]*>([\s\S]*?)<\/h1>/gi)];
 
   if (!title) errors.push(`${rel}: missing title`);
-  else if ([...title].length > 60) errors.push(`${rel}: title length ${[...title].length} > 60`);
+  else {
+    const titleLen = [...title].length;
+    if (titleLen < 25 || titleLen > 65) {
+      errors.push(`${rel}: title length ${titleLen} outside 25–65`);
+    }
+  }
 
   if (!desc) errors.push(`${rel}: missing meta description`);
-  else if (desc.length < 50 || desc.length > 165) {
-    errors.push(`${rel}: description length ${desc.length} outside 50–165`);
+  else if (desc.length < 70 || desc.length > 160) {
+    errors.push(`${rel}: description length ${desc.length} outside 70–160`);
   }
 
   if (!canonical) errors.push(`${rel}: missing canonical`);
