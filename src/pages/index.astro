@@ -3,9 +3,10 @@ import BaseLayout from '../components/BaseLayout.astro';
 import AdSlot from '../components/AdSlot.astro';
 import { siteConfig } from '../config/site';
 import { TOOLS } from '../lib/tools';
+import { GUIDES } from '../data/guides';
 import { homeGraph } from '../lib/schema';
 
-const title = 'Knitting, Crochet & Quilting Calculators – Free | FiberCalc';
+const title = 'Free Knitting & Quilting Calculators';
 const description =
   'Free yarn, gauge, fabric yardage, quilt backing, binding and HST calculators for knitters, crocheters, sewists and quilters. Inches or cm, yards or meters.';
 ---
@@ -15,14 +16,14 @@ const description =
     <div class="container">
       <div class="hero__panel">
         <p class="hero__brand">{siteConfig.siteName}</p>
-        <h1>{siteConfig.tagline}</h1>
+        <h1>Free knitting, crochet, sewing &amp; quilting calculators</h1>
         <p class="hero__lead">
-          Plan yarn, gauge, fabric, and quilt cuts in your browser—no signup, no uploads.
-          Built for makers who want clear math with inches or centimeters.
+          FiberCalc estimates yarn yardage, knitting gauge, fabric cuts, and quilt backing or binding in your browser—no signup and no uploads.
+          Enter inches or centimeters, match Craft Yarn Council yarn weights, and get skein counts you can take to the shop. Browse tools below or start with a guide when you need the method explained.
         </p>
         <div class="btn-row">
           <a class="btn btn--primary" href="/tools/">Browse all calculators</a>
-          <a class="btn btn--secondary" href="/knitting-crochet/">Yarn & gauge tools</a>
+          <a class="btn btn--secondary" href="/knitting-crochet/">Yarn &amp; gauge tools</a>
         </div>
       </div>
     </div>
@@ -53,6 +54,16 @@ const description =
         <a class="tool-link" href={c.href}>
           <h3>{c.title}</h3>
           <p>{c.body}</p>
+        </a>
+      ))}
+    </div>
+
+    <h2>Start with a guide</h2>
+    <div class="tool-grid">
+      {GUIDES.slice(0, 6).map((g) => (
+        <a class="tool-link" href={`/guides/${g.slug}/`}>
+          <h3>{g.title}</h3>
+          <p>{g.description}</p>
         </a>
       ))}
     </div>

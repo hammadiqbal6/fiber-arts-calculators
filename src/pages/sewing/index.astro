@@ -5,9 +5,9 @@ import { toolsByCategory } from '../../lib/tools';
 import { collectionPageGraph } from '../../lib/schema';
 
 const tools = toolsByCategory('sewing');
-const title = 'Sewing Calculators: Fabric Yardage & Seams';
+const title = 'Sewing Calculators: Fabric & Seams';
 const description =
-  'Free sewing calculators for fabric yardage (garments, curtains, upholstery) and seam allowance or pattern grading helpers.';
+  'Free sewing calculators for fabric yardage (garments, curtains, upholstery) and seam allowance or pattern grading helpers. Plan cuts before you buy.';
 const jsonLd = collectionPageGraph({
   name: title,
   description,
@@ -23,14 +23,32 @@ const jsonLd = collectionPageGraph({
   <div class="container">
     <Breadcrumbs items={[{ label: 'Home', href: '/' }, { label: 'Sewing' }]} />
     <h1>Sewing calculators</h1>
-    <p class="takeaway"><strong>Key takeaway:</strong> Estimate fabric from project dimensions and fabric width, then refine cut sizes with seam allowance and ease helpers.</p>
+    <p class="takeaway">
+      <strong>Key takeaway:</strong> Estimate fabric from project dimensions and fabric width, then refine cut sizes with
+      seam allowance and ease helpers—before you commit to a bolt cut.
+    </p>
     <div class="prose">
       <p>
         The <a href="/tools/fabric-yardage-calculator/">fabric yardage calculator</a> is for shopping lists:
         finished width and length, fabric width, waste, and optional pattern repeat. The
         <a href="/tools/seam-allowance-calculator/">seam allowance calculator</a> converts finished measurements
         to cut sizes, grades a measurement between sizes, or adds wearing ease. Neither tool replaces a full
-        pattern; both keep arithmetic local in your browser.
+        pattern; both keep arithmetic local in your browser so you can iterate on curtain lengths, tablecloth
+        overhangs, or apparel ease without uploading files.
+      </p>
+      <p>
+        When you are planning dress, curtain, or quilt-related yardage in words rather than in a form, read
+        <a href="/guides/how-many-yards-of-fabric/">how many yards of fabric you need</a>. Quilters who crossed over
+        from garment sewing often need binding and backing math next—see the
+        <a href="/guides/how-much-quilt-binding-do-i-need/">quilt binding guide</a> and the
+        <a href="/quilting/">quilting hub</a>. For seam conventions on patchwork, the
+        <a href="/guides/half-square-triangle-math/">half-square triangle guide</a> explains unfinished vs finished
+        sizes that affect how much fabric a block grid consumes.
+      </p>
+      <p>
+        Tip: match the unit system on your pattern (inches vs centimeters) and write the fabric width from the bolt
+        end, not from memory—quilting cotton, home-dec, and wide backing differ. Add waste for directional prints
+        and nap; the fabric calculator’s waste field exists for that reason.
       </p>
     </div>
     <div class="tool-grid">
@@ -38,5 +56,9 @@ const jsonLd = collectionPageGraph({
         <a class="tool-link" href={t.path}><h2>{t.title}</h2><p>{t.description}</p></a>
       ))}
     </div>
+    <p>
+      Guides: <a href="/guides/how-many-yards-of-fabric/">fabric yardage</a> ·
+      <a href="/guides/">all guides</a>
+    </p>
   </div>
 </BaseLayout>

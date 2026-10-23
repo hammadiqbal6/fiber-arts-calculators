@@ -4,6 +4,8 @@
 
 Static Astro + TypeScript site of free **knitting, crochet, sewing, and quilting calculators**. All math is client-side. Brand/domain/ads/analytics live in `src/config/site.ts` (env-overridable).
 
+**Canonical site origin** is a single setting: `PUBLIC_SITE_URL` → `siteConfig.siteUrl` (fallback `src/config/defaults.mjs`). Used for canonicals, sitemap, robots, llms.txt, JSON-LD, OG, IndexNow. Do not hardcode the hostname in pages. Custom domain cutover: `docs/CUSTOM-DOMAIN.md`. SEO do/don’t: `docs/SEO-GUARDRAILS.md`.
+
 ## Architecture
 
 ```mermaid
@@ -14,38 +16,55 @@ flowchart LR
   client --> lib[src/lib/calculators]
   lib --> tests[vitest]
   dist[dist/] --> audit[scripts/audit]
+  worker[src/worker.ts] --> assets[ASSETS 308 slash]
 ```
 
 - `src/lib/calculators/*` — pure formulas + unit tests  
 - `src/scripts/tool-client.ts` — browser handlers  
 - `src/data/tool-pages.ts` — per-tool SEO copy + form HTML  
+- `src/data/guides/*` — long-form guides (≥~1000 words, FAQ, table)  
+- `src/data/tool-guide-map.ts` — tool → guide “Learn more” links  
 - `src/pages/tools/[slug].astro` — tool template  
+- `src/worker.ts` — 308 trailing-slash redirects (FILE_EXT `{1,16}`)  
 - Hub pages under `/knitting-crochet/`, `/sewing/`, `/quilting/`, `/reference/`
 
 ## How to add a new tool
 
 1. Implement pure functions in `src/lib/calculators/` + tests in `all.test.ts`.
 2. Register metadata in `src/lib/tools.ts` (`TOOLS` + `related` slugs).
-3. Add a page object to `src/data/tool-pages.ts` (title ≤ ~45 chars before brand suffix, description <155, ≥600 words across answer/sections/faqs, form fields, sources).
+3. Add a page object to `src/data/tool-pages.ts` (title short enough that `Title | FiberCalc` ≤60 chars, description 120–160, ≥600 words across answer/sections/faqs, form fields, sources).
 4. Add a handler key in `src/scripts/tool-client.ts`.
-5. Link from the right hub page and `docs/KEYWORD-MAP.md` (unique primary keyword).
-6. Optionally add `/embed/[slug]/` (automatic via `TOOL_PAGES`).
-7. Run `npm test && npm run build && npm run audit`.
+5. Map related guides in `src/data/tool-guide-map.ts`.
+6. Link from the right hub page and `docs/KEYWORD-MAP.md` (unique primary keyword).
+7. Optionally add `/embed/[slug]/` (automatic via `TOOL_PAGES`).
+8. Run `npm test && npm run build && npm run audit`.
 
 ### Tool page template (content)
 
-1. Answer-first paragraph (40–60 words)  
+1. Answer-first paragraph (40–60 words) under H1  
 2. Working calculator above the fold  
-3. Formula / method  
-4. Worked example  
-5. Tips + common mistakes  
-6. FAQ  
-7. Sources with outbound links  
-8. Related tools + embed link  
+3. “Learn more” guides block  
+4. Formula / method  
+5. Worked example  
+6. Tips + common mistakes  
+7. FAQ  
+8. Sources with outbound links  
+9. Related tools + embed link  
+
+### Guide template
+
+1. Entry in `src/data/guides/<slug>.ts` + export from `guides/index.ts`  
+2. Takeaway + ~1000 words, table, 4–6 FAQs (FAQPage JSON-LD)  
+3. `relatedTools` + `relatedGuides`; hub + llms.txt + sitemap via registry  
+4. No invented statistics—label rules of thumb  
 
 ## Content / SEO / AdSense rules
 
-Follow `docs/SEO-PLAYBOOK.md`, `docs/KEYWORD-MAP.md`, `docs/ADSENSE.md`. No thin duplicates. Cite CYC / industry sources. Privacy must mention AdSense/cookies before enabling ads.
+Follow `docs/SEO-PLAYBOOK.md`, `docs/SEO-GUARDRAILS.md`, `docs/KEYWORD-MAP.md`, `docs/ADSENSE.md`. No thin duplicates. Cite CYC / industry sources. Privacy must mention AdSense/cookies before enabling ads.
+
+**Never** put `import` inside `<script define:vars>` (classic script — breaks GA). Pass IDs via data attributes or a tiny inline stub, then a bundled module script.
+
+**Never** put `PUBLIC_*` in wrangler top-level `vars` (breaks `npx wrangler preview`); keep `"previews": {}`.
 
 ## Quality bar
 
@@ -53,24 +72,24 @@ Follow `docs/SEO-PLAYBOOK.md`, `docs/KEYWORD-MAP.md`, `docs/ADSENSE.md`. No thin
 - Lighthouse mobile ≥95 (perf/a11y/BP/SEO)  
 - JS gzip per chunk ≤50KB  
 - Unit tests for formulas  
-- `npm run audit` green  
+- `npm run audit` green (titles, meta, H1, canonical, guide links, guide word count, sitemap, JSON-LD, og:image slash, example.com, IndexNow, site-origin)  
 
 ## Commands
 
 | Command | Purpose |
 |---|---|
 | `npm run dev` | Local dev server |
-| `npm run build` | Static build to `dist/` |
+| `npm run build` | OG images + static build to `dist/` |
 | `npm test` | Vitest formula tests |
-| `npm run audit` | Build + SEO/AdSense/JS/link audits |
+| `npm run audit` | Build + SEO/AdSense/JS/link/guardrail audits |
 | `npm run lhci` | Lighthouse CI budgets |
 
 ## Definition of done
 
 - [ ] Tool works end-to-end with shareable query-string state  
 - [ ] Tests cover new formulas  
-- [ ] Unique keyword + ≥600 words + sources  
-- [ ] Internal links from hub + related tools  
+- [ ] Unique keyword + ≥600 words (tools) / ≥800 words (guides) + sources  
+- [ ] Internal links from hub + related tools + guide map  
 - [ ] Audits pass; no new Lighthouse regressions  
 
 ## Subagents / skills

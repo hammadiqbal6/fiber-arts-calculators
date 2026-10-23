@@ -1,0 +1,15 @@
+---
+description: Hard SEO/Workers indexing guardrails — site origin, GA scripts, trailing slash, og:image, IndexNow, wrangler preview
+globs: src/config/**,astro.config.mjs,wrangler.jsonc,public/_redirects,public/**/*.txt,src/components/Analytics.astro,src/components/CookieNotice.astro,src/worker.ts,scripts/audit/**
+alwaysApply: true
+---
+
+Follow [docs/SEO-GUARDRAILS.md](docs/SEO-GUARDRAILS.md) and [docs/CUSTOM-DOMAIN.md](docs/CUSTOM-DOMAIN.md).
+
+- **Site URL:** only `PUBLIC_SITE_URL` / `src/config/defaults.mjs` — never hardcode this site’s `*.workers.dev` host in pages/components.
+- **GA:** never put `import` inside `<script define:vars>`; use data-attribute or inline stub + bundled module.
+- **Trailing slash:** `src/worker.ts` 308 + `FILE_EXT` `{1,16}`; wrangler `run_worker_first` + `html_handling: force-trailing-slash` + `"previews": {}`.
+- **og:image:** no trailing slash on file URLs.
+- **IndexNow:** real 32-hex key at `public/<key>.txt`; no `000…0` placeholder.
+- **Guides:** ≥800 words, FAQPage, linked from tools via `tool-guide-map.ts`.
+- After changes: `npm run build && npm run audit`.

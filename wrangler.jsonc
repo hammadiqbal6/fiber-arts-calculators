@@ -1,17 +1,31 @@
+/**
+ * Static Astro output + a tiny Worker for 308 trailing-slash redirects.
+ * Workers Builds: npm run build → npx wrangler deploy && node scripts/indexnow.mjs
+ *
+ * Build-time PUBLIC_* belong in Cloudflare Workers Builds → Variables
+ * (.env.example). Do NOT put PUBLIC_* in top-level wrangler "vars" — that
+ * forces previews.vars and does not bake Astro HTML anyway.
+ */
 {
   "$schema": "./node_modules/wrangler/config-schema.json",
-  // Pure static-assets Worker (no adapter, no Worker script, no bindings).
   "name": "fiber-arts-calculators",
   // Keep current with Workers best-practice: today's date for new Workers.
   "compatibility_date": "2026-10-19",
+  // Worker issues 308 trailing-slash redirects before assets (html_handling alone uses 307)
+  "main": "src/worker.ts",
   "assets": {
     // Astro `npm run build` output
     "directory": "./dist",
+    "binding": "ASSETS",
+    // Run Worker first so missing trailing slashes get 308 (not the default 307).
+    "run_worker_first": true,
     // Serve nearest 404.html for unknown paths (Astro emits dist/404.html)
     "not_found_handling": "404-page",
-    // Match Astro trailingSlash: 'always'
+    // Match Astro trailingSlash: 'always' (slash redirects handled in worker as 308)
     "html_handling": "force-trailing-slash"
   },
+  // Required by `npx wrangler preview` (non-production Workers Builds command).
+  "previews": {},
   // PUBLIC_* are build-time (Astro). Set the same keys in Cloudflare Workers Builds
   // dashboard env vars (including PUBLIC_SITE_URL and PUBLIC_SITE_URL_* sister origins).
   // Runtime Worker vars are not used for this static site.

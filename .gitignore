@@ -11,3 +11,5 @@ tmp/
 .vercel
 .netlify
 .wrangler
+# Generated per-page OG images (created by scripts/generate-og.mjs during build)
+public/og/*.png

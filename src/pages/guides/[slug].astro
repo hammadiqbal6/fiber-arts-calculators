@@ -2,6 +2,7 @@
 import BaseLayout from '../../components/BaseLayout.astro';
 import Breadcrumbs from '../../components/Breadcrumbs.astro';
 import RelatedTools from '../../components/RelatedTools.astro';
+import RelatedGuides from '../../components/RelatedGuides.astro';
 import { GUIDES } from '../../data/guides';
 import { siteConfig, CANONICAL_PERSON_ID } from '../../config/site';
 
@@ -11,6 +12,7 @@ export function getStaticPaths() {
 
 const guide = GUIDES.find((g) => g.slug === Astro.params.slug)!;
 const path = `/guides/${guide.slug}/`;
+const ogImage = `/og/${guide.slug}.png`;
 
 const jsonLd = [
   {
@@ -40,6 +42,7 @@ const jsonLd = [
       },
     },
     mainEntityOfPage: siteConfig.siteUrl + path,
+    image: `${siteConfig.siteUrl}${ogImage}`,
   },
   {
     '@context': 'https://schema.org',
@@ -50,10 +53,30 @@ const jsonLd = [
       { '@type': 'ListItem', position: 3, name: guide.title, item: siteConfig.siteUrl + path },
     ],
   },
+  ...(guide.faqs?.length
+    ? [
+        {
+          '@context': 'https://schema.org',
+          '@type': 'FAQPage',
+          mainEntity: guide.faqs.map((f) => ({
+            '@type': 'Question',
+            name: f.q,
+            acceptedAnswer: { '@type': 'Answer', text: f.a },
+          })),
+        },
+      ]
+    : []),
 ];
 ---
 
-<BaseLayout title={guide.title} description={guide.description} canonicalPath={path} jsonLd={jsonLd}>
+<BaseLayout
+  title={guide.title}
+  description={guide.description}
+  canonicalPath={path}
+  jsonLd={jsonLd}
+  ogImage={ogImage}
+  ogImageAlt={`${guide.title} — FiberCalc guide`}
+>
   <div class="container prose">
     <Breadcrumbs items={[
       { label: 'Home', href: '/' },
@@ -67,11 +90,67 @@ const jsonLd = [
       <span>By <a href="/about/#maintainer" rel="author">{siteConfig.defaultAuthor.name}</a></span>
     </div>
     {guide.sections.map((block) => {
-      if (block.type === 'takeaway') return <div class="takeaway"><p><strong>Key takeaway:</strong> {block.content}</p></div>;
+      if (block.type === 'takeaway') {
+        return (
+          <div class="takeaway">
+            <p><strong>Key takeaway:</strong> {block.content}</p>
+          </div>
+        );
+      }
       if (block.type === 'h2') return <h2>{block.content}</h2>;
-      if (block.type === 'ul') return <ul>{(block.content as string[]).map((li) => <li>{li}</li>)}</ul>;
+      if (block.type === 'ul') {
+        return (
+          <ul>
+            {(block.content as string[]).map((li) => (
+              <li>{li}</li>
+            ))}
+          </ul>
+        );
+      }
+      if (block.type === 'table') {
+        const table = block.content as { headers: string[]; rows: string[][]; caption?: string };
+        return (
+          <div class="table-scroll">
+            <table>
+              {table.caption && <caption>{table.caption}</caption>}
+              <thead>
+                <tr>
+                  {table.headers.map((h) => (
+                    <th scope="col">{h}</th>
+                  ))}
+                </tr>
+              </thead>
+              <tbody>
+                {table.rows.map((row) => (
+                  <tr>
+                    {row.map((cell) => (
+                      <td>{cell}</td>
+                    ))}
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        );
+      }
       return <p>{block.content}</p>;
     })}
+
+    {guide.faqs?.length > 0 && (
+      <>
+        <h2>FAQ</h2>
+        <div class="faq">
+          {guide.faqs.map((f) => (
+            <details>
+              <summary>{f.q}</summary>
+              <p>{f.a}</p>
+            </details>
+          ))}
+        </div>
+      </>
+    )}
+
     <RelatedTools slugs={guide.relatedTools} title="Calculators used in this guide" />
+    <RelatedGuides slugs={guide.relatedGuides || []} title="Related guides" />
   </div>
 </BaseLayout>

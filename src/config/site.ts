@@ -4,10 +4,12 @@
  *
  * Cloudflare Workers Builds should set the PUBLIC_* vars listed in `.env.example`
  * so Astro bakes them into static HTML.
+ *
+ * Canonical origin: PUBLIC_SITE_URL (fallback DEFAULT_SITE_URL in defaults.mjs).
+ * Used for canonicals, sitemap, robots Sitemap:, llms.txt, JSON-LD, OG, IndexNow.
+ * See docs/CUSTOM-DOMAIN.md before changing domains.
  */
-const DEFAULT_SITE_URL =
-  'https://fiber-arts-calculators.hammadiqbal117.workers.dev';
-const DEFAULT_INDEXNOW_KEY = '9638154d8d3e54b9c2ce62eb17469c43';
+import { DEFAULT_SITE_URL, DEFAULT_INDEXNOW_KEY } from './defaults.mjs';
 
 /** Shared across all five tool sites so Google can resolve one Person entity. */
 export const CANONICAL_PERSON_ID = 'https://github.com/hammadiqbal6#person';
@@ -96,7 +98,7 @@ export const siteConfig = {
    * Last content review date. Change only when formulas, sources, or tool copy
    * actually change (Google helpful-content guidance).
    */
-  lastReviewed: '2026-10-20',
+  lastReviewed: '2026-10-23',
   /** Calculator package version shown in TrustBlock. */
   calculatorVersion: '1.0',
   /** Theme color for manifest / browser UI */

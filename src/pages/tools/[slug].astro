@@ -3,6 +3,7 @@ import BaseLayout from '../../components/BaseLayout.astro';
 import Breadcrumbs from '../../components/Breadcrumbs.astro';
 import AdSlot from '../../components/AdSlot.astro';
 import RelatedTools from '../../components/RelatedTools.astro';
+import RelatedGuides from '../../components/RelatedGuides.astro';
 import TrustBlock from '../../components/TrustBlock.astro';
 import EmbedSnippet from '../../components/EmbedSnippet.astro';
 import SisterTools from '../../components/SisterTools.astro';
@@ -11,6 +12,7 @@ import { getTool } from '../../lib/tools';
 import { siteConfig } from '../../config/site';
 import { toolPageGraph } from '../../lib/schema';
 import { sisterLinksFor } from '../../lib/sister-links';
+import { guidesForTool } from '../../data/tool-guide-map';
 
 export function getStaticPaths() {
   return TOOL_PAGES.map((p) => ({ params: { slug: p.slug } }));
@@ -20,6 +22,8 @@ const { slug } = Astro.params;
 const page = TOOL_PAGES.find((p) => p.slug === slug)!;
 const tool = getTool(slug!)!;
 const sister = sisterLinksFor(tool.slug);
+const learnGuides = guidesForTool(tool.slug);
+const ogImage = `/og/${tool.slug}.png`;
 
 const formulaSection = page.sections.find(([h]) =>
   /formula|how (this|it) (calculator )?works|method/i.test(h),
@@ -53,7 +57,7 @@ const jsonLd = toolPageGraph({
 });
 ---
 
-<BaseLayout title={page.title} description={page.description} canonicalPath={tool.path} jsonLd={jsonLd}>
+<BaseLayout title={page.title} description={page.description} canonicalPath={tool.path} jsonLd={jsonLd} ogImage={ogImage} ogImageAlt={`${page.h1} — FiberCalc`}>
   <div class="container">
     <Breadcrumbs items={[
       { label: 'Home', href: '/' },
@@ -62,6 +66,7 @@ const jsonLd = toolPageGraph({
     ]} />
 
     <h1>{page.h1}</h1>
+    <p class="takeaway"><strong>Key takeaway:</strong> {page.answer}</p>
     <div class="meta-row">
       <span>Runs 100% in your browser</span>
       <span>
@@ -91,10 +96,9 @@ const jsonLd = toolPageGraph({
 
     <AdSlot slot="after-tool" />
 
+    <RelatedGuides slugs={learnGuides} title="Learn more" />
+
     <article class="prose">
-      <div class="takeaway">
-        <p><strong>Key takeaway:</strong> {page.answer}</p>
-      </div>
       <p>{page.answer}</p>
 
       {primaryImage && (

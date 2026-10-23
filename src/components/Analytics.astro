@@ -18,13 +18,20 @@ const gaId = siteConfig.ga4MeasurementId;
         wait_for_update: 500
       });
     </script>
-    <script define:vars={{ gaId }}>
+    {/* Pass gaId without import — define:vars emits a classic script, not a module. */}
+    <script is:inline define:vars={{ gaId }}>
+      window.__FIBER_GA_ID = gaId;
+    </script>
+    <script>
       import { scheduleAnalytics, bindOutboundTracking } from '../scripts/analytics';
-      scheduleAnalytics(gaId);
-      if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', () => bindOutboundTracking());
-      } else {
-        bindOutboundTracking();
+      const id = window.__FIBER_GA_ID || '';
+      if (id) {
+        scheduleAnalytics(id);
+        if (document.readyState === 'loading') {
+          document.addEventListener('DOMContentLoaded', () => bindOutboundTracking());
+        } else {
+          bindOutboundTracking();
+        }
       }
     </script>
   </>

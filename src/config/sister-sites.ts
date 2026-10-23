@@ -2,6 +2,8 @@
  * Cross-site (sister) origins for the five tool sites.
  * Override via PUBLIC_SITE_URL_* env vars when custom domains arrive.
  * Fallbacks match current *.workers.dev deployments so builds never break.
+ * This site's own origin for SEO is NOT taken from here — use PUBLIC_SITE_URL
+ * / siteConfig.siteUrl (see docs/CUSTOM-DOMAIN.md).
  */
 function origin(value: string | undefined, fallback: string): string {
   const trimmed = (value ?? '').trim().replace(/\/$/, '');

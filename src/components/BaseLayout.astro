@@ -25,13 +25,13 @@ const {
 } = Astro.props;
 
 const canonical = new URL(canonicalPath, siteConfig.siteUrl).toString();
-const ogUrl = new URL(ogImage, siteConfig.siteUrl).toString();
+// Asset paths must not gain a trailing slash (og:image ending in / → 404).
+const ogUrl = new URL(ogImage.replace(/\/$/, ''), siteConfig.siteUrl).toString().replace(/\/$/, '');
 const titleNeedsBrand = !title.includes(siteConfig.siteName);
-const fullTitle = titleNeedsBrand && [...title].length <= 50
-  ? `${title} | ${siteConfig.siteName}`
-  : titleNeedsBrand && [...title].length <= 55
-    ? `${title} | ${siteConfig.siteName}`
-    : title;
+const brandSuffix = ` | ${siteConfig.siteName}`;
+const withBrand = `${title}${brandSuffix}`;
+// Keep rendered <title> ≤60 characters (SEO guardrail).
+const fullTitle = titleNeedsBrand && [...withBrand].length <= 60 ? withBrand : title;
 const schemas = Array.isArray(jsonLd) ? jsonLd : [jsonLd];
 const nav = [
   { href: '/knitting-crochet/', label: 'Knit & crochet' },
