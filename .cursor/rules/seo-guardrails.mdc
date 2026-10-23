@@ -12,4 +12,5 @@ Follow [docs/SEO-GUARDRAILS.md](docs/SEO-GUARDRAILS.md) and [docs/CUSTOM-DOMAIN.
 - **og:image:** no trailing slash on file URLs.
 - **IndexNow:** real 32-hex key at `public/<key>.txt`; no `000…0` placeholder.
 - **Guides:** ≥800 words, FAQPage, linked from tools via `tool-guide-map.ts`.
+- **Meta lengths:** rendered `<title>` 25–65 chars; meta description 70–160 chars (keep og/twitter in sync via BaseLayout).
 - After changes: `npm run build && npm run audit`.

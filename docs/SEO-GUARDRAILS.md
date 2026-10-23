@@ -16,6 +16,7 @@ Hard requirements so builds never ship the indexing and AEO bugs from the Oct 20
 | Tools → 0 guides | No topical links | `tool-guide-map.ts` + “Learn more” on tool pages |
 | Thin guides | 272–429 words | Expand to ~1,000+ with table, worked example, FAQPage |
 | Titles >60 | Brand suffix appended blindly | Short titles + BaseLayout cap at 60 |
+| Titles <25 or descriptions >160 | Thin legal/hub meta | Lengthen titles with brand/topic; trim descriptions; CI enforces 25–65 / 70–160 |
 | Thin `llms.txt` | 5 links | Full H1 + every tool/guide one-liner |
 | Missing schema on contact/methodology/guides index | Omitted | ContactPage / WebPage / CollectionPage + BreadcrumbList |
 | Single OG image | One `og-default.png` | `scripts/generate-og.mjs` → `/og/<slug>.png` |
@@ -36,7 +37,7 @@ Hard requirements so builds never ship the indexing and AEO bugs from the Oct 20
 - [ ] Keep IndexNow key at `public/<32-hex>.txt` (not a placeholder `000…0`).
 - [ ] Keep `html_handling: "force-trailing-slash"`, `run_worker_first`, and `"previews": {}` in `wrangler.jsonc`.
 - [ ] Put `PUBLIC_*` in Workers Builds **dashboard** env (build-time), not wrangler `vars`.
-- [ ] Titles ≤60 chars (rendered); meta descriptions 120–160 (audit allows 50–165).
+- [ ] Titles **25–65** chars (target ~30–60 with brand); meta descriptions **70–160** (target ~120–160). Enforced by `seo-audit.mjs` + `seo-guardrails.mjs`.
 - [ ] One H1; answer-first 40–60 word intro under H1 on tools/hubs/home.
 - [ ] Every tool links ≥1 guide; guides ≥800 words (target ~1,000+); FAQ + FAQPage on guides.
 - [ ] Production deploy: `npx wrangler deploy && node scripts/indexnow.mjs`.
@@ -63,7 +64,7 @@ Hard requirements so builds never ship the indexing and AEO bugs from the Oct 20
 |---|---|
 | No `example.com` in dist SEO surfaces | `scripts/audit/seo-guardrails.mjs` |
 | No `og:image` ending in `/` | same |
-| Titles ≤60; meta descriptions 50–165; canonical; single H1 | `seo-audit.mjs` + guardrails |
+| Titles 25–65; meta descriptions 70–160; canonical; single H1 | `seo-audit.mjs` + guardrails |
 | Tool pages link a guide; guides ≥800 words | `seo-audit.mjs` |
 | Pages in sitemap; broken internal links; valid JSON-LD | `seo-audit.mjs` / `link-check.mjs` |
 | Inline scripts must not contain `import` | `seo-guardrails.mjs` |

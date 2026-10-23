@@ -70,11 +70,16 @@ for (const file of htmlFiles) {
   const h1s = [...html.matchAll(/<h1\b[^>]*>/gi)];
 
   if (!title) fail(`${rel}: missing title`);
-  else if ([...title].length > 60) fail(`${rel}: title length ${[...title].length} > 60`);
+  else {
+    const titleLen = [...title].length;
+    if (titleLen < 25 || titleLen > 65) {
+      fail(`${rel}: title length ${titleLen} outside 25–65`);
+    }
+  }
 
   if (!desc) fail(`${rel}: missing meta description`);
-  else if (desc.length < 50 || desc.length > 165) {
-    fail(`${rel}: meta description length ${desc.length} outside 50–165`);
+  else if (desc.length < 70 || desc.length > 160) {
+    fail(`${rel}: meta description length ${desc.length} outside 70–160`);
   }
 
   if (!canonical) fail(`${rel}: missing canonical`);

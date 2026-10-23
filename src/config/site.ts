@@ -50,6 +50,17 @@ export const siteConfig = {
   tagline: 'Free knitting, crochet, sewing & quilting calculators',
   /** Public contact email (footer, Contact/Privacy/Terms, Organization JSON-LD). */
   contactEmail,
+  /**
+   * EmailJS public config for /contact/ (build-time PUBLIC_*).
+   * Form renders only when all three are non-empty. Private key must never ship.
+   * @see docs/CONTACT-EMAILJS.md
+   */
+  emailjs: {
+    serviceId: envString(import.meta.env.PUBLIC_EMAILJS_SERVICE_ID),
+    templateId: envString(import.meta.env.PUBLIC_EMAILJS_TEMPLATE_ID),
+    publicKey: envString(import.meta.env.PUBLIC_EMAILJS_PUBLIC_KEY),
+  },
+
   /** Legal entity / publisher name for Privacy, Terms, Organization. */
   legalName: envString(import.meta.env.PUBLIC_LEGAL_NAME, 'FiberCalc'),
   /** Default locale */
