@@ -40,12 +40,12 @@ export const guide: Guide = {
     {
       type: 'takeaway',
       content:
-        'Scarf skeins = estimated total yards ÷ yards per skein, rounded up. Area (width × length), Craft Yarn Council yarn weight, and knit vs crochet density drive the yardage. Use the yarn scarf calculator (/tools/yarn-scarf-calculator/) instead of guessing from ball counts alone.',
+        'Scarf skeins = estimated total yards ÷ yards per skein, rounded up. Area (width × length), Craft Yarn Council yarn weight, and knit vs crochet density drive the yardage. Use the yarn scarf calculator (/tools/yarn-scarf-calculator/) instead of guessing from ball counts alone, then add fringe.',
     },
     {
       type: 'p',
       content:
-        'Scarves look like simple rectangles, which makes yarn math friendlier than sweaters—but short put-ups, dense stitches, and fringe still empty skeins faster than expected. This guide shows how to turn dimensions into a skein count, when substitution changes the answer, and how to avoid the classic “one skein short of fringe” problem.',
+        'Scarves look like simple rectangles, which makes yarn math friendlier than sweaters—but short put-ups, dense stitches, and fringe still empty skeins faster than expected. This guide shows how to turn dimensions into a skein count, when substitution changes the answer, and how to avoid the classic “one skein short of fringe” problem. Along the way you will see why yards-first shopping beats ball-count habits for every Craft Yarn Council weight category from lace-weight fingering through super bulky.',
     },
     {
       type: 'h2',
@@ -118,7 +118,7 @@ export const guide: Guide = {
     {
       type: 'p',
       content:
-        'A cowl that loops once or twice may use less length than a classic 65-inch scarf but more width, so area—not “it looks small”—still drives yarn. Measure the loop circumference you want, decide height, and run the same yards-then-skeins math. Moebius and double-thick cowls effectively double fabric for the visible height; budget accordingly or weigh a swatch before casting on the full circumference. Striped scarves need dye-lot planning per color even when the total yardage fits in “two skeins” of mixed leftovers. If you lengthen a scarf after the first skein, re-run the yard estimate before winding the next ball so stripes and fringe still fit the put-up.',
+        'A cowl that loops once or twice may use less length than a classic 65-inch scarf but more width, so area—not “it looks small”—still drives yarn. Measure the loop circumference you want, decide height, and run the same yards-then-skeins math. Moebius and double-thick cowls effectively double fabric for the visible height; budget accordingly or weigh a swatch before casting on the full circumference. Striped scarves need dye-lot planning per color even when the total yardage fits in “two skeins” of mixed leftovers. If you lengthen a scarf after the first skein, re-run the yard estimate before winding the next ball so stripes and fringe still fit the put-up. Leftovers become fringe, flowers, or a matching charm.',
     },
     {
       type: 'h2',
@@ -146,7 +146,7 @@ export const guide: Guide = {
     {
       type: 'p',
       content:
-        'For gifts, buy enough of one dye lot to finish body and fringe together. A mismatched fringe skein is especially obvious on solid scarves. If you are stitching several scarves from one cake yarn, weigh the cake before and after the first scarf to predict how many siblings remain—visual cake size is a poor meter.',
+        'For gifts, buy enough of one dye lot to finish body and fringe together. A mismatched fringe skein is especially obvious on solid scarves. If you are stitching several scarves from one cake yarn, weigh the cake before and after the first scarf to predict how many siblings remain—visual cake size is a poor meter. Store leftover yardage notes with the gift record so a matching hat or mittens can reuse the same colorway later without guesswork.',
     },
     {
       type: 'h2',

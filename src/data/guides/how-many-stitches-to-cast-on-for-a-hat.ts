@@ -163,7 +163,7 @@ export const guide: Guide = {
     {
       type: 'p',
       content:
-        'Crown decreases should land on a stitch count that divides cleanly for your decrease scheme (for example multiples of 8 or 10). When you round the cast-on for ribbing, also glance at how the crown will divide so you are not stuck with an awkward remainder at the top. A one-stitch cast-on tweak for rib is fine; a seven-stitch mismatch at the crown is annoying.',
+        'Crown decreases should land on a stitch count that divides cleanly for your decrease scheme (for example multiples of 8 or 10). When you round the cast-on for ribbing, also glance at how the crown will divide so you are not stuck with an awkward remainder at the top. A one-stitch cast-on tweak for rib is fine; a seven-stitch mismatch at the crown is annoying. If you must choose, prefer a clean crown multiple and adjust ease by a percent point or two rather than forcing an awkward division.',
     },
     {
       type: 'h2',

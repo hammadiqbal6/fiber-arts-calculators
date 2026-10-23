@@ -48,7 +48,7 @@ export const guide: Guide = {
     {
       type: 'p',
       content:
-        'Half-square triangles (HSTs) are the workhorse of scrap quilts, sampler blocks, and modern geometric tops. Accurate cutting formulas keep points sharp and blocks from drifting when you sew grids together. This guide summarizes the usual 2-, 4-, and 8-at-a-time methods, shows a worked batch plan, and points to the free HST calculator (/tools/hst-calculator/) so you are not recalculating by hand for every size.',
+        'Half-square triangles (HSTs) are the workhorse of scrap quilts, sampler blocks, and modern geometric tops. Accurate cutting formulas keep points sharp and blocks from drifting when you sew grids together. This guide summarizes the usual 2-, 4-, and 8-at-a-time methods, shows a worked batch plan, and points to the free HST calculator (/tools/hst-calculator/) so you are not recalculating by hand for every finished size you try.',
     },
     {
       type: 'h2',
@@ -119,7 +119,7 @@ export const guide: Guide = {
     {
       type: 'p',
       content:
-        'Once unit size is fixed, lay out blocks with the quilt size calculator (/tools/quilt-size-calculator/). Add borders only after the HST field measures what you expect. Backing and binding still need their own yardage: see quilt backing yardage guide (/guides/quilt-backing-yardage-guide/) and how much quilt binding do I need (/guides/how-much-quilt-binding-do-i-need/).',
+        'Once unit size is fixed, lay out blocks with the quilt size calculator (/tools/quilt-size-calculator/). Add borders only after the HST field measures what you expect on the design wall. Backing and binding still need their own yardage: see quilt backing yardage guide (/guides/quilt-backing-yardage-guide/) and how much quilt binding do I need (/guides/how-much-quilt-binding-do-i-need/).',
     },
     {
       type: 'h2',
@@ -169,7 +169,7 @@ export const guide: Guide = {
     {
       type: 'p',
       content:
-        'Bias edges on HSTs make starch or careful handling worthwhile before block assembly. If you are shipping blocks to a bee, agree on unfinished size in writing. Mixed unfinished sizes from different makers are a classic bee-quilt headache that trimming discipline prevents.',
+        'Bias edges on HSTs make starch or careful handling worthwhile before block assembly. If you are shipping blocks to a bee, agree on unfinished size in writing. Mixed unfinished sizes from different makers are a classic bee-quilt headache that trimming discipline prevents. A quick stack-and-measure check—fan ten trimmed units and confirm they share one edge length—catches dull-blade drift before those units enter a block.',
     },
     {
       type: 'h2',

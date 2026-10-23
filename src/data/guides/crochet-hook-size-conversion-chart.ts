@@ -40,12 +40,12 @@ export const guide: Guide = {
     {
       type: 'takeaway',
       content:
-        'Crochet hook labels in US letters, UK numbers, and metric millimeters do not always map one-to-one in everyday speech—metric diameter is the clearest shared language. Convert labels carefully, then swatch. Use the needle-hook converter (/tools/needle-hook-converter/) and CYC yarn weight context at /reference/yarn-weights/.',
+        'Crochet hook labels in US letters, UK numbers, and metric millimeters do not always map one-to-one in everyday speech—metric diameter is the clearest shared language. Convert labels carefully, then swatch for gauge. Use the needle-hook converter (/tools/needle-hook-converter/) and CYC yarn weight context at /reference/yarn-weights/.',
     },
     {
       type: 'p',
       content:
-        'A pattern written with US hook letters, a ball band printed in millimeters, and a vintage UK book on the shelf can feel like three different crafts. Hook size conversion charts exist to translate labels—not to replace gauge. This guide explains how to use conversions safely, what to watch between steel and aluminum hooks, and how yarn weight categories connect to typical tool ranges.',
+        'A pattern written with US hook letters, a ball band printed in millimeters, and a vintage UK book on the shelf can feel like three different crafts. Hook size conversion charts exist to translate labels—not to replace gauge. This guide explains how to use conversions safely, what to watch between steel and aluminum hooks, and how yarn weight categories connect to typical tool ranges on the ball band and in the reference chart at /reference/yarn-weights/.',
     },
     {
       type: 'h2',
@@ -122,20 +122,6 @@ export const guide: Guide = {
     },
     {
       type: 'h2',
-      content: 'Common mistakes',
-    },
-    {
-      type: 'ul',
-      content: [
-        'Assuming US and UK “same number” hooks match',
-        'Using steel lace numbering on aluminum charts',
-        'Skipping a swatch after converting labels',
-        'Changing yarn category but keeping the old hook “because the letter matched”',
-        'Ignoring that brand shaft shapes affect comfort and slight gauge',
-      ],
-    },
-    {
-      type: 'h2',
       content: 'Inline vs tapered hooks and ergonomic handles',
     },
     {
@@ -150,17 +136,31 @@ export const guide: Guide = {
     },
     {
       type: 'h2',
-      content: 'Tunisian hooks, steel hooks, and specialty tools',
+      content: 'Teaching and pattern writing',
     },
     {
       type: 'p',
       content:
-        'Tunisian crochet hooks are also sized in millimeters, but fabric density differs from standard crochet at the same diameter—swatch Tunisian patterns separately. Steel hooks for thread crochet use numbering systems that must not be mixed with aluminum apparel hooks. Furze or knit-compatible hooks aimed at yarn crafters still need metric confirmation when patterns cross languages.',
+        'If you teach or write patterns, publishing metric sizes alongside regional labels reduces conversion errors for readers. Linking a chart is helpful; stating “5.0 mm (US H/8)” in the materials list is clearer still. Students shopping internationally will thank you. When a class brings mixed hook brands, start with a group swatch round so everyone sees how “same mm” can still vary slightly before the project yarn is cut. Steel lace hooks keep their own number scale—say so explicitly when a class mixes thread and yarn tools.',
     },
     {
       type: 'p',
       content:
-        'If you teach or write patterns, publishing metric sizes alongside regional labels reduces conversion errors for readers. Linking a chart is helpful; stating “5.0 mm (US H/8)” in the materials list is clearer still. Students shopping internationally will thank you.',
+        'Store a small mm gauge key in every project bag. It settles arguments faster than memory and keeps substitution notes honest when you later open yarn substitution basics (/guides/yarn-substitution-basics/) or estimate a throw with how much yarn for a blanket (/guides/how-much-yarn-for-a-blanket/).',
+    },
+    {
+      type: 'h2',
+      content: 'Common mistakes',
+    },
+    {
+      type: 'ul',
+      content: [
+        'Assuming US and UK “same number” hooks match',
+        'Using steel lace numbering on aluminum charts',
+        'Skipping a swatch after converting labels',
+        'Changing yarn category but keeping the old hook “because the letter matched”',
+        'Ignoring that brand shaft shapes affect comfort and slight gauge',
+      ],
     },
     {
       type: 'h2',

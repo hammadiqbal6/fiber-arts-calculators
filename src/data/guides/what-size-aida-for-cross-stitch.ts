@@ -2,7 +2,7 @@ import type { Guide } from './types';
 
 export const guide: Guide = {
   slug: 'what-size-aida-for-cross-stitch',
-  title: 'What Size Aida for a Cross Stitch Pattern?',
+  title: 'What Size Aida for Cross Stitch?',
   description:
     'Choose Aida count and cut size from stitch width and height. Margin tips, worked example, and a free cross-stitch fabric calculator.',
   primaryKeyword: 'what size aida for cross stitch pattern',
