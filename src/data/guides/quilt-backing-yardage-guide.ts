@@ -7,7 +7,7 @@ export const guide: Guide = {
     'Calculate quilt backing fabric with overhang, panel seams, and wide-back options. Includes a worked example and free calculator links.',
   primaryKeyword: 'quilt backing yardage',
   datePublished: '2026-10-19',
-  dateModified: '2026-10-23',
+  dateModified: '2026-10-24',
   relatedTools: [
     'quilt-backing-calculator',
     'quilt-binding-calculator',
@@ -188,6 +188,10 @@ export const guide: Guide = {
       content:
         'Measure the top, add overhang, compare panel orientations in the quilt backing calculator (/tools/quilt-backing-calculator/), and write the cut lengths on your project sheet before visiting the cutting counter.',
     },
+  ],
+  sources: [
+    ["International Sleep Products Association", "https://www.sleepproducts.org/"],
+    ["National Museum of African American History — quilt layers overview", "https://nmaahc.si.edu/explore/stories/evolution-expression"],
   ],
 };
 

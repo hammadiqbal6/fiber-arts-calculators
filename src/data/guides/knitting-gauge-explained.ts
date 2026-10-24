@@ -7,7 +7,7 @@ export const guide: Guide = {
     'Learn how to measure knitting gauge, fix mismatches, and resize stitch counts so finished width and sweater fit stay correct.',
   primaryKeyword: 'knitting gauge explained',
   datePublished: '2026-10-19',
-  dateModified: '2026-10-23',
+  dateModified: '2026-10-24',
   relatedTools: [
     'knitting-gauge-calculator',
     'cast-on-calculator',
@@ -180,6 +180,10 @@ export const guide: Guide = {
       content:
         'Swatch, wash, measure over 4 inches, then either change needles or rescale counts with the knitting gauge calculator (/tools/knitting-gauge-calculator/). For circumference projects, confirm ease; for sweaters, revisit yardage after gauge settles.',
     },
+  ],
+  sources: [
+    ["Craft Yarn Council — Yarn Weight System (gauge ranges)", "https://www.craftyarncouncil.com/standards/yarn-weight-system"],
+    ["Craft Yarn Council — Hooks & needles size chart", "https://www.craftyarncouncil.com/standards/hooks-and-needles"],
   ],
 };
 

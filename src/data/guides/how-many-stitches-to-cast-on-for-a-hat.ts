@@ -7,7 +7,7 @@ export const guide: Guide = {
     'Calculate hat cast-on stitches from head circumference, gauge, and ease. Worked example, tips, and free cast-on calculator.',
   primaryKeyword: 'how many stitches to cast on for a hat',
   datePublished: '2026-10-20',
-  dateModified: '2026-10-23',
+  dateModified: '2026-10-24',
   relatedTools: [
     'cast-on-calculator',
     'knitting-gauge-calculator',
@@ -174,6 +174,10 @@ export const guide: Guide = {
       content:
         'Measure, swatch, run the cast-on calculator (/tools/cast-on-calculator/) with your ease, round for ribbing, then estimate yarn with the yarn hat calculator (/tools/yarn-hat-calculator/) if you still need skein counts. Revisit knitting gauge explained (/guides/knitting-gauge-explained/) whenever needle size or yarn changes mid-plan.',
     },
+  ],
+  sources: [
+    ["Craft Yarn Council — Head circumference chart", "https://www.craftyarncouncil.com/standards/head-circumference-chart"],
+    ["Craft Yarn Council — Body measurements & ease", "https://www.craftyarncouncil.com/standards/body-sizing"],
   ],
 };
 

@@ -7,7 +7,7 @@ export const guide: Guide = {
     'Estimate fabric yards for dresses, curtains, and quilt-adjacent sewing. Rule-of-thumb ranges, worked example, and free yardage tools.',
   primaryKeyword: 'how many yards of fabric do I need',
   datePublished: '2026-10-23',
-  dateModified: '2026-10-23',
+  dateModified: '2026-10-24',
   relatedTools: ['fabric-yardage-calculator', 'seam-allowance-calculator'],
   relatedGuides: [
     'how-much-quilt-binding-do-i-need',
@@ -43,7 +43,7 @@ export const guide: Guide = {
     {
       type: 'takeaway',
       content:
-        'Fabric yards depend on finished size, fabric width, layout (nap and repeats), and waste—not a single universal number. Use pattern charts when you have them; for custom dresses, curtains, or quilt-adjacent shopping, estimate area plus allowances, then convert with the fabric yardage calculator (/tools/fabric-yardage-calculator/).',
+        'Many adult dress patterns call for roughly 2–4 yards of 45″ or 60″ fabric as a shopping starting point—not a universal number. Finished size, fabric width, nap, and waste still drive the real cut. Use pattern charts when you have them, or the fabric yardage calculator (/tools/fabric-yardage-calculator/).',
     },
     {
       type: 'p',
@@ -166,6 +166,10 @@ export const guide: Guide = {
       content:
         'List finished sizes and fabric width, add seam and hem allowances with the seam allowance calculator (/tools/seam-allowance-calculator/) when drafting, then estimate yards in the fabric yardage calculator (/tools/fabric-yardage-calculator/). For quilt binding and HST cuts, switch to how much quilt binding do I need (/guides/how-much-quilt-binding-do-i-need/) and half-square triangle math (/guides/half-square-triangle-math/).',
     },
+  ],
+  sources: [
+    ["Craft Yarn Council — Body measurements (garment sizing context)", "https://www.craftyarncouncil.com/standards/body-sizing"],
+    ["International Sleep Products Association (bedding size context)", "https://www.sleepproducts.org/"],
   ],
 };
 
