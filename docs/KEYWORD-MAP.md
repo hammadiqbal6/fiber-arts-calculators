@@ -28,7 +28,7 @@
 | `/tools/cross-stitch-fabric-calculator/` | cross stitch calculator aida | aida fabric size calculator |
 | `/tools/needle-hook-converter/` | knitting needle size converter | crochet hook size conversion |
 | `/tools/seam-allowance-calculator/` | seam allowance calculator | pattern grading ease |
-| `/guides/how-much-yarn-for-a-blanket/` | how much yarn for a blanket | throw blanket yarn amount |
+| `/guides/how-much-yarn-for-a-blanket/` | blanket yarn chart by size | throw blanket yarn amount |
 | `/guides/how-many-stitches-to-cast-on-for-a-hat/` | how many stitches to cast on for a hat | hat cast on stitches |
 | `/guides/how-much-quilt-binding-do-i-need/` | how much quilt binding do I need | quilt binding yardage |
 | `/guides/knitting-gauge-explained/` | knitting gauge explained | how to measure knitting gauge |

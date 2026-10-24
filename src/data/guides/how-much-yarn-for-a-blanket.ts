@@ -2,12 +2,12 @@ import type { Guide } from './types';
 
 export const guide: Guide = {
   slug: 'how-much-yarn-for-a-blanket',
-  title: 'How Much Yarn for a Blanket?',
+  title: 'Blanket Yarn Chart by Size',
   description:
-    'Plan knit or crochet blanket yarn by size and weight. Use planning ranges, a worked example, and free calculators for skein counts.',
-  primaryKeyword: 'how much yarn for a blanket',
+    'Blanket yarn chart by size using FiberCalc worsted knit density (0.55 yd/in² + 10% waste). Throw 50×60 ≈ 1,815 yd / 10 skeins at 200 yd.',
+  primaryKeyword: 'blanket yarn chart by size',
   datePublished: '2026-10-19',
-  dateModified: '2026-10-23',
+  dateModified: '2026-10-24',
   relatedTools: [
     'yarn-blanket-calculator',
     'crochet-blanket-calculator',
@@ -18,14 +18,24 @@ export const guide: Guide = {
     'yarn-substitution-basics',
     'how-much-yarn-for-a-sweater',
   ],
+  sources: [
+    [
+      'Craft Yarn Council — Standard Yarn Weight System',
+      'https://www.craftyarncouncil.com/standards/yarn-weight-system',
+    ],
+    [
+      'Craft Yarn Council — Body / sizing standards',
+      'https://www.craftyarncouncil.com/standards/body-sizing',
+    ],
+  ],
   faqs: [
     {
       q: 'How many skeins do I need for a throw blanket?',
-      a: 'For a knit worsted throw about 50×60 inches, a common planning range is roughly 1,100–1,800 yards. Divide by yards per skein and round up. A 200-yard skein often means about 6–10 skeins before borders; crochet usually needs more. Confirm with the yarn blanket calculator (/tools/yarn-blanket-calculator/).',
+      a: 'For a knit worsted (#4) throw about 50×60 inches, FiberCalc’s model gives about 1,815 yards with the default 10% waste (3,000 in² × 0.55 × 1.1)—about 10 skeins at 200 yards each. Without waste the same throw is 1,650 yards. Crochet multiplies knit by about 1.28. Confirm with the yarn blanket calculator (/tools/yarn-blanket-calculator/).',
     },
     {
       q: 'Does crochet use more yarn than knitting for the same blanket?',
-      a: 'Yes, as a rule of thumb crochet fabric is denser, so many makers budget about 25–30% more yarn than a comparable knit. See does crochet use more yarn than knitting (/guides/does-crochet-use-more-yarn-than-knitting/) for detail.',
+      a: 'Yes, as a rule of thumb crochet fabric is denser. FiberCalc uses knit density × 1.28 for crochet (about 25–30% more). See does crochet use more yarn than knitting (/guides/does-crochet-use-more-yarn-than-knitting/) for detail.',
     },
     {
       q: 'Should I buy yarn by ball count or by yards?',
@@ -33,7 +43,7 @@ export const guide: Guide = {
     },
     {
       q: 'How do yarn weight categories change blanket yardage?',
-      a: 'Thicker yarns (bulky, super bulky) usually need fewer yards for the same area; thinner yarns (DK, fingering) need more. Match the category on the ball band to the Craft Yarn Council Standard Yarn Weight System, summarized at /reference/yarn-weights/.',
+      a: 'Thicker yarns (bulky, super bulky) usually need fewer yards for the same area; thinner yarns (DK, fingering) need more. Match the category on the ball band to the Craft Yarn Council Standard Yarn Weight System, summarized at /reference/yarn-weights/. Density factors by category are FiberCalc planning heuristics documented on /methodology/—not CYC yardage charts.',
     },
     {
       q: 'What if I want to substitute a different yarn?',
@@ -44,12 +54,12 @@ export const guide: Guide = {
     {
       type: 'takeaway',
       content:
-        'A worsted-weight knit throw about 50×60 inches usually needs roughly 1,100–1,800 yards; crochet often needs about 25–30% more as a planning rule of thumb. Convert yards to skeins with your ball band, then add a little waste. Use the yarn blanket calculator (/tools/yarn-blanket-calculator/) for your exact size.',
+        'A worsted-weight (#4) knit throw about 50×60 inches needs about 1,815 yards with FiberCalc’s default 10% waste—roughly 10 skeins at 200 yards each. Crochet uses about 28% more (knit × 1.28). Convert with your ball band, then confirm in the yarn blanket calculator (/tools/yarn-blanket-calculator/).',
     },
     {
       type: 'p',
       content:
-        '“How much yarn for a blanket?” depends on finished size, Craft Yarn Council yarn weight category, stitch density, borders, and whether you knit or crochet. Ball-band “blanket” suggestions help with shopping, but they rarely match a custom lovey, throw, or bed cover. This guide gives practical planning ranges, a reusable method, and links to free tools so you can turn dimensions into skein counts before you buy.',
+        'A blanket yarn chart by size turns finished width and length into a shopping list. The answer still depends on Craft Yarn Council yarn weight category, stitch density, borders, and whether you knit or crochet. Ball-band “blanket” suggestions help with shopping, but they rarely match a custom lovey, throw, or bed cover. This guide charts FiberCalc’s area-based model, walks through the formula, and links free tools so you can turn dimensions into skein counts before you buy.',
     },
     {
       type: 'h2',
@@ -63,34 +73,35 @@ export const guide: Guide = {
     {
       type: 'p',
       content:
-        'Next, note the yarn’s CYC category (0 lace through 7 jumbo) from the ball band. Category drives both recommended needle or hook size and how many yards a square foot of fabric tends to consume. A bulky throw can look large with surprisingly few yards; a fingering-weight afghan for the same footprint can look modest on the shelf but empty many skeins.',
+        'Next, note the yarn’s CYC category (0 lace through 7 jumbo) from the ball band. Category drives both recommended needle or hook size and how many yards a square inch of fabric tends to consume. A bulky throw can look large with surprisingly few yards; a fingering-weight afghan for the same footprint can look modest on the shelf but empty many skeins.',
     },
     {
       type: 'h2',
-      content: 'Planning yardage ranges (knit, worsted / category 4)',
+      content: 'Blanket yarn chart by size (knit, worsted / category 4)',
     },
     {
       type: 'p',
       content:
-        'These knit ranges are common planning estimates for stockinette or similarly open fabric in worsted-weight yarn. Dense cables, tapestry colorwork, or very tight gauges push you toward the high end. Treat them as shopping guides, not pattern substitutes.',
+        'The chart below uses FiberCalc’s rectangle formula: yards = area_in² × density × (1 + waste/100). For worsted (#4) knit, density is 0.55 yd/in²; default waste is 10%. These are site planning heuristics documented on /methodology/—not Craft Yarn Council published yardage charts. Dense cables, tapestry colorwork, or very tight gauges push you higher; open lace can land lower.',
     },
     {
       type: 'table',
       content: {
-        caption: 'Approximate knit worsted blanket yardage (planning ranges)',
-        headers: ['Blanket type', 'Approx. size', 'Yards (knit, worsted)', 'Notes'],
+        caption:
+          'FiberCalc knit worsted (#4) blanket yardage with 10% waste (site heuristic, not CYC)',
+        headers: ['Blanket type', 'Approx. size', 'Area (in²)', 'Yards (knit, +10% waste)', 'Notes'],
         rows: [
-          ['Lovey', '~12×12"', '80–120', 'Small scrap or mini project'],
-          ['Baby', '~30×36"', '500–700', 'Often one color or simple stripes'],
-          ['Throw', '~50×60"', '1,100–1,800', 'Most common living-room size'],
-          ['Twin-ish cover', 'varies', '2,000–3,000+', 'Confirm against mattress if fitted'],
+          ['Lovey', '~12×12"', '144', '~87', 'Mini project; often under one 200-yd skein'],
+          ['Baby', '~30×36"', '1,080', '~653', 'About 4 skeins at 200 yd'],
+          ['Throw', '~50×60"', '3,000', '~1,815', 'About 10 skeins at 200 yd (1,650 yd at 0% waste)'],
+          ['Twin-ish cover', '~66×90"', '5,940', '~3,594', 'About 18 skeins at 200 yd; confirm vs mattress'],
         ],
       },
     },
     {
       type: 'p',
       content:
-        'Move one CYC category thicker (bulky) and yardage usually drops for the same area. Move thinner (DK or fingering) and yardage rises. For crochet, many makers multiply a comparable knit estimate by about 1.25–1.3 as a rule of thumb—crochet stitches typically pack more yarn per square inch. Pair the yarn blanket calculator with the crochet blanket calculator (/tools/crochet-blanket-calculator/) when you need starting-chain or stitch counts for a rectangular crochet piece.',
+        'Move one CYC category thicker (bulky) and yardage usually drops for the same area. Move thinner (DK or fingering) and yardage rises. For crochet, FiberCalc multiplies the knit density by 1.28 (~25–30% more yarn per square inch). Pair the yarn blanket calculator with the crochet blanket calculator (/tools/crochet-blanket-calculator/) when you need starting-chain or stitch counts for a rectangular crochet piece.',
     },
     {
       type: 'h2',
@@ -99,7 +110,7 @@ export const guide: Guide = {
     {
       type: 'p',
       content:
-        'A reliable DIY method is: convert the blanket to inches, multiply width by length for area, then apply a yarn-density factor for your weight and craft (from a swatch or a trusted calculator). Divide total yards by yards per skein and round up. Add waste for tails, color changes, and a border—often a skein’s worth on a large throw is safer than running short mid-row.',
+        'Convert the blanket to inches, multiply width by length for area, then apply a yarn-density factor for your weight and craft. FiberCalc’s worsted knit factor is 0.55 yd/in²; crochet is that value × 1.28. Multiply by (1 + waste/100)—default 10%—then divide total yards by yards per skein and round up. Add extra for borders beyond the default waste when you plan fringe, i-cord, or a wide frame.',
     },
     {
       type: 'ul',
@@ -107,7 +118,7 @@ export const guide: Guide = {
         'Measure or choose finished width × length',
         'Note CYC weight and yards (or meters) per skein',
         'Decide knit vs crochet and stitch density (swatch when possible)',
-        'Estimate total yards, then skeins = ceil(total ÷ yards per skein)',
+        'Yards ≈ area_in² × density × (1 + waste/100); skeins = ceil(yards ÷ yards per skein)',
         'Buy same dye lot when the blanket is mostly one solid color',
       ],
     },
@@ -123,7 +134,7 @@ export const guide: Guide = {
     {
       type: 'p',
       content:
-        'Suppose you want a 50×60 inch throw in category 4 worsted, knit in a simple stitch, with skeins labeled 200 yards each. Using the planning band of roughly 1,100–1,800 yards, the midpoint near 1,450 yards suggests about eight skeins (1,450 ÷ 200 ≈ 7.25, round up). Add one skein for a contrasting border or fringe and you might buy nine. If you crochet the same size in a dense stitch, budget toward the higher knit range plus about 25–30% more, then round up again.',
+        'Suppose you want a 50×60 inch throw in category 4 worsted, knit in a simple stitch, with skeins labeled 200 yards each. Area = 50 × 60 = 3,000 in². At 0.55 yd/in² that is 1,650 yards with 0% waste. With FiberCalc’s default 10% waste: 3,000 × 0.55 × 1.1 = 1,815 yards. Skeins = ceil(1,815 ÷ 200) = 10. If you crochet the same size, multiply by 1.28 → about 2,323 yards (~12 skeins at 200 yd) before any extra border beyond the waste allowance.',
     },
     {
       type: 'p',
@@ -148,7 +159,8 @@ export const guide: Guide = {
       content: [
         'Buying by number of balls without checking yards per ball',
         'Using a knit-only yardage chart for crochet fabric',
-        'Ignoring borders, fringe, or colorwork floats',
+        'Treating FiberCalc densities as CYC standards instead of site heuristics',
+        'Ignoring borders, fringe, or colorwork floats beyond the waste %',
         'Mixing dye lots on a large solid field',
         'Skipping a swatch when the stitch pattern is dense or heavily textured',
       ],
@@ -174,7 +186,7 @@ export const guide: Guide = {
     {
       type: 'p',
       content:
-        'Temperature and hand matter as much as math. A dense crochet afghan in wool can feel heavy at the same yardage as a drapey knit stockinette throw. When comfort is the goal, make a larger swatch, fold it into a small square, and judge weight and drape before multiplying to full size. That tactile check often changes whether you buy the low or high end of a planning range.',
+        'Temperature and hand matter as much as math. A dense crochet afghan in wool can feel heavy at the same yardage as a drapey knit stockinette throw. When comfort is the goal, make a larger swatch, fold it into a small square, and judge weight and drape before multiplying to full size. That tactile check often changes whether you buy closer to the calculator output or add another skein for insurance.',
     },
     {
       type: 'h2',
@@ -183,7 +195,7 @@ export const guide: Guide = {
     {
       type: 'p',
       content:
-        'Pick your finished size, confirm the CYC weight on /reference/yarn-weights/, run the yarn blanket calculator (/tools/yarn-blanket-calculator/), and adjust for crochet density if needed. Keep a written skein count and dye-lot numbers with your project notes so restocks stay consistent.',
+        'Pick your finished size, confirm the CYC weight on /reference/yarn-weights/, run the yarn blanket calculator (/tools/yarn-blanket-calculator/), and adjust for crochet density if needed. Keep a written skein count and dye-lot numbers with your project notes so restocks stay consistent. For how densities and waste are defined on this site, see /methodology/.',
     },
   ],
 };

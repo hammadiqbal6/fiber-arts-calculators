@@ -7,7 +7,7 @@ export const guide: Guide = {
     'Why crochet often needs more yarn than knitting for a similar size, with the ~25–30% rule of thumb, examples, and blanket calculators.',
   primaryKeyword: 'does crochet use more yarn than knitting',
   datePublished: '2026-10-23',
-  dateModified: '2026-10-23',
+  dateModified: '2026-10-24',
   relatedTools: ['crochet-blanket-calculator', 'yarn-blanket-calculator'],
   relatedGuides: [
     'how-much-yarn-for-a-blanket',
@@ -98,7 +98,7 @@ export const guide: Guide = {
     {
       type: 'p',
       content:
-        'Suppose a knit planning estimate for a 50×60 inch worsted throw is about 1,400 yards. Applying a 25–30% crochet buffer as a rule of thumb suggests roughly 1,750–1,820 yards before borders—perhaps one or two extra 200-yard skeins compared with the knit plan. If your crochet stitch is airy granny squares with large gaps, you might land closer to the knit figure; if you work solid single crochet, you might exceed the buffer. Weigh a 4×4 inch blocked swatch, scale by area (50×60 = 3,000 in² vs 16 in²), and you replace folklore with project-specific math.',
+        'Suppose a knit planning estimate for a 50×60 inch worsted throw is about 1,815 yards with FiberCalc’s default 10% waste (1,650 yards before waste). Applying a 25–30% crochet buffer as a rule of thumb suggests roughly 2,270–2,360 yards—or FiberCalc’s knit × 1.28 ≈ 2,323 yards—perhaps two extra 200-yard skeins compared with the knit plan. If your crochet stitch is airy granny squares with large gaps, you might land closer to the knit figure; if you work solid single crochet, you might exceed the buffer. Weigh a 4×4 inch blocked swatch, scale by area (50×60 = 3,000 in² vs 16 in²), and you replace folklore with project-specific math.',
     },
     {
       type: 'p',
@@ -173,6 +173,10 @@ export const guide: Guide = {
       content:
         'For blankets, start with how much yarn for a blanket (/guides/how-much-yarn-for-a-blanket/), run your dimensions through the yarn blanket calculator (/tools/yarn-blanket-calculator/) and crochet blanket calculator (/tools/crochet-blanket-calculator/), and only use the 25–30% rule of thumb when you must translate a knit guess into a crochet shopping list without a swatch yet. When fiber changes too, fold in yarn substitution basics (/guides/yarn-substitution-basics/) so density and put-up shifts are both visible.',
     },
+  ],
+  sources: [
+    ["Craft Yarn Council — Standard Yarn Weight System", "https://www.craftyarncouncil.com/standards/yarn-weight-system"],
+    ["Craft Yarn Council — Standards overview", "https://www.craftyarncouncil.com/standards"],
   ],
 };
 
