@@ -20,6 +20,7 @@ const framed = Astro.url.searchParams.get('framed') === '1';
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Embed {page.h1}</title>
+    <meta name="description" content={page.description} />
     <meta name="robots" content="noindex,follow" />
     <link rel="canonical" href={toolCanonical} />
     <link rel="stylesheet" href="/embed.css" />
