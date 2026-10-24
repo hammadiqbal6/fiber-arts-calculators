@@ -7,7 +7,7 @@ export const guide: Guide = {
     'Calculate quilt binding strip length and fabric yardage from perimeter and strip width, with joins, corners, and a free calculator.',
   primaryKeyword: 'how much quilt binding do I need',
   datePublished: '2026-10-20',
-  dateModified: '2026-10-23',
+  dateModified: '2026-10-24',
   relatedTools: [
     'quilt-binding-calculator',
     'quilt-size-calculator',
@@ -187,6 +187,10 @@ export const guide: Guide = {
       content:
         'Measure the finished quilt, add allowance, run the quilt binding calculator (/tools/quilt-binding-calculator/), and cut strips only after you confirm strip width and join method for your project. Keep backing purchases on a separate list using quilt backing yardage guide (/guides/quilt-backing-yardage-guide/) so the two fabric roles do not steal from each other.',
     },
+  ],
+  sources: [
+    ["International Sleep Products Association (bedding size context)", "https://www.sleepproducts.org/"],
+    ["Murray State University — Quilting arts basics (quilt layers)", "https://digitalcommons.murraystate.edu/cgi/viewcontent.cgi?article=1483&context=bis437"],
   ],
 };
 

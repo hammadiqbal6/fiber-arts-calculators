@@ -7,7 +7,7 @@ export const guide: Guide = {
     'Substitute yarn using CYC weight, yards, and gauge—not ball counts. Checklist, worked example, and free substitution tools.',
   primaryKeyword: 'yarn substitution guide',
   datePublished: '2026-10-19',
-  dateModified: '2026-10-23',
+  dateModified: '2026-10-24',
   relatedTools: [
     'yarn-substitution-calculator',
     'knitting-gauge-calculator',
@@ -44,7 +44,7 @@ export const guide: Guide = {
     {
       type: 'takeaway',
       content:
-        'Match Craft Yarn Council weight category and total yards first, then swatch for gauge and fabric hand. Never substitute by number of balls alone when yardage per ball differs. Wash the swatch before you commit to a full sweater or blanket.',
+        'Never substitute by ball count alone: match Craft Yarn Council weight category and total yards first, then swatch for gauge and fabric hand. Wash the swatch before you commit to a full sweater or blanket.',
     },
     {
       type: 'p',
@@ -186,6 +186,10 @@ export const guide: Guide = {
       content:
         'List category, yards, and gauge from the pattern; compare candidates in the yarn substitution calculator (/tools/yarn-substitution-calculator/); swatch and wash; then lock tool sizes and skein counts before you wind the full project.',
     },
+  ],
+  sources: [
+    ["Craft Yarn Council — Standard Yarn Weight System", "https://www.craftyarncouncil.com/standards/yarn-weight-system"],
+    ["Craft Yarn Council — Hooks & needles size chart", "https://www.craftyarncouncil.com/standards/hooks-and-needles"],
   ],
 };
 

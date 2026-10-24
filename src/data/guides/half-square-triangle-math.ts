@@ -7,7 +7,7 @@ export const guide: Guide = {
     'HST cutting formulas for 2-, 4-, and 8-at-a-time methods, with trimming tips, a worked example, and a free HST calculator.',
   primaryKeyword: 'half square triangle formula',
   datePublished: '2026-10-19',
-  dateModified: '2026-10-23',
+  dateModified: '2026-10-24',
   relatedTools: [
     'hst-calculator',
     'quilt-size-calculator',
@@ -180,6 +180,9 @@ export const guide: Guide = {
       content:
         'Pick a method, run the HST calculator (/tools/hst-calculator/), sew one test pair, trim to unfinished size, then cut the full batch. Keep a written unfinished size on your cutting notes for every scrap bin that joins the project later. When the top is finished, plan backing and binding with quilt backing yardage guide (/guides/quilt-backing-yardage-guide/) and how much quilt binding do I need (/guides/how-much-quilt-binding-do-i-need/) so shopping stays coordinated.',
     },
+  ],
+  sources: [
+    ["Murray State University — Quilting arts basics (quilt layers)", "https://digitalcommons.murraystate.edu/cgi/viewcontent.cgi?article=1483&context=bis437"],
   ],
 };
 

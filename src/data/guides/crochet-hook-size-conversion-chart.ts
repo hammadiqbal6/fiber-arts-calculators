@@ -7,7 +7,7 @@ export const guide: Guide = {
     'Convert crochet hook sizes across metric, US, and UK labels. Pair with yarn weight standards and a free needle-hook converter.',
   primaryKeyword: 'crochet hook size conversion chart',
   datePublished: '2026-10-23',
-  dateModified: '2026-10-23',
+  dateModified: '2026-10-24',
   relatedTools: ['needle-hook-converter'],
   relatedGuides: [
     'yarn-substitution-basics',
@@ -40,7 +40,7 @@ export const guide: Guide = {
     {
       type: 'takeaway',
       content:
-        'Crochet hook labels in US letters, UK numbers, and metric millimeters do not always map one-to-one in everyday speech—metric diameter is the clearest shared language. Convert labels carefully, then swatch for gauge. Use the needle-hook converter (/tools/needle-hook-converter/) and CYC yarn weight context at /reference/yarn-weights/.',
+        'Metric millimeters are the clearest shared crochet hook label; US letters and UK numbers do not always map one-to-one. Convert carefully, then swatch for gauge. Use the needle-hook converter (/tools/needle-hook-converter/) and CYC yarn weight context at /reference/yarn-weights/.',
     },
     {
       type: 'p',
@@ -171,6 +171,10 @@ export const guide: Guide = {
       content:
         'Convert labels with the needle-hook converter (/tools/needle-hook-converter/), confirm CYC category guidance at /reference/yarn-weights/, and lock your metric hook size with a washed or steamed swatch before starting the full project. Keep substitution decisions on yarn substitution basics (/guides/yarn-substitution-basics/) so hook letters do not hide a category mismatch. For large afghans, re-check yarn totals after the hook size settles—see how much yarn for a blanket (/guides/how-much-yarn-for-a-blanket/).',
     },
+  ],
+  sources: [
+    ["Craft Yarn Council — Hooks & needles size chart", "https://www.craftyarncouncil.com/standards/hooks-and-needles"],
+    ["Craft Yarn Council — Steel crochet hook sizes", "https://www.craftyarncouncil.com/standards/steel-crochet-hook-crochet-thread-sizes"],
   ],
 };
 

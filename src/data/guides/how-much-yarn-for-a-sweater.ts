@@ -2,12 +2,12 @@ import type { Guide } from './types';
 
 export const guide: Guide = {
   slug: 'how-much-yarn-for-a-sweater',
-  title: 'How Much Yarn for a Sweater?',
+  title: 'Sweater Yarn Chart by Size',
   description:
     'Estimate sweater yarn by size, gauge, and yarn weight. Planning tips, a worked example, and free sweater and gauge calculators.',
-  primaryKeyword: 'how much yarn for a sweater',
+  primaryKeyword: 'sweater yarn chart by size',
   datePublished: '2026-10-23',
-  dateModified: '2026-10-23',
+  dateModified: '2026-10-24',
   relatedTools: [
     'yarn-sweater-calculator',
     'knitting-gauge-calculator',
@@ -44,7 +44,7 @@ export const guide: Guide = {
     {
       type: 'takeaway',
       content:
-        'Sweater yarn depends on finished size, ease, Craft Yarn Council yarn weight, and your blocked gauge. Prefer the pattern’s yardage chart when you have one; for custom designs, estimate from surface area and density, then round skeins up. Lock gauge before you buy the full amount.',
+        'Adult worsted pullovers often land near about 1,100–1,600 yards depending on size and length—treat that as a planning band, then convert with yards per skein. Prefer the pattern’s yardage chart when you have one; lock blocked gauge before you buy the full dye lot.',
     },
     {
       type: 'p',
@@ -185,6 +185,10 @@ export const guide: Guide = {
       content:
         'Swatch and wash, confirm gauge, run the yarn sweater calculator (/tools/yarn-sweater-calculator/), and purchase same-lot skeins with at least one spare when dye lots are limited. If the yarn changes, restart from yarn substitution basics (/guides/yarn-substitution-basics/) before you trust the old skein count.',
     },
+  ],
+  sources: [
+    ["Craft Yarn Council — Standard Yarn Weight System", "https://www.craftyarncouncil.com/standards/yarn-weight-system"],
+    ["Craft Yarn Council — Body measurements & ease", "https://www.craftyarncouncil.com/standards/body-sizing"],
   ],
 };
 
