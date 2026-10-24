@@ -11,6 +11,7 @@ import { getTool } from '../../lib/tools';
 import { siteConfig } from '../../config/site';
 import { toolPageGraph } from '../../lib/schema';
 import { guidesForTool } from '../../data/tool-guide-map';
+import { linkifyGuideHtml } from '../../lib/guide-links';
 
 export function getStaticPaths() {
   return TOOL_PAGES.map((p) => ({ params: { slug: p.slug } }));
@@ -62,7 +63,7 @@ const jsonLd = toolPageGraph({
     ]} />
 
     <h1>{page.h1}</h1>
-    <p class="takeaway"><strong>Key takeaway:</strong> {page.answer}</p>
+    <p class="takeaway"><strong>Key takeaway:</strong> <span set:html={linkifyGuideHtml(page.answer)} /></p>
 
     <div class="calculator-shell" data-calc={page.calc}>
       <form set:html={page.form + '<div class="field full"><button class="btn btn--primary" type="submit">Calculate</button></div>'} />
@@ -121,7 +122,7 @@ const jsonLd = toolPageGraph({
       {page.sections.map(([heading, body]) => (
         <>
           <h2>{heading}</h2>
-          <p>{body}</p>
+          <p set:html={linkifyGuideHtml(body)} />
         </>
       ))}
 
@@ -130,7 +131,7 @@ const jsonLd = toolPageGraph({
         {page.faqs.map(([q, a]) => (
           <details>
             <summary>{q}</summary>
-            <p>{a}</p>
+            <p set:html={linkifyGuideHtml(a)} />
           </details>
         ))}
       </div>

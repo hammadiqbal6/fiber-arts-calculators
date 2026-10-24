@@ -53,10 +53,40 @@ const jsonLd = {
 
     <h2>How calculations work</h2>
     <p>
-      Each calculator documents its formula on the tool page. Yarn estimators use area-based density factors
-      calibrated to common pattern yardages and Craft Yarn Council weight categories. Quilt tools use
-      perimeter and panel arithmetic. Gauge tools use direct proportion from measured swatches. Unit tests in
-      this repository cover the pure math modules.
+      Each calculator documents its formula on the tool page. Quilt tools use perimeter and panel arithmetic.
+      Gauge tools use direct proportion from measured swatches. Unit tests in this repository cover the pure
+      math modules.
+    </p>
+
+    <h2 id="yarn-density">Yarn density factors (site heuristic)</h2>
+    <p>
+      CYC publishes weight categories and typical gauges—not yards per square inch. FiberCalc yarn estimators
+      therefore use an explicit site heuristic: <code>yards ≈ width_in × length_in × density(weight, method) ×
+      (1 + waste%/100)</code>. Crochet multiplies the knit density by <strong>1.28</strong>. Default waste is
+      10% for blankets/hats, 8% for scarves, and 15% for sweaters and amigurumi. These factors are planning
+      averages, not a published standard—prefer a pattern’s tested yardage when available.
+    </p>
+    <div class="table-scroll">
+      <table>
+        <caption>Knit yards per square inch by CYC category (FiberCalc heuristic)</caption>
+        <thead>
+          <tr><th>CYC #</th><th>Name</th><th>Knit yd/in²</th><th>Example 50×60″ throw +10% waste</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>0</td><td>Lace</td><td>1.35</td><td>—</td></tr>
+          <tr><td>1</td><td>Super Fine</td><td>1.05</td><td>—</td></tr>
+          <tr><td>2</td><td>Fine / Sport</td><td>0.85</td><td>—</td></tr>
+          <tr><td>3</td><td>Light / DK</td><td>0.70</td><td>—</td></tr>
+          <tr><td>4</td><td>Medium / Worsted</td><td>0.55</td><td>1,815 yd (canonical worked example)</td></tr>
+          <tr><td>5</td><td>Bulky</td><td>0.40</td><td>—</td></tr>
+          <tr><td>6</td><td>Super Bulky</td><td>0.28</td><td>—</td></tr>
+          <tr><td>7</td><td>Jumbo</td><td>0.18</td><td>—</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p>
+      Worked check: 50 × 60 = 3,000 in² × 0.55 = 1,650 yd before waste; ×1.10 = <strong>1,815 yd</strong>;
+      ceil(1,815 ÷ 200) = <strong>10 skeins</strong>. Crochet: 1,815 × 1.28 ≈ 2,323 yd.
     </p>
 
     <h2>Sources policy</h2>
@@ -99,6 +129,11 @@ const jsonLd = {
       <li>
         <time datetime="2026-10-23">2026-10-23</time> — SEO/AEO pass: GA module scripts, 308 trailing-slash
         Worker, expanded guides, tool→guide links, site-origin single setting for future custom domain.
+      </li>
+      <li>
+        <time datetime="2026-10-24">2026-10-24</time> — Reconciled blanket yardage copy to the density table
+        (1,815 yd / 10 skeins for a 50×60″ worsted knit throw at 10% waste); published density factors here;
+        removed raw path text from guide FAQ JSON-LD.
       </li>
     </ul>
 

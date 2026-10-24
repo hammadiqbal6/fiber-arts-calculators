@@ -44,11 +44,11 @@ const jsonLd = {
   <div class="container prose">
     <Breadcrumbs items={[{ label: 'Home', href: '/' }, { label: 'Reference', href: '/reference/' }, { label: 'Yarn weights' }]} />
     <h1>Craft Yarn Council yarn weight standards</h1>
-    <p class="meta-row"><span>Last reviewed {siteConfig.lastReviewed}</span></p>
     <div class="takeaway">
-      <p><strong>Key takeaway:</strong> The Craft Yarn Council Standard Yarn Weight System labels yarn categories 0 (Lace) through 7 (Jumbo) with typical gauges and tool sizes. Use the category number on the ball band when estimating yardage in our <a href="/tools/yarn-blanket-calculator/">yarn calculators</a>.</p>
+      <p><strong>Key takeaway:</strong> CYC labels yarn categories 0 (Lace) through 7 (Jumbo)—category 4 (worsted / medium) is the default in most FiberCalc yarn tools, including the ~1,815 yd throw example. Use the category number on the ball band when estimating yardage.</p>
     </div>
-    <p>The table below summarizes publicly documented CYC ranges. Always confirm the icon and gauge on your specific yarn band—brand naming (especially “DK” vs “worsted”) can vary.</p>
+    <p class="meta-row"><span>Last reviewed {siteConfig.lastReviewed}</span></p>
+    <p>The table below summarizes publicly documented CYC ranges plus FiberCalc planning midpoints for yards per 100 g (site heuristic for substitution math—not a CYC publication). Always confirm the icon and gauge on your specific yarn band—brand naming (especially “DK” vs “worsted”) can vary.</p>
 
     <figure class="diagram">
       <img
@@ -66,7 +66,7 @@ const jsonLd = {
         <caption>CYC yarn weight categories with typical knit and crochet gauges</caption>
         <thead>
           <tr>
-            <th>#</th><th>Name</th><th>Knit sts/4″</th><th>Needles mm</th><th>Crochet sc/4″</th><th>Hooks mm</th>
+            <th>#</th><th>Name</th><th>WPI</th><th>Knit sts/4″</th><th>Needles mm</th><th>Crochet sc/4″</th><th>Hooks mm</th><th>yd/100 g (mid)</th>
           </tr>
         </thead>
         <tbody>
@@ -74,18 +74,35 @@ const jsonLd = {
             <tr>
               <td>{y.id}</td>
               <td>{y.name}</td>
+              <td>{y.wpi[0]}–{y.wpi[1]}</td>
               <td>{y.knitGaugeSts4in[0]}–{y.knitGaugeSts4in[1]}</td>
               <td>{y.needleMetricMm[0]}–{y.needleMetricMm[1]}</td>
               <td>{y.crochetGaugeSc4in[0]}–{y.crochetGaugeSc4in[1]}</td>
               <td>{y.hookMetricMm[0]}–{y.hookMetricMm[1]}</td>
+              <td>{Math.round((y.yardsPer100g[0] + y.yardsPer100g[1]) / 2)}</td>
             </tr>
           ))}
         </tbody>
       </table>
     </div>
-    <h2>Source</h2>
+    <h2>How to use this chart with FiberCalc</h2>
+    <p>
+      Match the CYC icon on the ball band to the “#” column, then enter that weight in a yarn calculator.
+      The yd/100 g midpoint feeds the <a href="/tools/yarn-substitution-calculator/">yarn substitution calculator</a>
+      when a skein omits length. Project densities (yards per square inch) live on
+      <a href="/methodology/#yarn-density">Methodology</a>—they are FiberCalc heuristics, not CYC figures.
+    </p>
+    <h2>Typical projects by category</h2>
+    <ul>
+      <li><strong>0–2</strong> — lace shawls, socks, fine baby garments</li>
+      <li><strong>3–4</strong> — sweaters, blankets, hats, amigurumi (DK/worsted defaults)</li>
+      <li><strong>5–7</strong> — quick throws, chunky cowls, arm-knit statement pieces</li>
+    </ul>
+    <h2>Sources</h2>
     <ul>
       <li><a href="https://www.craftyarncouncil.com/standards/yarn-weight-system" rel="noopener noreferrer">Craft Yarn Council — Standard Yarn Weight System</a> (checked {siteConfig.lastReviewed})</li>
+      <li><a href="https://www.craftyarncouncil.com/standards/hooks-and-needles" rel="noopener noreferrer">Craft Yarn Council — Hooks &amp; Needles</a> (checked {siteConfig.lastReviewed})</li>
+      <li><a href="/methodology/#yarn-density">FiberCalc methodology — yarn density factors</a> (site heuristic)</li>
     </ul>
     <p>
       Related:

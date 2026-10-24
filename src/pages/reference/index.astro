@@ -24,37 +24,23 @@ const jsonLd = collectionPageGraph({
     <Breadcrumbs items={[{ label: 'Home', href: '/' }, { label: 'Reference' }]} />
     <h1>Reference &amp; converters</h1>
     <p class="takeaway">
-      <strong>Key takeaway:</strong> Use these charts when a ball band, pattern, or Aida count disagrees with the
-      notions in your drawer—then jump to a calculator for project-specific math.
+      <strong>Key takeaway:</strong> Use these charts when a ball band or pattern disagrees with your notions—for example,
+      a US 8 knitting needle is 5.0 mm (UK 6) on the CYC-aligned converter.
     </p>
-    <div class="prose">
-      <p>
-        These pages hold charts and converters you will return to while shopping or drafting: CYC yarn weight
-        categories, needle/hook millimetre maps, Aida fabric cut sizes, and common quilt or mattress dimensions.
-        Pair them with the calculators under Knit &amp; crochet, Sewing, and Quilting when you need a project-specific
-        number rather than a lookup table.
-      </p>
-      <p>
-        Start with the <a href="/reference/yarn-weights/">CYC yarn weight standards</a> when substituting yarn, and
-        the <a href="/tools/needle-hook-converter/">needle &amp; hook converter</a> when a pattern lists US sizes and
-        your needles are metric (or the reverse). The guide
-        <a href="/guides/crochet-hook-size-conversion-chart/">crochet hook size conversion chart</a> walks through
-        US/UK/mm labels in prose. Cross-stitchers should open the
-        <a href="/tools/cross-stitch-fabric-calculator/">Aida fabric calculator</a> and the companion guide
-        <a href="/guides/what-size-aida-for-cross-stitch/">what size Aida for a pattern</a>.
-      </p>
-      <p>
-        Quilters comparing tops to mattresses can use <a href="/reference/quilt-sizes/">quilt &amp; mattress sizes</a>
-        alongside the <a href="/tools/quilt-size-calculator/">quilt size calculator</a>. Yarn tools across the site
-        link back here so weight category numbers stay consistent with Craft Yarn Council naming.
-      </p>
-    </div>
     <div class="tool-grid">
       {tools.map((t) => (
         <a class="tool-link" href={t.path}><h2>{t.title}</h2><p>{t.description}</p></a>
       ))}
       <a class="tool-link" href="/reference/yarn-weights/"><h2>CYC yarn weight standards</h2><p>Categories 0–7 with gauges and sources.</p></a>
       <a class="tool-link" href="/reference/quilt-sizes/"><h2>Quilt &amp; mattress sizes</h2><p>Standard blanket, quilt, and mattress dimensions.</p></a>
+    </div>
+    <div class="prose">
+      <p>
+        Start with the <a href="/reference/yarn-weights/">CYC yarn weight standards</a> when substituting yarn, and
+        the <a href="/tools/needle-hook-converter/">needle &amp; hook converter</a> for US/metric/UK labels. Cross-stitchers
+        should open the <a href="/tools/cross-stitch-fabric-calculator/">Aida fabric calculator</a>. Quilters comparing tops
+        to mattresses can use <a href="/reference/quilt-sizes/">quilt &amp; mattress sizes</a>.
+      </p>
     </div>
   </div>
 </BaseLayout>

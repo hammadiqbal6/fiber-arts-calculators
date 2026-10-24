@@ -6,6 +6,15 @@ Static Astro + TypeScript site of free **knitting, crochet, sewing, and quilting
 
 **Canonical site origin** is a single setting: `PUBLIC_SITE_URL` → `siteConfig.siteUrl` (fallback `src/config/defaults.mjs`). Used for canonicals, sitemap, robots, llms.txt, JSON-LD, OG, IndexNow. Do not hardcode the hostname in pages. Custom domain cutover: `docs/CUSTOM-DOMAIN.md`. SEO do/don’t: `docs/SEO-GUARDRAILS.md`.
 
+## Research before any new page
+
+1. One primary keyword + intent; check `docs/KEYWORD-MAP.md` for cannibalization.
+2. Review top SERP formats; plan one gap (table, worked example, cited formula).
+3. Follow `docs/PAGE-CHECKLIST.md` and `.cursor/rules/seo-pages.mdc`.
+4. Do not invent facts, figures, or citations. Label FiberCalc density factors as site heuristics (`/methodology/#yarn-density`).
+5. Guides may use `Label (/tools/slug/)` — `src/lib/guide-links.ts` linkifies for HTML and strips paths from FAQ JSON-LD. Always include a `sources` array.
+6. Tools: answer-first with a worked number; calculator above the fold; no duplicate answer/Formula blocks; short Limits section.
+
 ## Architecture
 
 ```mermaid
@@ -81,7 +90,8 @@ Follow `docs/SEO-PLAYBOOK.md`, `docs/SEO-GUARDRAILS.md`, `docs/KEYWORD-MAP.md`, 
 | `npm run dev` | Local dev server |
 | `npm run build` | OG images + static build to `dist/` |
 | `npm test` | Vitest formula tests |
-| `npm run audit` | Build + SEO/AdSense/JS/link/guardrail audits |
+| `npm run audit` | Build + SEO/AdSense/JS/link/guardrail/page-checklist audits |
+| `npm run audit:checklist` | Fast per-page checklist on existing `dist/` |
 | `npm run lhci` | Lighthouse CI budgets |
 
 ## Definition of done

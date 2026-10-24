@@ -5,6 +5,7 @@ const scripts = [
   'scripts/audit/seo-audit.mjs',
   'scripts/audit/seo-guardrails.mjs',
   'scripts/audit/site-origin.mjs',
+  'scripts/audit/page-checklist.mjs',
   'scripts/audit/adsense-audit.mjs',
   'scripts/audit/js-budget.mjs',
   'scripts/audit/link-check.mjs',

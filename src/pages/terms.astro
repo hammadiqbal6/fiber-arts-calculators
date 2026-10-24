@@ -12,10 +12,41 @@ import { siteConfig } from '../config/site';
   <div class="container prose">
     <Breadcrumbs items={[{ label: 'Home', href: '/' }, { label: 'Terms' }]} />
     <h1>Terms of Use</h1>
-    <p class="meta-row"><span>Last updated {siteConfig.launched}</span></p>
-    <p>By using {siteConfig.siteName}, you agree that calculators are provided “as is” for educational and planning purposes. Results are estimates and may not match a specific pattern, yarn, or fabric lot.</p>
-    <p>You are responsible for verifying critical measurements before cutting fabric or purchasing non-returnable supplies. We are not liable for project outcomes, material waste, or commercial losses.</p>
-    <p>Content is owned by {siteConfig.legalName} unless otherwise noted. You may embed tools with credit per the embed page instructions. Do not scrape the site in ways that degrade service or violate applicable law.</p>
-    <p>Contact: <a href={`mailto:${siteConfig.contactEmail}`}>{siteConfig.contactEmail}</a></p>
+    <p class="meta-row"><span>Last updated {siteConfig.lastReviewed}</span></p>
+
+    <p>
+      By using {siteConfig.siteName}, you agree that calculators are provided “as is” for educational and planning
+      purposes. Results are estimates and may not match a specific pattern, yarn lot, fabric width, or longarm shop
+      requirement. Prefer a published pattern’s tested yardage or cutting chart when it conflicts with a tool output.
+    </p>
+
+    <h2>Planning estimates only</h2>
+    <p>
+      You are responsible for verifying critical measurements before cutting fabric or purchasing non-returnable
+      supplies. We are not liable for project outcomes, material waste, dye-lot mismatches, or commercial losses.
+      Tools do not provide legal, medical, or professional design advice.
+    </p>
+
+    <h2>Corrections policy</h2>
+    <p>
+      If you find a formula error, broken citation, or outdated Craft Yarn Council link, email
+      <a href={`mailto:${siteConfig.contactEmail}`}>{siteConfig.contactEmail}</a> with the page URL and inputs used.
+      Material corrections are logged on the <a href="/methodology/#corrections">methodology correction log</a>.
+    </p>
+
+    <h2>Content and embeds</h2>
+    <p>
+      Content is owned by {siteConfig.legalName} unless otherwise noted. You may embed tools with credit per the
+      embed instructions on each tool page. Do not scrape the site in ways that degrade service or violate applicable
+      law. Do not remove attribution when republishing worked examples.
+    </p>
+
+    <h2>Privacy and cookies</h2>
+    <p>
+      Calculator math runs in your browser. Optional analytics cookies are described in the
+      <a href="/privacy/">privacy policy</a>. Accepting or declining the cookie bar does not change calculator results.
+    </p>
+
+    <p>Contact: <a href={`mailto:${siteConfig.contactEmail}`}>{siteConfig.contactEmail}</a> · <a href="/contact/">Contact form</a></p>
   </div>
 </BaseLayout>
