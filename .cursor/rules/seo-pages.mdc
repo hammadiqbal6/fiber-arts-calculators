@@ -1,0 +1,26 @@
+---
+description: Research-first SEO/AEO rules for every new or reworked FiberCalc page
+globs:
+  - src/pages/**/*.astro
+  - src/data/tool-pages.ts
+  - src/data/guides/**/*.ts
+---
+
+# SEO pages (research first)
+
+Before writing or substantially editing a tool, guide, hub, or reference page:
+
+1. Pick **one primary query** and name the intent (do / know / compare / navigate).
+2. Check `docs/KEYWORD-MAP.md` and existing tools/guides for cannibalization—extend or differentiate; do not duplicate H1 queries.
+3. Skim the top SERP formats (tool-first, chart, steps) and plan one gap (worked example, cited formula, table).
+4. Follow the per-page checklist in `docs/PAGE-CHECKLIST.md` (mirrored from the shared audit brief).
+
+## Required on-page
+
+- One H1; answer/takeaway **immediately under H1** (before meta-row/byline); tool inputs above the mobile fold.
+- Title 25–65 rendered chars (include brand via BaseLayout); meta description 70–160.
+- Absolute canonical from `siteConfig.siteUrl`; valid JSON-LD; page in sitemap.
+- Guides: `Label (/tools/slug/)` prose is OK—the template linkifies it. Never leave raw paths in FAQ JSON-LD (stripper handles this). Always add `sources` with real primary URLs.
+- Tools: no duplicate answer paragraph; one Formula section; short Limits blurb linking `/methodology/` and `/terms/`.
+- No invented statistics, credentials, or citations. Label FiberCalc density factors as site heuristics.
+- Run `npm test && npm run audit` (includes `page-checklist.mjs`) before merge.

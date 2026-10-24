@@ -7,7 +7,7 @@ export const guide: Guide = {
     'Space knitting or crochet increases evenly across a row or round. Formula, worked example, and a free increase calculator.',
   primaryKeyword: 'how to increase evenly across a row',
   datePublished: '2026-10-23',
-  dateModified: '2026-10-23',
+  dateModified: '2026-10-24',
   relatedTools: ['increase-decrease-calculator', 'cast-on-calculator'],
   relatedGuides: [
     'how-many-stitches-to-cast-on-for-a-hat',
@@ -40,7 +40,7 @@ export const guide: Guide = {
     {
       type: 'takeaway',
       content:
-        'To increase evenly, split the row or round into balanced sections and place one increase in each section so gaps look consistent. Flat and circular math differ slightly at the edges. Use the increase-decrease calculator (/tools/increase-decrease-calculator/) to get stitch counts between increases without manual trial and error.',
+        'To place 8 increases evenly on 96 flat stitches, divide into 9 sections (~10–11 stitches between increases). In general, split the row or round into balanced sections and place one increase in each. Use the increase-decrease calculator (/tools/increase-decrease-calculator/) for the spacing phrase.',
     },
     {
       type: 'p',
@@ -184,6 +184,10 @@ export const guide: Guide = {
       content:
         'Count current stitches, decide how many to add, choose flat or round mode in the increase-decrease calculator (/tools/increase-decrease-calculator/), place markers if needed, and re-count before continuing the pattern.',
     },
+  ],
+  sources: [
+    ["Craft Yarn Council — Standards and guidelines", "https://www.craftyarncouncil.com/standards"],
+    ["Craft Yarn Council — Knitting abbreviations", "https://www.craftyarncouncil.com/standards/knitting-abbreviations"],
   ],
 };
 

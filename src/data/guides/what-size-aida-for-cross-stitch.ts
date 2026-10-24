@@ -7,7 +7,7 @@ export const guide: Guide = {
     'Choose Aida count and cut size from stitch width and height. Margin tips, worked example, and a free cross-stitch fabric calculator.',
   primaryKeyword: 'what size aida for cross stitch pattern',
   datePublished: '2026-10-23',
-  dateModified: '2026-10-23',
+  dateModified: '2026-10-24',
   relatedTools: ['cross-stitch-fabric-calculator', 'fabric-yardage-calculator'],
   relatedGuides: [
     'how-many-yards-of-fabric',
@@ -39,7 +39,7 @@ export const guide: Guide = {
     {
       type: 'takeaway',
       content:
-        'Finished design inches ≈ stitch count ÷ Aida count (stitches per inch). Add margins on all sides for the fabric cut. Higher counts shrink the same chart; lower counts enlarge it. Use the cross-stitch fabric calculator (/tools/cross-stitch-fabric-calculator/) for width, height, and cut size.',
+        'Finished design inches = stitch count ÷ Aida count (for example, 120 stitches ÷ 14-count ≈ 8.6 inches wide)—then add margins on all sides for the fabric cut. Higher counts shrink the same chart; lower counts enlarge it. Use the cross-stitch fabric calculator (/tools/cross-stitch-fabric-calculator/).',
     },
     {
       type: 'p',
@@ -179,6 +179,9 @@ export const guide: Guide = {
       content:
         'Read stitch width and height from the chart, pick a count that yields the display size you want, add margins, and confirm cut size with the cross-stitch fabric calculator (/tools/cross-stitch-fabric-calculator/). For bolt purchases across many pieces, continue with how many yards of fabric (/guides/how-many-yards-of-fabric/).',
     },
+  ],
+  sources: [
+    ["Craft Yarn Council — Standards overview", "https://www.craftyarncouncil.com/standards"],
   ],
 };
 

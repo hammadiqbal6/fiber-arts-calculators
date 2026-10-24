@@ -28,20 +28,20 @@
 | `/tools/cross-stitch-fabric-calculator/` | cross stitch calculator aida | aida fabric size calculator |
 | `/tools/needle-hook-converter/` | knitting needle size converter | crochet hook size conversion |
 | `/tools/seam-allowance-calculator/` | seam allowance calculator | pattern grading ease |
-| `/guides/how-much-yarn-for-a-blanket/` | how much yarn for a blanket | throw blanket yarn amount |
+| `/guides/how-much-yarn-for-a-blanket/` | blanket yarn chart by size | throw blanket yarn amount |
 | `/guides/how-many-stitches-to-cast-on-for-a-hat/` | how many stitches to cast on for a hat | hat cast on stitches |
 | `/guides/how-much-quilt-binding-do-i-need/` | how much quilt binding do I need | quilt binding yardage |
 | `/guides/knitting-gauge-explained/` | knitting gauge explained | how to measure knitting gauge |
 | `/guides/quilt-backing-yardage-guide/` | quilt backing yardage | how much backing fabric |
 | `/guides/half-square-triangle-math/` | half square triangle formula | HST size chart |
 | `/guides/yarn-substitution-basics/` | yarn substitution guide | substitute yarn weight |
-| `/guides/how-much-yarn-for-a-sweater/` | how much yarn for a sweater | sweater yarn yardage skeins |
-| `/guides/how-many-skeins-for-a-scarf/` | how many skeins for a scarf | scarf yarn estimator |
+| `/guides/how-much-yarn-for-a-sweater/` | sweater yarn chart by size | how much yarn for a sweater |
+| `/guides/how-many-skeins-for-a-scarf/` | scarf yarn chart by length | how many skeins for a scarf |
 | `/guides/how-to-increase-evenly-across-a-row/` | how to increase evenly across a row | space increases evenly knitting |
 | `/guides/crochet-hook-size-conversion-chart/` | crochet hook size conversion chart | hook size mm US UK |
 | `/guides/how-many-yards-of-fabric/` | how many yards of fabric do I need | fabric yardage estimator |
 | `/guides/what-size-aida-for-cross-stitch/` | what size aida for cross stitch pattern | aida count fabric size |
-| `/guides/how-much-yarn-for-amigurumi/` | how much yarn for amigurumi | amigurumi yarn estimator |
+| `/guides/how-much-yarn-for-amigurumi/` | amigurumi yarn chart by size | how much yarn for amigurumi |
 | `/guides/does-crochet-use-more-yarn-than-knitting/` | does crochet use more yarn than knitting | crochet vs knit yarn amount |
 
 No two URLs share the same primary intent.

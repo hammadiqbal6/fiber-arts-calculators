@@ -5,6 +5,7 @@ import RelatedTools from '../../components/RelatedTools.astro';
 import RelatedGuides from '../../components/RelatedGuides.astro';
 import { GUIDES } from '../../data/guides';
 import { siteConfig, CANONICAL_PERSON_ID } from '../../config/site';
+import { linkifyGuideHtml, stripGuidePaths } from '../../lib/guide-links';
 
 export function getStaticPaths() {
   return GUIDES.map((g) => ({ params: { slug: g.slug } }));
@@ -13,6 +14,9 @@ export function getStaticPaths() {
 const guide = GUIDES.find((g) => g.slug === Astro.params.slug)!;
 const path = `/guides/${guide.slug}/`;
 const ogImage = `/og/${guide.slug}.png`;
+
+const takeaway = guide.sections.find((b) => b.type === 'takeaway');
+const bodySections = guide.sections.filter((b) => b.type !== 'takeaway');
 
 const jsonLd = [
   {
@@ -61,7 +65,7 @@ const jsonLd = [
           mainEntity: guide.faqs.map((f) => ({
             '@type': 'Question',
             name: f.q,
-            acceptedAnswer: { '@type': 'Answer', text: f.a },
+            acceptedAnswer: { '@type': 'Answer', text: stripGuidePaths(f.a) },
           })),
         },
       ]
@@ -84,25 +88,35 @@ const jsonLd = [
       { label: guide.title },
     ]} />
     <h1>{guide.title}</h1>
+
+    {takeaway && (
+      <div class="takeaway">
+        <p>
+          <strong>Key takeaway:</strong>{' '}
+          <span set:html={linkifyGuideHtml(String(takeaway.content))} />
+        </p>
+      </div>
+    )}
+
     <div class="meta-row">
       <span>Published {guide.datePublished}</span>
       <span>Updated {guide.dateModified}</span>
       <span>By <a href="/about/#maintainer" rel="author">{siteConfig.defaultAuthor.name}</a></span>
     </div>
-    {guide.sections.map((block) => {
-      if (block.type === 'takeaway') {
-        return (
-          <div class="takeaway">
-            <p><strong>Key takeaway:</strong> {block.content}</p>
-          </div>
-        );
-      }
+
+    {guide.relatedTools?.length > 0 && (
+      <p class="guide-cta">
+        <a class="btn btn--secondary" href={`/tools/${guide.relatedTools[0]}/`}>Calculate yours →</a>
+      </p>
+    )}
+
+    {bodySections.map((block) => {
       if (block.type === 'h2') return <h2>{block.content}</h2>;
       if (block.type === 'ul') {
         return (
           <ul>
             {(block.content as string[]).map((li) => (
-              <li>{li}</li>
+              <li set:html={linkifyGuideHtml(li)} />
             ))}
           </ul>
         );
@@ -124,7 +138,7 @@ const jsonLd = [
                 {table.rows.map((row) => (
                   <tr>
                     {row.map((cell) => (
-                      <td>{cell}</td>
+                      <td set:html={linkifyGuideHtml(cell)} />
                     ))}
                   </tr>
                 ))}
@@ -133,7 +147,7 @@ const jsonLd = [
           </div>
         );
       }
-      return <p>{block.content}</p>;
+      return <p set:html={linkifyGuideHtml(String(block.content))} />;
     })}
 
     {guide.faqs?.length > 0 && (
@@ -143,10 +157,23 @@ const jsonLd = [
           {guide.faqs.map((f) => (
             <details>
               <summary>{f.q}</summary>
-              <p>{f.a}</p>
+              <p set:html={linkifyGuideHtml(f.a)} />
             </details>
           ))}
         </div>
+      </>
+    )}
+
+    {guide.sources && guide.sources.length > 0 && (
+      <>
+        <h2>Sources</h2>
+        <ol class="refs">
+          {guide.sources.map(([label, href]) => (
+            <li>
+              <a href={href} rel="noopener noreferrer">{label}</a>
+            </li>
+          ))}
+        </ol>
       </>
     )}
 

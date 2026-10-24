@@ -2,12 +2,12 @@ import type { Guide } from './types';
 
 export const guide: Guide = {
   slug: 'how-many-skeins-for-a-scarf',
-  title: 'How Many Skeins for a Scarf?',
+  title: 'Scarf Yarn Chart by Length',
   description:
     'Estimate scarf skeins from length, width, yarn weight, and yards per ball. Worked example plus free scarf and substitution calculators.',
-  primaryKeyword: 'how many skeins for a scarf',
+  primaryKeyword: 'scarf yarn chart by length',
   datePublished: '2026-10-23',
-  dateModified: '2026-10-23',
+  dateModified: '2026-10-24',
   relatedTools: ['yarn-scarf-calculator', 'yarn-substitution-calculator'],
   relatedGuides: [
     'yarn-substitution-basics',
@@ -40,7 +40,7 @@ export const guide: Guide = {
     {
       type: 'takeaway',
       content:
-        'Scarf skeins = estimated total yards ÷ yards per skein, rounded up. Area (width × length), Craft Yarn Council yarn weight, and knit vs crochet density drive the yardage. Use the yarn scarf calculator (/tools/yarn-scarf-calculator/) instead of guessing from ball counts alone, then add fringe.',
+        'Many worsted knit scarves use roughly 300–600 yards—often two to three 200-yard skeins as a planning rule of thumb. Skeins = estimated total yards ÷ yards per skein, rounded up. Use the yarn scarf calculator (/tools/yarn-scarf-calculator/), then add fringe.',
     },
     {
       type: 'p',
@@ -171,6 +171,9 @@ export const guide: Guide = {
       content:
         'Set width and length, run the yarn scarf calculator (/tools/yarn-scarf-calculator/), convert yards to your skein’s put-up, and buy one extra when dye lots are scarce or fringe is lavish. For craft comparisons on denser fabric, see does crochet use more yarn than knitting (/guides/does-crochet-use-more-yarn-than-knitting/). If you swap yarn brands, confirm put-ups with the yarn substitution calculator (/tools/yarn-substitution-calculator/) before you leave the shop with “enough” balls that are secretly shorter.',
     },
+  ],
+  sources: [
+    ["Craft Yarn Council — Standard Yarn Weight System", "https://www.craftyarncouncil.com/standards/yarn-weight-system"],
   ],
 };
 

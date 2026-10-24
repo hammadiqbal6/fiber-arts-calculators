@@ -2,12 +2,12 @@ import type { Guide } from './types';
 
 export const guide: Guide = {
   slug: 'how-much-yarn-for-amigurumi',
-  title: 'How Much Yarn for Amigurumi?',
+  title: 'Amigurumi Yarn Chart by Size',
   description:
     'Estimate amigurumi yarn from toy size and CYC weight. Planning tips, worked example, and free amigurumi and substitution calculators.',
-  primaryKeyword: 'how much yarn for amigurumi',
+  primaryKeyword: 'amigurumi yarn chart by size',
   datePublished: '2026-10-23',
-  dateModified: '2026-10-23',
+  dateModified: '2026-10-24',
   relatedTools: ['yarn-amigurumi-calculator', 'yarn-substitution-calculator'],
   relatedGuides: [
     'yarn-substitution-basics',
@@ -39,7 +39,7 @@ export const guide: Guide = {
     {
       type: 'takeaway',
       content:
-        'Amigurumi yarn depends on finished height, Craft Yarn Council weight category, and dense crochet fabric—not scarf leftovers by eye. Estimate total yards (by color), divide by yards per skein, and round up. Use the amigurumi yarn calculator (/tools/yarn-amigurumi-calculator/) before you commit a partial ball.',
+        'A roughly 6-inch worsted amigurumi often needs on the order of about 100–200 yards of main-color yarn as a planning band—then divide by yards per skein and round up by color. Dense crochet fabric uses more length than scarf leftovers suggest. Use the amigurumi yarn calculator (/tools/yarn-amigurumi-calculator/) before you commit a partial ball.',
     },
     {
       type: 'p',
@@ -175,6 +175,9 @@ export const guide: Guide = {
       content:
         'Set finished height and CYC weight, run the amigurumi yarn calculator (/tools/yarn-amigurumi-calculator/), split yards by color, and convert with ball-band lengths. Substituting? Use the yarn substitution calculator (/tools/yarn-substitution-calculator/) and yarn substitution basics (/guides/yarn-substitution-basics/).',
     },
+  ],
+  sources: [
+    ["Craft Yarn Council — Standard Yarn Weight System", "https://www.craftyarncouncil.com/standards/yarn-weight-system"],
   ],
 };
 

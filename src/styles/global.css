@@ -593,7 +593,9 @@ p {
   z-index: 50;
   background: var(--color-ink);
   color: #f5f1ea;
-  padding: 0.5rem 0.75rem;
+  /* Keep first-visit bar ≤56px tall so tool inputs stay above the fold */
+  padding: 0.35rem 0.75rem;
+  max-height: 56px;
 }
 
 .cookie-banner[hidden] {
@@ -621,18 +623,24 @@ p {
 .cookie-banner .btn--primary {
   background: #e8c4a8;
   color: var(--color-ink);
-  min-height: 44px;
-  padding: 0.45rem 0.9rem;
+  min-height: 40px;
+  padding: 0.35rem 0.75rem;
   flex-shrink: 0;
 }
 
 @media (min-width: 600px) {
   .cookie-banner {
-    padding: var(--space-3) var(--space-4);
+    padding: 0.45rem var(--space-4);
+    max-height: none;
   }
 
   .cookie-banner p {
     font-size: 0.95rem;
+  }
+
+  .cookie-banner .btn--primary,
+  .cookie-banner__reject {
+    min-height: 44px;
   }
 }
 
@@ -659,7 +667,8 @@ p {
   background: transparent !important;
   border-color: #f5f1ea !important;
   color: #f5f1ea !important;
-  min-height: 44px;
+  min-height: 40px;
+  padding: 0.35rem 0.75rem;
 }
 
 /* Prevent page-level horizontal overflow from wide tables/forms */

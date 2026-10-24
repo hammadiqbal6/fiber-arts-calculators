@@ -1,4 +1,5 @@
 import { CANONICAL_PERSON_ID, siteConfig } from '../config/site';
+import { stripGuidePaths } from './guide-links';
 
 const orgId = () => `${siteConfig.siteUrl}/#organization`;
 const websiteId = () => `${siteConfig.siteUrl}/#website`;
@@ -131,7 +132,7 @@ export function toolPageGraph(opts: {
       mainEntity: opts.faqs.map(([q, a]) => ({
         '@type': 'Question',
         name: q,
-        acceptedAnswer: { '@type': 'Answer', text: a },
+        acceptedAnswer: { '@type': 'Answer', text: stripGuidePaths(a) },
       })),
     });
   }

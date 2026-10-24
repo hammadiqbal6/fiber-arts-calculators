@@ -14,7 +14,7 @@ export interface ToolDef {
 export const TOOLS: ToolDef[] = [
   {
     slug: 'yarn-blanket-calculator',
-    title: 'Yarn Blanket Calculator',
+    title: 'Blanket Yarn Calculator',
     shortTitle: 'Yarn for blankets',
     description: 'Estimate skeins, yards, and grams of yarn for knit or crochet blankets by size and yarn weight.',
     primaryKeyword: 'yarn calculator for blanket',

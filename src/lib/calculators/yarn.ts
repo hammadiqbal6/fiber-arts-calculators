@@ -11,8 +11,9 @@ export type CraftMethod = 'knit' | 'crochet';
  */
 function densityFactor(weightId: YarnWeightId, method: CraftMethod): number {
   // Approximate yards of yarn per square inch of fabric (planning averages).
-  // Calibrated so a 50×60" worsted knit throw ≈ 1,100–1,400 yd and a
-  // medium worsted sweater ≈ 1,000–1,400 yd before skein rounding.
+  // Worsted (#4) knit = 0.55 yd/in² → 50×60" throw (3,000 in²) ≈ 1,650 yd at
+  // 0% waste, ≈ 1,815 yd with default 10% waste. Crochet = knit × 1.28.
+  // Medium worsted sweater uses a separate body+sleeves area model.
   const knitBase: Record<YarnWeightId, number> = {
     0: 1.35,
     1: 1.05,

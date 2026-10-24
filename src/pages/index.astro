@@ -9,31 +9,43 @@ import { homeGraph } from '../lib/schema';
 const title = 'Free Knitting & Quilting Calculators';
 const description =
   'Free yarn, gauge, fabric yardage, quilt backing, binding and HST calculators for knitters, crocheters, sewists and quilters. Inches or cm, yards or meters.';
+
+const popular = TOOLS.slice(0, 6);
+const itemList = {
+  '@context': 'https://schema.org',
+  '@type': 'ItemList',
+  name: 'Popular FiberCalc calculators',
+  itemListElement: popular.map((t, i) => ({
+    '@type': 'ListItem',
+    position: i + 1,
+    name: t.title,
+    url: `${siteConfig.siteUrl}${t.path}`,
+  })),
+};
 ---
 
-<BaseLayout title={title} description={description} canonicalPath="/" jsonLd={homeGraph()}>
+<BaseLayout title={title} description={description} canonicalPath="/" jsonLd={[homeGraph(), itemList]}>
   <section class="hero">
     <div class="container">
       <div class="hero__panel">
         <p class="hero__brand">{siteConfig.siteName}</p>
         <h1>Free knitting, crochet, sewing &amp; quilting calculators</h1>
         <p class="hero__lead">
-          FiberCalc estimates yarn yardage, knitting gauge, fabric cuts, and quilt backing or binding in your browser—no signup and no uploads.
-          Enter inches or centimeters, match Craft Yarn Council yarn weights, and get skein counts you can take to the shop. Browse tools below or start with a guide when you need the method explained.
+          FiberCalc estimates yarn yardage, gauge, fabric cuts, and quilt backing in your browser—no signup.
+          Example: a 50×60″ worsted knit throw is about 1,815 yards (10 skeins at 200 yd) with the default 10% waste.
         </p>
         <div class="btn-row">
           <a class="btn btn--primary" href="/tools/">Browse all calculators</a>
-          <a class="btn btn--secondary" href="/knitting-crochet/">Yarn &amp; gauge tools</a>
+          <a class="btn btn--secondary" href="/tools/yarn-blanket-calculator/">Blanket yarn calculator</a>
         </div>
       </div>
     </div>
   </section>
 
   <div class="container">
-    <AdSlot />
     <h2>Popular tools</h2>
     <div class="tool-grid">
-      {TOOLS.slice(0, 6).map((t) => (
+      {popular.map((t) => (
         <a class="tool-link" href={t.path}>
           <h3>{t.title}</h3>
           <p>{t.description}</p>
@@ -41,13 +53,21 @@ const description =
       ))}
     </div>
 
+    <AdSlot />
+
+    <h2>Which calculator should I use?</h2>
+    <p class="answer-first">
+      Start with yarn tools for blankets, sweaters, hats, and scarves; sewing tools for fabric yardage and seams;
+      quilting tools for size, backing, binding, and HSTs; reference charts when a ball band disagrees with your notions.
+    </p>
+
     <h2>Browse by craft</h2>
     <div class="tool-grid">
       {[
         { href: '/knitting-crochet/', title: 'Knitting & crochet', body: 'Yarn estimates, gauge, cast-on, and even shaping.' },
         { href: '/sewing/', title: 'Sewing', body: 'Fabric yardage, seam allowance, and grading helpers.' },
         { href: '/quilting/', title: 'Quilting', body: 'Quilt size, backing, binding, and HST cutting.' },
-        { href: '/reference/', title: 'Reference', body: 'Needle/hook converters and Aida fabric sizing.' },
+        { href: '/reference/', title: 'Reference', body: 'Yarn weights, quilt sizes, needle/hook converters, Aida sizing.' },
         { href: '/guides/', title: 'Guides', body: 'Deep-dive articles interlinked with every tool.' },
         { href: '/reference/yarn-weights/', title: 'CYC yarn weights', body: 'Craft Yarn Council standards table with sources.' },
       ].map((c) => (

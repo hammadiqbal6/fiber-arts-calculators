@@ -23,7 +23,11 @@ const jsonLd = collectionPageGraph({
   <div class="container">
     <Breadcrumbs items={[{ label: 'Home', href: '/' }, { label: 'Tools' }]} />
     <h1>All calculators</h1>
-    <p>Every {siteConfig.siteName} tool runs in your browser with inches/cm, yards/meters, and grams/oz where relevant.</p>
+    <p class="answer-first">
+      Every {siteConfig.siteName} tool runs in your browser with inches/cm and yards/meters—start with the
+      <a href="/tools/yarn-blanket-calculator/">blanket yarn calculator</a> (about 1,815 yd for a 50×60″ worsted throw)
+      or pick any card below.
+    </p>
     <div class="tool-grid">
       {TOOLS.map((t) => (
         <a class="tool-link" href={t.path}>
