@@ -27,4 +27,6 @@ export interface Guide {
   relatedGuides: string[];
   faqs: GuideFaq[];
   sections: GuideBlock[];
+  /** Outbound citations shown in a Sources section */
+  sources?: [string, string][];
 }

@@ -6,12 +6,10 @@ import RelatedTools from '../../components/RelatedTools.astro';
 import RelatedGuides from '../../components/RelatedGuides.astro';
 import TrustBlock from '../../components/TrustBlock.astro';
 import EmbedSnippet from '../../components/EmbedSnippet.astro';
-import SisterTools from '../../components/SisterTools.astro';
 import { TOOL_PAGES } from '../../data/tool-pages';
 import { getTool } from '../../lib/tools';
 import { siteConfig } from '../../config/site';
 import { toolPageGraph } from '../../lib/schema';
-import { sisterLinksFor } from '../../lib/sister-links';
 import { guidesForTool } from '../../data/tool-guide-map';
 
 export function getStaticPaths() {
@@ -21,14 +19,12 @@ export function getStaticPaths() {
 const { slug } = Astro.params;
 const page = TOOL_PAGES.find((p) => p.slug === slug)!;
 const tool = getTool(slug!)!;
-const sister = sisterLinksFor(tool.slug);
 const learnGuides = guidesForTool(tool.slug);
 const ogImage = `/og/${tool.slug}.png`;
 
-const formulaSection = page.sections.find(([h]) =>
+const hasFormulaSection = page.sections.some(([h]) =>
   /formula|how (this|it) (calculator )?works|method/i.test(h),
 );
-const formulaText = formulaSection?.[1] ?? page.answer;
 
 const primaryImage =
   tool.category === 'yarn' || tool.category === 'knitting' || tool.category === 'crochet'
@@ -42,7 +38,7 @@ const primaryImage =
 const sourcesForTrust = page.sources.map(([label, href]) => ({
   label,
   href,
-  usedFor: 'Standards and planning ranges cited in this calculator.',
+  usedFor: page.sourceUsedFor ?? `Primary reference for ${page.h1}.`,
   checked: siteConfig.lastReviewed,
 }));
 
@@ -67,15 +63,6 @@ const jsonLd = toolPageGraph({
 
     <h1>{page.h1}</h1>
     <p class="takeaway"><strong>Key takeaway:</strong> {page.answer}</p>
-    <div class="meta-row">
-      <span>Runs 100% in your browser</span>
-      <span>
-        By <a href="/about/#maintainer" rel="author">{siteConfig.defaultAuthor.name}</a>
-      </span>
-      <span>
-        Last reviewed <time datetime={siteConfig.lastReviewed}>{siteConfig.lastReviewed}</time>
-      </span>
-    </div>
 
     <div class="calculator-shell" data-calc={page.calc}>
       <form set:html={page.form + '<div class="field full"><button class="btn btn--primary" type="submit">Calculate</button></div>'} />
@@ -94,13 +81,22 @@ const jsonLd = toolPageGraph({
       </div>
     </div>
 
+    <div class="meta-row">
+      <span>Runs 100% in your browser</span>
+      <span>
+        By <a href="/about/#maintainer" rel="author">{siteConfig.defaultAuthor.name}</a>
+      </span>
+      <span>
+        Last reviewed <time datetime={siteConfig.lastReviewed}>{siteConfig.lastReviewed}</time>
+      </span>
+      <span><a href="/methodology/">How this works</a></span>
+    </div>
+
     <AdSlot slot="after-tool" />
 
     <RelatedGuides slugs={learnGuides} title="Learn more" />
 
     <article class="prose">
-      <p>{page.answer}</p>
-
       {primaryImage && (
         <figure class="diagram">
           <img
@@ -140,10 +136,9 @@ const jsonLd = toolPageGraph({
       </div>
     </article>
 
-    <TrustBlock sources={sourcesForTrust} formula={formulaText} />
+    <TrustBlock sources={sourcesForTrust} formula={hasFormulaSection ? undefined : page.answer} />
     <EmbedSnippet slug={tool.slug} title={page.h1} toolPath={tool.path} />
     <RelatedTools slugs={tool.related} />
-    {sister.length > 0 && <SisterTools links={sister} />}
   </div>
 
   <script>
