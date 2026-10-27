@@ -1,0 +1,63 @@
+name: Full checks
+
+# Manual-only: SEO/AdSense/budget/page-checklist audits, proof verify/regenerate,
+# Lighthouse, Playwright, and link checks. PR CI stays a fast build+test safety net.
+on:
+  workflow_dispatch:
+
+concurrency:
+  group: full-checks-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  PUBLIC_SITE_URL: https://fiber-arts-calculators.hammadiqbal117.workers.dev
+  PUBLIC_SITE_URL_PAYMENT_FEES: https://payment-fee-calculators.hammadiqbal117.workers.dev
+  PUBLIC_SITE_URL_BUSINESS_DOCS: https://business-document-generators.hammadiqbal117.workers.dev
+  PUBLIC_SITE_URL_HOME_GARDEN: https://home-garden-calculators.hammadiqbal117.workers.dev
+  PUBLIC_SITE_URL_FIBER_ARTS: https://fiber-arts-calculators.hammadiqbal117.workers.dev
+  PUBLIC_SITE_URL_PET: https://pet-calculators.hammadiqbal117.workers.dev
+
+jobs:
+  audit:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
+        with:
+          node-version: '24'
+          cache: npm
+      - run: npm ci
+      - run: npm run audit
+      - run: npm run check-links
+
+  proof:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
+        with:
+          node-version: '24'
+          cache: npm
+      - run: npm ci
+      - run: npm run proof:verify
+      - uses: actions/upload-artifact@v6
+        with:
+          name: docs-proof
+          path: docs/proof/
+          if-no-files-found: error
+
+  lighthouse-playwright:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
+        with:
+          node-version: '24'
+          cache: npm
+      - run: npm ci
+      - run: npx playwright install chromium
+      - run: npm run build
+      - run: npm run lhci
