@@ -105,3 +105,30 @@ Follow `docs/SEO-PLAYBOOK.md`, `docs/SEO-GUARDRAILS.md`, `docs/KEYWORD-MAP.md`, 
 ## Subagents / skills
 
 See `.cursor/agents/` and `.cursor/skills/` for seo-auditor, content-writer, adsense-reviewer, performance-auditor, link-builder-researcher, fiber-arts-fact-checker roles.
+
+## UI/UX Pro Max
+
+Use this skill for **any change to how the site looks or behaves** (layout, components, CSS, interaction, a11y, responsive, motion).
+
+1. Read [`.cursor/skills/ui-ux-pro-max/SKILL.md`](.cursor/skills/ui-ux-pro-max/SKILL.md).
+2. Search the local design database:
+
+```bash
+python3 .cursor/skills/ui-ux-pro-max/scripts/search.py "<query>" --domain <domain>
+```
+
+Optional flags from `SKILL.md`: `--design-system` (new page / visual direction), `--stack astro` (Astro-specific UI guidance), plus `--domain` values such as `ux`, `typography`, `color`, `style`.
+
+**Priority checks before shipping UI:** contrast ≥4.5:1 · 44px touch targets · visible focus · labels and inline errors · dark mode · no horizontal scroll · reduced motion.
+
+Example (real output, shortened):
+
+```text
+$ python3 .cursor/skills/ui-ux-pro-max/scripts/search.py "contrast focus touch targets forms" --domain ux
+## UI Pro Max Search Results
+**Domain:** ux | **Query:** contrast focus touch targets forms | **Found:** 3 results
+### Result 1 — Touch / Touch Spacing (Mobile): Minimum 8px gap between touch targets
+### Result 2 — Responsive / Touch Friendly (Web): Increase touch targets on mobile
+### Result 3 — Accessibility / Focus Appearance: outline ≥2 CSS px with adequate state contrast
+```
+

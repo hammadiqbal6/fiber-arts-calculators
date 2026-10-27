@@ -127,10 +127,13 @@ All owner placeholders live in **`src/config/site.ts`** (overridable via `PUBLIC
 
 See **[AGENTS.md](AGENTS.md)** — implement calculator → tests → `TOOLS` registry → `tool-pages.ts` → `tool-client` handler → keyword map.
 
+For UI/visual/behavior changes, follow the **UI/UX Pro Max** section in [AGENTS.md](AGENTS.md) (skill at `.cursor/skills/ui-ux-pro-max/`).
+
 ## Testing & CI
 
 - Formula coverage: `src/lib/calculators/all.test.ts`
-- GitHub Actions: `.github/workflows/ci.yml` runs `npm test`, `npm run build`, `npm run audit` on PRs
+- PR / `main` CI (`.github/workflows/ci.yml`): `npm ci` → `npm run build` → `npm test` (fast safety net)
+- Full suite (audits, proof, Lighthouse, Playwright): run locally, or trigger `.github/workflows/full-checks.yml` via **workflow_dispatch**
 
 ## Performance budgets
 
@@ -177,7 +180,7 @@ Committed, reproducible evidence lives in **[`docs/proof/`](docs/proof/README.md
 npm run proof
 ```
 
-This builds the site, serves `dist/`, runs Lighthouse (mobile + desktop), Playwright mobile checks, unit tests, audit scripts, structured-data validation, and sitemap/robots checks. **CI** runs `npm run proof:verify` (artifact checks + tests/audits; no Lighthouse/Playwright on runners).
+This builds the site, serves `dist/`, runs Lighthouse (mobile + desktop), Playwright mobile checks, unit tests, audit scripts, structured-data validation, and sitemap/robots checks. **Full checks** (manual workflow) runs `npm run proof:verify` (artifact checks + tests/audits; no Lighthouse/Playwright on that job). Regenerate with `npm run proof` locally when proof artifacts change.
 
 ## Troubleshooting
 

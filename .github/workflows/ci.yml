@@ -2,9 +2,13 @@ name: CI
 
 on:
   push:
-    branches: [main, 'cursor/**']
+    branches: [main]
   pull_request:
     branches: [main]
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
 
 # Bake PUBLIC_* the same way Cloudflare Workers Builds should; fallbacks in
 # src/config still apply if a var is omitted.
@@ -17,8 +21,10 @@ env:
   PUBLIC_SITE_URL_PET: https://pet-calculators.hammadiqbal117.workers.dev
 
 jobs:
+  # Keep historical job name in case branch protection requires it.
   build-test-audit:
     runs-on: ubuntu-24.04
+    timeout-minutes: 10
     steps:
       - uses: actions/checkout@v5
       - uses: actions/setup-node@v5
@@ -26,22 +32,5 @@ jobs:
           node-version: '24'
           cache: npm
       - run: npm ci
+      - run: npm run build
       - run: npm test
-      - run: npm run audit
-
-  proof:
-    runs-on: ubuntu-24.04
-    timeout-minutes: 15
-    steps:
-      - uses: actions/checkout@v5
-      - uses: actions/setup-node@v5
-        with:
-          node-version: '24'
-          cache: npm
-      - run: npm ci
-      - run: npm run proof:verify
-      - uses: actions/upload-artifact@v6
-        with:
-          name: docs-proof
-          path: docs/proof/
-          if-no-files-found: error
