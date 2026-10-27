@@ -35,13 +35,13 @@ const snippet = `<iframe src="${iframeSrc}" title="${title}" loading="lazy" styl
   .embed-share__code {
     width: 100%;
     font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
-    font-size: 0.85rem;
+    font-size: max(1rem, 16px);
     min-height: 7rem;
     padding: 0.75rem;
     border: 1px solid var(--color-border);
     border-radius: var(--radius);
     background: var(--color-surface);
-    color: inherit;
+    color: var(--color-ink);
     resize: vertical;
   }
   .embed-share__status {

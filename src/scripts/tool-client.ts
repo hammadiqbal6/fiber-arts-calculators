@@ -37,6 +37,152 @@ function showResults(root: HTMLElement, rows: [string, string][], sharePath?: st
   }
 }
 
+function hideResults(root: HTMLElement) {
+  const box = root.querySelector<HTMLElement>('[data-results]');
+  const dl = root.querySelector<HTMLElement>('[data-results-dl]');
+  const share = root.querySelector<HTMLElement>('[data-share]');
+  if (box) box.hidden = true;
+  if (dl) dl.innerHTML = '';
+  if (share) share.innerHTML = '';
+}
+
+function ensureFormStatus(form: HTMLFormElement): HTMLElement {
+  let status = form.querySelector<HTMLElement>('[data-form-status]');
+  if (!status) {
+    status = document.createElement('p');
+    status.className = 'form-status';
+    status.setAttribute('data-form-status', '');
+    status.setAttribute('role', 'alert');
+    status.setAttribute('aria-live', 'assertive');
+    status.hidden = true;
+    const submitRow = form.querySelector('.field.full') || form.lastElementChild;
+    if (submitRow) form.insertBefore(status, submitRow);
+    else form.appendChild(status);
+  }
+  return status;
+}
+
+function clearFieldErrors(form: HTMLFormElement) {
+  form.querySelectorAll<HTMLElement>('[data-field-error]').forEach((el) => {
+    el.textContent = '';
+    el.hidden = true;
+  });
+  form.querySelectorAll<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>(
+    '[aria-invalid="true"]',
+  ).forEach((el) => {
+    el.removeAttribute('aria-invalid');
+    const describedby = el.getAttribute('aria-describedby');
+    if (!describedby) return;
+    const kept = describedby
+      .split(/\s+/)
+      .filter((id) => id && !id.endsWith('-error'));
+    if (kept.length) el.setAttribute('aria-describedby', kept.join(' '));
+    else el.removeAttribute('aria-describedby');
+  });
+  const status = form.querySelector<HTMLElement>('[data-form-status]');
+  if (status) {
+    status.textContent = '';
+    status.hidden = true;
+  }
+}
+
+function setFieldError(input: HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement, message: string) {
+  const field = input.closest('.field') || input.parentElement;
+  if (!field) return;
+  const errorId = `${input.id || input.name || 'field'}-error`;
+  let error = field.querySelector<HTMLElement>(`[data-field-error]#${CSS.escape(errorId)}`);
+  if (!error) {
+    error = field.querySelector<HTMLElement>('[data-field-error]');
+  }
+  if (!error) {
+    error = document.createElement('p');
+    error.className = 'field-error';
+    error.setAttribute('data-field-error', '');
+    field.appendChild(error);
+  }
+  error.id = errorId;
+  error.textContent = message;
+  error.hidden = false;
+  input.setAttribute('aria-invalid', 'true');
+  const describedby = (input.getAttribute('aria-describedby') || '')
+    .split(/\s+/)
+    .filter(Boolean);
+  if (!describedby.includes(errorId)) {
+    describedby.push(errorId);
+    input.setAttribute('aria-describedby', describedby.join(' '));
+  }
+}
+
+function validateToolForm(form: HTMLFormElement): boolean {
+  clearFieldErrors(form);
+  const invalid: HTMLElement[] = [];
+
+  form.querySelectorAll<HTMLInputElement>('input[type="number"]:not([disabled])').forEach((input) => {
+    const raw = input.value.trim();
+    if (raw === '') {
+      if (input.required) {
+        setFieldError(input, 'Enter a number.');
+        invalid.push(input);
+      }
+      return;
+    }
+    const value = Number(raw);
+    if (!Number.isFinite(value)) {
+      setFieldError(input, 'Enter a valid number.');
+      invalid.push(input);
+      return;
+    }
+    const minAttr = input.getAttribute('min');
+    const maxAttr = input.getAttribute('max');
+    const min = minAttr != null && minAttr !== '' ? Number(minAttr) : undefined;
+    const max = maxAttr != null && maxAttr !== '' ? Number(maxAttr) : undefined;
+
+    if (min != null && Number.isFinite(min) && value < min) {
+      setFieldError(
+        input,
+        min > 0
+          ? `Enter a value of ${min} or greater.`
+          : `Enter a value of ${min} or greater (negatives are not allowed).`,
+      );
+      invalid.push(input);
+      return;
+    }
+    if (max != null && Number.isFinite(max) && value > max) {
+      setFieldError(input, `Enter a value of ${max} or less.`);
+      invalid.push(input);
+      return;
+    }
+    // Guard dimension-like fields that omit min but still cannot be negative/zero.
+    if (minAttr == null && value <= 0 && input.required) {
+      setFieldError(input, 'Enter a positive number.');
+      invalid.push(input);
+    }
+  });
+
+  form.querySelectorAll<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>(
+    'input:not([type="number"]):not([disabled]), select:not([disabled]), textarea:not([disabled])',
+  ).forEach((input) => {
+    if (typeof input.checkValidity === 'function' && !input.checkValidity()) {
+      setFieldError(input, input.validationMessage || 'This field is invalid.');
+      invalid.push(input);
+    }
+  });
+
+  const status = ensureFormStatus(form);
+  if (invalid.length) {
+    status.textContent =
+      invalid.length === 1
+        ? 'Fix the highlighted field before calculating.'
+        : `Fix ${invalid.length} highlighted fields before calculating.`;
+    status.hidden = false;
+    invalid[0]?.focus();
+    return false;
+  }
+  status.textContent = '';
+  status.hidden = true;
+  return true;
+}
+
 function syncQuery(form: HTMLFormElement) {
   const q = new URLSearchParams(new FormData(form) as any).toString();
   const url = `${location.pathname}?${q}`;
@@ -451,22 +597,55 @@ export function initTool(name: string) {
   const handler = handlers[name];
   if (!handler) return;
 
+  form.setAttribute('novalidate', '');
+  ensureFormStatus(form);
+
   const shouldRun = hydrateFromQuery(form);
   syncModeFields(form);
   const run = () => {
+    if (!validateToolForm(form)) {
+      hideResults(root);
+      return false;
+    }
     try {
       const fd = new FormData(form);
       const rows = handler(fd);
       const url = syncQuery(form);
       showResults(root, rows, url);
+      return true;
     } catch (err) {
-      showResults(root, [['Error', err instanceof Error ? err.message : 'Invalid input']]);
+      hideResults(root);
+      const status = ensureFormStatus(form);
+      status.textContent = err instanceof Error ? err.message : 'Invalid input';
+      status.hidden = false;
+      return false;
     }
   };
   form.addEventListener('submit', (e) => {
     e.preventDefault();
-    run();
-    track('calculation_run', { tool_name: name });
+    if (run()) track('calculation_run', { tool_name: name });
+  });
+  form.addEventListener('input', (ev) => {
+    const target = ev.target;
+    if (!(target instanceof HTMLInputElement || target instanceof HTMLSelectElement || target instanceof HTMLTextAreaElement)) {
+      return;
+    }
+    if (target.getAttribute('aria-invalid') === 'true') {
+      // Clear just this field's error as the user edits.
+      target.removeAttribute('aria-invalid');
+      const errorId = `${target.id || target.name || 'field'}-error`;
+      const error = form.querySelector<HTMLElement>(`#${CSS.escape(errorId)}`);
+      if (error) {
+        error.textContent = '';
+        error.hidden = true;
+      }
+      const status = form.querySelector<HTMLElement>('[data-form-status]');
+      const stillInvalid = form.querySelectorAll('[aria-invalid="true"]').length;
+      if (status && stillInvalid === 0) {
+        status.textContent = '';
+        status.hidden = true;
+      }
+    }
   });
   form.querySelector('[data-mode-select], select[name="mode"]')?.addEventListener('change', (ev) => {
     syncModeFields(form);
