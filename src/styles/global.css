@@ -1,4 +1,5 @@
 :root {
+  color-scheme: light dark;
   --color-bg: #f3efe6;
   --color-bg-accent: #e4ddd0;
   --color-surface: #fffdf8;
@@ -6,11 +7,16 @@
   --color-ink-muted: #4a5651;
   --color-brand: #2f5d50;
   --color-brand-dark: #1f3f36;
+  --color-brand-solid: #2f5d50;
   --color-accent: #c45c26;
   --color-accent-soft: #f0d5c4;
   --color-border: #d5cdc0;
   --color-success: #2f5d50;
   --color-focus: #1a6b8a;
+  --color-cookie-bg: #1c2421;
+  --color-cookie-fg: #f5f1ea;
+  --color-cookie-link: #e8c4a8;
+  --color-error: #8a2a2a;
   --font-sans: "Segoe UI", "Helvetica Neue", "Noto Sans", sans-serif;
   --font-display: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
   --space-1: 0.25rem;
@@ -263,7 +269,7 @@ p {
 }
 
 .btn--primary {
-  background: var(--color-brand);
+  background: var(--color-brand-solid);
   color: #fff;
 }
 
@@ -391,12 +397,38 @@ p {
   padding: 0.65rem 0.75rem;
   border: 1px solid var(--color-border);
   border-radius: var(--radius);
-  background: #fff;
+  background: var(--color-surface);
   font: inherit;
   font-size: max(1rem, 16px);
-  color: inherit;
+  color: var(--color-ink);
   width: 100%;
   max-width: 100%;
+}
+
+.field input[aria-invalid="true"],
+.field select[aria-invalid="true"],
+.field textarea[aria-invalid="true"] {
+  border-color: var(--color-error);
+}
+
+.field-error {
+  margin: 0;
+  font-size: 0.875rem;
+  color: var(--color-error);
+}
+
+.field-error[hidden] {
+  display: none !important;
+}
+
+.form-status {
+  margin: 0;
+  font-size: 0.95rem;
+  color: var(--color-error);
+}
+
+.form-status[hidden] {
+  display: none !important;
 }
 
 .field[hidden],
@@ -591,11 +623,10 @@ p {
   left: 0;
   right: 0;
   z-index: 50;
-  background: var(--color-ink);
-  color: #f5f1ea;
-  /* Keep first-visit bar ≤56px tall so tool inputs stay above the fold */
-  padding: 0.35rem 0.75rem;
-  max-height: 56px;
+  /* Fixed dark surface — never use --color-ink (it flips in dark mode). */
+  background: var(--color-cookie-bg);
+  color: var(--color-cookie-fg);
+  padding: 0.5rem 0.75rem;
 }
 
 .cookie-banner[hidden] {
@@ -618,29 +649,34 @@ p {
   line-height: 1.35;
   flex: 1;
   min-width: 0;
+  color: var(--color-cookie-fg);
+}
+
+.cookie-banner a {
+  color: var(--color-cookie-link);
 }
 
 .cookie-banner .btn--primary {
-  background: #e8c4a8;
-  color: var(--color-ink);
-  min-height: 40px;
-  padding: 0.35rem 0.75rem;
+  background: var(--color-cookie-link);
+  color: var(--color-cookie-bg);
+  min-height: 44px;
+  padding: 0.5rem 0.85rem;
   flex-shrink: 0;
+  font-size: 1rem;
+}
+
+.cookie-banner .btn--primary:hover {
+  background: #f0d5c4;
+  color: var(--color-cookie-bg);
 }
 
 @media (min-width: 600px) {
   .cookie-banner {
-    padding: 0.45rem var(--space-4);
-    max-height: none;
+    padding: 0.55rem var(--space-4);
   }
 
   .cookie-banner p {
     font-size: 0.95rem;
-  }
-
-  .cookie-banner .btn--primary,
-  .cookie-banner__reject {
-    min-height: 44px;
   }
 }
 
@@ -665,10 +701,11 @@ p {
 
 .cookie-banner__reject {
   background: transparent !important;
-  border-color: #f5f1ea !important;
-  color: #f5f1ea !important;
-  min-height: 40px;
-  padding: 0.35rem 0.75rem;
+  border-color: var(--color-cookie-fg) !important;
+  color: var(--color-cookie-fg) !important;
+  min-height: 44px;
+  padding: 0.5rem 0.85rem;
+  font-size: 1rem;
 }
 
 /* Prevent page-level horizontal overflow from wide tables/forms */
@@ -706,10 +743,16 @@ p {
     --color-ink-muted: #c5beb3;
     --color-brand: #7eb39f;
     --color-brand-dark: #b8d4c8;
+    /* Keep solid button fill dark so white labels stay ≥4.5:1 */
+    --color-brand-solid: #2f5d50;
     --color-accent: #e09a6a;
     --color-accent-soft: #3a2e26;
     --color-border: #3a4540;
     --color-focus: #6ec0e0;
+    --color-cookie-bg: #121916;
+    --color-cookie-fg: #f5f1ea;
+    --color-cookie-link: #e8c4a8;
+    --color-error: #f0a0a0;
   }
 
   body {
@@ -722,8 +765,9 @@ p {
   .field select,
   .field textarea,
   .embed-share__code {
-    background: #1a2420;
+    background: var(--color-surface);
     color: var(--color-ink);
+    border-color: var(--color-border);
   }
 
   .results {
@@ -732,12 +776,41 @@ p {
   }
 
   .btn--primary {
-    background: #3d7a68;
+    background: var(--color-brand-solid);
     color: #fff;
+  }
+
+  .btn--primary:hover {
+    background: #1f3f36;
+    color: #fff;
+  }
+
+  .btn--secondary {
+    border-color: var(--color-brand);
+    color: var(--color-brand-dark);
+  }
+
+  .cookie-banner {
+    background: var(--color-cookie-bg);
+    color: var(--color-cookie-fg);
+  }
+
+  .cookie-banner .btn--primary {
+    background: var(--color-cookie-link);
+    color: var(--color-cookie-bg);
+  }
+
+  .cookie-banner__reject {
+    border-color: var(--color-cookie-fg) !important;
+    color: var(--color-cookie-fg) !important;
   }
 
   .tool-link:hover h3 {
     color: var(--color-accent);
+  }
+
+  .contact-form-status[data-status='error'] {
+    color: var(--color-error);
   }
 }
 

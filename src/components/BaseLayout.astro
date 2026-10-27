@@ -150,9 +150,22 @@ const nav = [
     <script>
       const toggle = document.querySelector('[data-nav-toggle]');
       const nav = document.querySelector('[data-site-nav]');
+
+      function setNavOpen(open) {
+        nav?.classList.toggle('is-open', open);
+        toggle?.setAttribute('aria-expanded', open ? 'true' : 'false');
+      }
+
       toggle?.addEventListener('click', () => {
-        const open = nav?.classList.toggle('is-open');
-        toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+        const open = !(toggle.getAttribute('aria-expanded') === 'true');
+        setNavOpen(open);
+      });
+
+      document.addEventListener('keydown', (event) => {
+        if (event.key !== 'Escape') return;
+        if (toggle?.getAttribute('aria-expanded') !== 'true') return;
+        setNavOpen(false);
+        toggle?.focus();
       });
     </script>
   </body>
