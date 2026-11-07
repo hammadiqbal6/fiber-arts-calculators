@@ -109,7 +109,7 @@ export const siteConfig = {
    * Last content review date. Change only when formulas, sources, or tool copy
    * actually change (Google helpful-content guidance).
    */
-  lastReviewed: '2026-10-23',
+  lastReviewed: '2026-11-07',
   /** Calculator package version shown in TrustBlock. */
   calculatorVersion: '1.0',
   /** Theme color for manifest / browser UI */

@@ -1,3 +1,7 @@
-# Replace pub-XXXXXXXXXXXXXXXX with your AdSense publisher ID before launch.
-# Format: google.com, pub-XXXXXXXXXXXXXXXX, DIRECT, f08c47fec0942fa0
+# Google AdSense ads.txt
+# Replace pub-XXXXXXXXXXXXXXXX with your approved publisher ID, then uncomment the line below.
+# Keep PUBLIC_ADSENSE_ENABLED=false until ads.txt and the publisher ID match.
+# Format (Authorization Declaration File):
+# google.com, pub-XXXXXXXXXXXXXXXX, DIRECT, f08c47fec0942fa0
+#
 # google.com, pub-XXXXXXXXXXXXXXXX, DIRECT, f08c47fec0942fa0

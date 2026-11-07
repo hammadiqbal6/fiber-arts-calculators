@@ -1,8 +1,10 @@
 /**
  * Standard blanket, quilt, and mattress sizes (inches).
- * Mattress/bedding dimensions align with common US retail standards
- * (e.g. summarized by the International Sleep Products Association / industry charts).
- * Craft blanket ranges follow common knitting/crochet pattern conventions.
+ * Mattress figures are common US *retail rounded* sizes (twin 38×75, full 54×75,
+ * queen 60×80, etc.). ISPA finished-mattress specs are often ½″ shorter and list
+ * full/double finished width as 53″—label retail vs ISPA on the reference page.
+ * Craft blanket and quilt-top ranges follow common pattern conventions, not a
+ * single governing standard.
  */
 
 export interface NamedSize {

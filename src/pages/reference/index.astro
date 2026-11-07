@@ -3,6 +3,7 @@ import BaseLayout from '../../components/BaseLayout.astro';
 import Breadcrumbs from '../../components/Breadcrumbs.astro';
 import { toolsByCategory } from '../../lib/tools';
 import { collectionPageGraph } from '../../lib/schema';
+import { siteConfig } from '../../config/site';
 
 const tools = toolsByCategory('reference');
 const title = 'Fiber Arts Reference Charts';
@@ -27,6 +28,7 @@ const jsonLd = collectionPageGraph({
       <strong>Key takeaway:</strong> Use these charts when a ball band or pattern disagrees with your notions—for example,
       a US 8 knitting needle is 5.0 mm (UK 6) on the CYC-aligned converter.
     </p>
+    <p class="meta-row"><span>Last reviewed {siteConfig.lastReviewed}</span></p>
     <div class="tool-grid">
       {tools.map((t) => (
         <a class="tool-link" href={t.path}><h2>{t.title}</h2><p>{t.description}</p></a>
@@ -35,11 +37,54 @@ const jsonLd = collectionPageGraph({
       <a class="tool-link" href="/reference/quilt-sizes/"><h2>Quilt &amp; mattress sizes</h2><p>Standard blanket, quilt, and mattress dimensions.</p></a>
     </div>
     <div class="prose">
+      <h2>What belongs in Reference</h2>
       <p>
-        Start with the <a href="/reference/yarn-weights/">CYC yarn weight standards</a> when substituting yarn, and
-        the <a href="/tools/needle-hook-converter/">needle &amp; hook converter</a> for US/metric/UK labels. Cross-stitchers
-        should open the <a href="/tools/cross-stitch-fabric-calculator/">Aida fabric calculator</a>. Quilters comparing tops
-        to mattresses can use <a href="/reference/quilt-sizes/">quilt &amp; mattress sizes</a>.
+        Reference pages hold standards and conversion tables—not project estimators. Start with the
+        <a href="/reference/yarn-weights/">CYC yarn weight standards</a> when substituting yarn or reading a ball-band
+        icon. Use the <a href="/tools/needle-hook-converter/">needle &amp; hook converter</a> for US / metric / UK labels
+        (metric millimeters are the reliable cross-brand measure; UK labels are approximate and not published by CYC).
+        Cross-stitchers should open the <a href="/tools/cross-stitch-fabric-calculator/">Aida fabric calculator</a>.
+        Quilters comparing tops to mattresses can use <a href="/reference/quilt-sizes/">quilt &amp; mattress sizes</a>.
+      </p>
+
+      <h2>How to read CYC yarn categories</h2>
+      <p>
+        Craft Yarn Council categories run from 0 (Lace) through 7 (Jumbo). Category 4 (Medium / worsted) is the default
+        in most FiberCalc yarn tools. Match the symbol on the ball band to the “#” column, then confirm the published
+        knit or crochet gauge range. Wraps-per-inch (WPI) helps when a leftover cake has no label—see the CYC
+        <a href="https://www.craftyarncouncil.com/standards/how-measure-wraps-inch-wpi" rel="noopener noreferrer">how to measure WPI</a>
+        page alongside our table. Lace (category 0) crochet gauge on CYC is listed in double crochets, not single crochet.
+      </p>
+
+      <h2>Worked example: needle conversion</h2>
+      <p>
+        A US pattern calls for size 8 needles and your metric set is unmarked by US number. On the converter, US 8 maps
+        to <strong>5.0 mm</strong> (commonly UK 6). Always swatch: letter/number systems vary slightly by brand, which is
+        why CYC emphasizes the millimeter marking on the package.
+      </p>
+
+      <h2>Worked example: Aida cut size</h2>
+      <p>
+        A chart 140 stitches wide on 14-count Aida is 140 ÷ 14 = 10″ of design width. With 3″ margins on each side, cut
+        fabric about <strong>16″</strong> wide. The Aida calculator also handles height and “over two” linen equivalents.
+      </p>
+
+      <h2>Common mistakes</h2>
+      <ul>
+        <li>Trusting “DK” or “worsted” brand names without checking the CYC category icon and gauge.</li>
+        <li>Mixing US letter hooks with steel-hook numbering (steel sizes run the opposite direction).</li>
+        <li>Using mattress dimensions as quilt-top sizes without adding drop, tuck, or border ease.</li>
+        <li>Treating FiberCalc yards-per-100 g midpoints as CYC standards—they are planning heuristics for substitution math.</li>
+      </ul>
+
+      <h2>Related hubs and guides</h2>
+      <p>
+        Project calculators live under <a href="/knitting-crochet/">knitting &amp; crochet</a>,
+        <a href="/sewing/">sewing</a>, and <a href="/quilting/">quilting</a>. Guides that use these charts:
+        <a href="/guides/yarn-substitution-basics/">yarn substitution basics</a>,
+        <a href="/guides/crochet-hook-size-conversion-chart/">hook size conversion chart</a>, and
+        <a href="/guides/what-size-aida-for-cross-stitch/">what size Aida for cross stitch</a>. Source policy and density
+        factors: <a href="/methodology/">Methodology</a>.
       </p>
     </div>
   </div>

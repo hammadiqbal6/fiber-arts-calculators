@@ -3,6 +3,7 @@ import BaseLayout from '../../components/BaseLayout.astro';
 import Breadcrumbs from '../../components/Breadcrumbs.astro';
 import { TOOLS } from '../../lib/tools';
 import { collectionPageGraph } from '../../lib/schema';
+import { siteConfig } from '../../config/site';
 
 const tools = TOOLS.filter((t) => ['yarn', 'knitting', 'crochet'].includes(t.category));
 const title = 'Knitting & Crochet Calculators';
@@ -23,20 +24,70 @@ const jsonLd = collectionPageGraph({
   <div class="container">
     <Breadcrumbs items={[{ label: 'Home', href: '/' }, { label: 'Knit & crochet' }]} />
     <h1>Knitting &amp; crochet calculators</h1>
-    <p class="takeaway"><strong>Key takeaway:</strong> Start with yarn weight and gauge, then estimate yardage or stitch counts—every tool here stays on-device.</p>
+    <p class="takeaway">
+      <strong>Key takeaway:</strong> Start with yarn weight and gauge, then estimate yardage or stitch counts—every tool
+      here stays on-device. Example: a 50×60″ worsted knit throw at FiberCalc’s density with 10% waste is about 1,815 yd
+      (10 skeins at 200 yd each).
+    </p>
+    <p class="meta-row"><span>Last reviewed {siteConfig.lastReviewed}</span></p>
     <div class="prose">
+      <h2>What these tools solve</h2>
       <p>
-        Use yarn estimators when you are shopping for a blanket, sweater, hat, or scarf. Switch to the
-        <a href="/tools/knitting-gauge-calculator/">knitting gauge calculator</a> when you need stitches per inch
-        or must resize a pattern. For stitch counts—not yarn—use the
-        <a href="/tools/crochet-blanket-calculator/">crochet blanket starting chain calculator</a> and the
-        <a href="/tools/cast-on-calculator/">cast-on calculator</a>. Guides such as
-        <a href="/guides/how-much-yarn-for-a-blanket/">how much yarn for a blanket</a>,
+        Use yarn estimators when you are shopping for a <a href="/tools/yarn-blanket-calculator/">blanket</a>,
+        <a href="/tools/yarn-sweater-calculator/">sweater</a>, <a href="/tools/yarn-hat-calculator/">hat</a>,
+        <a href="/tools/yarn-scarf-calculator/">scarf</a>, or
+        <a href="/tools/yarn-amigurumi-calculator/">amigurumi</a>. Switch to the
+        <a href="/tools/knitting-gauge-calculator/">knitting gauge calculator</a> when you need stitches per inch or must
+        resize a pattern. For stitch counts—not yarn—use the
+        <a href="/tools/crochet-blanket-calculator/">crochet blanket starting chain calculator</a>, the
+        <a href="/tools/cast-on-calculator/">cast-on calculator</a>, and the
+        <a href="/tools/increase-decrease-calculator/">even increase/decrease calculator</a>. The
+        <a href="/tools/yarn-substitution-calculator/">yarn substitution calculator</a> converts yards between CYC
+        weight categories using FiberCalc planning midpoints.
+      </p>
+
+      <h2>How to measure</h2>
+      <ul>
+        <li>Swatch in the stitch pattern you will use; wash and block the way you will finish the project.</li>
+        <li>Measure stitches and rows over 4″ when possible—small swatches magnify counting error.</li>
+        <li>Read the CYC category icon on the ball band; brand names like “DK” vs “worsted” can disagree.</li>
+        <li>Note yards (or meters) and grams per skein so skein counts stay honest when labels differ.</li>
+      </ul>
+
+      <h2>Worked example: throw yardage</h2>
+      <p>
+        Area 50 × 60 = 3,000 in². FiberCalc worsted (#4) knit density is 0.55 yd/in² → 1,650 yd before waste; ×1.10 =
+        <strong>1,815 yd</strong>. At 200 yd/skein that is ceil(1,815 ÷ 200) = <strong>10 skeins</strong>. Crochet uses
+        the same density ×1.28 ≈ 2,323 yd for the same footprint. These density factors are site heuristics—documented on
+        <a href="/methodology/#yarn-density">Methodology</a>—not a Craft Yarn Council publication. Prefer a pattern’s
+        tested yardage when you have one.
+      </p>
+
+      <h2>Worked example: cast-on from gauge</h2>
+      <p>
+        If your swatch is 18 stitches over 4″ (4.5 sts/in) and you want a 20″ hat circumference with a little negative
+        ease, 20 × 4.5 ≈ 90 stitches before you adjust for pattern multiples. The cast-on calculator applies gauge and
+        ease so you are not doing that multiplication on scrap paper mid-cast-on.
+      </p>
+
+      <h2>Common mistakes</h2>
+      <ul>
+        <li>Estimating yardage before locking gauge—looser fabric usually burns more yarn per square inch.</li>
+        <li>Mixing dye lots because the estimate was “almost” enough; buy an extra skein when lots are limited.</li>
+        <li>Substituting by name only instead of matching CYC category, gauge, and fiber behavior.</li>
+        <li>Using crochet and knit yardage interchangeably; crochet typically needs more yarn for the same area.</li>
+      </ul>
+
+      <h2>Guides and reference</h2>
+      <p>
+        Guides such as <a href="/guides/how-much-yarn-for-a-blanket/">how much yarn for a blanket</a>,
         <a href="/guides/how-much-yarn-for-a-sweater/">sweater yarn</a>,
         <a href="/guides/how-many-skeins-for-a-scarf/">scarf skeins</a>,
-        <a href="/guides/does-crochet-use-more-yarn-than-knitting/">crochet vs knit yarn</a>, and
-        <a href="/guides/how-to-increase-evenly-across-a-row/">even increases</a> explain the “why”; the tools
-        do the arithmetic.
+        <a href="/guides/does-crochet-use-more-yarn-than-knitting/">crochet vs knit yarn</a>,
+        <a href="/guides/knitting-gauge-explained/">knitting gauge explained</a>, and
+        <a href="/guides/how-to-increase-evenly-across-a-row/">even increases</a> explain the “why”; the tools do the
+        arithmetic. See also <a href="/reference/yarn-weights/">CYC yarn weight standards</a> and the
+        <a href="/tools/needle-hook-converter/">needle &amp; hook converter</a>.
       </p>
     </div>
     <div class="tool-grid">
@@ -44,6 +95,5 @@ const jsonLd = collectionPageGraph({
         <a class="tool-link" href={t.path}><h2>{t.title}</h2><p>{t.description}</p></a>
       ))}
     </div>
-    <p>See also <a href="/reference/yarn-weights/">CYC yarn weight standards</a> and the <a href="/tools/needle-hook-converter/">needle &amp; hook converter</a>.</p>
   </div>
 </BaseLayout>

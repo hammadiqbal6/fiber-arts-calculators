@@ -7,7 +7,7 @@ export const guide: Guide = {
     'HST cutting formulas for 2-, 4-, and 8-at-a-time methods, with trimming tips, a worked example, and a free HST calculator.',
   primaryKeyword: 'half square triangle formula',
   datePublished: '2026-10-19',
-  dateModified: '2026-10-24',
+  dateModified: '2026-11-07',
   relatedTools: [
     'hst-calculator',
     'quilt-size-calculator',
@@ -27,6 +27,10 @@ export const guide: Guide = {
       a: 'When you need many identical pairs from the same two fabrics. The common formula is about twice the finished size plus 1.75 inches for the starting squares—confirm with the HST calculator (/tools/hst-calculator/).',
     },
     {
+      q: 'What is the 4-at-a-time HST formula?',
+      a: 'A common published convention is starting square = unfinished size ÷ 0.64, where unfinished = finished + ½ inch. For a 3″ finished HST that is about 5.47″. Every outer edge is on the bias, so trim carefully. Confirm with the HST calculator (/tools/hst-calculator/).',
+    },
+    {
       q: 'Why do my HST blocks finish small?',
       a: 'Skipped trimming, scant seam allowances that were too scant, or pressing that stretched the bias edge. Trim every unit to the same unfinished size before block assembly.',
     },
@@ -43,7 +47,7 @@ export const guide: Guide = {
     {
       type: 'takeaway',
       content:
-        'For 2-at-a-time HSTs, a common formula is finished size + ⅞ inch for the starting squares. Eight-at-a-time squares are often about twice the finished size plus 1.75 inches. Trim every unit to the same unfinished size (finished + ½ inch) before sewing blocks.',
+        'For 2-at-a-time HSTs, a common formula is finished size + ⅞ inch for the starting squares. Four-at-a-time squares are unfinished size ÷ 0.64 (unfinished = finished + ½ inch). Eight-at-a-time squares are often about twice the finished size plus 1.75 inches. Trim every unit to the same unfinished size before sewing blocks.',
     },
     {
       type: 'p',
@@ -75,7 +79,7 @@ export const guide: Guide = {
         headers: ['Method', 'Starting square (rule of thumb)', 'HSTs per fabric pair', 'Best for'],
         rows: [
           ['2-at-a-time', 'Finished + ⅞"', '2', 'Precision, few units'],
-          ['4-at-a-time', 'Finished + 1"', '4', 'Balanced speed'],
+          ['4-at-a-time', '(Finished + ½") ÷ 0.64', '4', 'Speed; bias edges—trim'],
           ['8-at-a-time', '2 × finished + 1¾"', '8', 'Large matching batches'],
         ],
       },
@@ -101,7 +105,7 @@ export const guide: Guide = {
     {
       type: 'p',
       content:
-        'If you prefer 2-at-a-time for maximum control, starting squares would be 3 + 0.875 = 3.875 inches, and you would need twenty fabric pairs (forty squares) to produce forty HSTs. The HST calculator (/tools/hst-calculator/) switches methods and sizes without redoing the arithmetic.',
+        'If you prefer 2-at-a-time for maximum control, starting squares would be 3 + 0.875 = 3.875 inches, and you would need twenty fabric pairs (forty squares) to produce forty HSTs. Four-at-a-time for the same batch uses starting squares of (3 + 0.5) ÷ 0.64 ≈ 5.47 inches and ten fabric pairs—faster cutting, but every outer edge is on the bias, so plan to trim. The HST calculator (/tools/hst-calculator/) switches methods and sizes without redoing the arithmetic.',
     },
     {
       type: 'h2',
@@ -182,7 +186,8 @@ export const guide: Guide = {
     },
   ],
   sources: [
-    ["Murray State University — Quilting arts basics (quilt layers)", "https://digitalcommons.murraystate.edu/cgi/viewcontent.cgi?article=1483&context=bis437"],
+    ["APQS — Magic 8 Half-Square Triangle cheat sheet", "https://www.apqs.com/wp-content/uploads/2019/08/Magic-8-Half-Square-Triangle-Cheat-Sheet.pdf"],
+    ["QuiltMath — Half square triangle calculator (method formulas)", "https://quiltmath.net/half-square-triangle-calculator/"],
   ],
 };
 

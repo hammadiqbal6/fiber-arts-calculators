@@ -1,8 +1,9 @@
 /**
- * Knitting needle and crochet hook size conversions (US / UK / metric).
- * Sources: Craft Yarn Council needle & hook size charts
- * https://www.craftyarncouncil.com/standards/knitting-needle-sizes
- * https://www.craftyarncouncil.com/standards/crochet-hook-sizes
+ * Knitting needle and crochet hook size conversions (US / metric / UK).
+ * US ↔ metric aligned to Craft Yarn Council Hooks & Needles:
+ * https://www.craftyarncouncil.com/standards/hooks-and-needles
+ * UK columns are approximate traditional equivalents (not published by CYC)—
+ * prefer the millimeter marking on the package.
  */
 
 export interface NeedleSize {
@@ -36,7 +37,8 @@ export const KNITTING_NEEDLES: NeedleSize[] = [
   { metricMm: 8.0, us: '11', uk: '0' },
   { metricMm: 9.0, us: '13', uk: '00' },
   { metricMm: 10.0, us: '15', uk: '000' },
-  { metricMm: 12.0, us: '17', uk: '—' },
+  // CYC lists US 17 at 12.50 mm and 12.75 mm (no 12.0 mm row).
+  { metricMm: 12.75, us: '17', uk: '—' },
   { metricMm: 15.0, us: '19', uk: '—' },
   { metricMm: 19.0, us: '35', uk: '—' },
   { metricMm: 25.0, us: '50', uk: '—' },

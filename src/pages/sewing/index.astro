@@ -3,6 +3,7 @@ import BaseLayout from '../../components/BaseLayout.astro';
 import Breadcrumbs from '../../components/Breadcrumbs.astro';
 import { toolsByCategory } from '../../lib/tools';
 import { collectionPageGraph } from '../../lib/schema';
+import { siteConfig } from '../../config/site';
 
 const tools = toolsByCategory('sewing');
 const title = 'Sewing Calculators: Fabric & Seams';
@@ -27,29 +28,69 @@ const jsonLd = collectionPageGraph({
       <strong>Key takeaway:</strong> Estimate fabric from project dimensions and fabric width—then refine cut sizes with
       seam allowance. Example: a 48×84″ curtain at 2× fullness on 54″ fabric with 10% waste is about 5.9 yards.
     </p>
+    <p class="meta-row"><span>Last reviewed {siteConfig.lastReviewed}</span></p>
     <div class="tool-grid">
       {tools.map((t) => (
         <a class="tool-link" href={t.path}><h2>{t.title}</h2><p>{t.description}</p></a>
       ))}
     </div>
     <div class="prose">
+      <h2>What these tools solve</h2>
       <p>
-        The <a href="/tools/fabric-yardage-calculator/">fabric yardage calculator</a> is for shopping lists:
-        finished width and length, fabric width, waste, and optional pattern repeat. The
-        <a href="/tools/seam-allowance-calculator/">seam allowance calculator</a> converts finished measurements
-        to cut sizes, grades a measurement between sizes, or adds wearing ease. Neither tool replaces a full
-        pattern; both keep arithmetic local in your browser.
+        The <a href="/tools/fabric-yardage-calculator/">fabric yardage calculator</a> turns finished width and length,
+        bolt width, optional pattern repeat, and waste into a shopping length in yards or meters. Use it for garments,
+        curtains, upholstery covers, and tablecloths when you need a planning figure before you visit the store. The
+        <a href="/tools/seam-allowance-calculator/">seam allowance calculator</a> converts finished measurements to cut
+        sizes, grades a measurement between sizes, or adds wearing ease. Neither tool replaces a full commercial
+        pattern’s yardage chart; both keep arithmetic local in your browser.
       </p>
+
+      <h2>How to measure before you buy</h2>
+      <ul>
+        <li>Measure the finished width and length you want (window opening for curtains, table top for cloths, body or pattern piece for garments).</li>
+        <li>Note the usable fabric width on the bolt (often about 44/45″ or 54/60″ for apparel and home décor—confirm in the store).</li>
+        <li>Add hems, headers, and seam allowances before cutting; the tools’ waste and seam fields exist for that buffer.</li>
+        <li>If the print has a vertical repeat, enter it so panel lengths can round up to a matching motif.</li>
+      </ul>
+
+      <h2>Worked example: curtain panels</h2>
+      <p>
+        Window 48″ wide × 84″ drop, 2× fullness, 54″-wide fabric, 10% waste. Total width needed = 48 × 2 = 96″ →
+        ceil(96 ÷ 54) = 2 panels. Each panel length ≈ 84 + 10″ hem/header = 94″. Two panels = 188″; ×1.10 waste ≈
+        206.8″ ÷ 36 ≈ <strong>5.74–5.9 yards</strong> depending on rounding—matches the takeaway above when you run the
+        same inputs in the fabric yardage calculator.
+      </p>
+
+      <h2>Worked example: finished to cut size</h2>
+      <p>
+        A pocket that should finish 5″ wide with ⅝″ seam allowance on both sides needs a cut width of
+        5 + 2 × 0.625 = <strong>6.25″</strong>. Use the seam allowance calculator when you are drafting or altering
+        rather than following a printed cutting layout.
+      </p>
+
+      <h2>Common mistakes</h2>
+      <ul>
+        <li>Shopping from finished size only and forgetting hem, header, or seam allowance.</li>
+        <li>Ignoring directional prints or naps that force extra length for matching.</li>
+        <li>Treating garment “coverage factor” estimates as a substitute for a graded pattern chart—always prefer the pattern when you have one.</li>
+        <li>Assuming every bolt is 45″ usable; selvages and printing can shrink the usable width.</li>
+      </ul>
+
+      <h2>Guides and related hubs</h2>
       <p>
         When you want yardage explained in words, read
         <a href="/guides/how-many-yards-of-fabric/">how many yards of fabric you need</a>. Quilters often need
-        <a href="/guides/how-much-quilt-binding-do-i-need/">binding</a> and the
-        <a href="/quilting/">quilting hub</a> next.
+        <a href="/guides/how-much-quilt-binding-do-i-need/">binding</a>,
+        <a href="/guides/quilt-backing-yardage-guide/">backing</a>, and the
+        <a href="/quilting/">quilting hub</a> next. Knitters and crocheters shopping yarn instead of woven fabric should
+        start at the <a href="/knitting-crochet/">knitting &amp; crochet hub</a>. Charts for mattress and quilt top
+        sizes live under <a href="/reference/quilt-sizes/">quilt &amp; mattress sizes</a>.
+      </p>
+      <p>
+        Planning assumptions for fabric tools (fullness defaults, hem add-ons, waste) are documented as heuristics on
+        <a href="/methodology/">Methodology</a>. Prefer a published pattern’s tested yardage when it conflicts with a
+        calculator estimate.
       </p>
     </div>
-    <p>
-      Guides: <a href="/guides/how-many-yards-of-fabric/">fabric yardage</a> ·
-      <a href="/guides/">all guides</a>
-    </p>
   </div>
 </BaseLayout>
