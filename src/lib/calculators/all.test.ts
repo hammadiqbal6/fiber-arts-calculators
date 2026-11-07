@@ -239,10 +239,15 @@ describe('quilt tools', () => {
 
   it('computes HST square sizes', () => {
     expect(hstSquareSize(3, 'two-at-a-time')).toBeCloseTo(3.875, 3);
+    // 4-at-a-time: unfinished (3.5) / 0.64 ≈ 5.469
+    expect(hstSquareSize(3, 'four-at-a-time')).toBeCloseTo(3.5 / 0.64, 3);
     expect(hstSquareSize(3, 'eight-at-a-time')).toBeCloseTo(7.75, 3);
     const proj = hstProject(3, 40, 'eight-at-a-time');
     expect(proj.pairsNeeded).toBe(5);
     expect(proj.hstProduced).toBe(40);
+    const four = hstProject(3, 40, 'four-at-a-time');
+    expect(four.pairsNeeded).toBe(10);
+    expect(four.hstProduced).toBe(40);
   });
 });
 
@@ -265,6 +270,7 @@ describe('cross-stitch', () => {
 describe('needle/hook reference', () => {
   it('maps US sizes to metric', () => {
     expect(findNeedleByUs('8')?.metricMm).toBe(5);
+    expect(findNeedleByUs('17')?.metricMm).toBe(12.75);
     expect(findHookByUs('H-8')?.metricMm).toBe(5);
   });
 });

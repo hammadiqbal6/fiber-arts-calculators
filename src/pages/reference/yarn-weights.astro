@@ -66,7 +66,7 @@ const jsonLd = {
         <caption>CYC yarn weight categories with typical knit and crochet gauges</caption>
         <thead>
           <tr>
-            <th>#</th><th>Name</th><th>WPI</th><th>Knit sts/4″</th><th>Needles mm</th><th>Crochet sc/4″</th><th>Hooks mm</th><th>yd/100 g (mid)</th>
+            <th>#</th><th>Name</th><th>WPI</th><th>Knit sts/4″</th><th>Needles mm</th><th>Crochet sts/4″</th><th>Hooks mm</th><th>yd/100 g (mid)</th>
           </tr>
         </thead>
         <tbody>
@@ -74,10 +74,10 @@ const jsonLd = {
             <tr>
               <td>{y.id}</td>
               <td>{y.name}</td>
-              <td>{y.wpi[0]}–{y.wpi[1]}</td>
+              <td>{y.wpi[0]}–{y.wpi[1]}{y.id === 0 ? '+' : ''}</td>
               <td>{y.knitGaugeSts4in[0]}–{y.knitGaugeSts4in[1]}</td>
               <td>{y.needleMetricMm[0]}–{y.needleMetricMm[1]}</td>
-              <td>{y.crochetGaugeSc4in[0]}–{y.crochetGaugeSc4in[1]}</td>
+              <td>{y.crochetGaugeSc4in[0]}–{y.crochetGaugeSc4in[1]}{y.id === 0 ? ' dc' : ' sc'}</td>
               <td>{y.hookMetricMm[0]}–{y.hookMetricMm[1]}</td>
               <td>{Math.round((y.yardsPer100g[0] + y.yardsPer100g[1]) / 2)}</td>
             </tr>
@@ -85,6 +85,11 @@ const jsonLd = {
         </tbody>
       </table>
     </div>
+    <p>
+      CYC lists category 0 crochet gauge in <strong>double crochet</strong>; categories 1–7 use single crochet. Lace WPI
+      is published as 30–40+ wraps. Jumbo knit/crochet gauges are “6 sts and fewer,” encoded here as 1–6 for a closed
+      table range.
+    </p>
     <h2>How to use this chart with FiberCalc</h2>
     <p>
       Match the CYC icon on the ball band to the “#” column, then enter that weight in a yarn calculator.
@@ -101,6 +106,7 @@ const jsonLd = {
     <h2>Sources</h2>
     <ul>
       <li><a href="https://www.craftyarncouncil.com/standards/yarn-weight-system" rel="noopener noreferrer">Craft Yarn Council — Standard Yarn Weight System</a> (checked {siteConfig.lastReviewed})</li>
+      <li><a href="https://www.craftyarncouncil.com/standards/how-measure-wraps-inch-wpi" rel="noopener noreferrer">Craft Yarn Council — How to measure wraps per inch (WPI)</a> (checked {siteConfig.lastReviewed})</li>
       <li><a href="https://www.craftyarncouncil.com/standards/hooks-and-needles" rel="noopener noreferrer">Craft Yarn Council — Hooks &amp; Needles</a> (checked {siteConfig.lastReviewed})</li>
       <li><a href="/methodology/#yarn-density">FiberCalc methodology — yarn density factors</a> (site heuristic)</li>
     </ul>

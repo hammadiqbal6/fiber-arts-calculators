@@ -168,8 +168,10 @@ export function quiltBinding(input: QuiltBindingInput): QuiltBindingResult {
 
 /**
  * Half-square triangle (HST) cutting.
- * Traditional: two squares yield 2 HSTs; square size = finished HST + 7/8".
- * 8-at-a-time: square = finished * 2 + 1.75" (common formula).
+ * Traditional 2-at-a-time: square = finished HST + 7/8".
+ * 4-at-a-time: square = unfinished / 0.64 = (finished + 1/2") / 0.64
+ *   (bias edges; always trim — common published convention).
+ * 8-at-a-time: square = finished * 2 + 1.75".
  */
 export type HstMethod = 'two-at-a-time' | 'four-at-a-time' | 'eight-at-a-time';
 
@@ -177,8 +179,10 @@ export function hstSquareSize(finishedHstIn: number, method: HstMethod): number 
   switch (method) {
     case 'two-at-a-time':
       return round(finishedHstIn + 7 / 8, 3);
-    case 'four-at-a-time':
-      return round(finishedHstIn + 1, 3);
+    case 'four-at-a-time': {
+      const unfinished = finishedHstIn + 0.5;
+      return round(unfinished / 0.64, 3);
+    }
     case 'eight-at-a-time':
       return round(finishedHstIn * 2 + 1.75, 3);
     default:

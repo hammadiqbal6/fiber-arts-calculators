@@ -1,8 +1,12 @@
 /**
  * Craft Yarn Council Standard Yarn Weight System (categories 0–7).
- * Source: https://www.craftyarncouncil.com/standards/yarn-weight-system
- * Wraps/inch and gauge ranges are CYC published standards; yardage per project
- * estimates below are planning averages used by our calculators (documented on tool pages).
+ * Sources:
+ * - https://www.craftyarncouncil.com/standards/yarn-weight-system
+ * - https://www.craftyarncouncil.com/standards/how-measure-wraps-inch-wpi
+ * Wraps/inch and gauge ranges are CYC published standards.
+ * Note: category 0 crochet gauge on CYC is double crochet (not SC); categories
+ * 1–7 use single crochet. metersPer100g / yardsPer100g are FiberCalc planning
+ * averages for substitution math—not CYC figures (documented on tool pages).
  */
 
 export type YarnWeightId = 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7;

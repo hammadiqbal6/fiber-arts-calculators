@@ -3,6 +3,7 @@ import BaseLayout from '../../components/BaseLayout.astro';
 import Breadcrumbs from '../../components/Breadcrumbs.astro';
 import { toolsByCategory } from '../../lib/tools';
 import { collectionPageGraph } from '../../lib/schema';
+import { siteConfig } from '../../config/site';
 
 const tools = toolsByCategory('quilting');
 const title = 'Quilting Calculators';
@@ -23,19 +24,72 @@ const jsonLd = collectionPageGraph({
   <div class="container">
     <Breadcrumbs items={[{ label: 'Home', href: '/' }, { label: 'Quilting' }]} />
     <h1>Quilting calculators</h1>
-    <p class="takeaway"><strong>Key takeaway:</strong> Plan the top from blocks and borders, then calculate backing panels and binding strips before you cut.</p>
+    <p class="takeaway">
+      <strong>Key takeaway:</strong> Plan the top from blocks and borders, then calculate backing panels and binding
+      strips before you cut. Example: a 60×80″ quilt with 4″ overhang on 42″ fabric needs two vertical panels and about
+      4.9 yards of backing before piecing waste.
+    </p>
+    <p class="meta-row"><span>Last reviewed {siteConfig.lastReviewed}</span></p>
     <div class="prose">
+      <h2>What each tool solves</h2>
       <p>
-        Start with the <a href="/tools/quilt-size-calculator/">quilt size calculator</a> to turn a block grid into
-        finished inches (or fit blocks to a twin/queen target). Use the
-        <a href="/tools/quilt-backing-calculator/">quilt backing calculator</a> for yardage and panel layout, then
-        the <a href="/tools/quilt-binding-calculator/">binding calculator</a> for strip counts. The
-        <a href="/tools/hst-calculator/">HST calculator</a> covers 2-, 4-, and 8-at-a-time cut sizes. For narrative
-        how-tos without competing for the same calculator keyword, see the
+        Start with the <a href="/tools/quilt-size-calculator/">quilt size calculator</a> to turn a block grid plus
+        sashing and borders into finished inches, or to fit blocks to a twin/queen target. Use the
+        <a href="/tools/quilt-backing-calculator/">quilt backing calculator</a> for yardage and panel layout (default
+        4″ overhang per side for longarm prep). The
+        <a href="/tools/quilt-binding-calculator/">binding calculator</a> converts perimeter into strip count and fabric
+        yards for your strip width. The <a href="/tools/hst-calculator/">HST calculator</a> covers 2-, 4-, and
+        8-at-a-time starting-square sizes and yield.
+      </p>
+
+      <h2>How to measure the top</h2>
+      <ul>
+        <li>Measure the finished quilt top after borders—not just the block grid on paper.</li>
+        <li>For backing, add the overhang your quilter requests (FiberCalc defaults to 4″ per side; shops may ask for more).</li>
+        <li>For binding, use the actual perimeter after quilting; quilting can draw the sandwich up slightly.</li>
+        <li>Confirm usable fabric width (often ~40–42″ after selvages) before trusting panel counts.</li>
+      </ul>
+
+      <h2>Worked example: backing for a twin top</h2>
+      <p>
+        Quilt 60×80″, 4″ overhang → backing need 68×88″. On 42″-wide fabric, ceil(68 ÷ 42) = 2 vertical panels; cut
+        length ≈ 88 × 2 = 176″, plus a little for the joining seam. 176 ÷ 36 ≈ <strong>4.89 yards</strong> before you
+        round up at the cutting table. Run the same numbers in the backing calculator to see panel orientation when
+        horizontal seams would use less fabric.
+      </p>
+
+      <h2>Worked example: binding strips</h2>
+      <p>
+        Same 60×80″ quilt: perimeter = 2 × (60 + 80) = 280″. Add about 12″ join waste → 292″ of continuous binding.
+        On 40″ usable width, ceil(292 ÷ 40) = 8 strips. At 2.5″ strip width, fabric ≈ 8 × 2.5 = 20″ ≈
+        <strong>0.56 yards</strong>—buy a little more if you prefer continuous bias or wider strips.
+      </p>
+
+      <h2>Worked example: HST batch</h2>
+      <p>
+        Forty 3″ finished HSTs with the 8-at-a-time method need starting squares of 2 × 3 + 1.75 = <strong>7.75″</strong>
+        and five fabric pairs. Classic 2-at-a-time uses 3 + ⅞ = <strong>3.875″</strong> squares and twenty pairs. The
+        4-at-a-time starting square is (finished + ½″) ÷ 0.64 (about <strong>5.47″</strong> for a 3″ finish) and always
+        needs careful trimming because edges are on the bias.
+      </p>
+
+      <h2>Common mistakes</h2>
+      <ul>
+        <li>Buying backing from the mattress size instead of the finished quilt top plus overhang.</li>
+        <li>Cutting binding from the pre-quilted perimeter without re-measuring after quilting.</li>
+        <li>Entering unfinished HST size into a finished-size formula (or the reverse).</li>
+        <li>Ignoring selvage trim when counting how many strips fit across the width.</li>
+      </ul>
+
+      <h2>Guides and reference charts</h2>
+      <p>
+        Narrative how-tos:
         <a href="/guides/quilt-backing-yardage-guide/">backing yardage guide</a>,
         <a href="/guides/how-much-quilt-binding-do-i-need/">binding guide</a>, and
-        <a href="/guides/half-square-triangle-math/">HST math guide</a>. Also see
-        <a href="/reference/quilt-sizes/">standard quilt sizes</a>.
+        <a href="/guides/half-square-triangle-math/">HST math guide</a>. Size tables:
+        <a href="/reference/quilt-sizes/">standard quilt and mattress sizes</a>. Related sewing tools for non-pieced
+        yardage live on the <a href="/sewing/">sewing hub</a>. Formula provenance and correction history:
+        <a href="/methodology/">Methodology</a>.
       </p>
     </div>
     <div class="tool-grid">
@@ -43,6 +97,5 @@ const jsonLd = collectionPageGraph({
         <a class="tool-link" href={t.path}><h2>{t.title}</h2><p>{t.description}</p></a>
       ))}
     </div>
-    <p>Reference: <a href="/reference/quilt-sizes/">standard quilt and mattress sizes</a>.</p>
   </div>
 </BaseLayout>

@@ -12,8 +12,14 @@ import { siteConfig } from '../config/site';
   <div class="container prose">
     <Breadcrumbs items={[{ label: 'Home', href: '/' }, { label: 'Privacy' }]} />
     <h1>Privacy Policy</h1>
-    <p class="meta-row"><span>Last updated {siteConfig.launched}</span></p>
-    <p>{siteConfig.legalName} (“we”) operates {siteConfig.siteName} at {siteConfig.siteUrl}. Calculator inputs are processed locally in your browser and are not uploaded to our servers as part of the tool math.</p>
+    <p class="meta-row"><span>Last updated {siteConfig.lastReviewed}</span></p>
+    <p>
+      {siteConfig.legalName} (“we”) operates {siteConfig.siteName} at {siteConfig.siteUrl}. Calculator inputs are
+      processed locally in your browser and are not uploaded to our servers as part of the tool math. This page
+      explains what limited data we may receive, how cookies work when analytics or ads are enabled, and how to
+      contact us.
+    </p>
+
     <h2>Information we may collect</h2>
     <ul>
       <li>Email messages you send to {siteConfig.contactEmail}</li>
@@ -21,22 +27,68 @@ import { siteConfig } from '../config/site';
         Contact form submissions (name, reply email, and message) when EmailJS is configured. Those fields are sent
         from your browser to EmailJS so we can receive the email; EmailJS is a third-party processor.
       </li>
-      <li>Standard server or host logs from our hosting provider</li>
-      <li>Optional analytics (Google Analytics 4) when a measurement ID is configured</li>
+      <li>Standard server or host logs from our hosting provider (for example IP address, user agent, and request path)</li>
+      <li>Optional analytics (Google Analytics 4) when a measurement ID is configured and you accept cookies</li>
       <li>Advertising cookies when Google AdSense is enabled</li>
     </ul>
+
+    <h2>How calculator data is handled</h2>
+    <p>
+      Yarn, gauge, fabric, and quilt inputs stay in your browser session (including shareable query-string state you
+      choose to copy). We do not require an account, and we do not receive your project measurements as part of running
+      a calculation. If you email us a correction, include only the numbers needed to reproduce the issue—avoid photos
+      or personal project files that must remain private.
+    </p>
+
     <h2>Google AdSense and advertising cookies</h2>
-    <p>When AdSense is enabled, Google and its partners may use cookies to serve ads based on visits to this and other sites. Third parties, including Google, may use cookies (such as the DoubleClick cookie) to serve ads based on a user’s prior visits.</p>
-    <p>Users may opt out of personalized advertising by visiting <a href="https://www.google.com/settings/ads" rel="noopener noreferrer">Google Ads Settings</a> and <a href="https://www.aboutads.info/choices/" rel="noopener noreferrer">www.aboutads.info</a>. For EEA/UK/Switzerland visitors, a Google-certified Consent Management Platform (CMP) is required before personalized ads.</p>
+    <p>
+      When AdSense is enabled, Google and its partners may use cookies to serve ads based on visits to this and other
+      sites. Third parties, including Google, may use cookies (such as the DoubleClick cookie) to serve ads based on a
+      user’s prior visits. Ads are labeled and reserved in layout to limit unexpected shifts.
+    </p>
+    <p>
+      Users may opt out of personalized advertising by visiting
+      <a href="https://www.google.com/settings/ads" rel="noopener noreferrer">Google Ads Settings</a> and
+      <a href="https://www.aboutads.info/choices/" rel="noopener noreferrer">www.aboutads.info</a>. For
+      EEA/UK/Switzerland visitors, a Google-certified Consent Management Platform (CMP) is required before personalized
+      ads. Until a CMP is integrated for those regions, personalized ads may remain off or limited consistent with
+      Google policy.
+    </p>
+
     <h2>Analytics</h2>
     <p>
-      If GA4 is configured, Google Analytics may collect pseudonymous usage data (pages viewed, approximate
-      location, device) <strong>only after you accept the cookie notice</strong>. Until then, Consent Mode v2
-      defaults keep <code>analytics_storage</code> denied, and the GA script is not loaded. You can choose
-      “No thanks” to keep analytics off, or clear site data to see the banner again. You can also limit
-      analytics via browser controls and Google’s opt-out tools.
+      If GA4 is configured, Google Analytics may collect pseudonymous usage data (pages viewed, approximate location,
+      device) <strong>only after you accept the cookie notice</strong>. Until then, Consent Mode v2 defaults keep
+      <code>analytics_storage</code> denied, and the GA script is not loaded. You can choose “No thanks” to keep
+      analytics off, or clear site data to see the banner again. You can also limit analytics via browser controls and
+      Google’s opt-out tools.
     </p>
+
+    <h2>Cookies we may use</h2>
+    <ul>
+      <li>Cookie-consent preference (so we remember accept / decline choices)</li>
+      <li>Google Analytics cookies after consent (when GA4 is configured)</li>
+      <li>Google AdSense / DoubleClick advertising cookies when ads are enabled</li>
+    </ul>
+
+    <h2>Data retention and sharing</h2>
+    <p>
+      Email and contact-form messages are retained only as long as needed to respond and keep a correction record.
+      Hosting logs follow our provider’s retention defaults. We do not sell personal information. Third-party
+      processors (hosting, EmailJS, Google) receive only what is required for their service under their own policies.
+    </p>
+
+    <h2>Children</h2>
+    <p>
+      The site is a general-audience planning tool. We do not knowingly collect personal information from children. If
+      you believe a child submitted personal data through the contact form, email us and we will delete it.
+    </p>
+
     <h2>Contact</h2>
-    <p>Questions: <a href={`mailto:${siteConfig.contactEmail}`}>{siteConfig.contactEmail}</a></p>
+    <p>
+      Questions: <a href={`mailto:${siteConfig.contactEmail}`}>{siteConfig.contactEmail}</a> ·
+      <a href="/contact/">Contact form</a>. Related pages: <a href="/terms/">Terms of use</a>,
+      <a href="/about/">About</a>, <a href="/methodology/">Methodology</a>.
+    </p>
   </div>
 </BaseLayout>

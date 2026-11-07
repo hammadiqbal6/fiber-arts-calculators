@@ -38,6 +38,12 @@ const jsonLd = {
       <p><strong>Key takeaway:</strong> A common US queen mattress is about 60×80 inches; quilt and knit/crochet blanket sizes are craft conventions that vary by pattern. Use these tables as starting points in the <a href="/tools/quilt-size-calculator/">quilt size</a> and <a href="/tools/yarn-blanket-calculator/">yarn blanket</a> calculators.</p>
     </div>
     <p class="meta-row"><span>Last reviewed {siteConfig.lastReviewed}</span></p>
+    <p>
+      These tables are planning aids. Knit/crochet blanket and quilt-top sizes are craft conventions that vary by
+      pattern. Mattress sizes below are common US <em>retail rounded</em> dimensions; industry finished-mattress
+      specs (ISPA) are often about ½″ shorter and list full/double finished width as 53″ rather than the 54″ retail
+      figure many shops quote. Always confirm your pattern and your mattress before cutting.
+    </p>
 
     <h2>Knit / crochet blanket sizes (inches)</h2>
     <div class="table-scroll" tabindex="0" role="region" aria-label="Blanket sizes table">
@@ -64,16 +70,49 @@ const jsonLd = {
     <h2>US mattress sizes (inches)</h2>
     <div class="table-scroll" tabindex="0" role="region" aria-label="Mattress sizes table">
       <table>
-        <caption>Common US mattress dimensions</caption>
+        <caption>Common US retail mattress dimensions (rounded)</caption>
         <thead><tr><th>Name</th><th>Width</th><th>Length</th></tr></thead>
         <tbody>
           {MATTRESS_SIZES.map((s) => <tr><td>{s.name}</td><td>{s.widthIn}</td><td>{s.lengthIn}</td></tr>)}
         </tbody>
       </table>
     </div>
+
+    <h2>How to use these sizes with FiberCalc tools</h2>
+    <p>
+      Pick a target top size (or mattress plus desired drop), then use the
+      <a href="/tools/quilt-size-calculator/">quilt size calculator</a> to fit blocks, sashing, and borders. Add
+      overhang in the <a href="/tools/quilt-backing-calculator/">backing calculator</a> (default 4″ per side for
+      longarm prep). Convert the finished perimeter into binding strips with the
+      <a href="/tools/quilt-binding-calculator/">binding calculator</a>. Knit/crochet makers estimating yarn for a
+      throw-sized blanket can enter the blanket table dimensions in the
+      <a href="/tools/yarn-blanket-calculator/">yarn blanket calculator</a>.
+    </p>
+
+    <h2>Worked example: queen bed quilt</h2>
+    <p>
+      A common US queen mattress is about 60×80″. A quilt top near 84×92″ leaves roughly 12″ of total side drop and
+      12″ of foot drop before accounting for mattress height and tuck—adjust for your bed and preference. Backing for
+      an 84×92″ top with 4″ overhang needs about 92×100″ of fabric coverage before panel seams; binding uses
+      perimeter 2 × (84 + 92) = 352″ plus join waste.
+    </p>
+
+    <h2>Common mistakes</h2>
+    <ul>
+      <li>Buying fabric for the mattress size instead of the finished quilt top plus overhang.</li>
+      <li>Treating knit “throw” and quilt “throw” labels as identical inch measurements—they often differ.</li>
+      <li>Ignoring pillow tuck or mattress depth when planning drop.</li>
+      <li>Assuming ISPA finished specs and retail labels always match to the inch (especially full/double width).</li>
+    </ul>
+
     <h2>Sources</h2>
     <ul>
-      <li>US mattress dimensions as commonly published in bedding industry charts (see <a href="https://www.sleepproducts.org/" rel="noopener noreferrer">ISPA</a>).</li>
+      <li>
+        US mattress dimensions as commonly published in bedding retail charts; industry context via the
+        <a href="https://www.sleepproducts.org/" rel="noopener noreferrer">International Sleep Products Association</a>
+        (checked {siteConfig.lastReviewed}). Retail rounded sizes shown here may differ slightly from ISPA finished
+        mattress specs.
+      </li>
       <li>Quilt and craft blanket ranges reflect widespread pattern conventions; always confirm your pattern.</li>
     </ul>
     <p>
@@ -82,7 +121,8 @@ const jsonLd = {
       <a href="/tools/quilt-backing-calculator/">backing calculator</a>,
       <a href="/tools/quilt-binding-calculator/">binding calculator</a>,
       <a href="/guides/quilt-backing-yardage-guide/">backing yardage guide</a>,
-      <a href="/guides/how-much-quilt-binding-do-i-need/">binding guide</a>.
+      <a href="/guides/how-much-quilt-binding-do-i-need/">binding guide</a>,
+      <a href="/quilting/">quilting hub</a>.
     </p>
   </div>
 </BaseLayout>
